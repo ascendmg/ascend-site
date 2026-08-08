@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Ascend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .story-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .story-grid p{color:var(--muted); font-size:15px; line-height:1.8; margin-bottom:18px;}
+  .story-grid p strong{color:var(--ivory); font-weight:600;}
+  .approach-list{display:flex; flex-direction:column; gap:24px;}
+  .approach-item{
+    border-left:2px solid var(--green);
+    padding-left:20px;
+  }
+  .approach-item h3{font-size:16px; margin-bottom:6px;}
+  .approach-item p{color:var(--muted); font-size:13.5px; line-height:1.6; margin:0;}
+  @media (max-width:760px){ .story-grid{grid-template-columns:1fr; gap:36px;} }
+</style>
+</head>
+<body>
+
+<div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo">A<span>scend</span></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Free Consultation</a>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <div class="eyebrow">About Ascend</div>
+    <h1>Built by someone who builds it himself.</h1>
+    <p>No account managers, no outsourced dev teams — just direct work with the person actually building your site.</p>
+  </div>
+</header>
+
+<section style="border-top:none; padding-top:0;">
+  <div class="wrap reveal">
+    <div class="story-grid">
+      <div>
+        <p><strong>I'm Michael</strong>, the founder of Ascend. I started this agency because I kept seeing the same problem: small businesses either paying too much for a website that never gets touched again, or settling for a DIY builder that looks like everyone else's.</p>
+        <p>I got my start building real, functioning sites for real people — a nationwide test-prep course, a family law practice, my own business. Each one taught me that a website only matters if it actually brings people in and turns them into customers.</p>
+        <p>That's the whole idea behind Ascend: <strong>design and marketing that work together</strong>, not two separate vendors who don't talk to each other. I build the site, then I keep it working — SEO, ads, updates — for as long as you need it to grow.</p>
+      </div>
+      <div class="approach-list">
+        <div class="approach-item">
+          <h3>My Approach</h3>
+          <p>Start with what the business actually needs — not a template, not a trend. Every site is built around a clear action you want visitors to take.</p>
+        </div>
+        <div class="approach-item">
+          <h3>What Makes Ascend Different</h3>
+          <p>You're not handed off to a project manager. You work directly with me, from the first call to ongoing support after launch.</p>
+        </div>
+        <div class="approach-item">
+          <h3>Why It Matters</h3>
+          <p>People hire people they trust. I'd rather do fewer projects and do them right than take on everything and deliver something generic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap reveal" style="text-align:center;">
+    <h2 class="section-title" style="margin:0 auto;">Let's talk about your project.</h2>
+    <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
+      <a href="contact.html" class="btn-primary">Book a Free Consultation</a>
+      <a href="portfolio.html" class="btn-ghost">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="logo">A<span>scend</span></div>
+      <p>Website design &amp; marketing for businesses that want to grow.</p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Site</span>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="process.html">Process</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Contact</span>
+      <a href="mailto:michaelkmorfa@gmail.com">michaelkmorfa@gmail.com</a>
+      <a href="tel:14077011820">(407) 701-1820</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

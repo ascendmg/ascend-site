@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Ascend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .pricing-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .price-card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 22px;
+    display:flex; flex-direction:column;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .price-card:hover{border-color:var(--green-dim); transform:translateY(-3px);}
+  .price-card.featured{border-color:var(--green); background:rgba(74,222,128,.04);}
+  .price-card .tag{
+    font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--green); font-weight:600; margin-bottom:14px;
+  }
+  .price-card h3{font-size:19px; margin-bottom:10px;}
+  .price-card p.desc{color:var(--muted); font-size:13px; line-height:1.6; margin-bottom:18px;}
+  .price-card ul{list-style:none; margin-bottom:24px; flex-grow:1;}
+  .price-card ul li{
+    font-size:13px; color:var(--muted); padding:7px 0;
+    border-top:1px solid var(--line);
+  }
+  .price-card ul li:first-child{border-top:none;}
+  .price-card .cta{
+    text-align:center; padding:12px; border-radius:999px;
+    border:1px solid var(--line); font-size:13px; font-weight:600;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .price-card.featured .cta{background:var(--green); color:var(--black); border-color:var(--green);}
+  .price-card .cta:hover{border-color:var(--green);}
+  @media (max-width:980px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .pricing-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo">A<span>scend</span></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Free Consultation</a>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <div class="eyebrow">Pricing</div>
+    <h1>Find the right starting point.</h1>
+    <p>Every project is different, so exact pricing comes after a free consultation — here's a general sense of where projects usually land.</p>
+  </div>
+</header>
+
+<section style="border-top:none; padding-top:0;">
+  <div class="wrap reveal">
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="tag">Starter</div>
+        <h3>Starter Website</h3>
+        <p class="desc">A clean, professional online presence for a new or small business.</p>
+        <ul>
+          <li>Up to 5 pages</li>
+          <li>Mobile-responsive design</li>
+          <li>Contact form</li>
+          <li>Basic SEO setup</li>
+        </ul>
+        <a href="contact.html" class="cta">Get a Quote</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="tag">Most Popular</div>
+        <h3>Business Website</h3>
+        <p class="desc">A full site built to establish credibility and generate leads.</p>
+        <ul>
+          <li>Up to 10+ pages</li>
+          <li>Custom design & branding touches</li>
+          <li>Booking / contact integrations</li>
+          <li>On-page SEO</li>
+        </ul>
+        <a href="contact.html" class="cta">Get a Quote</a>
+      </div>
+
+      <div class="price-card">
+        <div class="tag">E-Commerce</div>
+        <h3>E-Commerce Website</h3>
+        <p class="desc">A store built to sell — product pages, cart, and checkout included.</p>
+        <ul>
+          <li>Product catalog setup</li>
+          <li>Payment & shipping integration</li>
+          <li>Inventory management training</li>
+          <li>Platform recommendation (Shopify or custom)</li>
+        </ul>
+        <a href="contact.html" class="cta">Get a Quote</a>
+      </div>
+
+      <div class="price-card">
+        <div class="tag">Custom</div>
+        <h3>Custom Quote</h3>
+        <p class="desc">Bigger scope, ongoing marketing, or something that doesn't fit a box.</p>
+        <ul>
+          <li>Multi-service packages</li>
+          <li>Ongoing SEO / ad management</li>
+          <li>Branding & content production</li>
+          <li>Built around your goals</li>
+        </ul>
+        <a href="contact.html" class="cta">Get a Quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap reveal" style="text-align:center;">
+    <h2 class="section-title" style="margin:0 auto;">Not sure which tier fits?</h2>
+    <p class="section-lead" style="margin-left:auto; margin-right:auto;">The free consultation is exactly for that — no pressure, just a straight answer.</p>
+    <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
+      <a href="contact.html" class="btn-primary">Book a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="logo">A<span>scend</span></div>
+      <p>Website design &amp; marketing for businesses that want to grow.</p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Site</span>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="process.html">Process</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Contact</span>
+      <a href="mailto:michaelkmorfa@gmail.com">michaelkmorfa@gmail.com</a>
+      <a href="tel:14077011820">(407) 701-1820</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

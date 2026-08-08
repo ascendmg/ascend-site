@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Ascend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .case{
+    padding:56px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:44px;
+    align-items:start;
+  }
+  .case:first-child{border-top:none;}
+  .case .thumb{
+    height:220px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--forest),#0a0e0b 70%);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:26px;
+    color:var(--green);
+  }
+  .case .status{
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:600;
+    padding:4px 10px; border-radius:999px; display:inline-block; margin-bottom:14px;
+  }
+  .status.live{background:rgba(74,222,128,.12); color:var(--green);}
+  .status.inactive{background:rgba(143,162,152,.12); color:var(--muted);}
+  .case h2{font-size:24px; margin-bottom:10px;}
+  .case .meta-row{display:flex; gap:24px; flex-wrap:wrap; margin:18px 0;}
+  .case .meta-item{}
+  .case .meta-item .k{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--green); margin-bottom:4px; display:block;}
+  .case .meta-item .v{font-size:13.5px; color:var(--ivory);}
+  .case p.desc{color:var(--muted); font-size:14.5px; line-height:1.7; margin-bottom:16px;}
+  .case ul{margin:0 0 16px 18px; padding:0;}
+  .case ul li{color:var(--muted); font-size:13.5px; line-height:1.8;}
+  .case .visit{
+    font-size:13px; font-weight:600; color:var(--green);
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .case .visit:hover{text-decoration:underline;}
+  @media (max-width:760px){ .case{grid-template-columns:1fr; gap:22px;} }
+</style>
+</head>
+<body>
+
+<div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo">A<span>scend</span></a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Free Consultation</a>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio</div>
+    <h1>Real projects, real details.</h1>
+    <p>Ascend is early-stage — every project below gets the same full-service treatment we'd bring to yours.</p>
+  </div>
+</header>
+
+<section style="border-top:none; padding-top:0; padding-bottom:40px;">
+  <div class="wrap reveal">
+
+    <div class="case">
+      <div class="thumb">CiudadanoReady</div>
+      <div>
+        <div class="status live">Live</div>
+        <h2>CiudadanoReady.com</h2>
+        <div class="meta-row">
+          <div class="meta-item"><span class="k">Business Type</span><span class="v">Online Course / Test Prep</span></div>
+          <div class="meta-item"><span class="k">Audience</span><span class="v">Nationwide, EN/ES</span></div>
+        </div>
+        <p class="desc">A step-by-step U.S. naturalization test-prep course, built in partnership with an immigration attorney's office.</p>
+        <div class="meta-item" style="margin-bottom:10px;"><span class="k">Goals</span></div>
+        <ul>
+          <li>Turn visitors into paid subscribers with a clear, guided path</li>
+          <li>Make a legally sensitive topic feel simple and approachable</li>
+          <li>Support both English and Spanish speakers</li>
+        </ul>
+        <div class="meta-item" style="margin-bottom:10px;"><span class="k">Features</span></div>
+        <ul>
+          <li>7-stage course structure from eligibility to the oath ceremony</li>
+          <li>Built-in practice questions styled after the real civics test</li>
+          <li>Monthly and 2-year subscription pricing tiers</li>
+          <li>Bilingual site toggle (EN/ES)</li>
+        </ul>
+        <a class="visit" href="https://ciudadanoready.com" target="_blank" rel="noopener">Visit site ↗</a>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="thumb">AbogadaUS</div>
+      <div>
+        <div class="status live">Live</div>
+        <h2>AbogadaUS.com</h2>
+        <div class="meta-row">
+          <div class="meta-item"><span class="k">Business Type</span><span class="v">Law Firm</span></div>
+          <div class="meta-item"><span class="k">Audience</span><span class="v">Local, EN/ES</span></div>
+        </div>
+        <p class="desc">Website built and organized for the Law Offices of Ingrid Morfa, covering immigration, family, criminal, and social security disability cases.</p>
+        <div class="meta-item" style="margin-bottom:10px;"><span class="k">Goals</span></div>
+        <ul>
+          <li>Give a local law practice a clear, trustworthy online presence</li>
+          <li>Make it easy for prospective clients to reach the office directly</li>
+        </ul>
+        <div class="meta-item" style="margin-bottom:10px;"><span class="k">Features</span></div>
+        <ul>
+          <li>Practice area pages (immigration, disability, and more)</li>
+          <li>Bilingual content throughout</li>
+          <li>Direct contact form and click-to-call phone number</li>
+        </ul>
+        <a class="visit" href="https://abogadaus.com" target="_blank" rel="noopener">Visit site ↗</a>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="thumb">AscendFlorida</div>
+      <div>
+        <div class="status inactive">Inactive · Rebuilding</div>
+        <h2>AscendFlorida.com</h2>
+        <div class="meta-row">
+          <div class="meta-item"><span class="k">Business Type</span><span class="v">E-Commerce / Own Business</span></div>
+          <div class="meta-item"><span class="k">Platform</span><span class="v">Shopify</span></div>
+        </div>
+        <p class="desc">The original site built for Ascend itself, on Shopify. It's currently offline while it gets rebuilt into the custom site you're looking at right now — proof that even the agency's own site is a work in progress, not a finished product sitting still.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="thumb" style="opacity:.5;">In Progress</div>
+      <div>
+        <div class="status inactive">In Progress</div>
+        <h2>Second Project</h2>
+        <p class="desc">Currently in build. Business type, goals, features, and results will be added here once it launches.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap reveal" style="text-align:center;">
+    <h2 class="section-title" style="margin:0 auto;">Want to be next?</h2>
+    <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
+      <a href="contact.html" class="btn-primary">Book a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="logo">A<span>scend</span></div>
+      <p>Website design &amp; marketing for businesses that want to grow.</p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Site</span>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="process.html">Process</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Contact</span>
+      <a href="mailto:michaelkmorfa@gmail.com">michaelkmorfa@gmail.com</a>
+      <a href="tel:14077011820">(407) 701-1820</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
