@@ -8,6 +8,7 @@
 <link rel="icon" href="/assets/brand/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="Website design and marketing for businesses that want to grow. Custom sites, SEO, and paid ads under one roof.">
+<link rel="canonical" href="https://www.hqascend.com/">
 <meta property="og:title" content="Ascend, Website Design & Marketing">
 <meta property="og:description" content="Website design and marketing for businesses that want to grow. Custom sites, SEO, and paid ads under one roof.">
 <meta property="og:image" content="https://hqascend.com/assets/brand/og-image.jpg">
@@ -26,7 +27,7 @@
 <div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
 
 <nav id="nav">
-  <a href="index.html" class="logo">A<span>scend</span></a>
+  <a href="/" class="logo">A<span>scend</span></a>
   <div class="nav-links">
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
@@ -197,12 +198,13 @@
         <a href="mailto:michael@hqascend.com"><span class="ci-label">Email</span>michael@hqascend.com</a>
         <a href="tel:14077011820"><span class="ci-label">Phone</span>(407) 701-1820</a>
       </div>
-      <form onsubmit="event.preventDefault(); alert('Form submitted, connect this to email or Calendly later.');">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="tel" placeholder="Phone">
-        <textarea placeholder="Tell us about your project"></textarea>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Phone">
+        <textarea name="message" placeholder="Tell us about your project" required></textarea>
         <button class="form-submit" type="submit">Send Message</button>
+        <p id="formStatus" class="form-status"></p>
       </form>
     </div>
   </div>
@@ -229,10 +231,11 @@
       <a href="tel:14077011820">(407) 701-1820</a>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing.</div>
+  <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing. · <a href="privacy.html" style="color:var(--muted);">Privacy Policy</a></div>
 </footer>
 
 <script src="script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>

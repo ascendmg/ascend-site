@@ -446,7 +446,14 @@
     font-family:'Inter',sans-serif;
     transition:transform .2s ease;
   }
-  .form-submit:hover{transform:translateY(-2px);}
+  .form-status{
+    font-size:13px;
+    margin-top:4px;
+    min-height:18px;
+  }
+  .form-status.success{color:var(--green);}
+  .form-status.error{color:#e07856;}
+  .form-submit:disabled{opacity:.6; cursor:not-allowed;}
   @media (max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
 
   footer{
