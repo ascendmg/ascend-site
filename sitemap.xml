@@ -5,31 +5,31 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/about.html</loc>
+    <loc>https://www.hqascend.com/about</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/services.html</loc>
+    <loc>https://www.hqascend.com/services</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/portfolio.html</loc>
+    <loc>https://www.hqascend.com/portfolio</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/pricing.html</loc>
+    <loc>https://www.hqascend.com/pricing</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/process.html</loc>
+    <loc>https://www.hqascend.com/process</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/contact.html</loc>
+    <loc>https://www.hqascend.com/contact</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/privacy.html</loc>
+    <loc>https://www.hqascend.com/privacy</loc>
     <priority>0.3</priority>
   </url>
 </urlset>
