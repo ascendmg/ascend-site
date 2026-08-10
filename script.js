@@ -11,6 +11,26 @@
   window.addEventListener('scroll', onScroll);
   onScroll();
 
+  // Mobile menu toggle
+  const navBurger = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (navBurger && mobileMenu) {
+    navBurger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navBurger.classList.toggle('open', isOpen);
+      navBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        navBurger.classList.remove('open');
+        navBurger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
   // Reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
