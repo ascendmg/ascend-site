@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found | Ascend</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/brand/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css">
+<style>
+  .notfound{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+  }
+  .notfound .code{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(70px,14vw,140px);
+    font-weight:700;
+    line-height:1;
+    letter-spacing:-.03em;
+    color:var(--green);
+    margin-bottom:8px;
+  }
+  .notfound h1{
+    font-size:clamp(22px,3.5vw,30px);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .notfound p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:48ch;
+    margin-bottom:32px;
+    line-height:1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
+
+<nav id="nav">
+  <a href="/" class="logo">A<span>scend</span></a>
+  <div class="nav-links">
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/portfolio">Portfolio</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/process">Process</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <a href="/contact" class="nav-cta">Free Consultation</a>
+</nav>
+
+<div class="notfound">
+  <div class="code">404</div>
+  <h1>This page doesn't exist.</h1>
+  <p>The link you followed might be broken, or the page may have moved. Let's get you back on track.</p>
+  <div class="hero-ctas">
+    <a href="/" class="btn-primary">Back to Home</a>
+    <a href="/contact" class="btn-ghost">Contact Us</a>
+  </div>
+</div>
+
+<script src="/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
