@@ -5,12 +5,32 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/about</loc>
+    <loc>https://www.hqascend.com/web-design</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.hqascend.com/marketing</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.hqascend.com/social-media-marketing</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.hqascend.com/contact</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.hqascend.com/location</loc>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.hqascend.com/about</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.hqascend.com/services</loc>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.hqascend.com/portfolio</loc>
@@ -23,10 +43,6 @@
   <url>
     <loc>https://www.hqascend.com/process</loc>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.hqascend.com/contact</loc>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.hqascend.com/privacy</loc>

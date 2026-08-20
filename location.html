@@ -3,43 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Process | Ascend</title>
+<title>Location | Ascend</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/brand/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="From discovery call to launch and ongoing support, here's exactly what working with Ascend looks like.">
-<link rel="canonical" href="https://www.hqascend.com/process">
-<meta property="og:title" content="Process | Ascend">
-<meta property="og:description" content="From discovery call to launch and ongoing support, here's exactly what working with Ascend looks like.">
+<meta name="description" content="Ascend is based in Kissimmee, Florida, serving businesses across Central Florida including Kissimmee and Orlando.">
+<link rel="canonical" href="https://www.hqascend.com/location">
+<meta property="og:title" content="Location | Ascend">
+<meta property="og:description" content="Ascend is based in Kissimmee, Florida, serving businesses across Central Florida including Kissimmee and Orlando.">
 <meta property="og:image" content="https://hqascend.com/assets/brand/og-image.jpg">
-<meta property="og:url" content="https://hqascend.com/process">
+<meta property="og:url" content="https://hqascend.com/location">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Process | Ascend">
-<meta name="twitter:description" content="From discovery call to launch and ongoing support, here's exactly what working with Ascend looks like.">
+<meta name="twitter:title" content="Location | Ascend">
+<meta name="twitter:description" content="Ascend is based in Kissimmee, Florida, serving businesses across Central Florida including Kissimmee and Orlando.">
 <meta name="twitter:image" content="https://hqascend.com/assets/brand/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .process-list{margin-top:50px;}
-  .p-step{
+  .location-grid{
     display:grid;
-    grid-template-columns:70px 1fr;
-    gap:24px;
-    padding:30px 0;
-    border-top:1px solid var(--line);
-    position:relative;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:start;
   }
-  .p-step:first-child{border-top:none;}
-  .p-step .step-num{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:28px;
-    font-weight:700;
-    color:var(--green-dim);
+  .address-block{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--ivory);
+    margin:24px 0 32px;
   }
-  .p-step h3{font-size:19px; margin-bottom:8px;}
-  .p-step p{color:var(--muted); font-size:14px; line-height:1.7; max-width:60ch;}
+  .address-block .label{
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--platinum);
+    font-weight:600;
+    display:block;
+    margin-bottom:10px;
+  }
+  .map-wrap{
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    aspect-ratio:1/1;
+  }
+  .map-wrap iframe{
+    width:100%; height:100%;
+    border:0; filter:grayscale(.3) invert(.92) contrast(.9);
+  }
+  .areas-served{
+    display:flex; gap:10px; flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .areas-served span{
+    font-size:12.5px;
+    padding:7px 14px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--muted);
+  }
+  @media (max-width:760px){ .location-grid{grid-template-columns:1fr; gap:32px;} }
 </style>
 </head>
 <body>
@@ -74,60 +99,48 @@
 
 <header class="page-header">
   <div class="wrap">
-    <div class="eyebrow">Process</div>
-    <h1>Here's exactly what happens next.</h1>
-    <p>No mystery, no guessing where your project stands, just seven clear steps from first call to launch and beyond.</p>
+    <div class="eyebrow">Location</div>
+    <h1>Based in Kissimmee, working across Central Florida.</h1>
   </div>
 </header>
 
 <section style="border-top:none; padding-top:0;">
   <div class="wrap reveal">
-    <div class="process-list">
+    <div class="location-grid">
+      <div>
+        <div class="address-block">
+          <span class="label">Office</span>
+          722 Patrick Street<br>
+          Suite 107<br>
+          Kissimmee, FL 34741
+        </div>
 
-      <div class="p-step">
-        <div class="step-num">01</div>
-        <div><h3>Discovery Call</h3><p>A free consultation to understand your business, your goals, and what your website needs to do for you.</p></div>
+        <div class="address-block">
+          <span class="label">Contact</span>
+          <a href="mailto:michael@hqascend.com" style="color:var(--ivory);">michael@hqascend.com</a><br>
+          <a href="tel:14077011820" style="color:var(--ivory);">(407) 701-1820</a>
+        </div>
+
+        <div class="address-block">
+          <span class="label">Areas Served</span>
+          <div class="areas-served">
+            <span>Kissimmee</span>
+            <span>Orlando</span>
+            <span>Central Florida</span>
+          </div>
+        </div>
+
+        <a href="https://calendly.com/michael-hqascend/free-consultation" class="btn-primary" target="_blank" rel="noopener" style="display:inline-block; margin-top:10px;">Book a Free Consultation</a>
       </div>
 
-      <div class="p-step">
-        <div class="step-num">02</div>
-        <div><h3>Strategy</h3><p>We map out site structure, features, and the right pricing tier based on what came up on the call.</p></div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=722+Patrick+Street+Suite+107+Kissimmee+FL+34741&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ascend office location map">
+        </iframe>
       </div>
-
-      <div class="p-step">
-        <div class="step-num">03</div>
-        <div><h3>Design</h3><p>A custom design built around your brand, colors, layout, and tone, before any code is written.</p></div>
-      </div>
-
-      <div class="p-step">
-        <div class="step-num">04</div>
-        <div><h3>Development</h3><p>The site gets built: responsive, fast, and functional across every device.</p></div>
-      </div>
-
-      <div class="p-step">
-        <div class="step-num">05</div>
-        <div><h3>Revisions</h3><p>You review the site and request changes until it feels exactly right, this is a collaboration, not a one-shot delivery.</p></div>
-      </div>
-
-      <div class="p-step">
-        <div class="step-num">06</div>
-        <div><h3>Launch</h3><p>The site goes live, with domain, hosting, and technical setup handled for you.</p></div>
-      </div>
-
-      <div class="p-step">
-        <div class="step-num">07</div>
-        <div><h3>Ongoing Support</h3><p>Maintenance and updates, plus SEO and ad management if you want ongoing help bringing people to your site.</p></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="cta">
-  <div class="wrap reveal" style="text-align:center;">
-    <h2 class="section-title" style="margin:0 auto;">Ready for step one?</h2>
-    <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
-      <a href="https://calendly.com/michael-hqascend/free-consultation" class="btn-primary" target="_blank" rel="noopener">Book a Free Consultation</a>
     </div>
   </div>
 </section>
