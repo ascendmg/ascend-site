@@ -59,6 +59,44 @@
     border-radius:999px;
     color:var(--ivory);
   }
+  .content-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:40px;
+  }
+  .content-tile{
+    aspect-ratio:1/1;
+    border-radius:10px;
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:16px;
+    position:relative;
+    overflow:hidden;
+  }
+  .content-tile::before{
+    content:"";
+    position:absolute; inset:0;
+    background:var(--tile-bg, linear-gradient(150deg, var(--forest-2), var(--black)));
+    z-index:0;
+  }
+  .content-tile span{
+    position:relative; z-index:1;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--platinum);
+    letter-spacing:.02em;
+  }
+  .content-tile small{
+    position:relative; z-index:1;
+    font-size:10px;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  @media (max-width:760px){ .content-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:760px){ .service-block{grid-template-columns:1fr; gap:14px;} }
 </style>
 </head>
@@ -72,7 +110,11 @@
     <a href="/">Home</a>
     <a href="web-design">Web Design</a>
     <a href="marketing">Marketing</a>
-    <a href="social-media-marketing">Social Media Marketing</a>
+    <a href="social-media-marketing">Social</a>
+    <a href="portfolio">Portfolio</a>
+    <a href="pricing">Pricing</a>
+    <a href="process">Process</a>
+    <a href="about">About</a>
     <a href="contact">Contact</a>
     <a href="location">Location</a>
   </div>
@@ -87,6 +129,10 @@
   <a href="web-design">Web Design</a>
   <a href="marketing">Marketing</a>
   <a href="social-media-marketing">Social Media Marketing</a>
+  <a href="portfolio">Portfolio</a>
+  <a href="pricing">Pricing</a>
+  <a href="process">Process</a>
+  <a href="about">About</a>
   <a href="contact">Contact</a>
   <a href="location">Location</a>
   <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
@@ -105,10 +151,50 @@
   </div>
 </header>
 
-<section style="border-top:none; padding-top:0; padding-bottom:40px;">
+<section style="border-top:none; padding-top:0; padding-bottom:0;">
   <div class="wrap reveal">
+    <p style="color:var(--muted); font-size:15.5px; line-height:1.85; max-width:70ch;">
+      Most business accounts go quiet after the first few posts, and that's usually the whole problem. Followers can tell the difference between an account that's actually being run and one that's been abandoned. We plan a consistent grid, shoot and design the content, write the captions, and post on a schedule that fits how each platform actually works, so your page looks alive instead of like it hasn't been touched since launch.
+    </p>
+    <div class="content-grid">
+      <div class="content-tile" style="--tile-bg:linear-gradient(150deg, var(--forest-2), var(--black));"><span>Product Feature</span><small>Instagram · Reel</small></div>
+      <div class="content-tile" style="--tile-bg:linear-gradient(150deg, #2a2723, #14120f);"><span>Behind the Scenes</span><small>TikTok · Video</small></div>
+      <div class="content-tile" style="--tile-bg:linear-gradient(150deg, var(--forest), var(--black));"><span>Client Spotlight</span><small>Facebook · Post</small></div>
+      <div class="content-tile" style="--tile-bg:linear-gradient(150deg, #211f1c, #0f0e0c);"><span>Promo / Offer</span><small>Instagram · Story</small></div>
+    </div>
+  </div>
+</section>
 
-    <div class="service-block">
+<section style="padding-top:70px;">
+  <div class="wrap reveal">
+    <div class="kicker">How it works</div>
+    <h2 class="section-title">Planned, created, posted.</h2>
+    <div class="whatwedo-grid" style="margin-top:36px;">
+      <div class="wwd-item">
+        <div class="num">01</div>
+        <h3>Content Calendar</h3>
+        <p>We plan a month at a time, mixing content types so the page never feels repetitive.</p>
+      </div>
+      <div class="wwd-item">
+        <div class="num">02</div>
+        <h3>Shoot & Design</h3>
+        <p>Photo, video, and graphics created specifically for your brand, not stock templates.</p>
+      </div>
+      <div class="wwd-item">
+        <div class="num">03</div>
+        <h3>Post & Engage</h3>
+        <p>Published on schedule, with comments and messages handled so nothing goes ignored.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:40px;">
+  <div class="wrap reveal">
+    <div class="kicker">The Details</div>
+    <h2 class="section-title">Everything included.</h2>
+
+    <div class="service-block" style="border-top:none; padding-top:36px;">
       <div class="service-num">01</div>
       <div>
         <h2>Content Creation</h2>
