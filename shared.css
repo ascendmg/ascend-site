@@ -1,12 +1,12 @@
   :root{
-    --black:#110d09;
-    --forest:#241d15;
-    --forest-2:#2e2419;
-    --green:#c8935a;
-    --green-dim:#8a6640;
+    --black:#0f0e0c;
+    --forest:#211f1c;
+    --forest-2:#2a2723;
+    --green:#d6d0c2;
+    --green-dim:#94907f;
     --ivory:#f4ede2;
-    --muted:#998c78;
-    --line:#2b2318;
+    --muted:#948d7d;
+    --line:#28251f;
     --platinum:#c9cdd3;
     --platinum-dim:#83878d;
   }
@@ -141,7 +141,6 @@
     .nav-burger{display:flex;}
     .mobile-menu{display:flex;}
   }
-  }
 
   /* Reveal */
   .reveal{
@@ -178,7 +177,7 @@
   }
   .hero-bg .p3{
     width:1px; height:170vh; right:30vw; top:-45vh; transform:rotate(8deg);
-    background:linear-gradient(180deg, transparent, rgba(200,147,90,.4), transparent);
+    background:linear-gradient(180deg, transparent, rgba(201,205,211,.4), transparent);
     border:none;
   }
   .hero-bg .sheen{
@@ -595,76 +594,45 @@
     line-height:1.7;
   }
 
-  /* ============================================
-     LIGHT CONTENT SECTIONS (dark hero, light body)
-     ============================================ */
-  :root{
-    --lbg:#f6f0e6;
-    --lcard:#fffcf7;
-    --ltext:#1c1710;
-    --lmuted:#7d715d;
-    --lline:#e7dcc7;
-    --laccent:#8a6335;
-  }
 
-  section{
-    background:var(--lbg);
-    color:var(--ltext);
-    --ivory:var(--ltext);
-    --muted:var(--lmuted);
-    --line:var(--lline);
+  /* Statement section — bold centered mission line + stat row */
+  .statement-wrap{
+    text-align:center;
+    max-width:780px;
   }
-
-  section .kicker,
-  section .eyebrow{
-    color:var(--laccent);
+  .statement-text{
+    font-size:clamp(24px,3.4vw,36px);
+    font-weight:500;
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--muted);
   }
-
-  /* Transition where dark hero meets content: simple, no gimmick */
-  header.hero + section,
-  header.page-header + section{
-    border-top:1px solid var(--lline);
+  .statement-accent{
+    color:var(--ivory);
+    font-weight:600;
   }
-
-  /* Card surfaces that were designed for dark backgrounds need explicit light versions */
-  .p-card{
-    background:var(--lcard);
-    box-shadow:0 1px 3px rgba(20,23,31,.06);
+  .statement-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    margin-top:64px;
+    padding-top:48px;
+    border-top:1px solid var(--line);
   }
-  .testi-card{
-    background:var(--lcard);
-    box-shadow:0 1px 3px rgba(20,23,31,.06);
+  .stat-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:34px;
+    font-weight:600;
+    color:var(--platinum);
+    margin-bottom:10px;
   }
-  .wwd-item{
-    background:var(--lcard);
+  .stat-label{
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.5;
+    max-width:22ch;
+    margin:0 auto;
   }
-  .s-card{
-    background:var(--lcard);
-  }
-  .price-card{
-    background:var(--lcard);
-  }
-  .price-card.featured{
-    background:var(--lcard);
-    box-shadow:0 0 0 1px var(--green) inset;
-  }
-  section input,
-  section textarea{
-    background:var(--lcard);
-    border:1px solid var(--lline);
-    color:var(--ltext);
-  }
-  section input::placeholder,
-  section textarea::placeholder{
-    color:#9a9d90;
-  }
-  section input:focus,
-  section textarea:focus{
-    outline:1px solid var(--green);
-    border-color:var(--green);
-  }
-
-  /* Section dividers (was dark-line, now light-line automatically via --line, but explicit for clarity) */
-  section[style*="border-top:none"]{
-    border-top:none;
+  @media (max-width:760px){
+    .statement-row{grid-template-columns:1fr; gap:28px;}
   }
