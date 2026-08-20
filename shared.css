@@ -569,3 +569,80 @@
     font-size:16px;
     line-height:1.7;
   }
+
+  /* ============================================
+     LIGHT CONTENT SECTIONS (dark hero, light body)
+     ============================================ */
+  :root{
+    --lbg:#faf9f6;
+    --lcard:#ffffff;
+    --ltext:#14171f;
+    --lmuted:#6b6f63;
+    --lline:#e5e2d9;
+    --laccent:#1f7a4d;
+  }
+
+  section{
+    background:var(--lbg);
+    color:var(--ltext);
+    --ivory:var(--ltext);
+    --muted:var(--lmuted);
+    --line:var(--lline);
+  }
+
+  section .kicker,
+  section .eyebrow{
+    color:var(--laccent);
+  }
+
+  /* Rounded "spill" transition where dark hero meets light content */
+  header.hero + section,
+  header.page-header + section{
+    border-radius:28px 28px 0 0;
+    margin-top:-28px;
+    position:relative;
+    z-index:3;
+  }
+
+  /* Card surfaces that were designed for dark backgrounds need explicit light versions */
+  .p-card{
+    background:var(--lcard);
+    box-shadow:0 1px 3px rgba(20,23,31,.06);
+  }
+  .testi-card{
+    background:var(--lcard);
+    box-shadow:0 1px 3px rgba(20,23,31,.06);
+  }
+  .wwd-item{
+    background:var(--lcard);
+  }
+  .s-card{
+    background:var(--lcard);
+  }
+  .price-card{
+    background:var(--lcard);
+  }
+  .price-card.featured{
+    background:var(--lcard);
+    box-shadow:0 0 0 1px var(--green) inset;
+  }
+  section input,
+  section textarea{
+    background:var(--lcard);
+    border:1px solid var(--lline);
+    color:var(--ltext);
+  }
+  section input::placeholder,
+  section textarea::placeholder{
+    color:#9a9d90;
+  }
+  section input:focus,
+  section textarea:focus{
+    outline:1px solid var(--green);
+    border-color:var(--green);
+  }
+
+  /* Section dividers (was dark-line, now light-line automatically via --line, but explicit for clarity) */
+  section[style*="border-top:none"]{
+    border-top:none;
+  }
