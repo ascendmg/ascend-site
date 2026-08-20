@@ -1,12 +1,14 @@
   :root{
-    --black:#0a0e0b;
-    --forest:#173a2c;
-    --forest-2:#1f4d3a;
-    --green:#4ade80;
-    --green-dim:#2e6b4c;
-    --ivory:#f2f3ee;
-    --muted:#8fa298;
-    --line:#22322a;
+    --black:#110d09;
+    --forest:#241d15;
+    --forest-2:#2e2419;
+    --green:#c8935a;
+    --green-dim:#8a6640;
+    --ivory:#f4ede2;
+    --muted:#998c78;
+    --line:#2b2318;
+    --platinum:#c9cdd3;
+    --platinum-dim:#83878d;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -158,10 +160,33 @@
   }
   .hero-bg{
     position:absolute; inset:0;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(74,222,128,.09), transparent 45%),
-      radial-gradient(circle at 85% 75%, rgba(23,58,44,.5), transparent 50%);
+    overflow:hidden;
     pointer-events:none;
+  }
+  .hero-bg .panel{
+    position:absolute;
+    border:1px solid rgba(201,205,211,.1);
+  }
+  .hero-bg .p1{
+    width:34vw; height:150vh; right:-4vw; top:-25vh; transform:rotate(8deg);
+    background:linear-gradient(160deg, rgba(201,205,211,.06), rgba(44,36,25,.03) 55%);
+  }
+  .hero-bg .p2{
+    width:18vw; height:160vh; right:10vw; top:-40vh; transform:rotate(8deg);
+    background:linear-gradient(160deg, rgba(201,205,211,.03), transparent 60%);
+    border-left:1px solid rgba(201,205,211,.16); border-right:none; border-top:none; border-bottom:none;
+  }
+  .hero-bg .p3{
+    width:1px; height:170vh; right:30vw; top:-45vh; transform:rotate(8deg);
+    background:linear-gradient(180deg, transparent, rgba(200,147,90,.4), transparent);
+    border:none;
+  }
+  .hero-bg .sheen{
+    position:absolute;
+    width:55vw; height:55vw;
+    right:-12vw; top:-8vw;
+    background:radial-gradient(circle, rgba(201,205,211,.05), transparent 65%);
+    border:none;
   }
   .eyebrow{
     font-size:12px;
@@ -298,7 +323,7 @@
   .status.live{background:rgba(74,222,128,.12); color:var(--green);}
   .status.inactive{background:rgba(143,162,152,.12); color:var(--muted);}
   .p-card{
-    background:linear-gradient(160deg,#0f1712,#0a0e0b);
+    background:linear-gradient(160deg,var(--forest-2),var(--black));
     border:1px solid var(--line);
     border-radius:18px;
     padding:30px;
@@ -307,7 +332,7 @@
   .p-card .thumb{
     height:160px;
     border-radius:12px;
-    background:linear-gradient(135deg,var(--forest),#0a0e0b 70%);
+    background:linear-gradient(135deg,var(--forest),var(--black) 70%);
     border:1px solid var(--line);
     display:flex; align-items:center; justify-content:center;
     font-family:'Space Grotesk',sans-serif;
@@ -429,7 +454,7 @@
     gap:16px;
   }
   .testi-card{
-    background:linear-gradient(160deg,#0f1712,#0a0e0b);
+    background:linear-gradient(160deg,var(--forest-2),var(--black));
     border:1px solid var(--line);
     border-radius:16px;
     padding:26px 24px;
@@ -574,12 +599,12 @@
      LIGHT CONTENT SECTIONS (dark hero, light body)
      ============================================ */
   :root{
-    --lbg:#faf9f6;
-    --lcard:#ffffff;
-    --ltext:#14171f;
-    --lmuted:#6b6f63;
-    --lline:#e5e2d9;
-    --laccent:#1f7a4d;
+    --lbg:#f6f0e6;
+    --lcard:#fffcf7;
+    --ltext:#1c1710;
+    --lmuted:#7d715d;
+    --lline:#e7dcc7;
+    --laccent:#8a6335;
   }
 
   section{
@@ -595,13 +620,10 @@
     color:var(--laccent);
   }
 
-  /* Rounded "spill" transition where dark hero meets light content */
+  /* Transition where dark hero meets content: simple, no gimmick */
   header.hero + section,
   header.page-header + section{
-    border-radius:28px 28px 0 0;
-    margin-top:-28px;
-    position:relative;
-    z-index:3;
+    border-top:1px solid var(--lline);
   }
 
   /* Card surfaces that were designed for dark backgrounds need explicit light versions */
