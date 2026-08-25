@@ -88,3 +88,18 @@
       }
     });
   }
+
+  // Mega menu dropdowns
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const trigger = item.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
+  });

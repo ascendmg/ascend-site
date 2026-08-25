@@ -102,6 +102,62 @@
   .nav-burger.open span:nth-child(2){opacity:0;}
   .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
+  /* Mega menu dropdowns (Products, Solutions) */
+  .nav-item{position:relative;}
+  .nav-item > button.nav-trigger{
+    background:none; border:none; cursor:pointer;
+    font-family:'Inter',sans-serif;
+    font-size:12.5px; font-weight:500;
+    color:var(--muted);
+    display:flex; align-items:center; gap:4px;
+    padding:0;
+  }
+  .nav-item > button.nav-trigger:hover{color:var(--ivory);}
+  .nav-item > button.nav-trigger svg{width:9px; height:9px; transition:transform .2s ease;}
+  .nav-item.open > button.nav-trigger svg{transform:rotate(180deg);}
+  .mega-panel{
+    position:absolute;
+    top:calc(100% + 22px);
+    left:50%;
+    transform:translateX(-50%);
+    width:340px;
+    background:rgba(15,14,12,.98);
+    backdrop-filter:blur(12px);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    display:none;
+    flex-direction:column;
+    gap:2px;
+    z-index:50;
+  }
+  .nav-item.open .mega-panel{display:flex;}
+  .mega-panel a{
+    padding:12px 14px;
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    color:var(--ivory);
+    font-size:13.5px;
+    font-weight:600;
+    transition:background .15s ease;
+  }
+  .mega-panel a:hover{background:rgba(255,255,255,.04);}
+  .mega-panel a span{
+    font-size:12px;
+    font-weight:400;
+    color:var(--muted);
+  }
+  .mega-mobile-group{margin-bottom:6px;}
+  .mega-mobile-label{
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding:14px 4px 4px;
+  }
+
   .mobile-menu{
     display:none;
     position:fixed;

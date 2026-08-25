@@ -3,50 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marketing | Ascend</title>
+<title>Products | Ascend</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/brand/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Google Ads and Meta Ads campaigns managed and optimized to bring in qualified leads, not just clicks.">
-<link rel="canonical" href="https://www.hqascend.com/marketing">
-<meta property="og:title" content="Marketing | Ascend">
-<meta property="og:description" content="Google Ads and Meta Ads campaigns managed and optimized to bring in qualified leads, not just clicks.">
-<meta property="og:image" content="https://hqascend.com/assets/brand/og-image.jpg">
-<meta property="og:url" content="https://hqascend.com/marketing">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Marketing | Ascend">
-<meta name="twitter:description" content="Google Ads and Meta Ads campaigns managed and optimized to bring in qualified leads, not just clicks.">
-<meta name="twitter:image" content="https://hqascend.com/assets/brand/og-image.jpg">
+<meta name="description" content="Website design, marketing, and social media management, everything Ascend offers in one place.">
+<link rel="canonical" href="https://www.hqascend.com/products">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .service-block{
-    padding:56px 0;
-    border-top:1px solid var(--line);
-    display:grid;
-    grid-template-columns:.5fr 1.5fr;
-    gap:40px;
-  }
-  .service-block:first-child{border-top:none;}
-  .service-num{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:15px;
-    font-weight:600;
-    color:var(--platinum);
-  }
-  .service-block h2{font-size:24px; margin-bottom:12px; font-weight:600;}
-  .service-block p{color:var(--muted); font-size:14.5px; line-height:1.7; max-width:60ch; margin-bottom:16px;}
-  .service-tags{display:flex; flex-wrap:wrap; gap:8px;}
-  .service-tags span{
-    font-size:12px;
-    padding:6px 12px;
+  .product-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px;}
+  .product-card{
     border:1px solid var(--line);
-    border-radius:999px;
-    color:var(--muted);
+    border-radius:14px;
+    padding:32px 28px;
+    transition:border-color .2s ease, transform .2s ease;
   }
-  @media (max-width:760px){ .service-block{grid-template-columns:1fr; gap:14px;} }
+  .product-card:hover{border-color:var(--platinum-dim); transform:translateY(-3px);}
+  .product-card .num{font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--platinum); margin-bottom:18px;}
+  .product-card h2{font-size:19px; margin-bottom:10px;}
+  .product-card p{color:var(--muted); font-size:13.5px; line-height:1.7; margin-bottom:20px;}
+  @media (max-width:760px){ .product-cards{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -83,7 +61,8 @@
     <a href="learn">Learn</a>
     <a href="contact">Contact</a>
     <a href="location">Location</a>
-  </div><a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
+  </div>
+  <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
   <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -110,82 +89,40 @@
 
 <header class="page-header">
   <div class="wrap">
-    <div class="eyebrow">Marketing</div>
-    <h1>Ads that bring in the right people.</h1>
-    <p>Paid campaigns built and managed to get qualified leads in front of your business, not just impressions.</p>
+    <div class="eyebrow">Products</div>
+    <h1>Everything Ascend offers, in one place.</h1>
+    <p>Three core products that work together, or stand on their own if that's all you need right now.</p>
   </div>
 </header>
 
-<section style="border-top:none; padding-top:0; padding-bottom:0;">
+<section style="border-top:none; padding-top:0;">
   <div class="wrap reveal">
-    <p style="color:var(--muted); font-size:15.5px; line-height:1.85; max-width:70ch;">
-      A great website doesn't do much if nobody sees it. Paid ads are the fastest way to put your business in front of people who are already looking for what you offer, whether that's someone typing your service into Google or someone scrolling Instagram who's about to become a customer. We build campaigns around your actual goals, calls, bookings, sales, and manage the budget so it's spent on the people most likely to convert.
-    </p>
-  </div>
-</section>
-
-<section style="padding-top:70px;">
-  <div class="wrap reveal">
-    <div class="kicker">How it works</div>
-    <h2 class="section-title">Set up, launched, and measured.</h2>
-    <div class="whatwedo-grid" style="margin-top:36px;">
-      <div class="wwd-item">
+    <div class="product-cards">
+      <div class="product-card">
         <div class="num">01</div>
-        <h3>Audience & Budget</h3>
-        <p>We define who we're targeting and how the budget should be split to get the best return.</p>
+        <h2>Web Design</h2>
+        <p>Custom website design and development, backed by maintenance, SEO, e-commerce, branding, and photography.</p>
+        <a href="web-design" class="btn-ghost">Learn more →</a>
       </div>
-      <div class="wwd-item">
+      <div class="product-card">
         <div class="num">02</div>
-        <h3>Campaign Build</h3>
-        <p>Ad creative, copy, and targeting set up across Google and Meta, built around what actually gets clicks.</p>
+        <h2>Marketing</h2>
+        <p>Google and Meta Ads campaigns built and managed to bring in qualified leads, not just clicks.</p>
+        <a href="marketing" class="btn-ghost">Learn more →</a>
       </div>
-      <div class="wwd-item">
+      <div class="product-card">
         <div class="num">03</div>
-        <h3>Optimize & Report</h3>
-        <p>We watch performance weekly and send monthly reports so you always know what's working.</p>
+        <h2>Social Media Marketing</h2>
+        <p>Content creation, posting, and community engagement across Instagram, Facebook, and TikTok.</p>
+        <a href="social-media-marketing" class="btn-ghost">Learn more →</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section style="padding-bottom:40px;">
-  <div class="wrap reveal">
-    <div class="kicker">The Details</div>
-    <h2 class="section-title">Everything included.</h2>
-
-    <div class="service-block" style="border-top:none; padding-top:36px;">
-      <div class="service-num">01</div>
-      <div>
-        <h2>Google Ads</h2>
-        <p>Paid search campaigns targeted at people ready to buy, not just browse, built and managed to keep cost-per-lead down.</p>
-        <div class="service-tags"><span>Search Ads</span><span>Campaign Management</span><span>Lead Generation</span></div>
-      </div>
-    </div>
-
-    <div class="service-block">
-      <div class="service-num">02</div>
-      <div>
-        <h2>Meta Ads</h2>
-        <p>Facebook and Instagram campaigns designed to stop the scroll and turn attention into real inquiries and sales.</p>
-        <div class="service-tags"><span>Facebook Ads</span><span>Instagram Ads</span><span>Retargeting</span></div>
-      </div>
-    </div>
-
-    <div class="service-block">
-      <div class="service-num">03</div>
-      <div>
-        <h2>Campaign Strategy & Reporting</h2>
-        <p>Every campaign comes with clear monthly reporting, so you always know what's working and what your ad spend is actually doing.</p>
-        <div class="service-tags"><span>Monthly Reporting</span><span>Audience Targeting</span><span>Budget Management</span></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <section id="cta">
   <div class="wrap reveal" style="text-align:center;">
-    <h2 class="section-title" style="margin:0 auto;">Want to see what a campaign could look like?</h2>
+    <h2 class="section-title" style="margin:0 auto;">Not sure where to start?</h2>
     <div class="hero-ctas" style="justify-content:center; margin-top:26px;">
       <a href="https://calendly.com/michael-hqascend/free-consultation" class="btn-primary" target="_blank" rel="noopener">Book a Free Consultation</a>
     </div>

@@ -41,7 +41,19 @@
     font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--green); font-weight:600; margin-bottom:14px;
   }
-  .price-card h3{font-size:19px; margin-bottom:10px;}
+  .price-card h3{font-size:19px; margin-bottom:6px;}
+  .price-card .price-tag{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:24px;
+    font-weight:600;
+    color:var(--ivory);
+    margin-bottom:14px;
+  }
+  .price-card .price-tag span{
+    font-size:12px;
+    font-weight:400;
+    color:var(--muted);
+  }
   .price-card p.desc{color:var(--muted); font-size:13px; line-height:1.6; margin-bottom:18px;}
   .price-card ul{list-style:none; margin-bottom:24px; flex-grow:1;}
   .price-card ul li{
@@ -74,17 +86,33 @@
   <a href="/" class="logo">A<span>scend</span></a>
   <div class="nav-links">
     <a href="/">Home</a>
-    <a href="web-design">Web Design</a>
-    <a href="marketing">Marketing</a>
-    <a href="social-media-marketing">Social</a>
-    <a href="portfolio">Portfolio</a>
+    <div class="nav-item">
+      <button class="nav-trigger" type="button">Products
+        <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <div class="mega-panel">
+        <a href="web-design">Web Design<span>Custom sites built to convert</span></a>
+        <a href="marketing">Marketing<span>Google & Meta Ads</span></a>
+        <a href="social-media-marketing">Social Media Marketing<span>Content that builds an audience</span></a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-trigger" type="button">Solutions
+        <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <div class="mega-panel">
+        <a href="law-firms">Law Firms<span>Sites built for client trust</span></a>
+        <a href="course-education">Course & Education<span>Sell and deliver learning online</span></a>
+        <a href="ecommerce-solutions">E-Commerce<span>Stores built to sell</span></a>
+        <a href="local-service">Local Service Businesses<span>Get found, get booked</span></a>
+      </div>
+    </div>
+    <a href="portfolio">Case Studies</a>
     <a href="pricing">Pricing</a>
-    <a href="process">Process</a>
-    <a href="about">About</a>
+    <a href="learn">Learn</a>
     <a href="contact">Contact</a>
     <a href="location">Location</a>
-  </div>
-  <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
+  </div><a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
   <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -92,13 +120,18 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="/">Home</a>
+  <div class="mega-mobile-label">Products</div>
   <a href="web-design">Web Design</a>
   <a href="marketing">Marketing</a>
   <a href="social-media-marketing">Social Media Marketing</a>
-  <a href="portfolio">Portfolio</a>
+  <div class="mega-mobile-label">Solutions</div>
+  <a href="law-firms">Law Firms</a>
+  <a href="course-education">Course & Education</a>
+  <a href="ecommerce-solutions">E-Commerce</a>
+  <a href="local-service">Local Service Businesses</a>
+  <a href="portfolio">Case Studies</a>
   <a href="pricing">Pricing</a>
-  <a href="process">Process</a>
-  <a href="about">About</a>
+  <a href="learn">Learn</a>
   <a href="contact">Contact</a>
   <a href="location">Location</a>
   <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
@@ -126,6 +159,7 @@
         <div class="price-card">
           <div class="tag">Starter</div>
           <h3>Starter Website</h3>
+          <div class="price-tag">$1,200 <span>starting at</span></div>
           <p class="desc">A clean, professional online presence for a new or small business.</p>
           <ul>
             <li>Up to 5 pages</li>
@@ -133,12 +167,13 @@
             <li>Contact form</li>
             <li>Basic SEO setup</li>
           </ul>
-          <a href="contact" class="cta">Get a Quote</a>
+          <a href="contact" class="cta">Get Started</a>
         </div>
 
         <div class="price-card featured">
           <div class="tag">Most Popular</div>
           <h3>Business Website</h3>
+          <div class="price-tag">$2,500 <span>starting at</span></div>
           <p class="desc">A full site built to establish credibility and generate leads.</p>
           <ul>
             <li>Up to 10+ pages</li>
@@ -146,12 +181,13 @@
             <li>Booking / contact integrations</li>
             <li>On-page SEO</li>
           </ul>
-          <a href="contact" class="cta">Get a Quote</a>
+          <a href="contact" class="cta">Get Started</a>
         </div>
 
         <div class="price-card">
           <div class="tag">E-Commerce</div>
           <h3>E-Commerce Website</h3>
+          <div class="price-tag">$3,500 <span>starting at</span></div>
           <p class="desc">A store built to sell, product pages, cart, and checkout included.</p>
           <ul>
             <li>Product catalog setup</li>
@@ -159,12 +195,13 @@
             <li>Inventory management training</li>
             <li>Platform recommendation (Shopify or custom)</li>
           </ul>
-          <a href="contact" class="cta">Get a Quote</a>
+          <a href="contact" class="cta">Get Started</a>
         </div>
 
         <div class="price-card">
           <div class="tag">Custom</div>
           <h3>Custom Build</h3>
+          <div class="price-tag">Custom <span>scoped to you</span></div>
           <p class="desc">Bigger scope or something that doesn't fit a standard box.</p>
           <ul>
             <li>Multi-page or app-like builds</li>
@@ -189,6 +226,7 @@
         <div class="price-card">
           <div class="tag">SEO</div>
           <h3>SEO</h3>
+          <div class="price-tag">$400 <span>/mo starting at</span></div>
           <p class="desc">Get found by the people already searching for what you offer.</p>
           <ul>
             <li>Local SEO & Google Business setup</li>
@@ -196,12 +234,13 @@
             <li>Monthly performance reporting</li>
             <li>Ongoing keyword targeting</li>
           </ul>
-          <a href="contact" class="cta">Get a Quote</a>
+          <a href="contact" class="cta">Get Started</a>
         </div>
 
         <div class="price-card">
           <div class="tag">Paid Ads</div>
           <h3>Google & Meta Ads</h3>
+          <div class="price-tag">$500 <span>/mo + ad spend</span></div>
           <p class="desc">Paid campaigns managed and optimized to bring in qualified leads.</p>
           <ul>
             <li>Campaign setup & management</li>
@@ -209,12 +248,13 @@
             <li>Retargeting</li>
             <li>Monthly performance reporting</li>
           </ul>
-          <a href="contact" class="cta">Get a Quote</a>
+          <a href="contact" class="cta">Get Started</a>
         </div>
 
         <div class="price-card">
           <div class="tag">Social</div>
           <h3>Social Media Marketing</h3>
+          <div class="price-tag">$350 <span>/mo starting at</span></div>
           <p class="desc">Consistent content and posting that builds a real audience over time.</p>
           <ul>
             <li>Content creation & posting</li>
@@ -222,12 +262,13 @@
             <li>Monthly content calendar</li>
             <li>Community engagement</li>
           </ul>
-          <a href="contact" class="cta">Get a Quote</a>
+          <a href="contact" class="cta">Get Started</a>
         </div>
 
         <div class="price-card">
           <div class="tag">Custom</div>
           <h3>Growth Bundle</h3>
+          <div class="price-tag">Custom <span>combined pricing</span></div>
           <p class="desc">SEO, ads, and social combined into one ongoing plan.</p>
           <ul>
             <li>Multi-channel strategy</li>
@@ -265,10 +306,15 @@
       <a href="web-design">Web Design</a>
       <a href="marketing">Marketing</a>
       <a href="social-media-marketing">Social Media Marketing</a>
-      <a href="portfolio">Portfolio</a>
+      <a href="law-firms">Law Firms</a>
+      <a href="course-education">Course & Education</a>
+      <a href="ecommerce-solutions">E-Commerce</a>
+      <a href="local-service">Local Service Businesses</a>
+      <a href="portfolio">Case Studies</a>
       <a href="pricing">Pricing</a>
       <a href="process">Process</a>
       <a href="about">About</a>
+      <a href="learn">Learn</a>
       <a href="contact">Contact</a>
       <a href="location">Location</a>
     </div>
