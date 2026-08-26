@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Dashboard | Ascend Internal</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  body{padding-bottom:80px;}
+  .dash-header{padding:60px 24px 30px; border-bottom:1px solid var(--line);}
+  .dash-header h1{font-size:28px; font-weight:600;}
+  .dash-header p{color:var(--muted); font-size:13.5px; margin-top:6px;}
+
+  /* Password gate */
+  #gate{
+    min-height:80vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
+    padding:24px; text-align:center;
+  }
+  #gate input{
+    background:#161412; border:1px solid var(--line); color:var(--ivory);
+    padding:12px 16px; border-radius:8px; font-size:14px; width:260px; text-align:center;
+  }
+  #gate button{
+    padding:12px 24px; background:var(--green); color:var(--black); border:none;
+    border-radius:8px; font-weight:600; font-size:13.5px; cursor:pointer;
+  }
+  #gateError{color:#e07856; font-size:13px; min-height:18px;}
+
+  #app{display:none;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 24px;}
+
+  .client-card{
+    border:1px solid var(--line); border-radius:14px; padding:28px; margin-top:28px;
+  }
+  .client-card h2{font-size:19px; font-weight:600;}
+  .client-card .site-url{color:var(--platinum); font-size:13px; margin-top:4px;}
+
+  .score-row{display:flex; gap:22px; margin-top:22px; flex-wrap:wrap;}
+  .score-box{text-align:center;}
+  .score-box .num{font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:600;}
+  .score-box .lbl{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-top:4px;}
+  .score-box.overall .num{color:var(--platinum);}
+
+  .section-label{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    margin:28px 0 12px;
+  }
+
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th{text-align:left; color:var(--muted); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:.05em; padding:8px 10px; border-bottom:1px solid var(--line);}
+  td{padding:10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+
+  .badge{display:inline-block; padding:3px 9px; border-radius:999px; font-size:10.5px; font-weight:600; text-transform:uppercase;}
+  .badge.high{background:rgba(224,120,86,.15); color:#e07856;}
+  .badge.medium{background:rgba(201,205,211,.15); color:var(--platinum);}
+  .badge.low{background:rgba(148,144,127,.15); color:var(--muted);}
+  .badge.pending{background:rgba(201,205,211,.1); color:var(--muted);}
+
+  .empty-state{color:var(--muted); font-size:13.5px; padding:20px 0;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1 style="font-size:22px;">Ascend SEO Dashboard</h1>
+  <p style="color:var(--muted); font-size:13.5px; max-width:36ch;">Internal only. This is a temporary password gate until real client logins exist.</p>
+  <input type="password" id="passwordInput" placeholder="Password" autofocus>
+  <button id="gateSubmit">Enter</button>
+  <div id="gateError"></div>
+</div>
+
+<div id="app">
+  <div class="dash-header">
+    <div class="wrap">
+      <h1>SEO Dashboard</h1>
+      <p>Internal view of every client's latest SEO audit, issues, and recommendations.</p>
+    </div>
+  </div>
+  <div class="wrap" id="clientsContainer"></div>
+</div>
+
+<script>
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  const passwordInput = document.getElementById('passwordInput');
+  const gateSubmit = document.getElementById('gateSubmit');
+  const gateError = document.getElementById('gateError');
+
+  async function tryLoad(password) {
+    gateError.textContent = '';
+    gateSubmit.disabled = true;
+    gateSubmit.textContent = 'Loading...';
+    try {
+      const res = await fetch('/api/dashboard-data', {
+        headers: { 'x-dashboard-password': password }
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        gateError.textContent = data.error || 'Something went wrong.';
+        gateSubmit.disabled = false;
+        gateSubmit.textContent = 'Enter';
+        return;
+      }
+      sessionStorage.setItem('dashPassword', password);
+      render(data.clients);
+      gate.style.display = 'none';
+      app.style.display = 'block';
+    } catch (err) {
+      gateError.textContent = 'Could not reach the server.';
+      gateSubmit.disabled = false;
+      gateSubmit.textContent = 'Enter';
+    }
+  }
+
+  gateSubmit.addEventListener('click', () => tryLoad(passwordInput.value));
+  passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLoad(passwordInput.value); });
+
+  // Auto-load if we already have a password from this session
+  const saved = sessionStorage.getItem('dashPassword');
+  if (saved) tryLoad(saved);
+
+  function scoreBox(label, value, isOverall) {
+    const val = value === null || value === undefined ? '—' : value;
+    return `<div class="score-box${isOverall ? ' overall' : ''}"><div class="num">${val}</div><div class="lbl">${label}</div></div>`;
+  }
+
+  function render(clients) {
+    const container = document.getElementById('clientsContainer');
+    if (!clients || clients.length === 0) {
+      container.innerHTML = '<p class="empty-state">No clients yet.</p>';
+      return;
+    }
+
+    container.innerHTML = clients.map(client => {
+      return client.websites.map(site => {
+        const a = site.latestAudit;
+        if (!a) {
+          return `<div class="client-card"><h2>${client.name}</h2><div class="site-url">${site.url}</div><p class="empty-state">No audit run yet.</p></div>`;
+        }
+
+        const pagesRows = site.pages.map(p => `
+          <tr>
+            <td>${p.url.replace(site.url, '') || '/'}</td>
+            <td>${p.overall_score ?? '—'}</td>
+            <td>${p.title || '<span style="color:var(--muted)">missing</span>'}</td>
+            <td>${p.word_count ?? '—'}</td>
+          </tr>`).join('');
+
+        const issuesRows = site.issues
+          .sort((x, y) => ({high:0,medium:1,low:2}[x.severity] - ({high:0,medium:1,low:2}[y.severity])))
+          .map(i => `
+          <tr>
+            <td><span class="badge ${i.severity}">${i.severity}</span></td>
+            <td>${i.issue}</td>
+            <td style="color:var(--muted); font-size:12px;">${(i.page_url || '').replace(site.url, '') || '/'}</td>
+          </tr>`).join('');
+
+        const recRows = site.recommendations.map(r => `
+          <tr>
+            <td><span class="badge ${r.priority}">${r.priority}</span></td>
+            <td>
+              <div style="font-weight:600; margin-bottom:4px;">${r.issue}</div>
+              <div style="color:var(--muted); font-size:12px;">${r.recommended_action}</div>
+            </td>
+            <td><span class="badge pending">${r.status}</span></td>
+          </tr>`).join('');
+
+        return `
+        <div class="client-card">
+          <h2>${client.name}</h2>
+          <div class="site-url">${site.url} · ${site.platform}</div>
+
+          <div class="score-row">
+            ${scoreBox('Overall', a.overall_score, true)}
+            ${scoreBox('Technical', a.technical_score)}
+            ${scoreBox('On-Page', a.onpage_score)}
+            ${scoreBox('Content', a.content_score)}
+            ${scoreBox('Local', a.local_score)}
+            ${scoreBox('Authority', a.authority_score)}
+          </div>
+          <p style="color:var(--muted); font-size:12px; margin-top:10px;">${a.pages_audited} page${a.pages_audited === 1 ? '' : 's'} audited · run ${new Date(a.run_at).toLocaleDateString()}</p>
+
+          <div class="section-label">Pages Audited (${site.pages.length})</div>
+          ${site.pages.length ? `<table><tr><th>Page</th><th>Score</th><th>Title</th><th>Words</th></tr>${pagesRows}</table>` : '<p class="empty-state">No page-level data.</p>'}
+
+          <div class="section-label">Issues Found (${site.issues.length})</div>
+          ${site.issues.length ? `<table><tr><th>Severity</th><th>Issue</th><th>Page</th></tr>${issuesRows}</table>` : '<p class="empty-state">No issues found.</p>'}
+
+          <div class="section-label">Recommendations (${site.recommendations.length})</div>
+          ${site.recommendations.length ? `<table><tr><th>Priority</th><th>Recommendation</th><th>Status</th></tr>${recRows}</table>` : '<p class="empty-state">No recommendations yet.</p>'}
+        </div>`;
+      }).join('');
+    }).join('');
+  }
+</script>
+
+</body>
+</html>
