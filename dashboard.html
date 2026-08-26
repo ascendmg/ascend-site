@@ -223,6 +223,13 @@
 
           <div class="section-label">Recommendations (${site.recommendations.length})</div>
           ${site.recommendations.length ? `<table><tr><th>Priority</th><th>Recommendation</th><th>Status</th></tr>${recRows}</table>` : '<p class="empty-state">No recommendations yet.</p>'}
+
+          <div class="section-label">Reports (${site.reports.length})</div>
+          ${site.reports.length ? site.reports.map(r => `
+            <div style="border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:10px;">
+              <div style="font-size:12px; color:var(--platinum); font-weight:600; margin-bottom:6px;">${new Date(r.period_start).toLocaleDateString()} – ${new Date(r.period_end).toLocaleDateString()}</div>
+              <div style="font-size:13px; color:var(--muted); line-height:1.6;">${r.summary_text}</div>
+            </div>`).join('') : '<p class="empty-state">No reports generated yet.</p>'}
         </div>`;
       }).join('');
     }).join('');

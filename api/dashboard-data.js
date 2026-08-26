@@ -53,12 +53,13 @@ export default async function handler(req, res) {
 
   const auditIds = (audits || []).map(a => a.id);
 
-  const [{ data: pageAudits }, { data: issues }, { data: recommendations }] = await Promise.all([
+  const [{ data: pageAudits }, { data: issues }, { data: recommendations }, { data: reports }] = await Promise.all([
     supabase.from('page_audits').select('*').in('website_id', websiteIds),
     auditIds.length > 0
       ? supabase.from('audit_issues').select('*').in('audit_id', auditIds)
       : Promise.resolve({ data: [] }),
     supabase.from('recommendations').select('*').in('website_id', websiteIds).order('priority', { ascending: true }),
+    supabase.from('reports').select('*').in('website_id', websiteIds).order('generated_at', { ascending: false }),
   ]);
 
   // Attach the latest audit run per website, plus its pages/issues/recs
@@ -73,6 +74,7 @@ export default async function handler(req, res) {
         pages: latestAudit ? (pageAudits || []).filter(p => p.audit_id === latestAudit.id) : [],
         issues: latestAudit ? (issues || []).filter(i => i.audit_id === latestAudit.id) : [],
         recommendations: (recommendations || []).filter(r => r.website_id === website.id),
+        reports: (reports || []).filter(r => r.website_id === website.id),
       };
     }),
   }));
