@@ -60,6 +60,21 @@
   .badge.medium{background:rgba(201,205,211,.15); color:var(--platinum);}
   .badge.low{background:rgba(148,144,127,.15); color:var(--muted);}
   .badge.pending{background:rgba(201,205,211,.1); color:var(--muted);}
+  .badge.approved{background:rgba(201,205,211,.18); color:var(--platinum);}
+  .badge.rejected{background:rgba(224,120,86,.15); color:#e07856;}
+
+  .act-btn{
+    font-size:11.5px; font-weight:600; padding:6px 12px; border-radius:6px;
+    border:1px solid var(--line); background:none; color:var(--ivory); cursor:pointer;
+  }
+  .act-btn.approve{border-color:var(--platinum-dim); color:var(--platinum);}
+  .act-btn.reject{border-color:#e07856; color:#e07856;}
+  .act-btn:disabled{opacity:.5; cursor:not-allowed;}
+  .act-btn:hover{background:rgba(255,255,255,.04);}
+  .edit-box textarea{
+    width:100%; min-height:60px; background:#161412; border:1px solid var(--line);
+    color:var(--ivory); border-radius:6px; padding:8px; font-size:12px; font-family:'Inter',sans-serif;
+  }
 
   .empty-state{color:var(--muted); font-size:13.5px; padding:20px 0;}
 </style>
@@ -160,15 +175,30 @@
             <td style="color:var(--muted); font-size:12px;">${(i.page_url || '').replace(site.url, '') || '/'}</td>
           </tr>`).join('');
 
-        const recRows = site.recommendations.map(r => `
+        const recRows = site.recommendations.map(r => {
+          const isPending = r.status === 'pending';
+          const actions = isPending ? `
+            <div style="display:flex; gap:6px; margin-top:8px;">
+              <button class="act-btn approve" data-id="${r.id}" data-action="approve">Approve</button>
+              <button class="act-btn reject" data-id="${r.id}" data-action="reject">Reject</button>
+              <button class="act-btn edit" data-id="${r.id}" data-action="edit">Edit</button>
+            </div>
+            <div class="edit-box" id="editBox-${r.id}" style="display:none; margin-top:8px;">
+              <textarea id="editText-${r.id}" placeholder="Rewrite the recommended action...">${r.recommended_action}</textarea>
+              <button class="act-btn approve" data-id="${r.id}" data-action="submit-edit" style="margin-top:6px;">Save Edit</button>
+            </div>` : '';
+          return `
           <tr>
             <td><span class="badge ${r.priority}">${r.priority}</span></td>
             <td>
               <div style="font-weight:600; margin-bottom:4px;">${r.issue}</div>
               <div style="color:var(--muted); font-size:12px;">${r.recommended_action}</div>
+              <div style="color:var(--muted); font-size:11px; margin-top:4px; font-style:italic;">${r.why_it_matters || ''}</div>
+              ${actions}
             </td>
-            <td><span class="badge pending">${r.status}</span></td>
-          </tr>`).join('');
+            <td><span class="badge ${r.status === 'pending' ? 'pending' : r.status === 'approved' ? 'approved' : r.status === 'rejected' ? 'rejected' : 'pending'}" id="statusBadge-${r.id}">${r.status}</span></td>
+          </tr>`;
+        }).join('');
 
         return `
         <div class="client-card">
@@ -196,6 +226,56 @@
         </div>`;
       }).join('');
     }).join('');
+    attachActionHandlers();
+  }
+  function attachActionHandlers() {
+    document.querySelectorAll('.act-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const action = btn.dataset.action;
+
+        if (action === 'edit') {
+          const box = document.getElementById(`editBox-${id}`);
+          box.style.display = box.style.display === 'none' ? 'block' : 'none';
+          return;
+        }
+
+        let decision = action;
+        let edited_action = null;
+        if (action === 'submit-edit') {
+          decision = 'edit';
+          edited_action = document.getElementById(`editText-${id}`).value.trim();
+          if (!edited_action) return;
+        }
+
+        btn.disabled = true;
+        try {
+          const res = await fetch('/api/approve-recommendation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-dashboard-password': sessionStorage.getItem('dashPassword') || '',
+            },
+            body: JSON.stringify({ recommendation_id: id, decision, edited_action }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            alert(data.error || 'Something went wrong.');
+            btn.disabled = false;
+            return;
+          }
+          const badge = document.getElementById(`statusBadge-${id}`);
+          badge.textContent = data.recommendation.status;
+          badge.className = `badge ${data.recommendation.status === 'approved' ? 'approved' : data.recommendation.status === 'rejected' ? 'rejected' : 'pending'}`;
+          // Hide the action buttons for this recommendation now that it's decided
+          const row = btn.closest('td');
+          row.querySelectorAll('.act-btn, .edit-box').forEach(el => el.style.display = 'none');
+        } catch (err) {
+          alert('Could not reach the server.');
+          btn.disabled = false;
+        }
+      });
+    });
   }
 </script>
 
