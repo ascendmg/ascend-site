@@ -71,6 +71,9 @@ export default async function handler(req, res) {
       return {
         ...website,
         latestAudit,
+        auditHistory: websiteAudits
+          .map(a => ({ run_at: a.run_at, overall_score: a.overall_score }))
+          .reverse(), // oldest first, easier to chart left-to-right
         pages: latestAudit ? (pageAudits || []).filter(p => p.audit_id === latestAudit.id) : [],
         issues: latestAudit ? (issues || []).filter(i => i.audit_id === latestAudit.id) : [],
         recommendations: (recommendations || []).filter(r => r.website_id === website.id),
