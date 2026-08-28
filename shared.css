@@ -263,6 +263,13 @@
     font-style:normal;
     color:var(--green);
   }
+  .type-target{color:var(--platinum);}
+  .type-cursor{
+    color:var(--platinum);
+    font-weight:400;
+    animation:blink 1s step-start infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
   .hero-sub{
     margin-top:22px;
     font-size:clamp(15px,2vw,18px);

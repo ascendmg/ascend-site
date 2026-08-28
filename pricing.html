@@ -76,6 +76,50 @@
   .pricing-group-head .kicker{margin-bottom:10px;}
   .pricing-group-head h2{font-size:26px; font-weight:600; letter-spacing:-.01em;}
   .pricing-group-head p{color:var(--muted); font-size:14px; margin-top:8px; max-width:56ch;}
+
+  /* Accordion */
+  .accordion-group{display:flex; flex-direction:column; gap:14px;}
+  .accordion-item{border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .accordion-head{
+    width:100%; display:flex; justify-content:space-between; align-items:center;
+    padding:26px 28px; background:none; border:none; cursor:pointer; text-align:left;
+  }
+  .accordion-head h2{font-size:24px; font-weight:600; color:var(--ivory);}
+  .acc-chevron{color:var(--muted); flex-shrink:0; transition:transform .25s ease;}
+  .accordion-item.open .acc-chevron{transform:rotate(180deg);}
+  .accordion-body{
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+    padding:0 28px;
+  }
+  .accordion-item.open .accordion-body{max-height:900px; padding-bottom:30px;}
+  .acc-desc{color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:22px; max-width:64ch;}
+
+  .quote-tiers{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:8px;}
+  .quote-tier{border:1px solid var(--line); border-radius:10px; padding:16px 18px;}
+  .quote-tier h3{font-size:14.5px; font-weight:600; margin-bottom:6px;}
+  .quote-tier p{color:var(--muted); font-size:12.5px; line-height:1.6;}
+  @media (max-width:600px){ .quote-tiers{grid-template-columns:1fr;} }
+
+  /* Ads slider */
+  .slider-card{border:1px solid var(--line); border-radius:14px; padding:28px; margin-top:8px;}
+  .slider-label{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .slider-value{font-family:'Space Grotesk',sans-serif; font-size:38px; font-weight:600; color:var(--ivory); margin-top:6px;}
+  .slider-value span{font-size:16px; color:var(--muted); font-weight:400;}
+  .slider-fee{font-size:14px; color:var(--muted); margin-top:6px; margin-bottom:22px;}
+  .slider-fee strong{color:var(--platinum); font-weight:600;}
+  #adSlider{
+    width:100%; -webkit-appearance:none; appearance:none; height:4px;
+    background:var(--line); border-radius:999px; outline:none;
+  }
+  #adSlider::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%;
+    background:var(--platinum); cursor:pointer; border:3px solid var(--black);
+  }
+  #adSlider::-moz-range-thumb{
+    width:20px; height:20px; border-radius:50%; background:var(--platinum);
+    cursor:pointer; border:3px solid var(--black);
+  }
+  .slider-range-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:11.5px; color:var(--muted);}
 </style>
 </head>
 <body>
@@ -85,7 +129,6 @@
 <nav id="nav">
   <a href="/" class="logo">A<span>scend</span></a>
   <div class="nav-links">
-    <a href="/">Home</a>
     <div class="nav-item">
       <button class="nav-trigger" type="button">Products
         <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
@@ -93,7 +136,7 @@
       <div class="mega-panel">
         <a href="web-design">Web Design<span>Custom sites built to convert</span></a>
         <a href="marketing">Marketing<span>Google & Meta Ads</span></a>
-        <a href="social-media-marketing">Social Media Marketing<span>Content that builds an audience</span></a>
+        <a href="seo">SEO<span>Get found in search</span></a>
       </div>
     </div>
     <div class="nav-item">
@@ -110,7 +153,6 @@
     <a href="portfolio">Case Studies</a>
     <a href="pricing">Pricing</a>
     <a href="learn">Learn</a>
-    <a href="contact">Contact</a>
     <a href="location">Location</a>
   </div><a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
   <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
@@ -119,11 +161,10 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="/">Home</a>
   <div class="mega-mobile-label">Products</div>
   <a href="web-design">Web Design</a>
   <a href="marketing">Marketing</a>
-  <a href="social-media-marketing">Social Media Marketing</a>
+  <a href="seo">SEO</a>
   <div class="mega-mobile-label">Solutions</div>
   <a href="law-firms">Law Firms</a>
   <a href="course-education">Course & Education</a>
@@ -132,7 +173,6 @@
   <a href="portfolio">Case Studies</a>
   <a href="pricing">Pricing</a>
   <a href="learn">Learn</a>
-  <a href="contact">Contact</a>
   <a href="location">Location</a>
   <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Free Consultation</a>
 </div>
@@ -148,181 +188,96 @@
 <section style="border-top:none; padding-top:0;">
   <div class="wrap reveal">
 
-    <div class="pricing-group">
-      <div class="pricing-group-head">
-        <div class="kicker">Website</div>
-        <h2>Building your site.</h2>
-        <p>One-time projects, priced by scope and complexity.</p>
+    <div class="accordion-group">
+
+      <div class="accordion-item open">
+        <button class="accordion-head" data-target="acc-web">
+          <div>
+            <div class="kicker" style="margin-bottom:6px;">01 &middot; Website</div>
+            <h2>Web Design</h2>
+          </div>
+          <svg class="acc-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="accordion-body" id="acc-web">
+          <p class="acc-desc">Every project is scoped individually, custom design, custom build, priced around what your site actually needs to do.</p>
+          <div class="quote-tiers">
+            <div class="quote-tier">
+              <h3>Starter Website</h3>
+              <p>Up to 5 pages, mobile-responsive, contact form, basic SEO setup.</p>
+            </div>
+            <div class="quote-tier">
+              <h3>Business Website</h3>
+              <p>10+ pages, custom design & branding, booking integrations, on-page SEO.</p>
+            </div>
+            <div class="quote-tier">
+              <h3>E-Commerce Website</h3>
+              <p>Product catalog, payments, shipping, inventory setup.</p>
+            </div>
+            <div class="quote-tier">
+              <h3>Custom Build</h3>
+              <p>Bigger scope or something that doesn't fit a standard box.</p>
+            </div>
+          </div>
+          <a href="contact" class="btn-primary" style="margin-top:8px; display:inline-block;">Get a Quote</a>
+        </div>
       </div>
-      <div class="pricing-grid">
 
-        <div class="price-card">
-          <div class="tag">Starter</div>
-          <h3>Starter Website</h3>
-          <div class="price-tag">$1,200 <span>starting at</span></div>
-          <p class="desc">A clean, professional online presence for a new or small business.</p>
-          <ul>
-            <li>Up to 5 pages</li>
-            <li>Mobile-responsive design</li>
-            <li>Contact form</li>
-            <li>Basic SEO setup</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
+      <div class="accordion-item">
+        <button class="accordion-head" data-target="acc-seo">
+          <div>
+            <div class="kicker" style="margin-bottom:6px;">02 &middot; Search</div>
+            <h2>SEO</h2>
+          </div>
+          <svg class="acc-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="accordion-body" id="acc-seo">
+          <p class="acc-desc">Priced around how competitive your market is and how far you want to grow. Full breakdown on the <a href="seo" style="color:var(--platinum);">SEO page</a>.</p>
+          <div class="quote-tiers">
+            <div class="quote-tier">
+              <h3>Local SEO</h3>
+              <p>For businesses that want customers from a specific city or area.</p>
+            </div>
+            <div class="quote-tier">
+              <h3>Growth SEO</h3>
+              <p>For businesses that want to significantly grow organic traffic and leads.</p>
+            </div>
+            <div class="quote-tier">
+              <h3>Scale SEO</h3>
+              <p>For competitive industries, larger sites, or multiple markets.</p>
+            </div>
+          </div>
+          <a href="contact" class="btn-primary" style="margin-top:8px; display:inline-block;">Get a Quote</a>
         </div>
-
-        <div class="price-card featured">
-          <div class="tag">Most Popular</div>
-          <h3>Business Website</h3>
-          <div class="price-tag">$2,500 <span>starting at</span></div>
-          <p class="desc">A full site built to establish credibility and generate leads.</p>
-          <ul>
-            <li>Up to 10+ pages</li>
-            <li>Custom design & branding touches</li>
-            <li>Booking / contact integrations</li>
-            <li>On-page SEO</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-        <div class="price-card">
-          <div class="tag">E-Commerce</div>
-          <h3>E-Commerce Website</h3>
-          <div class="price-tag">$3,500 <span>starting at</span></div>
-          <p class="desc">A store built to sell, product pages, cart, and checkout included.</p>
-          <ul>
-            <li>Product catalog setup</li>
-            <li>Payment & shipping integration</li>
-            <li>Inventory management training</li>
-            <li>Platform recommendation (Shopify or custom)</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-        <div class="price-card">
-          <div class="tag">Custom</div>
-          <h3>Custom Build</h3>
-          <div class="price-tag">Custom <span>scoped to you</span></div>
-          <p class="desc">Bigger scope or something that doesn't fit a standard box.</p>
-          <ul>
-            <li>Multi-page or app-like builds</li>
-            <li>Custom integrations</li>
-            <li>Advanced functionality</li>
-            <li>Built around your goals</li>
-          </ul>
-          <a href="contact" class="cta">Get a Quote</a>
-        </div>
-
       </div>
-    </div>
 
-    <div class="pricing-group">
-      <div class="pricing-group-head">
-        <div class="kicker">SEO</div>
-        <h2>Getting found, month after month.</h2>
-        <p>Three tiers depending on how competitive your market is and how far you want to grow.</p>
+      <div class="accordion-item">
+        <button class="accordion-head" data-target="acc-ads">
+          <div>
+            <div class="kicker" style="margin-bottom:6px;">03 &middot; Paid Media</div>
+            <h2>Ads</h2>
+          </div>
+          <svg class="acc-chevron" width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="accordion-body" id="acc-ads">
+          <p class="acc-desc">Management fee scales with your ad spend, not a flat retainer. Drag the slider to see your number.</p>
+
+          <div class="slider-card">
+            <div class="slider-label">Your monthly ad spend</div>
+            <div class="slider-value" id="spendDisplay">$5,000<span>/mo</span></div>
+            <div class="slider-fee">Our fee <strong id="feeDisplay">50%</strong> &middot; <span id="feeAmount">$2,500/mo</span></div>
+            <input type="range" id="adSlider" min="1000" max="20000" step="500" value="5000">
+            <div class="slider-range-labels"><span>$1K</span><span>$20K</span></div>
+          </div>
+
+          <a href="contact" class="btn-primary" style="margin-top:20px; display:inline-block;">Book a Free Consultation</a>
+        </div>
       </div>
-      <div class="pricing-grid">
 
-        <div class="price-card">
-          <div class="tag">Local SEO</div>
-          <h3>Local SEO</h3>
-          <div class="price-tag">$750 <span>/mo</span></div>
-          <p class="desc">For businesses that primarily want customers from a specific city or area.</p>
-          <ul>
-            <li>Google Business Profile optimization</li>
-            <li>Local keyword research & on-page SEO</li>
-            <li>Technical SEO monitoring</li>
-            <li>Monthly reporting</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-        <div class="price-card featured">
-          <div class="tag">Most Popular</div>
-          <h3>Growth SEO</h3>
-          <div class="price-tag">$1,250 <span>/mo</span></div>
-          <p class="desc">For businesses that want to significantly grow organic traffic and leads.</p>
-          <ul>
-            <li>Everything in Local SEO</li>
-            <li>Competitor analysis & content strategy</li>
-            <li>New SEO-focused pages</li>
-            <li>Conversion-focused recommendations</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-        <div class="price-card">
-          <div class="tag">Scale SEO</div>
-          <h3>Scale SEO</h3>
-          <div class="price-tag">$2,500 <span>/mo</span></div>
-          <p class="desc">For competitive industries, larger sites, or multiple markets.</p>
-          <ul>
-            <li>Everything in Growth SEO</li>
-            <li>National / multi-location SEO</li>
-            <li>Authority & link-building strategy</li>
-            <li>Advanced technical SEO & reporting</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="pricing-group">
-      <div class="pricing-group-head">
-        <div class="kicker">Marketing</div>
-        <h2>Growing your reach.</h2>
-        <p>Ongoing, month-to-month services that keep bringing people to your site after it launches.</p>
-      </div>
-      <div class="pricing-grid">
-
-        <div class="price-card">
-          <div class="tag">Paid Ads</div>
-          <h3>Google & Meta Ads</h3>
-          <div class="price-tag">$500 <span>/mo + ad spend</span></div>
-          <p class="desc">Paid campaigns managed and optimized to bring in qualified leads.</p>
-          <ul>
-            <li>Campaign setup & management</li>
-            <li>Audience targeting</li>
-            <li>Retargeting</li>
-            <li>Monthly performance reporting</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-        <div class="price-card">
-          <div class="tag">Social</div>
-          <h3>Social Media Marketing</h3>
-          <div class="price-tag">$350 <span>/mo starting at</span></div>
-          <p class="desc">Consistent content and posting that builds a real audience over time.</p>
-          <ul>
-            <li>Content creation & posting</li>
-            <li>Instagram, Facebook & TikTok</li>
-            <li>Monthly content calendar</li>
-            <li>Community engagement</li>
-          </ul>
-          <a href="contact" class="cta">Get Started</a>
-        </div>
-
-        <div class="price-card">
-          <div class="tag">Custom</div>
-          <h3>Growth Bundle</h3>
-          <div class="price-tag">Custom <span>combined pricing</span></div>
-          <p class="desc">SEO, ads, and social combined into one ongoing plan.</p>
-          <ul>
-            <li>Multi-channel strategy</li>
-            <li>Priced around your goals</li>
-            <li>One point of contact</li>
-            <li>Combined monthly reporting</li>
-          </ul>
-          <a href="contact" class="cta">Get a Quote</a>
-        </div>
-
-      </div>
     </div>
 
   </div>
 </section>
+
 
 <section id="cta">
   <div class="wrap reveal" style="text-align:center;">
@@ -344,7 +299,7 @@
       <span class="footer-heading">Site</span>
       <a href="web-design">Web Design</a>
       <a href="marketing">Marketing</a>
-      <a href="social-media-marketing">Social Media Marketing</a>
+      <a href="seo">SEO</a>
       <a href="law-firms">Law Firms</a>
       <a href="course-education">Course & Education</a>
       <a href="ecommerce-solutions">E-Commerce</a>
@@ -367,6 +322,31 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+  document.querySelectorAll('.accordion-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const item = head.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const adSlider = document.getElementById('adSlider');
+  const spendDisplay = document.getElementById('spendDisplay');
+  const feeAmount = document.getElementById('feeAmount');
+
+  function updateSlider() {
+    const spend = parseInt(adSlider.value, 10);
+    const fee = Math.round(spend * 0.5);
+    spendDisplay.innerHTML = '$' + spend.toLocaleString() + '<span>/mo</span>';
+    feeAmount.textContent = '$' + fee.toLocaleString() + '/mo';
+  }
+  if (adSlider) {
+    adSlider.addEventListener('input', updateSlider);
+    updateSlider();
+  }
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

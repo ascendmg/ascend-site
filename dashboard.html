@@ -148,6 +148,44 @@
   }
 
   .empty-state{color:var(--muted); font-size:13.5px; padding:24px; border:1px dashed var(--line); border-radius:12px; text-align:center;}
+
+  /* ===== Modal ===== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-box{
+    background:var(--black); border:1px solid var(--line); border-radius:14px;
+    padding:28px; width:100%; max-width:520px; max-height:85vh; overflow-y:auto;
+  }
+  .modal-box h2{font-size:18px; font-weight:600; margin-bottom:18px;}
+  .field-group{margin-bottom:14px;}
+  .field-group label{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:6px;}
+  .field-group input, .field-group select, .field-group textarea{
+    width:100%; background:#161412; border:1px solid var(--line); color:var(--ivory);
+    padding:10px 12px; border-radius:8px; font-size:13.5px; font-family:'Inter',sans-serif;
+  }
+  .field-group textarea{min-height:70px; resize:vertical;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .modal-actions{display:flex; gap:10px; margin-top:22px;}
+  .modal-actions .act-btn{padding:10px 20px; font-size:13px;}
+  .modal-close{position:absolute; top:0; right:0; background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; padding:8px;}
+  .modal-box{position:relative;}
+  .field-error{color:#e07856; font-size:12px; margin-top:8px; min-height:16px;}
+
+  /* ===== Client info panel + tasks (detail view) ===== */
+  .info-panel{border:1px solid var(--line); border-radius:12px; padding:22px; margin-top:24px;}
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .tag-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .tag{font-size:11px; padding:4px 10px; border-radius:999px; background:rgba(201,205,211,.1); color:var(--platinum);}
+  .task-item{display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--line);}
+  .task-item:last-child{border-bottom:none;}
+  .task-item.completed .task-title{text-decoration:line-through; color:var(--muted);}
+  .task-item input[type="checkbox"]{width:16px; height:16px; accent-color:var(--platinum);}
+  .task-title{flex:1; font-size:13.5px;}
+  .task-due{font-size:11.5px; color:var(--muted);}
+  .add-task-row{display:flex; gap:8px; margin-top:14px;}
+  .add-task-row input{flex:1;}
   .report-card{border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:10px;}
   .report-card .period{font-size:12px; color:var(--platinum); font-weight:600; margin-bottom:6px;}
   .report-card .body{font-size:13px; color:var(--muted); line-height:1.6;}
@@ -307,13 +345,19 @@
       </div>`;
 
     main.innerHTML = `
-      <h1 style="font-size:22px; font-weight:600;">Client Overview</h1>
-      <p style="color:var(--muted); font-size:13.5px; margin-top:4px;">Every client's SEO health, at a glance.</p>
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h1 style="font-size:22px; font-weight:600;">Client Overview</h1>
+          <p style="color:var(--muted); font-size:13.5px; margin-top:4px;">Every client's SEO health, at a glance.</p>
+        </div>
+        <button class="act-btn approve" id="addClientBtn" style="padding:10px 18px;">+ Add Client</button>
+      </div>
       ${statStrip}
       ${toolbar}
       <div id="clientList"></div>
     `;
 
+    document.getElementById('addClientBtn').addEventListener('click', openAddClientModal);
     document.getElementById('searchInput').addEventListener('input', renderClientList);
     document.getElementById('sortSelect').addEventListener('change', renderClientList);
     renderClientList();
@@ -390,6 +434,137 @@
     });
   }
 
+  function renderInfoAndTasks(client) {
+    const services = Array.isArray(client.services) ? client.services : [];
+    const taskRows = (client.tasks || []).map(t => `
+      <div class="task-item ${t.completed ? 'completed' : ''}">
+        <input type="checkbox" data-task-id="${t.id}" ${t.completed ? 'checked' : ''}>
+        <div class="task-title">${t.title}</div>
+        ${t.due_date ? `<div class="task-due">${new Date(t.due_date).toLocaleDateString()}</div>` : ''}
+      </div>`).join('');
+
+    return `
+      <div class="info-panel">
+        <div class="section-label" style="margin-top:0;">Client Info</div>
+        <div class="info-grid">
+          <div class="field-group"><label>Contact Email</label><input type="email" id="editEmail" value="${client.contact_email || ''}"></div>
+          <div class="field-group"><label>Contact Phone</label><input type="text" id="editPhone" value="${client.contact_phone || ''}"></div>
+          <div class="field-group"><label>Industry</label><input type="text" id="editIndustry" value="${client.industry || ''}"></div>
+          <div class="field-group"><label>Monthly Plan</label><input type="text" id="editPlan" value="${client.monthly_plan || ''}"></div>
+          <div class="field-group"><label>Status</label>
+            <select id="editStatus">
+              <option value="active" ${client.status === 'active' ? 'selected' : ''}>Active</option>
+              <option value="paused" ${client.status === 'paused' ? 'selected' : ''}>Paused</option>
+              <option value="churned" ${client.status === 'churned' ? 'selected' : ''}>Churned</option>
+            </select>
+          </div>
+          <div class="field-group"><label>Billing Status</label>
+            <select id="editBilling">
+              <option value="current" ${client.billing_status === 'current' ? 'selected' : ''}>Current</option>
+              <option value="pending" ${client.billing_status === 'pending' ? 'selected' : ''}>Pending</option>
+              <option value="overdue" ${client.billing_status === 'overdue' ? 'selected' : ''}>Overdue</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group" style="margin-top:8px;"><label>Services</label><input type="text" id="editServices" value="${services.join(', ')}" placeholder="comma-separated"></div>
+        <div class="field-group"><label>Notes</label><textarea id="editNotes">${client.notes || ''}</textarea></div>
+        <button class="act-btn approve" id="saveClientInfo">Save Changes</button>
+        <span class="field-error" id="saveClientError"></span>
+      </div>
+
+      <div class="info-panel">
+        <div class="section-label" style="margin-top:0;">Tasks (${(client.tasks || []).filter(t => !t.completed).length} open)</div>
+        <div id="taskList">${taskRows || '<div class="empty-state">No tasks yet.</div>'}</div>
+        <div class="add-task-row">
+          <input type="text" id="newTaskTitle" placeholder="Add a task...">
+          <input type="date" id="newTaskDue" style="width:150px;">
+          <button class="act-btn approve" id="addTaskBtn">Add</button>
+        </div>
+      </div>`;
+  }
+
+  function attachInfoAndTaskHandlers(client) {
+    document.getElementById('saveClientInfo').addEventListener('click', async () => {
+      const servicesRaw = document.getElementById('editServices').value.trim();
+      const payload = {
+        action: 'update',
+        client_id: client.id,
+        contact_email: document.getElementById('editEmail').value.trim(),
+        contact_phone: document.getElementById('editPhone').value.trim() || null,
+        industry: document.getElementById('editIndustry').value.trim() || null,
+        monthly_plan: document.getElementById('editPlan').value.trim() || null,
+        status: document.getElementById('editStatus').value,
+        billing_status: document.getElementById('editBilling').value,
+        services: servicesRaw ? servicesRaw.split(',').map(s => s.trim()).filter(Boolean) : [],
+        notes: document.getElementById('editNotes').value.trim() || null,
+      };
+      const errorEl = document.getElementById('saveClientError');
+      const btn = document.getElementById('saveClientInfo');
+      btn.disabled = true;
+      try {
+        const res = await fetch('/api/manage-client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) { errorEl.textContent = data.error; btn.disabled = false; return; }
+        Object.assign(client, data.client);
+        errorEl.textContent = 'Saved.';
+        btn.disabled = false;
+      } catch {
+        errorEl.textContent = 'Could not reach the server.';
+        btn.disabled = false;
+      }
+    });
+
+    document.getElementById('addTaskBtn').addEventListener('click', async () => {
+      const title = document.getElementById('newTaskTitle').value.trim();
+      if (!title) return;
+      const due_date = document.getElementById('newTaskDue').value || null;
+      const res = await fetch('/api/manage-task', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+        body: JSON.stringify({ action: 'create', client_id: client.id, title, due_date }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        client.tasks = client.tasks || [];
+        client.tasks.push(data.task);
+        document.getElementById('taskList').outerHTML = `<div id="taskList">${client.tasks.map(t => `
+          <div class="task-item ${t.completed ? 'completed' : ''}">
+            <input type="checkbox" data-task-id="${t.id}" ${t.completed ? 'checked' : ''}>
+            <div class="task-title">${t.title}</div>
+            ${t.due_date ? `<div class="task-due">${new Date(t.due_date).toLocaleDateString()}</div>` : ''}
+          </div>`).join('')}</div>`;
+        document.getElementById('newTaskTitle').value = '';
+        document.getElementById('newTaskDue').value = '';
+        attachTaskCheckboxHandlers(client);
+      }
+    });
+
+    attachTaskCheckboxHandlers(client);
+  }
+
+  function attachTaskCheckboxHandlers(client) {
+    document.querySelectorAll('#taskList input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', async () => {
+        const taskId = cb.dataset.taskId;
+        const completed = cb.checked;
+        const res = await fetch('/api/manage-task', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+          body: JSON.stringify({ action: 'toggle', task_id: taskId, completed }),
+        });
+        if (res.ok) {
+          const task = (client.tasks || []).find(t => t.id === taskId);
+          if (task) task.completed = completed;
+          cb.closest('.task-item').classList.toggle('completed', completed);
+        }
+      });
+    });
+  }
+
   function renderDetail(clientId, siteId) {
     document.getElementById('navOverview').classList.remove('active');
     const client = CLIENTS.find(c => c.id === clientId);
@@ -400,8 +575,10 @@
       main.innerHTML = `
         <div class="back-link" id="backLink">&larr; All Clients</div>
         <h1 style="font-size:24px; font-weight:600;">${client.name}</h1>
-        <div class="empty-state" style="margin-top:20px;">No audit has been run for ${site.url} yet.</div>`;
+        <div class="empty-state" style="margin-top:20px;">No audit has been run for ${site.url} yet.</div>
+        ${renderInfoAndTasks(client)}`;
       document.getElementById('backLink').addEventListener('click', renderOverview);
+      attachInfoAndTaskHandlers(client);
       return;
     }
 
@@ -488,10 +665,116 @@
 
       <div class="section-label">Reports (${site.reports.length})</div>
       ${reportsHtml}
+
+      ${renderInfoAndTasks(client)}
     `;
 
     document.getElementById('backLink').addEventListener('click', renderOverview);
     attachActionHandlers();
+    attachInfoAndTaskHandlers(client);
+  }
+
+  function closeModal() {
+    const overlay = document.querySelector('.modal-overlay');
+    if (overlay) overlay.remove();
+  }
+
+  function openAddClientModal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal-box">
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+        <h2>Add a New Client</h2>
+        <div class="field-group"><label>Client / Business Name *</label><input type="text" id="newName" placeholder="e.g. Law Offices of Ingrid Morfa"></div>
+        <div class="field-row">
+          <div class="field-group"><label>Contact Email *</label><input type="email" id="newEmail" placeholder="contact@business.com"></div>
+          <div class="field-group"><label>Contact Phone</label><input type="text" id="newPhone" placeholder="(407) 555-0100"></div>
+        </div>
+        <div class="field-group"><label>Website URL *</label><input type="text" id="newWebsite" placeholder="https://example.com"></div>
+        <div class="field-row">
+          <div class="field-group"><label>Industry</label><input type="text" id="newIndustry" placeholder="e.g. Legal, E-Commerce"></div>
+          <div class="field-group"><label>Platform</label>
+            <select id="newPlatform">
+              <option value="unknown">Unknown</option>
+              <option value="custom">Custom</option>
+              <option value="wordpress">WordPress</option>
+              <option value="shopify">Shopify</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group"><label>Monthly Plan</label><input type="text" id="newPlan" placeholder="e.g. Growth SEO"></div>
+          <div class="field-group"><label>Start Date</label><input type="date" id="newStartDate"></div>
+        </div>
+        <div class="field-group"><label>Services (comma-separated)</label><input type="text" id="newServices" placeholder="Web Design, Local SEO, Social Media"></div>
+        <div class="field-group"><label>Notes</label><textarea id="newNotes" placeholder="Anything worth remembering about this client..."></textarea></div>
+        <div class="field-error" id="addClientError"></div>
+        <div class="modal-actions">
+          <button class="act-btn approve" id="submitAddClient">Add Client</button>
+          <button class="act-btn" id="cancelAddClient">Cancel</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    document.getElementById('cancelAddClient').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+    document.getElementById('submitAddClient').addEventListener('click', async () => {
+      const name = document.getElementById('newName').value.trim();
+      const contact_email = document.getElementById('newEmail').value.trim();
+      const website_url = document.getElementById('newWebsite').value.trim();
+      const errorEl = document.getElementById('addClientError');
+
+      if (!name || !contact_email || !website_url) {
+        errorEl.textContent = 'Name, email, and website URL are required.';
+        return;
+      }
+
+      const servicesRaw = document.getElementById('newServices').value.trim();
+      const services = servicesRaw ? servicesRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+      const payload = {
+        action: 'create',
+        name, contact_email,
+        contact_phone: document.getElementById('newPhone').value.trim() || null,
+        website_url,
+        industry: document.getElementById('newIndustry').value.trim() || null,
+        platform: document.getElementById('newPlatform').value,
+        monthly_plan: document.getElementById('newPlan').value.trim() || null,
+        start_date: document.getElementById('newStartDate').value || null,
+        services,
+        notes: document.getElementById('newNotes').value.trim() || null,
+      };
+
+      const btn = document.getElementById('submitAddClient');
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+
+      try {
+        const res = await fetch('/api/manage-client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorEl.textContent = data.error || 'Something went wrong.';
+          btn.disabled = false;
+          btn.textContent = 'Add Client';
+          return;
+        }
+        // Add the new client into memory so the list updates without a full reload
+        CLIENTS.push({ ...data.client, tasks: [], websites: [{ ...data.website, latestAudit: null, auditHistory: [], pages: [], issues: [], recommendations: [], reports: [] }] });
+        closeModal();
+        renderOverview();
+      } catch (err) {
+        errorEl.textContent = 'Could not reach the server.';
+        btn.disabled = false;
+        btn.textContent = 'Add Client';
+      }
+    });
   }
 
   function attachActionHandlers() {

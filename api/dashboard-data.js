@@ -40,8 +40,16 @@ export default async function handler(req, res) {
 
   const { data: clients, error: clientsError } = await supabase
     .from('clients')
-    .select('id, name, status, websites(id, url, platform)');
+    .select('id, name, status, contact_email, contact_phone, industry, services, monthly_plan, start_date, notes, billing_status, websites(id, url, platform)');
   if (clientsError) return res.status(500).json({ error: clientsError.message });
+
+  const clientIds = clients.map(c => c.id);
+  const { data: clientTasks } = await supabase
+    .from('client_tasks')
+    .select('*')
+    .in('client_id', clientIds)
+    .order('completed', { ascending: true })
+    .order('due_date', { ascending: true, nullsFirst: false });
 
   const websiteIds = clients.flatMap(c => c.websites.map(w => w.id));
 
@@ -65,6 +73,7 @@ export default async function handler(req, res) {
   // Attach the latest audit run per website, plus its pages/issues/recs
   const result = clients.map(client => ({
     ...client,
+    tasks: (clientTasks || []).filter(t => t.client_id === client.id),
     websites: client.websites.map(website => {
       const websiteAudits = (audits || []).filter(a => a.website_id === website.id);
       const latestAudit = websiteAudits[0] || null;
