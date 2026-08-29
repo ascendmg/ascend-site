@@ -60,11 +60,9 @@
     font-weight:700;
     font-size:20px;
     letter-spacing:-.02em;
-    display:flex;
-    align-items:center;
-    gap:9px;
   }
-  .logo img{height:22px; width:auto; display:block;}
+  .logo img{height:26px; width:auto; display:block;}
+  .logo.icon-only{display:flex; align-items:center;}
   .logo.icon-only img{height:26px;}
   .logo span{color:var(--green);}
   .nav-links{
@@ -218,7 +216,9 @@
     display:flex; flex-direction:column; justify-content:center;
     padding:120px 24px 60px;
     position:relative;
+    text-align:left;
   }
+  header.hero .wrap{text-align:left;}
   .hero-bg{
     position:absolute; inset:0;
     overflow:hidden;
@@ -269,7 +269,12 @@
     font-style:normal;
     color:var(--green);
   }
-  .type-target{color:var(--platinum);}
+  .type-target{
+    color:var(--platinum);
+    display:inline-block;
+    text-align:left;
+    white-space:nowrap;
+  }
   .type-cursor{
     color:var(--platinum);
     font-weight:400;
