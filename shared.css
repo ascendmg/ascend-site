@@ -257,7 +257,8 @@
     line-height:1.02;
     letter-spacing:-.03em;
     font-weight:700;
-    max-width:14ch;
+    max-width:20ch;
+    min-height:2.1em;
   }
   h1.headline em{
     font-style:normal;
