@@ -60,7 +60,11 @@
     font-weight:700;
     font-size:20px;
     letter-spacing:-.02em;
+    display:flex;
+    align-items:center;
+    gap:9px;
   }
+  .logo img{height:22px; width:auto; display:block;}
   .logo span{color:var(--green);}
   .nav-links{
     display:flex; gap:19px;
@@ -257,8 +261,11 @@
     line-height:1.02;
     letter-spacing:-.03em;
     font-weight:700;
-    max-width:20ch;
-    min-height:2.1em;
+    max-width:28ch;
+    white-space:nowrap;
+  }
+  @media (max-width:640px){
+    h1.headline{white-space:normal; max-width:16ch;}
   }
   h1.headline em{
     font-style:normal;
