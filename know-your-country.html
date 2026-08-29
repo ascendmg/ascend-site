@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{if(localStorage.getItem("ciudadanoready-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Know Your Country | Ciudadano Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== Member Area theme (matches dashboard.html / lesson.html) ===== */
+  body { background: var(--paper-dim); }
+  .app-sidebar { background: var(--paper-dim); border-right: 1px solid var(--line); }
+  .app-nav a.active { color: var(--forest); background: var(--white); border-left-color: var(--forest); }
+  .app-nav a:hover { color: var(--forest); }
+  .app-topbar { background: var(--paper-dim); border-bottom: 1px solid var(--line); }
+  .app-content .card { box-shadow: none; }
+  .app-content .card:hover { box-shadow: none; }
+  .btn-primary { background: var(--forest); }
+  .btn-primary:hover { background: #244F3B; }
+  .badge-ocean { border-color: var(--forest); color: var(--forest); }
+  .progress-bar-fill { background: var(--forest); }
+
+  .app-nav-group h4 { margin: 0 0 8px; }
+
+  /* ---- Unit / lesson picker ---- */
+  .kyc-unit-block { margin-bottom: 28px; }
+  .kyc-unit-heading { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .kyc-unit-heading .kyc-unit-num { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--forest); text-transform: uppercase; }
+  .kyc-unit-heading h3 { margin: 0; font-size: 1.05rem; }
+  .kyc-lesson-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); cursor: pointer; margin-bottom: 8px;
+  }
+  .kyc-lesson-row:hover { border-color: var(--forest); }
+  .kyc-lesson-check {
+    width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line);
+    flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: transparent;
+  }
+  .kyc-lesson-row.done .kyc-lesson-check { background: var(--forest); border-color: var(--forest); color: var(--paper); }
+  .kyc-lesson-row.done .kyc-lesson-title { color: var(--slate); }
+  .kyc-lesson-num { font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate); min-width: 20px; }
+  .kyc-lesson-title { flex: 1; font-weight: 600; }
+
+  .kyc-progress-card { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 24px; margin-bottom: 28px; }
+  .kyc-progress-card .progress-bar { flex: 1; }
+
+  /* ---- Reading view ---- */
+  .kyc-reading-stage { max-width: 720px; margin: 0 auto; }
+  .kyc-reading-body h4.lesson-subhead { margin: 20px 0 8px; font-size: 1rem; color: var(--forest); }
+  .kyc-reading-body p { margin: 0 0 16px; line-height: 1.7; }
+  .kyc-reading-body ul.lesson-list { margin: 0 0 16px; padding-left: 20px; line-height: 1.7; }
+  .kyc-reading-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; gap: 12px; flex-wrap: wrap; }
+
+  /* ---- Audio narration bar ---- */
+  .kyc-audio-bar {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 14px 18px; margin-bottom: 24px;
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--white);
+  }
+  .kyc-audio-controls-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .kyc-audio-play-btn { display: inline-flex; align-items: center; gap: 8px; }
+  .kyc-audio-lang-toggle { display: inline-flex; align-items: center; gap: 6px; border-left: 1px solid var(--line); padding-left: 16px; }
+  .kyc-audio-lang-toggle .small.muted { margin-right: 2px; }
+  .kyc-audio-lang-btn {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.03em;
+    padding: 5px 10px; border-radius: 6px; border: 1px solid var(--line);
+    background: var(--white); color: var(--slate); cursor: pointer;
+  }
+  .kyc-audio-lang-btn.active { background: var(--forest); border-color: var(--forest); color: var(--paper); }
+  .kyc-audio-status { font-size: 0.82rem; color: var(--slate); margin-left: auto; }
+  .kyc-audio-status.speaking { color: var(--forest); font-weight: 600; }
+  .kyc-audio-seek-row { display: flex; align-items: center; gap: 10px; }
+  .kyc-audio-time { font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate); min-width: 34px; text-align: center; flex-shrink: 0; }
+  .kyc-audio-seek {
+    flex: 1; margin: 0; height: 5px; border-radius: 3px; background: var(--line);
+    outline: none; cursor: pointer; -webkit-appearance: none; appearance: none;
+  }
+  /* outline:none above removes the default (which browsers render oddly
+     on range inputs anyway); this restores a visible keyboard-focus
+     indicator via box-shadow on the track instead, only for keyboard/
+     assistive-tech focus, not mouse clicks. */
+  .kyc-audio-seek:focus-visible { box-shadow: 0 0 0 3px rgba(28,127,184,0.35); }
+  .kyc-audio-seek::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--forest); cursor: pointer; border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--line);
+  }
+  .kyc-audio-seek::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%; background: var(--forest); cursor: pointer;
+    border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--line);
+  }
+  .kyc-audio-seek:disabled { opacity: 0.4; cursor: not-allowed; }
+  @media (max-width: 560px) {
+    .kyc-audio-controls-row { flex-direction: column; align-items: flex-start; }
+    .kyc-audio-lang-toggle { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 12px; width: 100%; }
+    .kyc-audio-status { margin-left: 0; }
+  }
+</style>
+<meta name="description" content="The story behind the U.S. citizenship test: real American history in plain language.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ciudadano Ready">
+<meta property="og:title" content="Know Your Country | Ciudadano Ready">
+<meta property="og:description" content="The story behind the U.S. citizenship test: real American history in plain language.">
+<meta property="og:image" content="https://ciudadanoready.com/og-image.png">
+<meta property="og:url" content="https://ciudadanoready.com/know-your-country.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Know Your Country | Ciudadano Ready">
+<meta name="twitter:description" content="The story behind the U.S. citizenship test: real American history in plain language.">
+<meta name="twitter:image" content="https://ciudadanoready.com/og-image.png">
+</head>
+<body data-auth-required="true" data-kyc-page="true">
+
+<div class="app-shell">
+  <div class="sidebar-backdrop"></div>
+  <aside class="app-sidebar">
+    <a href="dashboard.html" class="logo">Ciudadano<span class="dot">Ready</span></a>
+    <ul class="app-nav">
+      <li class="app-nav-group">
+        <h4 data-en="Overview" data-es="Resumen">Overview</h4>
+        <a href="dashboard.html" data-en="Continue Learning" data-es="Continuar Aprendiendo">Continue Learning</a>
+        <a href="progress.html" data-en="My Progress" data-es="Mi Progreso">My Progress</a>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="Course" data-es="Curso">Course</h4>
+        <ul class="app-nav" id="kyc-page-module-nav" style="padding:0;">
+          <li class="small muted" style="padding:10px 24px;">Loading…</li>
+        </ul>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="Practice" data-es="Práctica">Practice</h4>
+        <a href="flashcards.html" data-en="Flashcards" data-es="Tarjetas de Estudio">Flashcards</a>
+        <a href="mock-interview.html" data-en="Mock Interview" data-es="Entrevista Simulada">Mock Interview</a>
+        <a href="reading-writing.html" data-en="Reading &amp; Writing" data-es="Lectura y Escritura">Reading &amp; Writing</a>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="Background" data-es="Contexto">Background</h4>
+        <a href="know-your-country.html" class="active" data-en="Know Your Country" data-es="Conoce Tu País">Know Your Country</a>
+        <a href="documents.html" data-en="Documents" data-es="Documentos">Documents</a>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="More" data-es="Más">More</h4>
+        <a href="support.html" data-en="Support" data-es="Soporte">Support</a>
+        <a href="settings.html" data-en="Settings" data-es="Configuración">Settings</a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="app-main">
+    <div class="app-topbar">
+      <div class="flex gap-16 items-center">
+        <button class="app-sidebar-toggle" aria-label="Menu">☰</button>
+        <div>
+          <span class="eyebrow" style="margin-bottom:0;" data-en="BACKGROUND" data-es="CONTEXTO">BACKGROUND</span>
+          <h3 style="margin:0;" data-en="Know Your Country" data-es="Conoce Tu País">Know Your Country</h3>
+        </div>
+      </div>
+      <div class="flex gap-16 items-center">
+        <div class="lang-toggle">
+          <button data-lang-btn="en" class="active">EN</button>
+          <button data-lang-btn="es">ES</button>
+        </div>        <a href="index.html" class="btn btn-ghost btn-sm" id="logout-link" data-en="Log Out" data-es="Cerrar Sesión">Log Out</a>
+      </div>
+    </div>
+
+    <div class="app-content">
+
+      <!-- Picker: all 10 units / 40 lessons -->
+      <div id="kyc-picker-view">
+        <span class="eyebrow" data-en="THE STORY BEHIND THE TEST" data-es="LA HISTORIA DETRÁS DEL EXAMEN">THE STORY BEHIND THE TEST</span>
+        <h2 style="margin-top:4px;" data-en="Know Your Country" data-es="Conoce Tu País">Know Your Country</h2>
+        <p class="small" style="max-width:680px; margin-bottom:20px;" data-en="40 short lessons that walk through U.S. history from the first peoples of North America to today: the real background behind the civics questions, not just facts to memorize. Read at your own pace." data-es="40 lecciones breves que recorren la historia de EE. UU. desde los primeros pueblos de Norteamérica hasta hoy: el contexto real detrás de las preguntas de educación cívica, no solo datos para memorizar. Lee a tu propio ritmo.">40 short lessons that walk through U.S. history from the first peoples of North America to today: the real background behind the civics questions, not just facts to memorize. Read at your own pace.</p>
+
+        <div class="card kyc-progress-card">
+          <div>
+            <span class="small muted" data-en="YOUR PROGRESS" data-es="TU PROGRESO">YOUR PROGRESS</span>
+            <div style="font-weight:700;" id="kyc-progress-count">0 / 40</div>
+          </div>
+          <div class="progress-bar"><div class="progress-bar-fill" id="kyc-progress-fill" style="width:0%;"></div></div>
+        </div>
+
+        <div id="kyc-units-list">
+          <p class="small muted">Loading…</p>
+        </div>
+      </div>
+
+      <!-- Reading view: one lesson at a time -->
+      <div id="kyc-reading-view" style="display:none;">
+        <button class="btn btn-ghost btn-sm" id="kyc-back-to-list" style="margin-bottom:20px;">
+          <span data-en="← All lessons" data-es="← Todas las lecciones">← All lessons</span>
+        </button>
+
+        <div class="kyc-reading-stage">
+          <span class="badge" style="border-color:var(--forest); color:var(--forest); margin-bottom:12px; display:inline-block;" id="kyc-lesson-badge">–</span>
+          <h1 id="kyc-lesson-title" style="margin-bottom:20px;">–</h1>
+
+          <div class="kyc-audio-bar" id="kyc-audio-bar">
+            <div class="kyc-audio-controls-row">
+              <button class="btn btn-primary btn-sm kyc-audio-play-btn" id="kyc-audio-play-btn">
+                <span id="kyc-audio-play-icon">▶</span>
+                <span id="kyc-audio-play-label" data-en="Listen" data-es="Escuchar">Listen</span>
+              </button>
+              <button class="btn btn-ghost btn-sm" id="kyc-audio-stop-btn" style="display:none;">
+                ⏹ <span data-en="Stop" data-es="Detener">Stop</span>
+              </button>
+              <div class="kyc-audio-lang-toggle">
+                <span class="small muted" data-en="Listen in:" data-es="Escuchar en:">Listen in:</span>
+                <button class="kyc-audio-lang-btn" data-audio-lang="en">EN</button>
+                <button class="kyc-audio-lang-btn" data-audio-lang="es">ES</button>
+              </div>
+              <span class="kyc-audio-status small" id="kyc-audio-status"></span>
+            </div>
+            <div class="kyc-audio-seek-row">
+              <span class="kyc-audio-time" id="kyc-audio-current-time">0:00</span>
+              <input type="range" class="kyc-audio-seek" id="kyc-audio-seek" min="0" max="0" step="0.1" value="0" disabled>
+              <span class="kyc-audio-time" id="kyc-audio-duration">0:00</span>
+            </div>
+          </div>
+
+          <div class="card card-pad kyc-reading-body" id="kyc-lesson-content"></div>
+
+          <div class="kyc-reading-nav">
+            <button class="btn btn-ghost" id="kyc-prev-lesson-btn">← <span data-en="Previous" data-es="Anterior">Previous</span></button>
+            <button class="btn btn-primary" id="kyc-next-lesson-btn"><span data-en="Next" data-es="Siguiente">Next</span> →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script src="app.js"></script>
+<script src="member.js"></script>
+</body>
+</html>

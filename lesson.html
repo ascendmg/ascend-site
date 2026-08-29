@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function(){try{if(localStorage.getItem("ciudadanoready-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson | Ciudadano Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ===== Member Area theme (matches dashboard.html) =====
+     Soft grey background, flatter cards, forest-green accent instead of ocean blue;
+     signals this is inside the signed-in course experience, not the public site. */
+  body { background: var(--paper-dim); }
+  .app-sidebar { background: var(--paper-dim); border-right: 1px solid var(--line); }
+  .app-nav a.active { color: var(--forest); background: var(--white); border-left-color: var(--forest); }
+  .app-nav a:hover { color: var(--forest); }
+  .app-topbar { background: var(--paper-dim); border-bottom: 1px solid var(--line); }
+  .app-content .card { box-shadow: none; }
+  .app-content .card:hover { box-shadow: none; }
+  .progress-bar-fill { background: var(--forest); }
+  .btn-primary { background: var(--forest); }
+  .btn-primary:hover { background: #244F3B; }
+  .stamp-circle.done { background: var(--forest); border-color: var(--forest); }
+  .stamp-connector.done { background: var(--forest); }
+  .badge-ocean { border-color: var(--forest); color: var(--forest); }
+
+  .video-embed { aspect-ratio: 16/9; border-radius: var(--radius); overflow:hidden; margin-bottom:28px; }
+  .video-embed iframe { width:100%; height:100%; border:0; display:block; }
+  .video-placeholder { display:flex; align-items:center; gap:12px; padding:16px 20px; border:1px dashed var(--line); border-radius: var(--radius); margin-bottom:28px; color: var(--slate); background: var(--white); }
+  .video-placeholder .video-placeholder-icon { font-size:1.3rem; flex-shrink:0; }
+  .video-placeholder p { margin:0; font-size:0.88rem; }
+
+  /* Module quiz (submit-and-grade, gates lesson completion on the final
+     lesson of each module), distinct from the older instant-feedback
+     .quiz-option buttons used elsewhere so the two don't share click
+     bindings. Lives inside a plain .card (same as the Study Guide box
+     above it) so it reads as one more section of the page instead of a
+     separate heavy block; flat option rows instead of a bordered button
+     per choice, a thin divider between questions instead of big gaps. */
+  .module-quiz-intro { font-size:0.85rem; color: var(--slate); margin:2px 0 18px; }
+  .module-quiz-q { padding:16px 0; border-top: 1px solid var(--line); }
+  .module-quiz-q:first-of-type { border-top:none; padding-top:0; }
+  .module-quiz-q h4 { font-family: var(--font-sans); font-size:0.94rem; font-weight:600; margin:0 0 10px; }
+  .module-quiz-options { display:flex; flex-direction:column; gap:1px; }
+  .module-quiz-option { display:flex; align-items:center; gap:10px; padding:7px 8px; border-radius:6px; cursor:pointer; font-size:0.9rem; text-align:left; }
+  .module-quiz-option:hover { background: var(--paper-dim); }
+  /* Global form styles (styles.css `input { width:100%; padding:11px 14px; ... }`)
+     are meant for text/email/password fields; override them back to a
+     normal native radio button here, or the choice rows render broken and
+     the label text ends up pushed off to one side instead of sitting
+     flush left next to its radio. */
+  .module-quiz-option input[type="radio"] { width:auto; height:auto; padding:0; margin:0; border:none; flex-shrink:0; accent-color: var(--forest); }
+  .module-quiz-option span { text-align:left; }
+  .module-quiz-option.correct { background:#F0F6F2; color: var(--forest); font-weight:600; }
+  .module-quiz-option.incorrect { background:#FBF0EF; color: var(--danger); }
+  /* Correctness is never color-only: each highlighted option also shows
+     a ✓/✗ glyph (set via JS in bindModuleQuiz) so it still reads for
+     colorblind users, not just screen readers via the paired sr-only text. */
+  .module-quiz-option-mark { margin-left:auto; font-weight:700; flex-shrink:0; }
+  .module-quiz-result-banner { border-radius: var(--radius-sm); padding:10px 14px; margin:16px 0; font-size:0.88rem; }
+  .module-quiz-result-banner.pass { background:#F0F6F2; color: var(--forest); }
+  .module-quiz-result-banner.fail { background:#FBF0EF; color: var(--danger); }
+  #module-quiz-submit-btn { margin-top:4px; }
+
+  /* Quiz stats card, shown when revisiting a quiz that's already been
+     attempted at least once (best score, attempt count, last practiced),
+     with Review Answers / Retake Quiz actions. */
+  .module-quiz-stats-grid { display:flex; flex-wrap:wrap; gap:24px; margin:16px 0 4px; }
+  .module-quiz-stat { display:flex; flex-direction:column; gap:2px; }
+  .module-quiz-stat-label { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color: var(--slate); }
+  .module-quiz-stat-value { font-family: var(--font-sans); font-size:1.1rem; font-weight:600; }
+
+  /* Review mode: read-only list of what was actually selected on a past
+     attempt, mirroring the Practice Interview review list styling. */
+  .module-quiz-review-item { display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line); }
+  .module-quiz-review-item:first-of-type { border-top:none; padding-top:0; }
+  .module-quiz-review-icon { width:24px; height:24px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:0.75rem; color:var(--paper); margin-top:2px; }
+  .module-quiz-review-icon.correct { background: var(--forest); }
+  .module-quiz-review-icon.incorrect { background: var(--danger); }
+  .module-quiz-review-question { font-weight:600; margin:0 0 4px; font-size:0.92rem; }
+  .module-quiz-review-answer { margin:0; color: var(--slate); font-size:0.87rem; }
+  .module-quiz-review-answer.correct-answer { color: var(--forest); margin-top:2px; }
+
+  /* Quiz lives on its own "screen" within the lesson page; reading view
+     and the quiz card are never shown at the same time, so the page never
+     reads as one long continuous scroll of content + quiz stacked together. */
+  #lesson-quiz-status-line { font-size:0.82rem; color: var(--slate); margin-top:8px; display:none; }
+  #lesson-quiz-status-line a { color: var(--forest); font-weight:600; cursor:pointer; }
+
+  /* Sidebar group headings (h4) were inheriting the browser's default
+     top margin (h4 isn't covered by the global h1–h3 reset in
+     styles.css), which pushed "Overview" up into the logo's
+     border-bottom line. Zero it out explicitly. */
+  .app-nav-group h4 { margin: 0 0 8px; }
+</style>
+<meta name="description" content="A Ciudadano Ready lesson.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ciudadano Ready">
+<meta property="og:title" content="Lesson | Ciudadano Ready">
+<meta property="og:description" content="A Ciudadano Ready lesson.">
+<meta property="og:image" content="https://ciudadanoready.com/og-image.png">
+<meta property="og:url" content="https://ciudadanoready.com/lesson.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson | Ciudadano Ready">
+<meta name="twitter:description" content="A Ciudadano Ready lesson.">
+<meta name="twitter:image" content="https://ciudadanoready.com/og-image.png">
+</head>
+<body data-auth-required="true" data-lesson-page="true">
+
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <a href="dashboard.html" class="logo">Ciudadano<span class="dot">Ready</span></a>
+    <ul class="app-nav">
+      <li class="app-nav-group">
+        <h4 data-en="Overview" data-es="Resumen">Overview</h4>
+        <a href="dashboard.html" data-en="Continue Learning" data-es="Continuar Aprendiendo">Continue Learning</a>
+        <a href="progress.html" data-en="My Progress" data-es="Mi Progreso">My Progress</a>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="Course" data-es="Curso">Course</h4>
+        <ul class="app-nav" id="lesson-module-nav" style="padding:0;">
+          <li class="small muted" style="padding:10px 24px;">Loading…</li>
+        </ul>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="Practice" data-es="Práctica">Practice</h4>
+        <a href="flashcards.html" data-en="Flashcards" data-es="Tarjetas de Estudio">Flashcards</a>
+        <a href="mock-interview.html" data-en="Mock Interview" data-es="Entrevista Simulada">Mock Interview</a>
+        <a href="reading-writing.html" data-en="Reading &amp; Writing" data-es="Lectura y Escritura">Reading &amp; Writing</a>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="Background" data-es="Contexto">Background</h4>
+        <a href="know-your-country.html" data-en="Know Your Country" data-es="Conoce Tu País">Know Your Country</a>
+        <a href="documents.html" data-en="Documents" data-es="Documentos">Documents</a>
+      </li>
+      <li class="app-nav-group">
+        <h4 data-en="More" data-es="Más">More</h4>
+        <a href="support.html" data-en="Support" data-es="Soporte">Support</a>
+        <a href="settings.html" data-en="Settings" data-es="Configuración">Settings</a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="app-main">
+    <div class="app-topbar">
+      <div class="flex gap-16 items-center">
+        <button class="app-sidebar-toggle" aria-label="Menu">☰</button>
+        <div>
+          <span class="eyebrow" style="margin-bottom:0;" id="lesson-stage-eyebrow">STAGE OF 7</span>
+          <h3 style="margin:0;" id="lesson-stage-title">–</h3>
+        </div>
+      </div>
+      <div class="flex gap-16 items-center">
+        <div class="lang-toggle">
+          <button data-lang-btn="en" class="active">EN</button>
+          <button data-lang-btn="es">ES</button>
+        </div>        <a href="index.html" class="btn btn-ghost btn-sm" id="logout-link" data-en="Log Out" data-es="Cerrar Sesión">Log Out</a>
+      </div>
+    </div>
+
+    <div class="app-content">
+
+      <div id="lesson-empty-state" style="display:none;">
+        <div class="card card-pad text-center">
+          <span class="eyebrow">GETTING STARTED</span>
+          <h3 style="margin-top:8px;">No lessons available yet</h3>
+          <p class="small" style="max-width:420px; margin:0 auto;">Check back soon, or head back to your <a href="dashboard.html">dashboard</a>.</p>
+        </div>
+      </div>
+
+      <div id="lesson-main-content" style="display:none;">
+        <div class="stamp-path small" style="margin-bottom: 28px;" id="lesson-stamp-path"></div>
+
+        <span class="badge" style="border-color:var(--forest); color:var(--forest); margin-bottom:12px; display:inline-block;" id="lesson-badge">LESSON</span>
+        <h1 id="lesson-title-h1">–</h1>
+
+        <div id="lesson-reading-view">
+          <div class="video-embed" id="lesson-video-wrap" style="display:none;"></div>
+          <div class="video-placeholder" id="lesson-video-placeholder" style="display:none;">
+            <span class="video-placeholder-icon">🎥</span>
+            <p data-en="Video for this lesson is coming soon." data-es="El video de esta lección estará disponible pronto.">Video for this lesson is coming soon.</p>
+          </div>
+
+          <div class="card card-pad" style="margin-bottom:28px;">
+            <div id="lesson-content"></div>
+          </div>
+        </div>
+
+        <div id="lesson-quiz-section" class="card card-pad" style="display:none; margin-bottom:28px;">
+          <a href="#" class="small" id="lesson-quiz-back-link" style="display:inline-block; margin-bottom:14px;" data-en="← Back to Lesson" data-es="← Volver a la Lección">← Back to Lesson</a>
+          <h3 id="lesson-quiz-heading" data-en="Module Quiz" data-es="Cuestionario del Módulo">Module Quiz</h3>
+          <div id="lesson-quiz-wrap"></div>
+        </div>
+
+        <div class="flex justify-between items-center" style="flex-wrap:wrap; gap:12px;" id="lesson-actions-row">
+          <a href="#" class="btn btn-ghost" id="lesson-prev-link" data-en="← Previous Lesson" data-es="← Lección Anterior">← Previous Lesson</a>
+          <div style="text-align:right;">
+            <a href="#" class="btn btn-primary" id="lesson-next-link">Mark Complete &amp; Continue →</a>
+            <div id="lesson-quiz-status-line"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script src="app.js"></script>
+<script src="member.js"></script>
+</body>
+</html>
