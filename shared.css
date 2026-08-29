@@ -218,7 +218,11 @@
     position:relative;
     text-align:left;
   }
-  header.hero .wrap{text-align:left;}
+  header.hero .wrap{
+    width:100%;
+    margin-left:0;
+    text-align:left;
+  }
   .hero-bg{
     position:absolute; inset:0;
     overflow:hidden;
