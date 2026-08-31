@@ -2,184 +2,837 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script>(function(){try{if(localStorage.getItem("ciudadanoready-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Dashboard | Ciudadano Ready</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<title>SEO Dashboard | Ascend Internal</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-  /* ===== Member Area theme =====
-     Distinct from the marketing site on purpose: soft grey background, flatter
-     cards (no hover shadow), and a forest-green accent instead of ocean blue,
-     so blue always means "public site" and green always means "your account." */
-  body { background: var(--paper-dim); }
-  .app-sidebar { background: var(--paper-dim); border-right: 1px solid var(--line); }
-  .app-nav a.active { color: var(--forest); background: var(--white); border-left-color: var(--forest); }
-  .app-nav a:hover { color: var(--forest); }
-  .app-topbar { background: var(--paper-dim); border-bottom: 1px solid var(--line); }
-  .app-content .card { box-shadow: none; }
-  .app-content .card:hover { box-shadow: none; }
-  .progress-bar-fill { background: var(--forest); }
-  .btn-primary { background: var(--forest); }
-  .btn-primary:hover { background: #244F3B; }
-  .stamp-circle.done { background: var(--forest); border-color: var(--forest); }
-  .stamp-connector.done { background: var(--forest); }
-  .badge-ocean { border-color: var(--forest); color: var(--forest); }
+  body{padding-bottom:80px;}
+  a{text-decoration:none; color:inherit;}
 
-  /* Sidebar group headings (h4) were inheriting the browser's default
-     top margin (h4 isn't covered by the global h1–h3 reset in
-     styles.css), which pushed "Overview" up into the logo's
-     border-bottom line. Zero it out explicitly. */
-  .app-nav-group h4 { margin: 0 0 8px; }
+  #gate{
+    min-height:80vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px;
+    padding:24px; text-align:center;
+  }
+  #gate input{
+    background:#161412; border:1px solid var(--line); color:var(--ivory);
+    padding:12px 16px; border-radius:8px; font-size:14px; width:260px; text-align:center;
+  }
+  #gate button{
+    padding:12px 24px; background:var(--platinum); color:var(--black); border:none;
+    border-radius:8px; font-weight:600; font-size:13.5px; cursor:pointer;
+  }
+  #gateError{color:#e07856; font-size:13px; min-height:18px;}
 
-  /* "Your Path" stretch: circles stay a fixed size, but the connecting
-     lines grow to fill the full card width instead of leaving a gap on
-     the right, matching how it already looks in Spanish, where longer
-     module-name labels happened to push the row wider. */
-  /* overflow-x:auto forces the browser to compute overflow-y as auto too
-     (can't have one axis "visible" and the other scrolling), which was
-     clipping the top of each circle on hover -- the hover state grows the
-     circle slightly (transform: scale) and adds a ring (box-shadow), and
-     both were getting cut off by that auto-generated scroll box. Extra
-     top padding gives them room. */
-  #dashboard-stamp-path { flex-wrap: nowrap; overflow-x: auto; padding: 8px 0 4px; }
-  #dashboard-stamp-path .stamp-connector { flex: 1 1 auto; min-width: 16px; }
+  #app{display:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  .topbar{
+    padding:26px 24px; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .topbar .brand{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px;}
+  .topbar .brand .dot{width:7px; height:7px; border-radius:50%; background:var(--platinum);}
+  .topbar nav{display:flex; gap:4px; font-size:13px;}
+  .topbar nav span{padding:7px 14px; border-radius:7px; color:var(--muted); cursor:pointer;}
+  .topbar nav span.active{background:rgba(201,205,211,.08); color:var(--ivory);}
+
+  .stat-strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; margin:28px 0;
+  }
+  .stat-cell{background:var(--black); padding:22px 24px;}
+  .stat-cell .val{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:600;}
+  .stat-cell .lbl{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-top:4px;}
+  .stat-cell.warn .val{color:#e07856;}
+  @media (max-width:800px){ .stat-strip{grid-template-columns:repeat(2,1fr);} }
+
+  .toolbar{display:flex; gap:10px; align-items:center; margin-bottom:18px; flex-wrap:wrap;}
+  .toolbar input[type="text"]{
+    background:#161412; border:1px solid var(--line); color:var(--ivory);
+    padding:9px 14px; border-radius:8px; font-size:13px; width:220px;
+  }
+  .toolbar select{
+    background:#161412; border:1px solid var(--line); color:var(--ivory);
+    padding:9px 14px; border-radius:8px; font-size:13px;
+  }
+
+  .client-row{
+    display:grid;
+    grid-template-columns:1.6fr .8fr .9fr .9fr .8fr 24px;
+    align-items:center;
+    gap:16px;
+    padding:18px 20px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .client-row:hover{border-color:var(--platinum-dim); background:rgba(255,255,255,.015);}
+  .client-row .name-cell{display:flex; align-items:center; gap:10px;}
+  .health-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+  .health-dot.excellent{background:var(--platinum);}
+  .health-dot.good{background:var(--ivory);}
+  .health-dot.needs-work{background:var(--muted);}
+  .health-dot.critical{background:#e07856;}
+  .client-row .cname{font-weight:600; font-size:14.5px;}
+  .client-row .curl{color:var(--muted); font-size:12px; margin-top:2px;}
+  .cell-label{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:3px;}
+  .cell-val{font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:600;}
+  .chevron{color:var(--muted); font-size:16px; text-align:right;}
+  .client-row .status-pill{
+    font-size:10.5px; padding:3px 9px; border-radius:999px; text-transform:capitalize;
+    background:rgba(201,205,211,.08); color:var(--muted); display:inline-block;
+  }
+  @media (max-width:900px){
+    .client-row{grid-template-columns:1fr; gap:8px;}
+    .chevron{display:none;}
+  }
+
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; color:var(--muted); font-size:13px;
+    margin-bottom:22px; cursor:pointer;
+  }
+  .back-link:hover{color:var(--ivory);}
+  .detail-head{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:8px;}
+  .detail-head h1{font-size:24px; font-weight:600;}
+  .detail-head .curl{color:var(--platinum); font-size:13.5px; margin-top:4px;}
+
+  .score-row{display:flex; gap:22px; margin-top:26px; flex-wrap:wrap;}
+  .trend-box{margin-top:24px; border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .trend-box .trend-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+  .trend-box .trend-head span{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em;}
+  .trend-box .trend-change{font-size:12.5px; font-weight:600;}
+  .trend-change.up{color:var(--platinum);}
+  .trend-change.down{color:#e07856;}
+  .trend-change.flat{color:var(--muted);}
+  .score-box{text-align:center;}
+  .score-box .num{font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:600;}
+  .score-box .lbl{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-top:4px;}
+  .score-box.overall .num{color:var(--platinum);}
+
+  .section-label{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+    margin:32px 0 12px;
+  }
+
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th{text-align:left; color:var(--muted); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:.05em; padding:8px 10px; border-bottom:1px solid var(--line);}
+  td{padding:10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+
+  .badge{display:inline-block; padding:3px 9px; border-radius:999px; font-size:10.5px; font-weight:600; text-transform:uppercase;}
+  .badge.high{background:rgba(224,120,86,.15); color:#e07856;}
+  .badge.medium{background:rgba(201,205,211,.15); color:var(--platinum);}
+  .badge.low{background:rgba(148,144,127,.15); color:var(--muted);}
+  .badge.pending{background:rgba(201,205,211,.1); color:var(--muted);}
+  .badge.approved{background:rgba(201,205,211,.18); color:var(--platinum);}
+  .badge.rejected{background:rgba(224,120,86,.15); color:#e07856;}
+
+  .act-btn{
+    font-size:11.5px; font-weight:600; padding:6px 12px; border-radius:6px;
+    border:1px solid var(--line); background:none; color:var(--ivory); cursor:pointer;
+  }
+  .act-btn.approve{border-color:var(--platinum-dim); color:var(--platinum);}
+  .act-btn.reject{border-color:#e07856; color:#e07856;}
+  .act-btn:disabled{opacity:.5; cursor:not-allowed;}
+  .act-btn:hover{background:rgba(255,255,255,.04);}
+  .edit-box textarea{
+    width:100%; min-height:60px; background:#161412; border:1px solid var(--line);
+    color:var(--ivory); border-radius:6px; padding:8px; font-size:12px; font-family:'Inter',sans-serif;
+  }
+
+  .empty-state{color:var(--muted); font-size:13.5px; padding:24px; border:1px dashed var(--line); border-radius:12px; text-align:center;}
+
+  /* ===== Modal ===== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-box{
+    background:var(--black); border:1px solid var(--line); border-radius:14px;
+    padding:28px; width:100%; max-width:520px; max-height:85vh; overflow-y:auto;
+  }
+  .modal-box h2{font-size:18px; font-weight:600; margin-bottom:18px;}
+  .field-group{margin-bottom:14px;}
+  .field-group label{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; display:block; margin-bottom:6px;}
+  .field-group input, .field-group select, .field-group textarea{
+    width:100%; background:#161412; border:1px solid var(--line); color:var(--ivory);
+    padding:10px 12px; border-radius:8px; font-size:13.5px; font-family:'Inter',sans-serif;
+  }
+  .field-group textarea{min-height:70px; resize:vertical;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .modal-actions{display:flex; gap:10px; margin-top:22px;}
+  .modal-actions .act-btn{padding:10px 20px; font-size:13px;}
+  .modal-close{position:absolute; top:0; right:0; background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; padding:8px;}
+  .modal-box{position:relative;}
+  .field-error{color:#e07856; font-size:12px; margin-top:8px; min-height:16px;}
+
+  /* ===== Client info panel + tasks (detail view) ===== */
+  .info-panel{border:1px solid var(--line); border-radius:12px; padding:22px; margin-top:24px;}
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .tag-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .tag{font-size:11px; padding:4px 10px; border-radius:999px; background:rgba(201,205,211,.1); color:var(--platinum);}
+  .task-item{display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--line);}
+  .task-item:last-child{border-bottom:none;}
+  .task-item.completed .task-title{text-decoration:line-through; color:var(--muted);}
+  .task-item input[type="checkbox"]{width:16px; height:16px; accent-color:var(--platinum);}
+  .task-title{flex:1; font-size:13.5px;}
+  .task-due{font-size:11.5px; color:var(--muted);}
+  .add-task-row{display:flex; gap:8px; margin-top:14px;}
+  .add-task-row input{flex:1;}
+  .report-card{border:1px solid var(--line); border-radius:10px; padding:16px; margin-bottom:10px;}
+  .report-card .period{font-size:12px; color:var(--platinum); font-weight:600; margin-bottom:6px;}
+  .report-card .body{font-size:13px; color:var(--muted); line-height:1.6;}
 </style>
-<meta name="description" content="Your Ciudadano Ready member dashboard.">
-<meta name="robots" content="noindex">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Ciudadano Ready">
-<meta property="og:title" content="Member Dashboard | Ciudadano Ready">
-<meta property="og:description" content="Your Ciudadano Ready member dashboard.">
-<meta property="og:image" content="https://ciudadanoready.com/og-image.png">
-<meta property="og:url" content="https://ciudadanoready.com/dashboard.html">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Member Dashboard | Ciudadano Ready">
-<meta name="twitter:description" content="Your Ciudadano Ready member dashboard.">
-<meta name="twitter:image" content="https://ciudadanoready.com/og-image.png">
 </head>
-<body data-auth-required="true" data-dashboard-page="true">
+<body>
 
-<div class="app-shell">
-  <div class="sidebar-backdrop"></div>
-  <aside class="app-sidebar">
-    <a href="dashboard.html" class="logo">Ciudadano<span class="dot">Ready</span></a>
-    <ul class="app-nav">
-      <li class="app-nav-group">
-        <h4 data-en="Overview" data-es="Resumen">Overview</h4>
-        <a href="dashboard.html" class="active" data-en="Continue Learning" data-es="Continuar Aprendiendo">Continue Learning</a>
-        <a href="progress.html" data-en="My Progress" data-es="Mi Progreso">My Progress</a>
-      </li>
-      <li class="app-nav-group">
-        <h4 data-en="Course" data-es="Curso">Course</h4>
-        <ul class="app-nav" id="dashboard-module-nav" style="padding:0;">
-          <li class="small muted" style="padding:10px 24px;">Loading…</li>
-        </ul>
-      </li>
-      <li class="app-nav-group">
-        <h4 data-en="Practice" data-es="Práctica">Practice</h4>
-        <a href="flashcards.html" data-en="Flashcards" data-es="Tarjetas de Estudio">Flashcards</a>
-        <a href="mock-interview.html" data-en="Mock Interview" data-es="Entrevista Simulada">Mock Interview</a>
-        <a href="reading-writing.html" data-en="Reading &amp; Writing" data-es="Lectura y Escritura">Reading &amp; Writing</a>
-      </li>
-      <li class="app-nav-group">
-        <h4 data-en="Background" data-es="Contexto">Background</h4>
-        <a href="know-your-country.html" data-en="Know Your Country" data-es="Conoce Tu País">Know Your Country</a>
-        <a href="documents.html" data-en="Documents" data-es="Documentos">Documents</a>
-      </li>
-      <li class="app-nav-group">
-        <h4 data-en="More" data-es="Más">More</h4>
-        <a href="support.html" data-en="Support" data-es="Soporte">Support</a>
-        <a href="settings.html" data-en="Settings" data-es="Configuración">Settings</a>
-      </li>
-    </ul>
-  </aside>
-
-  <main class="app-main">
-    <div class="app-topbar">
-      <div class="flex gap-16 items-center">
-        <button class="app-sidebar-toggle" aria-label="Menu">☰</button>
-        <div>
-          <span class="eyebrow" style="margin-bottom:0;" data-en="WELCOME BACK" data-es="BIENVENIDO DE NUEVO">WELCOME BACK</span>
-          <h1 style="margin:0;" id="dashboard-user-name">…</h1>
-        </div>
-      </div>
-      <div class="flex gap-16 items-center">
-        <div class="lang-toggle">
-          <button data-lang-btn="en" class="active">EN</button>
-          <button data-lang-btn="es">ES</button>
-        </div>        <a href="index.html" class="btn btn-ghost btn-sm" id="logout-link" data-en="Log Out" data-es="Cerrar Sesión">Log Out</a>
-      </div>
-    </div>
-
-    <div class="app-content">
-
-      <div id="dashboard-checkout-notice" class="card card-pad" style="display:none; margin-bottom:20px;"></div>
-
-      <div id="verify-email-banner" class="card card-pad" style="display:none; margin-bottom:20px; border-color: var(--ocean);">
-        <div class="flex justify-between items-center" style="flex-wrap:wrap; gap:12px;">
-          <div>
-            <strong data-en="Verify your email to secure your account." data-es="Verifica tu correo electrónico para proteger tu cuenta.">Verify your email to secure your account.</strong>
-            <p class="small" style="margin:4px 0 0;"><span data-en="We sent a verification link to " data-es="Te enviamos un enlace de verificación a ">We sent a verification link to </span><span id="verify-email-address">your email</span><span data-en=". Check your inbox or resend the email." data-es=". Revisa tu bandeja de entrada o reenvía el correo.">. Check your inbox or resend the email.</span></p>
-          </div>
-          <button class="btn btn-ghost btn-sm" id="verify-email-resend-btn" data-en="Resend Email" data-es="Reenviar Correo">Resend Email</button>
-        </div>
-      </div>
-
-      <div id="dashboard-billing-banner" style="display:none;">
-        <div class="card card-pad text-center" style="max-width:560px; margin:0 auto;">
-          <span class="eyebrow" id="billing-banner-eyebrow">FINISH SIGNING UP</span>
-          <h3 style="margin-top:8px;" id="billing-banner-title">One step left: choose a plan</h3>
-          <p class="small" id="billing-banner-message" style="max-width:440px; margin:0 auto 20px;">Your account is set up, but you haven't completed payment yet. Choose a plan to unlock the full course.</p>
-          <div id="billing-banner-plan-buttons" class="flex gap-16 justify-center" style="flex-wrap:wrap;">
-            <button class="btn btn-primary" id="billing-choose-2year">2-Year Plan – $199.99</button>
-            <button class="btn btn-ghost" id="billing-choose-monthly">Monthly – $19.99/mo</button>
-          </div>
-          <button class="btn btn-ghost btn-sm" id="billing-manage-link" style="display:none; margin-top:16px;">Manage Billing</button>
-        </div>
-      </div>
-
-      <div id="dashboard-empty-state" style="display:none;">
-        <div class="card card-pad text-center">
-          <span class="eyebrow">GETTING STARTED</span>
-          <h3 style="margin-top:8px;">Course content is on its way</h3>
-          <p class="small" style="max-width:420px; margin:0 auto;">Lessons haven't been published yet. Check back soon, or reach out to support if you think this is a mistake.</p>
-        </div>
-      </div>
-
-      <div id="dashboard-main-content" style="display:none;">
-        <div class="grid grid-3" style="margin-bottom:28px;">
-          <div class="card stat-card"><span class="eyebrow" data-en="OVERALL PROGRESS" data-es="PROGRESO GENERAL">OVERALL PROGRESS</span><div class="stat-value" id="stat-progress-pct">0%</div><div class="progress-bar" style="margin-top:10px;"><div class="progress-bar-fill" id="stat-progress-bar" style="width:0%;"></div></div></div>
-          <div class="card stat-card"><span class="eyebrow" data-en="CURRENT STAGE" data-es="ETAPA ACTUAL">CURRENT STAGE</span><div class="stat-value" style="font-size:1.4rem;" id="stat-current-stage">–</div><span class="stat-delta" id="stat-current-lesson-count"></span></div>
-          <div class="card stat-card"><span class="eyebrow" data-en="PRACTICE STREAK" data-es="RACHA DE PRÁCTICA">PRACTICE STREAK</span><div class="stat-value" id="stat-streak">0 days</div><span class="stat-delta" id="stat-streak-note" data-en="Complete a lesson to start your streak" data-es="Completa una lección para comenzar tu racha">Complete a lesson to start your streak</span></div>
-        </div>
-
-        <div class="card card-pad" style="margin-bottom:28px;" id="dashboard-continue-card">
-          <span class="eyebrow" data-en="CONTINUE LEARNING" data-es="CONTINUAR APRENDIENDO">CONTINUE LEARNING</span>
-          <div class="flex justify-between items-center" style="flex-wrap:wrap; gap:16px;">
-            <div>
-              <h3 style="margin-bottom:4px;" id="continue-lesson-title">–</h3>
-              <p class="small" style="margin:0;" id="continue-lesson-meta"></p>
-            </div>
-            <a href="#" class="btn btn-primary" id="continue-lesson-link" data-en="Resume Lesson →" data-es="Reanudar Lección →">Resume Lesson →</a>
-          </div>
-        </div>
-
-        <h3 data-en="Your Path" data-es="Tu Camino">Your Path</h3>
-        <div class="stamp-path" style="margin-bottom:32px; row-gap:16px;" id="dashboard-stamp-path"></div>
-      </div>
-
-    </div>
-  </main>
+<div id="gate">
+  <h1 style="font-size:22px;">Ascend SEO Dashboard</h1>
+  <p style="color:var(--muted); font-size:13.5px; max-width:36ch;">Internal only. This is a temporary password gate until real client logins exist.</p>
+  <input type="password" id="passwordInput" placeholder="Password" autofocus>
+  <button id="gateSubmit">Enter</button>
+  <div id="gateError"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-client.js"></script>
-<script src="app.js"></script>
-<script src="member.js"></script>
+<div id="app">
+  <div class="topbar">
+    <div class="brand"><div class="dot"></div>Ascend SEO</div>
+    <nav>
+      <span id="navOverview" class="active">All Clients</span>
+    </nav>
+  </div>
+  <div class="wrap" id="main" style="padding-top:28px;"></div>
+</div>
+
+<script>
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  const main = document.getElementById('main');
+  const passwordInput = document.getElementById('passwordInput');
+  const gateSubmit = document.getElementById('gateSubmit');
+  const gateError = document.getElementById('gateError');
+
+  let CLIENTS = [];
+
+  async function tryLoad(password) {
+    gateError.textContent = '';
+    gateSubmit.disabled = true;
+    gateSubmit.textContent = 'Loading...';
+    try {
+      const res = await fetch('/api/dashboard-data', {
+        headers: { 'x-dashboard-password': password }
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        gateError.textContent = data.error || 'Something went wrong.';
+        gateSubmit.disabled = false;
+        gateSubmit.textContent = 'Enter';
+        return;
+      }
+      sessionStorage.setItem('dashPassword', password);
+      CLIENTS = data.clients || [];
+      gate.style.display = 'none';
+      app.style.display = 'block';
+      renderOverview();
+    } catch (err) {
+      gateError.textContent = 'Could not reach the server.';
+      gateSubmit.disabled = false;
+      gateSubmit.textContent = 'Enter';
+    }
+  }
+
+  gateSubmit.addEventListener('click', () => tryLoad(passwordInput.value));
+  passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLoad(passwordInput.value); });
+
+  const saved = sessionStorage.getItem('dashPassword');
+  if (saved) tryLoad(saved);
+
+  document.getElementById('navOverview').addEventListener('click', renderOverview);
+
+  function renderTrendChart(history) {
+    if (!history || history.length < 2) {
+      return `<div class="trend-box">
+        <div class="trend-head"><span>Score Trend</span></div>
+        <div class="empty-state" style="padding:16px; border:none;">Only one audit on record so far. This fills in as weekly audits run automatically.</div>
+      </div>`;
+    }
+
+    const W = 600, H = 100, PAD = 10;
+    const scores = history.map(h => h.overall_score);
+    const min = Math.min(...scores, 0);
+    const max = Math.max(...scores, 100);
+    const range = max - min || 1;
+    const stepX = (W - PAD * 2) / (history.length - 1);
+
+    const points = history.map((h, i) => {
+      const x = PAD + i * stepX;
+      const y = H - PAD - ((h.overall_score - min) / range) * (H - PAD * 2);
+      return `${x},${y}`;
+    });
+
+    const first = scores[0];
+    const last = scores[scores.length - 1];
+    const change = last - first;
+    const changeClass = change > 0 ? 'up' : change < 0 ? 'down' : 'flat';
+    const changeLabel = change > 0 ? `+${change}` : change === 0 ? 'No change' : `${change}`;
+
+    const dots = history.map((h, i) => {
+      const [x, y] = points[i].split(',');
+      return `<circle cx="${x}" cy="${y}" r="2.5" fill="var(--platinum)" />`;
+    }).join('');
+
+    return `<div class="trend-box">
+      <div class="trend-head">
+        <span>Score Trend (${history.length} audits)</span>
+        <span class="trend-change ${changeClass}">${changeLabel !== 'No change' ? changeLabel + ' pts' : changeLabel}</span>
+      </div>
+      <svg viewBox="0 0 ${W} ${H}" style="width:100%; height:80px;" preserveAspectRatio="none">
+        <polyline points="${points.join(' ')}" fill="none" stroke="var(--platinum-dim)" stroke-width="1.5" />
+        ${dots}
+      </svg>
+    </div>`;
+  }
+
+  function healthTier(score) {
+    if (score === null || score === undefined) return { tier: 'good', label: 'No data' };
+    if (score >= 85) return { tier: 'excellent', label: 'Excellent' };
+    if (score >= 70) return { tier: 'good', label: 'Good' };
+    if (score >= 50) return { tier: 'needs-work', label: 'Needs Work' };
+    return { tier: 'critical', label: 'Critical' };
+  }
+
+  function flattenSites() {
+    const rows = [];
+    CLIENTS.forEach(client => {
+      client.websites.forEach(site => rows.push({ client, site }));
+    });
+    return rows;
+  }
+
+  function renderOverview() {
+    document.getElementById('navOverview').classList.add('active');
+    const rows = flattenSites();
+
+    const scores = rows.map(r => r.site.latestAudit?.overall_score).filter(s => s !== null && s !== undefined);
+    const avgScore = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
+    const totalPending = rows.reduce((sum, r) => sum + (r.site.recommendations || []).filter(rec => rec.status === 'pending').length, 0);
+    const totalHighIssues = rows.reduce((sum, r) => sum + (r.site.issues || []).filter(i => i.severity === 'high').length, 0);
+
+    const statStrip = `
+      <div class="stat-strip">
+        <div class="stat-cell"><div class="val">${CLIENTS.length}</div><div class="lbl">Total Clients</div></div>
+        <div class="stat-cell"><div class="val">${avgScore ?? '—'}</div><div class="lbl">Avg. SEO Score</div></div>
+        <div class="stat-cell${totalPending > 0 ? ' warn' : ''}"><div class="val">${totalPending}</div><div class="lbl">Pending Recommendations</div></div>
+        <div class="stat-cell${totalHighIssues > 0 ? ' warn' : ''}"><div class="val">${totalHighIssues}</div><div class="lbl">High-Priority Issues</div></div>
+      </div>`;
+
+    const toolbar = `
+      <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="Search clients...">
+        <select id="sortSelect">
+          <option value="attention">Sort: Needs Attention First</option>
+          <option value="score-asc">Sort: Lowest Score First</option>
+          <option value="score-desc">Sort: Highest Score First</option>
+          <option value="name">Sort: Name (A-Z)</option>
+        </select>
+      </div>`;
+
+    main.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h1 style="font-size:22px; font-weight:600;">Client Overview</h1>
+          <p style="color:var(--muted); font-size:13.5px; margin-top:4px;">Every client's SEO health, at a glance.</p>
+        </div>
+        <button class="act-btn approve" id="addClientBtn" style="padding:10px 18px;">+ Add Client</button>
+      </div>
+      ${statStrip}
+      ${toolbar}
+      <div id="clientList"></div>
+    `;
+
+    document.getElementById('addClientBtn').addEventListener('click', openAddClientModal);
+    document.getElementById('searchInput').addEventListener('input', renderClientList);
+    document.getElementById('sortSelect').addEventListener('change', renderClientList);
+    renderClientList();
+  }
+
+  function renderClientList() {
+    const rows = flattenSites();
+    const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
+    const sortBy = document.getElementById('sortSelect')?.value || 'attention';
+
+    let filtered = rows.filter(r =>
+      r.client.name.toLowerCase().includes(search) || r.site.url.toLowerCase().includes(search)
+    );
+
+    filtered.sort((a, b) => {
+      const scoreA = a.site.latestAudit?.overall_score ?? 100;
+      const scoreB = b.site.latestAudit?.overall_score ?? 100;
+      const pendingA = (a.site.recommendations || []).filter(r => r.status === 'pending').length;
+      const pendingB = (b.site.recommendations || []).filter(r => r.status === 'pending').length;
+      if (sortBy === 'score-asc') return scoreA - scoreB;
+      if (sortBy === 'score-desc') return scoreB - scoreA;
+      if (sortBy === 'name') return a.client.name.localeCompare(b.client.name);
+      if (pendingB !== pendingA) return pendingB - pendingA;
+      return scoreA - scoreB;
+    });
+
+    const listEl = document.getElementById('clientList');
+    if (filtered.length === 0) {
+      listEl.innerHTML = `<div class="empty-state">${CLIENTS.length === 0 ? 'No clients yet.' : 'No clients match your search.'}</div>`;
+      return;
+    }
+
+    listEl.innerHTML = filtered.map(({ client, site }) => {
+      const a = site.latestAudit;
+      const health = healthTier(a?.overall_score);
+      const pending = (site.recommendations || []).filter(r => r.status === 'pending').length;
+      const highIssues = (site.issues || []).filter(i => i.severity === 'high').length;
+      const lastRun = a ? new Date(a.run_at).toLocaleDateString() : 'Never audited';
+
+      return `
+      <div class="client-row" data-client="${client.id}" data-site="${site.id}">
+        <div class="name-cell">
+          <div class="health-dot ${health.tier}"></div>
+          <div>
+            <div class="cname">${client.name}</div>
+            <div class="curl">${site.url}</div>
+          </div>
+        </div>
+        <div>
+          <div class="cell-label">Score</div>
+          <div class="cell-val">${a ? a.overall_score : '—'}</div>
+        </div>
+        <div>
+          <div class="cell-label">Pending Actions</div>
+          <div class="cell-val" style="${pending > 0 ? 'color:var(--platinum)' : ''}">${pending}</div>
+        </div>
+        <div>
+          <div class="cell-label">High-Priority Issues</div>
+          <div class="cell-val" style="${highIssues > 0 ? 'color:#e07856' : ''}">${highIssues}</div>
+        </div>
+        <div>
+          <div class="cell-label">Last Audit</div>
+          <div style="font-size:12.5px; color:var(--muted); margin-top:2px;">${lastRun}</div>
+          <span class="status-pill">${client.status}</span>
+        </div>
+        <div class="chevron">→</div>
+      </div>`;
+    }).join('');
+
+    listEl.querySelectorAll('.client-row').forEach(row => {
+      row.addEventListener('click', () => {
+        renderDetail(row.dataset.client, row.dataset.site);
+      });
+    });
+  }
+
+  function renderInfoAndTasks(client) {
+    const services = Array.isArray(client.services) ? client.services : [];
+    const taskRows = (client.tasks || []).map(t => `
+      <div class="task-item ${t.completed ? 'completed' : ''}">
+        <input type="checkbox" data-task-id="${t.id}" ${t.completed ? 'checked' : ''}>
+        <div class="task-title">${t.title}</div>
+        ${t.due_date ? `<div class="task-due">${new Date(t.due_date).toLocaleDateString()}</div>` : ''}
+      </div>`).join('');
+
+    return `
+      <div class="info-panel">
+        <div class="section-label" style="margin-top:0;">Client Info</div>
+        <div class="info-grid">
+          <div class="field-group"><label>Contact Email</label><input type="email" id="editEmail" value="${client.contact_email || ''}"></div>
+          <div class="field-group"><label>Contact Phone</label><input type="text" id="editPhone" value="${client.contact_phone || ''}"></div>
+          <div class="field-group"><label>Industry</label><input type="text" id="editIndustry" value="${client.industry || ''}"></div>
+          <div class="field-group"><label>Monthly Plan</label><input type="text" id="editPlan" value="${client.monthly_plan || ''}"></div>
+          <div class="field-group"><label>Status</label>
+            <select id="editStatus">
+              <option value="active" ${client.status === 'active' ? 'selected' : ''}>Active</option>
+              <option value="paused" ${client.status === 'paused' ? 'selected' : ''}>Paused</option>
+              <option value="churned" ${client.status === 'churned' ? 'selected' : ''}>Churned</option>
+            </select>
+          </div>
+          <div class="field-group"><label>Billing Status</label>
+            <select id="editBilling">
+              <option value="current" ${client.billing_status === 'current' ? 'selected' : ''}>Current</option>
+              <option value="pending" ${client.billing_status === 'pending' ? 'selected' : ''}>Pending</option>
+              <option value="overdue" ${client.billing_status === 'overdue' ? 'selected' : ''}>Overdue</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-group" style="margin-top:8px;"><label>Services</label><input type="text" id="editServices" value="${services.join(', ')}" placeholder="comma-separated"></div>
+        <div class="field-group"><label>Notes</label><textarea id="editNotes">${client.notes || ''}</textarea></div>
+        <button class="act-btn approve" id="saveClientInfo">Save Changes</button>
+        <span class="field-error" id="saveClientError"></span>
+      </div>
+
+      <div class="info-panel">
+        <div class="section-label" style="margin-top:0;">Tasks (${(client.tasks || []).filter(t => !t.completed).length} open)</div>
+        <div id="taskList">${taskRows || '<div class="empty-state">No tasks yet.</div>'}</div>
+        <div class="add-task-row">
+          <input type="text" id="newTaskTitle" placeholder="Add a task...">
+          <input type="date" id="newTaskDue" style="width:150px;">
+          <button class="act-btn approve" id="addTaskBtn">Add</button>
+        </div>
+      </div>`;
+  }
+
+  function attachInfoAndTaskHandlers(client) {
+    document.getElementById('saveClientInfo').addEventListener('click', async () => {
+      const servicesRaw = document.getElementById('editServices').value.trim();
+      const payload = {
+        action: 'update',
+        client_id: client.id,
+        contact_email: document.getElementById('editEmail').value.trim(),
+        contact_phone: document.getElementById('editPhone').value.trim() || null,
+        industry: document.getElementById('editIndustry').value.trim() || null,
+        monthly_plan: document.getElementById('editPlan').value.trim() || null,
+        status: document.getElementById('editStatus').value,
+        billing_status: document.getElementById('editBilling').value,
+        services: servicesRaw ? servicesRaw.split(',').map(s => s.trim()).filter(Boolean) : [],
+        notes: document.getElementById('editNotes').value.trim() || null,
+      };
+      const errorEl = document.getElementById('saveClientError');
+      const btn = document.getElementById('saveClientInfo');
+      btn.disabled = true;
+      try {
+        const res = await fetch('/api/manage-client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) { errorEl.textContent = data.error; btn.disabled = false; return; }
+        Object.assign(client, data.client);
+        errorEl.textContent = 'Saved.';
+        btn.disabled = false;
+      } catch {
+        errorEl.textContent = 'Could not reach the server.';
+        btn.disabled = false;
+      }
+    });
+
+    document.getElementById('addTaskBtn').addEventListener('click', async () => {
+      const title = document.getElementById('newTaskTitle').value.trim();
+      if (!title) return;
+      const due_date = document.getElementById('newTaskDue').value || null;
+      const res = await fetch('/api/manage-task', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+        body: JSON.stringify({ action: 'create', client_id: client.id, title, due_date }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        client.tasks = client.tasks || [];
+        client.tasks.push(data.task);
+        document.getElementById('taskList').outerHTML = `<div id="taskList">${client.tasks.map(t => `
+          <div class="task-item ${t.completed ? 'completed' : ''}">
+            <input type="checkbox" data-task-id="${t.id}" ${t.completed ? 'checked' : ''}>
+            <div class="task-title">${t.title}</div>
+            ${t.due_date ? `<div class="task-due">${new Date(t.due_date).toLocaleDateString()}</div>` : ''}
+          </div>`).join('')}</div>`;
+        document.getElementById('newTaskTitle').value = '';
+        document.getElementById('newTaskDue').value = '';
+        attachTaskCheckboxHandlers(client);
+      }
+    });
+
+    attachTaskCheckboxHandlers(client);
+  }
+
+  function attachTaskCheckboxHandlers(client) {
+    document.querySelectorAll('#taskList input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', async () => {
+        const taskId = cb.dataset.taskId;
+        const completed = cb.checked;
+        const res = await fetch('/api/manage-task', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+          body: JSON.stringify({ action: 'toggle', task_id: taskId, completed }),
+        });
+        if (res.ok) {
+          const task = (client.tasks || []).find(t => t.id === taskId);
+          if (task) task.completed = completed;
+          cb.closest('.task-item').classList.toggle('completed', completed);
+        }
+      });
+    });
+  }
+
+  function renderDetail(clientId, siteId) {
+    document.getElementById('navOverview').classList.remove('active');
+    const client = CLIENTS.find(c => c.id === clientId);
+    const site = client.websites.find(w => w.id === siteId);
+    const a = site.latestAudit;
+
+    if (!a) {
+      main.innerHTML = `
+        <div class="back-link" id="backLink">&larr; All Clients</div>
+        <h1 style="font-size:24px; font-weight:600;">${client.name}</h1>
+        <div class="empty-state" style="margin-top:20px;">No audit has been run for ${site.url} yet.</div>
+        ${renderInfoAndTasks(client)}`;
+      document.getElementById('backLink').addEventListener('click', renderOverview);
+      attachInfoAndTaskHandlers(client);
+      return;
+    }
+
+    const pagesRows = site.pages.map(p => `
+      <tr>
+        <td>${p.url.replace(site.url, '') || '/'}</td>
+        <td>${p.overall_score ?? '—'}</td>
+        <td>${p.title || '<span style="color:var(--muted)">missing</span>'}</td>
+        <td>${p.word_count ?? '—'}</td>
+      </tr>`).join('');
+
+    const sevOrder = { high: 0, medium: 1, low: 2 };
+    const issuesRows = [...site.issues]
+      .sort((x, y) => sevOrder[x.severity] - sevOrder[y.severity])
+      .map(i => `
+      <tr>
+        <td><span class="badge ${i.severity}">${i.severity}</span></td>
+        <td>${i.issue}</td>
+        <td style="color:var(--muted); font-size:12px;">${(i.page_url || '').replace(site.url, '') || '/'}</td>
+      </tr>`).join('');
+
+    const recRows = site.recommendations.map(r => {
+      const isPending = r.status === 'pending';
+      const actions = isPending ? `
+        <div style="display:flex; gap:6px; margin-top:8px;">
+          <button class="act-btn approve" data-id="${r.id}" data-action="approve">Approve</button>
+          <button class="act-btn reject" data-id="${r.id}" data-action="reject">Reject</button>
+          <button class="act-btn edit" data-id="${r.id}" data-action="edit">Edit</button>
+        </div>
+        <div class="edit-box" id="editBox-${r.id}" style="display:none; margin-top:8px;">
+          <textarea id="editText-${r.id}" placeholder="Rewrite the recommended action...">${r.recommended_action}</textarea>
+          <button class="act-btn approve" data-id="${r.id}" data-action="submit-edit" style="margin-top:6px;">Save Edit</button>
+        </div>` : '';
+      return `
+      <tr>
+        <td><span class="badge ${r.priority}">${r.priority}</span></td>
+        <td>
+          <div style="font-weight:600; margin-bottom:4px;">${r.issue}</div>
+          <div style="color:var(--muted); font-size:12px;">${r.recommended_action}</div>
+          <div style="color:var(--muted); font-size:11px; margin-top:4px; font-style:italic;">${r.why_it_matters || ''}</div>
+          ${actions}
+        </td>
+        <td><span class="badge ${r.status === 'pending' ? 'pending' : r.status === 'rejected' ? 'rejected' : 'approved'}" id="statusBadge-${r.id}">${r.status}</span></td>
+      </tr>`;
+    }).join('');
+
+    const reportsHtml = site.reports.length
+      ? site.reports.map(r => `
+        <div class="report-card">
+          <div class="period">${new Date(r.period_start).toLocaleDateString()} - ${new Date(r.period_end).toLocaleDateString()}</div>
+          <div class="body">${r.summary_text}</div>
+        </div>`).join('')
+      : '<div class="empty-state">No reports generated yet.</div>';
+
+    main.innerHTML = `
+      <div class="back-link" id="backLink">&larr; All Clients</div>
+      <div class="detail-head">
+        <div>
+          <h1>${client.name}</h1>
+          <div class="curl">${site.url} &middot; ${site.platform} &middot; <span style="text-transform:capitalize;">${client.status}</span></div>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <div class="score-box overall"><div class="num">${a.overall_score}</div><div class="lbl">Overall</div></div>
+        <div class="score-box"><div class="num">${a.technical_score ?? '—'}</div><div class="lbl">Technical</div></div>
+        <div class="score-box"><div class="num">${a.onpage_score ?? '—'}</div><div class="lbl">On-Page</div></div>
+        <div class="score-box"><div class="num">${a.content_score ?? '—'}</div><div class="lbl">Content</div></div>
+        <div class="score-box"><div class="num">${a.local_score ?? '—'}</div><div class="lbl">Local</div></div>
+        <div class="score-box"><div class="num">${a.authority_score ?? '—'}</div><div class="lbl">Authority</div></div>
+      </div>
+      <p style="color:var(--muted); font-size:12px; margin-top:10px;">${a.pages_audited} page${a.pages_audited === 1 ? '' : 's'} audited &middot; run ${new Date(a.run_at).toLocaleDateString()}</p>
+
+      ${renderTrendChart(site.auditHistory)}
+
+      <div class="section-label">Pages Audited (${site.pages.length})</div>
+      ${site.pages.length ? `<table><tr><th>Page</th><th>Score</th><th>Title</th><th>Words</th></tr>${pagesRows}</table>` : '<div class="empty-state">No page-level data.</div>'}
+
+      <div class="section-label">Issues Found (${site.issues.length})</div>
+      ${site.issues.length ? `<table><tr><th>Severity</th><th>Issue</th><th>Page</th></tr>${issuesRows}</table>` : '<div class="empty-state">No issues found.</div>'}
+
+      <div class="section-label">Recommendations (${site.recommendations.length})</div>
+      ${site.recommendations.length ? `<table><tr><th>Priority</th><th>Recommendation</th><th>Status</th></tr>${recRows}</table>` : '<div class="empty-state">No recommendations yet.</div>'}
+
+      <div class="section-label">Reports (${site.reports.length})</div>
+      ${reportsHtml}
+
+      ${renderInfoAndTasks(client)}
+    `;
+
+    document.getElementById('backLink').addEventListener('click', renderOverview);
+    attachActionHandlers();
+    attachInfoAndTaskHandlers(client);
+  }
+
+  function closeModal() {
+    const overlay = document.querySelector('.modal-overlay');
+    if (overlay) overlay.remove();
+  }
+
+  function openAddClientModal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal-box">
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+        <h2>Add a New Client</h2>
+        <div class="field-group"><label>Client / Business Name *</label><input type="text" id="newName" placeholder="e.g. Law Offices of Ingrid Morfa"></div>
+        <div class="field-row">
+          <div class="field-group"><label>Contact Email *</label><input type="email" id="newEmail" placeholder="contact@business.com"></div>
+          <div class="field-group"><label>Contact Phone</label><input type="text" id="newPhone" placeholder="(407) 555-0100"></div>
+        </div>
+        <div class="field-group"><label>Website URL *</label><input type="text" id="newWebsite" placeholder="https://example.com"></div>
+        <div class="field-row">
+          <div class="field-group"><label>Industry</label><input type="text" id="newIndustry" placeholder="e.g. Legal, E-Commerce"></div>
+          <div class="field-group"><label>Platform</label>
+            <select id="newPlatform">
+              <option value="unknown">Unknown</option>
+              <option value="custom">Custom</option>
+              <option value="wordpress">WordPress</option>
+              <option value="shopify">Shopify</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group"><label>Monthly Plan</label><input type="text" id="newPlan" placeholder="e.g. Growth SEO"></div>
+          <div class="field-group"><label>Start Date</label><input type="date" id="newStartDate"></div>
+        </div>
+        <div class="field-group"><label>Services (comma-separated)</label><input type="text" id="newServices" placeholder="Web Design, Local SEO, Social Media"></div>
+        <div class="field-group"><label>Notes</label><textarea id="newNotes" placeholder="Anything worth remembering about this client..."></textarea></div>
+        <div class="field-error" id="addClientError"></div>
+        <div class="modal-actions">
+          <button class="act-btn approve" id="submitAddClient">Add Client</button>
+          <button class="act-btn" id="cancelAddClient">Cancel</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    document.getElementById('cancelAddClient').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+    document.getElementById('submitAddClient').addEventListener('click', async () => {
+      const name = document.getElementById('newName').value.trim();
+      const contact_email = document.getElementById('newEmail').value.trim();
+      const website_url = document.getElementById('newWebsite').value.trim();
+      const errorEl = document.getElementById('addClientError');
+
+      if (!name || !contact_email || !website_url) {
+        errorEl.textContent = 'Name, email, and website URL are required.';
+        return;
+      }
+
+      const servicesRaw = document.getElementById('newServices').value.trim();
+      const services = servicesRaw ? servicesRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+      const payload = {
+        action: 'create',
+        name, contact_email,
+        contact_phone: document.getElementById('newPhone').value.trim() || null,
+        website_url,
+        industry: document.getElementById('newIndustry').value.trim() || null,
+        platform: document.getElementById('newPlatform').value,
+        monthly_plan: document.getElementById('newPlan').value.trim() || null,
+        start_date: document.getElementById('newStartDate').value || null,
+        services,
+        notes: document.getElementById('newNotes').value.trim() || null,
+      };
+
+      const btn = document.getElementById('submitAddClient');
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+
+      try {
+        const res = await fetch('/api/manage-client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-dashboard-password': sessionStorage.getItem('dashPassword') || '' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorEl.textContent = data.error || 'Something went wrong.';
+          btn.disabled = false;
+          btn.textContent = 'Add Client';
+          return;
+        }
+        // Add the new client into memory so the list updates without a full reload
+        CLIENTS.push({ ...data.client, tasks: [], websites: [{ ...data.website, latestAudit: null, auditHistory: [], pages: [], issues: [], recommendations: [], reports: [] }] });
+        closeModal();
+        renderOverview();
+      } catch (err) {
+        errorEl.textContent = 'Could not reach the server.';
+        btn.disabled = false;
+        btn.textContent = 'Add Client';
+      }
+    });
+  }
+
+  function attachActionHandlers() {
+    document.querySelectorAll('.act-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const action = btn.dataset.action;
+
+        if (action === 'edit') {
+          const box = document.getElementById(`editBox-${id}`);
+          box.style.display = box.style.display === 'none' ? 'block' : 'none';
+          return;
+        }
+
+        let decision = action;
+        let edited_action = null;
+        if (action === 'submit-edit') {
+          decision = 'edit';
+          edited_action = document.getElementById(`editText-${id}`).value.trim();
+          if (!edited_action) return;
+        }
+
+        btn.disabled = true;
+        try {
+          const res = await fetch('/api/approve-recommendation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-dashboard-password': sessionStorage.getItem('dashPassword') || '',
+            },
+            body: JSON.stringify({ recommendation_id: id, decision, edited_action }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            alert(data.error || 'Something went wrong.');
+            btn.disabled = false;
+            return;
+          }
+          const badge = document.getElementById(`statusBadge-${id}`);
+          badge.textContent = data.recommendation.status;
+          badge.className = `badge ${data.recommendation.status === 'approved' ? 'approved' : data.recommendation.status === 'rejected' ? 'rejected' : 'pending'}`;
+          const cell = btn.closest('td');
+          cell.querySelectorAll('.act-btn, .edit-box').forEach(el => el.style.display = 'none');
+
+          for (const c of CLIENTS) {
+            for (const w of c.websites) {
+              const rec = (w.recommendations || []).find(r => r.id === id);
+              if (rec) Object.assign(rec, data.recommendation);
+            }
+          }
+        } catch (err) {
+          alert('Could not reach the server.');
+          btn.disabled = false;
+        }
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
