@@ -101,29 +101,35 @@
   @media (max-width:600px){ .quote-tiers{grid-template-columns:1fr;} }
 
   /* Ads slider */
-  .slider-card{border:1px solid var(--line); border-radius:14px; padding:28px; margin-top:8px; max-width:640px;}
+  .slider-card{border:1px solid var(--line); border-radius:14px; padding:28px; margin:8px auto 0; max-width:640px;}
   .ascent-name{
     font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;
     color:var(--platinum); letter-spacing:.03em; margin-bottom:20px;
   }
+  .ascent-top-row{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:26px;}
   .slider-label{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
   .slider-value{font-family:'Space Grotesk',sans-serif; font-size:38px; font-weight:600; color:var(--ivory); margin-top:6px;}
   .slider-value span{font-size:16px; color:var(--muted); font-weight:400;}
-  .slider-fee{font-size:14px; color:var(--muted); margin-top:6px; margin-bottom:22px;}
+  .slider-fee{font-size:14px; color:var(--muted); margin-top:10px; text-align:right; white-space:nowrap;}
   .slider-fee strong{color:var(--platinum); font-weight:600;}
+  @media (max-width:480px){
+    .ascent-top-row{flex-direction:column;}
+    .slider-fee{text-align:left; margin-top:14px;}
+  }
   #adSlider{
-    width:100%; -webkit-appearance:none; appearance:none; height:4px;
+    width:100%; -webkit-appearance:none; appearance:none; height:2px;
     border-radius:999px; outline:none;
-    background:linear-gradient(to right, var(--platinum) 0%, var(--platinum) 4.04%, var(--line) 4.04%, var(--line) 100%);
   }
   #adSlider::-webkit-slider-thumb{
-    -webkit-appearance:none; appearance:none; width:20px; height:20px; border-radius:50%;
+    -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%;
     background:var(--platinum); cursor:pointer; border:3px solid var(--black);
+    margin-top:-7px;
   }
   #adSlider::-moz-range-thumb{
-    width:20px; height:20px; border-radius:50%; background:var(--platinum);
-    cursor:pointer; border:3px solid var(--black); border:none;
+    width:16px; height:16px; border-radius:50%; background:var(--platinum);
+    cursor:pointer; border:3px solid var(--black);
   }
+  #adSlider::-moz-range-track{height:2px; border-radius:999px;}
   .slider-range-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:11.5px; color:var(--muted);}
 
   .ascent-divider{border-top:1px solid var(--line); margin:28px 0;}
@@ -132,10 +138,14 @@
   .ascent-nocontract{font-size:12px; color:var(--muted);}
   .ascent-pay-options{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
   .ascent-pay-card{
-    display:block; border:1px solid var(--line); border-radius:10px; padding:18px;
+    display:block; width:100%; border:1px solid var(--line); border-radius:10px; padding:18px;
     transition:border-color .2s ease;
+    background:none; text-align:left; cursor:pointer;
+    font-family:'Inter',sans-serif;
   }
   .ascent-pay-card:hover{border-color:var(--platinum-dim);}
+  .ascent-pay-card:disabled{opacity:.6; cursor:wait;}
+  .ascent-checkout-error{color:#e07856; font-size:12.5px; margin-top:12px; min-height:16px;}
   .ascent-pay-label{font-size:12px; color:var(--muted); margin-bottom:8px;}
   .ascent-pay-amount{font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; color:var(--ivory);}
   .ascent-pay-amount span{font-size:12px; color:var(--muted); font-weight:400;}
@@ -155,6 +165,55 @@
     display:flex; align-items:center; gap:16px; margin-top:44px; flex-wrap:wrap;
   }
   .ascent-cta-row span{color:var(--muted); font-size:14px;}
+
+  /* ===== Animations ===== */
+  .slider-card{
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .slider-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.25);}
+
+  #adSlider::-webkit-slider-thumb{transition:transform .15s ease;}
+  #adSlider:active::-webkit-slider-thumb{transform:scale(1.15);}
+  #adSlider::-moz-range-thumb{transition:transform .15s ease;}
+  #adSlider:active::-moz-range-thumb{transform:scale(1.15);}
+
+  @keyframes valuePulse{
+    0%{ color:var(--ivory); }
+    40%{ color:var(--platinum); transform:scale(1.03); }
+    100%{ color:var(--ivory); transform:scale(1); }
+  }
+  .slider-value.pulsing{animation:valuePulse .35s ease;}
+  .slider-fee strong.pulsing{animation:valuePulse .35s ease;}
+
+  .ascent-pay-card{transition:border-color .2s ease, transform .2s ease, background .2s ease;}
+  .ascent-pay-card:hover{transform:translateY(-3px); background:rgba(255,255,255,.02);}
+  .ascent-pay-amount{transition:color .2s ease;}
+
+  .ascent-features li{
+    opacity:0; transform:translateX(-8px);
+    animation:featureIn .4s ease forwards;
+  }
+  .ascent-features li:nth-child(1){animation-delay:.05s;}
+  .ascent-features li:nth-child(2){animation-delay:.1s;}
+  .ascent-features li:nth-child(3){animation-delay:.15s;}
+  .ascent-features li:nth-child(4){animation-delay:.2s;}
+  .ascent-features li:nth-child(5){animation-delay:.25s;}
+  .ascent-features li:nth-child(6){animation-delay:.3s;}
+  .ascent-features li:nth-child(7){animation-delay:.35s;}
+  @keyframes featureIn{
+    to{opacity:1; transform:translateX(0);}
+  }
+
+  .ascent-name{
+    opacity:0; animation:nameIn .5s ease forwards;
+  }
+  @keyframes nameIn{
+    from{opacity:0; transform:translateY(-4px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .btn-primary{transition:transform .2s ease, box-shadow .2s ease;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 6px 20px rgba(214,208,194,.15);}
 </style>
 </head>
 <body>
@@ -236,9 +295,13 @@
   <div class="wrap reveal">
     <div class="slider-card ascent-card">
       <div class="ascent-name">Ascent</div>
-      <div class="slider-label">Your monthly ad spend</div>
-      <div class="slider-value" id="spendDisplay">$5,000<span>/mo</span></div>
-      <div class="slider-fee">Our fee <strong id="feeDisplay">48.6%</strong> &middot; <span id="feeAmount">$2,429/mo</span></div>
+      <div class="ascent-top-row">
+        <div>
+          <div class="slider-label">Your monthly ad spend</div>
+          <div class="slider-value" id="spendDisplay">$5,000<span>/mo</span></div>
+        </div>
+        <div class="slider-fee">Our fee <strong id="feeDisplay">48.6%</strong> &middot; <span id="feeAmount">$2,429/mo</span></div>
+      </div>
       <input type="range" id="adSlider" min="1000" max="100000" step="500" value="5000">
       <div class="slider-range-labels"><span>$1K</span><span>$50K</span><span>$100K</span></div>
 
@@ -250,17 +313,18 @@
           <span class="ascent-nocontract">No contracts. Cancel anytime.</span>
         </div>
         <div class="ascent-pay-options">
-          <a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener" class="ascent-pay-card">
+          <button type="button" class="ascent-pay-card" id="checkoutMonthly">
             <div class="ascent-pay-label">Pay monthly</div>
             <div class="ascent-pay-amount" id="payMonthlyAmount">$2,429 <span>today</span></div>
             <div class="ascent-pay-cta">Get Started &rarr;</div>
-          </a>
-          <a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener" class="ascent-pay-card">
+          </button>
+          <button type="button" class="ascent-pay-card" id="checkout90Day">
             <div class="ascent-pay-label">90 days upfront</div>
             <div class="ascent-pay-amount" id="pay90Amount">$7,287 <span>today</span></div>
             <div class="ascent-pay-cta">Get Started &rarr;</div>
-          </a>
+          </button>
         </div>
+        <div class="ascent-checkout-error" id="checkoutError"></div>
       </div>
     </div>
 
@@ -356,19 +420,69 @@
     const feeDollars = Math.round(spend * feePct);
 
     spendDisplay.innerHTML = '$' + spend.toLocaleString() + '<span>/mo</span>';
+    spendDisplay.classList.remove('pulsing');
+    void spendDisplay.offsetWidth; // restart animation
+    spendDisplay.classList.add('pulsing');
+    feeDisplay.classList.remove('pulsing');
+    void feeDisplay.offsetWidth;
+    feeDisplay.classList.add('pulsing');
     feeDisplay.textContent = (feePct * 100).toFixed(1) + '%';
     feeAmount.textContent = '$' + feeDollars.toLocaleString() + '/mo';
     payMonthlyAmount.innerHTML = '$' + feeDollars.toLocaleString() + ' <span>today</span>';
     pay90Amount.innerHTML = '$' + (feeDollars * 3).toLocaleString() + ' <span>today</span>';
 
-    // Colored track fill from left up to the thumb position
-    const trackPct = progress * 100;
-    adSlider.style.background = `linear-gradient(to right, var(--platinum) 0%, var(--platinum) ${trackPct}%, var(--line) ${trackPct}%, var(--line) 100%)`;
+    // Colored track fill — aligned to the thumb's actual visual center, not
+    // the raw percentage, since a range thumb's travel distance is the
+    // track width minus its own diameter. Without this, the fill edge and
+    // the circle visibly disconnect near both ends of the slider.
+    const THUMB_SIZE = 16;
+    const trackWidth = adSlider.offsetWidth;
+    const thumbCenterPx = progress * (trackWidth - THUMB_SIZE) + THUMB_SIZE / 2;
+    const fillPct = (thumbCenterPx / trackWidth) * 100;
+    adSlider.style.background = `linear-gradient(to right, var(--platinum) 0%, var(--platinum) ${fillPct}%, var(--line) ${fillPct}%, var(--line) 100%)`;
   }
   if (adSlider) {
     adSlider.addEventListener('input', updateSlider);
+    window.addEventListener('resize', updateSlider);
     updateSlider();
   }
+
+  // Real checkout — calls the server, which recalculates the fee itself
+  // rather than trusting whatever the client sends, then redirects to
+  // Stripe's actual hosted checkout page.
+  const checkoutError = document.getElementById('checkoutError');
+
+  async function startCheckout(billingType, btn) {
+    checkoutError.textContent = '';
+    const originalHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.querySelector('.ascent-pay-cta').textContent = 'Loading...';
+
+    try {
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ spend: parseInt(adSlider.value, 10), billingType }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        checkoutError.textContent = data.error || 'Checkout is not available yet.';
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+        return;
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      checkoutError.textContent = 'Could not reach the server. Please try again.';
+      btn.disabled = false;
+      btn.innerHTML = originalHTML;
+    }
+  }
+
+  const checkoutMonthlyBtn = document.getElementById('checkoutMonthly');
+  const checkout90DayBtn = document.getElementById('checkout90Day');
+  if (checkoutMonthlyBtn) checkoutMonthlyBtn.addEventListener('click', () => startCheckout('monthly', checkoutMonthlyBtn));
+  if (checkout90DayBtn) checkout90DayBtn.addEventListener('click', () => startCheckout('90day', checkout90DayBtn));
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
