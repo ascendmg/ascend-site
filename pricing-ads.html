@@ -147,22 +147,50 @@
     .ascent-top-row{flex-direction:column;}
     .slider-fee{text-align:left; margin-top:14px;}
   }
+  .slider-track-wrap{
+    position:relative;
+    width:100%;
+    height:18px;
+    display:flex;
+    align-items:center;
+  }
+  .slider-fill{
+    position:absolute;
+    left:0; top:50%;
+    height:3px;
+    transform:translateY(-50%);
+    border-radius:999px;
+    background:var(--accent-gradient);
+    pointer-events:none;
+    width:0%;
+  }
+  .slider-thumb-visual{
+    position:absolute;
+    top:50%;
+    width:18px; height:18px;
+    border-radius:50%;
+    background:#ffffff;
+    box-shadow:0 0 14px 2px rgba(168,85,247,.55), 0 1px 3px rgba(0,0,0,.4);
+    transform:translate(-50%, -50%);
+    pointer-events:none;
+    left:0%;
+  }
   #adSlider{
-    width:100%; -webkit-appearance:none; appearance:none; height:1.5px;
+    position:relative;
+    z-index:2;
+    width:100%; -webkit-appearance:none; appearance:none; height:3px;
     border-radius:999px; outline:none;
+    background:var(--line);
   }
   #adSlider::-webkit-slider-thumb{
     -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
-    background:var(--accent-2); cursor:pointer; border:2px solid var(--black);
-    margin-top:-8.25px;
-    box-shadow:0 0 14px 2px rgba(168,85,247,.55);
+    background:transparent; cursor:pointer; border:none;
   }
   #adSlider::-moz-range-thumb{
-    width:18px; height:18px; border-radius:50%; background:var(--accent-2);
-    cursor:pointer; border:2px solid var(--black);
-    box-shadow:0 0 14px 2px rgba(168,85,247,.55);
+    width:18px; height:18px; border-radius:50%; background:transparent;
+    cursor:pointer; border:none;
   }
-  #adSlider::-moz-range-track{height:1.5px; border-radius:999px;}
+  #adSlider::-moz-range-track{height:3px; border-radius:999px; background:transparent;}
   .slider-range-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:11.5px; color:var(--muted);}
 
   .ascent-divider{
@@ -226,10 +254,8 @@
   }
   .slider-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.25);}
 
-  #adSlider::-webkit-slider-thumb{transition:transform .15s ease;}
-  #adSlider:active::-webkit-slider-thumb{transform:scale(1.15);}
-  #adSlider::-moz-range-thumb{transition:transform .15s ease;}
-  #adSlider:active::-moz-range-thumb{transform:scale(1.15);}
+  #adSlider:active ~ .slider-thumb-visual{transform:translate(-50%, -50%) scale(1.15);}
+  .slider-thumb-visual{transition:transform .15s ease;}
 
   @keyframes valuePulse{
     0%{ color:var(--ivory); }
@@ -356,7 +382,11 @@
         </div>
         <div class="slider-fee">Our fee <strong id="feeDisplay">50.0%</strong> &middot; <span id="feeAmount">$500/mo</span></div>
       </div>
-      <input type="range" id="adSlider" min="1000" max="100000" step="500" value="1000">
+      <div class="slider-track-wrap">
+        <input type="range" id="adSlider" min="1000" max="100000" step="500" value="1000">
+        <div class="slider-fill" id="sliderFill"></div>
+        <div class="slider-thumb-visual" id="sliderThumb"></div>
+      </div>
       <div class="slider-range-labels"><span>$1K</span><span>$50K</span><span>$100K</span></div>
 
       <div class="ascent-divider"></div>
@@ -457,6 +487,8 @@
   });
 
   const adSlider = document.getElementById('adSlider');
+  const sliderFill = document.getElementById('sliderFill');
+  const sliderThumb = document.getElementById('sliderThumb');
   const spendDisplay = document.getElementById('spendDisplay');
   const feeDisplay = document.getElementById('feeDisplay');
   const feeAmount = document.getElementById('feeAmount');
@@ -486,11 +518,11 @@
     payMonthlyAmount.innerHTML = '$' + feeDollars.toLocaleString() + ' <span>today</span>';
     pay90Amount.innerHTML = '$' + (feeDollars * 3).toLocaleString() + ' <span>today</span>';
 
-    // Colored track fill — simple raw percentage matched to slider progress,
-    // so it starts fully empty at the far left and fully colored at the
-    // far right, with the thumb always sitting right at the fill's edge.
+    // Fill bar and custom white thumb are positioned from the exact same
+    // percentage value, so they can never disagree or show a gap.
     const fillPct = progress * 100;
-    adSlider.style.background = `linear-gradient(to right, var(--platinum) 0%, var(--platinum) ${fillPct}%, var(--line) ${fillPct}%, var(--line) 100%)`;
+    sliderFill.style.width = fillPct + '%';
+    sliderThumb.style.left = fillPct + '%';
   }
   if (adSlider) {
     adSlider.addEventListener('input', updateSlider);
