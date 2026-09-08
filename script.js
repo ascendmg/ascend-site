@@ -103,3 +103,27 @@
   document.addEventListener('click', () => {
     document.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
   });
+
+  // Animated count-up for stat numbers, triggers once when scrolled into view
+  const countEls = document.querySelectorAll('[data-count-to]');
+  if (countEls.length) {
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.countTo, 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 900;
+        const start = performance.now();
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        countIO.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countIO.observe(el));
+  }
