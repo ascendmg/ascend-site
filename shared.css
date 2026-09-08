@@ -6,7 +6,7 @@
     --green-dim:#94907f;
     --ivory:#f4ede2;
     --muted:#948d7d;
-    --line:#28251f;
+    --line:#3a352c;
     --platinum:#c9cdd3;
     --platinum-dim:#83878d;
   }
@@ -17,7 +17,26 @@
     color:var(--ivory);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
+    position:relative;
   }
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(201,205,211,.05), transparent 40%),
+      radial-gradient(circle at 88% 22%, rgba(214,208,194,.04), transparent 45%),
+      radial-gradient(circle at 25% 85%, rgba(201,205,211,.035), transparent 40%),
+      radial-gradient(circle at 78% 92%, rgba(148,144,127,.04), transparent 45%);
+    animation:ambientDrift 30s ease-in-out infinite alternate;
+  }
+  @keyframes ambientDrift{
+    0%{ transform:translate(0,0) scale(1); }
+    100%{ transform:translate(-1.5%,1.5%) scale(1.04); }
+  }
+  #nav, .mobile-menu, main, header, footer, section, .wrap{position:relative; z-index:1;}
   h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
   a{color:inherit;text-decoration:none;}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
@@ -731,3 +750,41 @@
   .learn-card h2{font-size:18px; font-weight:600; margin-bottom:10px; color:var(--ivory);}
   .learn-card p{color:var(--muted); font-size:13.5px; line-height:1.6;}
   @media (max-width:900px){ .learn-grid{grid-template-columns:1fr;} }
+
+  /* ============================================
+     GLOBAL "SHINE + VOLUME" TREATMENT
+     Applies to every card-like bordered box site-wide,
+     via attribute selectors matching the naming patterns
+     already used across the site (-card, -item, -block,
+     -tile, -tier, -panel), so this works without editing
+     every individual page.
+     ============================================ */
+  [class*="-card"]:not(.product-cards),
+  [class*="-item"]:not(.nav-item):not(.meta-item),
+  [class*="-block"]:not(.address-block),
+  [class*="-tile"],
+  [class*="-tier"]:not(.quote-tiers),
+  [class*="-panel"]:not(.mega-panel),
+  .content-tile{
+    background:rgba(255,255,255,.025);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.05),
+      0 1px 2px rgba(0,0,0,.3),
+      0 10px 30px -12px rgba(0,0,0,.5);
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  [class*="-card"]:not(.product-cards):hover,
+  [class*="-item"]:not(.nav-item):not(.meta-item):hover,
+  [class*="-block"]:not(.address-block):hover,
+  [class*="-tile"]:hover,
+  [class*="-tier"]:not(.quote-tiers):hover,
+  [class*="-panel"]:not(.mega-panel):hover{
+    border-color:var(--platinum-dim);
+    background:rgba(255,255,255,.045);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.09),
+      0 1px 2px rgba(0,0,0,.3),
+      0 16px 40px -14px rgba(0,0,0,.6);
+  }

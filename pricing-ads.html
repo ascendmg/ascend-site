@@ -117,19 +117,19 @@
     .slider-fee{text-align:left; margin-top:14px;}
   }
   #adSlider{
-    width:100%; -webkit-appearance:none; appearance:none; height:2px;
+    width:100%; -webkit-appearance:none; appearance:none; height:1.5px;
     border-radius:999px; outline:none;
   }
   #adSlider::-webkit-slider-thumb{
-    -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%;
-    background:var(--platinum); cursor:pointer; border:3px solid var(--black);
-    margin-top:-7px;
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:var(--platinum); cursor:pointer; border:2px solid var(--black);
+    margin-top:-8.25px;
   }
   #adSlider::-moz-range-thumb{
-    width:16px; height:16px; border-radius:50%; background:var(--platinum);
-    cursor:pointer; border:3px solid var(--black);
+    width:18px; height:18px; border-radius:50%; background:var(--platinum);
+    cursor:pointer; border:2px solid var(--black);
   }
-  #adSlider::-moz-range-track{height:2px; border-radius:999px;}
+  #adSlider::-moz-range-track{height:1.5px; border-radius:999px;}
   .slider-range-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:11.5px; color:var(--muted);}
 
   .ascent-divider{border-top:1px solid var(--line); margin:28px 0;}
@@ -298,11 +298,11 @@
       <div class="ascent-top-row">
         <div>
           <div class="slider-label">Your monthly ad spend</div>
-          <div class="slider-value" id="spendDisplay">$5,000<span>/mo</span></div>
+          <div class="slider-value" id="spendDisplay">$1,000<span>/mo</span></div>
         </div>
-        <div class="slider-fee">Our fee <strong id="feeDisplay">48.6%</strong> &middot; <span id="feeAmount">$2,429/mo</span></div>
+        <div class="slider-fee">Our fee <strong id="feeDisplay">50.0%</strong> &middot; <span id="feeAmount">$500/mo</span></div>
       </div>
-      <input type="range" id="adSlider" min="1000" max="100000" step="500" value="5000">
+      <input type="range" id="adSlider" min="1000" max="100000" step="500" value="1000">
       <div class="slider-range-labels"><span>$1K</span><span>$50K</span><span>$100K</span></div>
 
       <div class="ascent-divider"></div>
@@ -315,12 +315,12 @@
         <div class="ascent-pay-options">
           <button type="button" class="ascent-pay-card" id="checkoutMonthly">
             <div class="ascent-pay-label">Pay monthly</div>
-            <div class="ascent-pay-amount" id="payMonthlyAmount">$2,429 <span>today</span></div>
+            <div class="ascent-pay-amount" id="payMonthlyAmount">$500 <span>today</span></div>
             <div class="ascent-pay-cta">Get Started &rarr;</div>
           </button>
           <button type="button" class="ascent-pay-card" id="checkout90Day">
             <div class="ascent-pay-label">90 days upfront</div>
-            <div class="ascent-pay-amount" id="pay90Amount">$7,287 <span>today</span></div>
+            <div class="ascent-pay-amount" id="pay90Amount">$1,500 <span>today</span></div>
             <div class="ascent-pay-cta">Get Started &rarr;</div>
           </button>
         </div>
@@ -431,14 +431,10 @@
     payMonthlyAmount.innerHTML = '$' + feeDollars.toLocaleString() + ' <span>today</span>';
     pay90Amount.innerHTML = '$' + (feeDollars * 3).toLocaleString() + ' <span>today</span>';
 
-    // Colored track fill — aligned to the thumb's actual visual center, not
-    // the raw percentage, since a range thumb's travel distance is the
-    // track width minus its own diameter. Without this, the fill edge and
-    // the circle visibly disconnect near both ends of the slider.
-    const THUMB_SIZE = 16;
-    const trackWidth = adSlider.offsetWidth;
-    const thumbCenterPx = progress * (trackWidth - THUMB_SIZE) + THUMB_SIZE / 2;
-    const fillPct = (thumbCenterPx / trackWidth) * 100;
+    // Colored track fill — simple raw percentage matched to slider progress,
+    // so it starts fully empty at the far left and fully colored at the
+    // far right, with the thumb always sitting right at the fill's edge.
+    const fillPct = progress * 100;
     adSlider.style.background = `linear-gradient(to right, var(--platinum) 0%, var(--platinum) ${fillPct}%, var(--line) ${fillPct}%, var(--line) 100%)`;
   }
   if (adSlider) {
