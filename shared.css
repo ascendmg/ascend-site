@@ -345,7 +345,7 @@
     color:var(--ivory);
     transition:border-color .2s ease, background .2s ease;
   }
-  .btn-ghost:hover{border-color:var(--green); background:rgba(74,222,128,.06);}
+  .btn-ghost:hover{border-color:var(--accent-dim); background:rgba(99,102,241,.06);}
 
   /* Section shell */
   section{
@@ -406,15 +406,18 @@
     overflow:hidden;
   }
   .wwd-item{
-    background:#0d120e;
+    background:var(--forest-2);
     padding:32px 26px;
   }
   .wwd-item .num{
     font-family:'Space Grotesk',sans-serif;
     font-size:13px;
-    color:var(--green-dim);
     font-weight:600;
     margin-bottom:14px;
+    background:var(--accent-gradient);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
   .wwd-item h3{font-size:17px; margin-bottom:8px; font-weight:600;}
   .wwd-item p{color:var(--muted); font-size:13.5px; line-height:1.6;}
@@ -447,7 +450,7 @@
     margin-bottom:12px;
     width:fit-content;
   }
-  .status.live{background:rgba(74,222,128,.12); color:var(--green);}
+  .status.live{background:rgba(34,211,238,.14); color:var(--accent-4);}
   .status.inactive{background:rgba(143,162,152,.12); color:var(--muted);}
   .p-card{
     background:linear-gradient(160deg,var(--forest-2),var(--black));
@@ -547,13 +550,18 @@
     grid-template-columns:repeat(2,1fr);
     gap:28px 40px;
   }
-  .why-item{display:flex; gap:16px;}
+  .why-item{
+    display:flex; gap:16px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+  }
   .why-item .mark{
     font-family:'Space Grotesk',sans-serif;
     font-weight:700;
     font-size:15px;
     color:var(--black);
-    background:var(--green);
+    background:var(--accent-gradient);
     width:30px; height:30px;
     border-radius:8px;
     display:flex; align-items:center; justify-content:center;
@@ -636,7 +644,7 @@
   }
   form{display:flex; flex-direction:column; gap:14px;}
   input, textarea{
-    background:#0d120e;
+    background:#161412;
     border:1px solid var(--line);
     border-radius:10px;
     padding:14px 16px;
@@ -751,8 +759,11 @@
     font-family:'Space Grotesk',sans-serif;
     font-size:34px;
     font-weight:600;
-    color:var(--platinum);
     margin-bottom:10px;
+    background:var(--accent-gradient);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
   .stat-label{
     font-size:12.5px;
