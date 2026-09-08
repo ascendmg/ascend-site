@@ -101,17 +101,38 @@
   @media (max-width:600px){ .quote-tiers{grid-template-columns:1fr;} }
 
   /* Ads slider */
-  .slider-card{border:1px solid var(--line); border-radius:14px; padding:28px; margin:8px auto 0; max-width:640px;}
+  .slider-card{
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:40px;
+    margin:8px auto 0;
+    max-width:640px;
+    position:relative;
+    overflow:hidden;
+  }
+  .slider-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 15% 0%, rgba(214,208,194,.06), transparent 55%);
+    pointer-events:none;
+  }
   .ascent-name{
-    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;
-    color:var(--platinum); letter-spacing:.03em; margin-bottom:20px;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:22px;
+    color:var(--ivory); letter-spacing:-.01em; margin-bottom:28px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .ascent-name::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background:var(--platinum);
+    box-shadow:0 0 12px 2px rgba(214,208,194,.5);
   }
   .ascent-top-row{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:26px;}
   .slider-label{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
-  .slider-value{font-family:'Space Grotesk',sans-serif; font-size:38px; font-weight:600; color:var(--ivory); margin-top:6px;}
+  .slider-value{font-family:'Space Grotesk',sans-serif; font-size:46px; font-weight:700; color:var(--ivory); margin-top:6px; letter-spacing:-.01em;}
   .slider-value span{font-size:16px; color:var(--muted); font-weight:400;}
-  .slider-fee{font-size:14px; color:var(--muted); margin-top:10px; text-align:right; white-space:nowrap;}
-  .slider-fee strong{color:var(--platinum); font-weight:600;}
+  .slider-fee{font-size:14px; color:var(--muted); margin-top:14px; text-align:right; white-space:nowrap;}
+  .slider-fee strong{color:var(--platinum); font-weight:600; font-size:16px;}
   @media (max-width:480px){
     .ascent-top-row{flex-direction:column;}
     .slider-fee{text-align:left; margin-top:14px;}
@@ -138,18 +159,18 @@
   .ascent-nocontract{font-size:12px; color:var(--muted);}
   .ascent-pay-options{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
   .ascent-pay-card{
-    display:block; width:100%; border:1px solid var(--line); border-radius:10px; padding:18px;
+    display:block; width:100%; border:1px solid var(--line); border-radius:14px; padding:22px;
     transition:border-color .2s ease;
-    background:none; text-align:left; cursor:pointer;
+    background:rgba(255,255,255,.015); text-align:left; cursor:pointer;
     font-family:'Inter',sans-serif;
   }
   .ascent-pay-card:hover{border-color:var(--platinum-dim);}
   .ascent-pay-card:disabled{opacity:.6; cursor:wait;}
   .ascent-checkout-error{color:#e07856; font-size:12.5px; margin-top:12px; min-height:16px;}
-  .ascent-pay-label{font-size:12px; color:var(--muted); margin-bottom:8px;}
-  .ascent-pay-amount{font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; color:var(--ivory);}
+  .ascent-pay-label{font-size:12px; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:.06em;}
+  .ascent-pay-amount{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:var(--ivory);}
   .ascent-pay-amount span{font-size:12px; color:var(--muted); font-weight:400;}
-  .ascent-pay-cta{font-size:12.5px; color:var(--platinum); font-weight:600; margin-top:12px;}
+  .ascent-pay-cta{font-size:12.5px; color:var(--platinum); font-weight:600; margin-top:14px;}
   @media (max-width:600px){ .ascent-pay-options{grid-template-columns:1fr;} }
 
   .ascent-features{list-style:none; margin-top:20px; max-width:64ch;}

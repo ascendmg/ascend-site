@@ -36,7 +36,7 @@
     0%{ transform:translate(0,0) scale(1); }
     100%{ transform:translate(-1.5%,1.5%) scale(1.04); }
   }
-  #nav, .mobile-menu, main, header, footer, section, .wrap{position:relative; z-index:1;}
+  main, header, footer, section, .wrap{position:relative; z-index:1;}
   h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
   a{color:inherit;text-decoration:none;}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
@@ -735,6 +735,23 @@
     .statement-row{grid-template-columns:1fr; gap:28px;}
   }
 
+  .proof-band{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:32px 36px;
+  }
+  .proof-label{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); font-weight:600; margin-bottom:22px;
+  }
+  .proof-row{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .proof-name{
+    font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:600;
+    color:var(--ivory); margin-bottom:5px;
+  }
+  .proof-detail{font-size:12.5px; color:var(--muted);}
+  @media (max-width:760px){ .proof-row{grid-template-columns:1fr; gap:20px;} }
+
   /* Learn hub + article pages */
   .learn-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .learn-card{
@@ -787,4 +804,39 @@
       inset 0 1px 0 rgba(255,255,255,.09),
       0 1px 2px rgba(0,0,0,.3),
       0 16px 40px -14px rgba(0,0,0,.6);
+  }
+
+  /* Founder section - asymmetric, original layout */
+  .founder-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+  .founder-photo-placeholder{
+    aspect-ratio:4/5;
+    border:1px dashed var(--line);
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted);
+    font-size:13px;
+    background:rgba(255,255,255,.015);
+  }
+  .founder-text{
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.85;
+    margin-top:20px;
+    max-width:56ch;
+  }
+  .founder-sign{
+    font-family:'Space Grotesk',sans-serif;
+    color:var(--platinum);
+    font-size:14px;
+    font-weight:600;
+    margin-top:22px;
+  }
+  @media (max-width:900px){
+    .founder-grid{grid-template-columns:1fr; gap:32px;}
+    .founder-photo-placeholder{aspect-ratio:16/9;}
   }
