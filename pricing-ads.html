@@ -154,24 +154,25 @@
     display:flex;
     align-items:center;
   }
-  .slider-track-wrap::before{
-    content:'';
-    position:absolute;
-    left:0; right:0; top:50%;
-    height:3px;
-    transform:translateY(-50%);
-    border-radius:999px;
-    background:var(--line);
-  }
   .slider-fill{
     position:absolute;
     left:0; top:50%;
-    height:5px;
+    height:7px;
     transform:translateY(-50%);
     border-radius:999px;
     background:var(--accent-gradient);
     pointer-events:none;
     width:0%;
+  }
+  .slider-track-wrap::after{
+    content:'';
+    position:absolute;
+    left:0; right:0; top:50%;
+    height:7px;
+    transform:translateY(-50%);
+    border-radius:999px;
+    background:rgba(255,255,255,.04);
+    z-index:-1;
   }
   .slider-thumb-visual{
     position:absolute;
@@ -184,21 +185,23 @@
     pointer-events:none;
     left:0%;
   }
-  #adSlider{
+  #adSlider, #adSlider:focus, #adSlider:focus-visible, #adSlider:active{
     position:relative;
     z-index:2;
-    width:100%; -webkit-appearance:none; appearance:none; height:3px;
-    border-radius:999px; outline:none;
+    -webkit-appearance:none; -moz-appearance:none; appearance:none;
+    width:100%; height:3px;
+    border-radius:999px;
+    outline:none !important;
+    box-shadow:none !important;
     background:transparent;
   }
-  #adSlider:focus{outline:none; box-shadow:none;}
   #adSlider::-webkit-slider-thumb{
     -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
     background:transparent; cursor:pointer; border:none; box-shadow:none;
   }
   #adSlider::-moz-range-thumb{
     width:18px; height:18px; border-radius:50%; background:transparent;
-    cursor:pointer; border:none; box-shadow:none;
+    cursor:pointer; border:none; box-shadow:none; outline:none;
   }
   #adSlider::-moz-focus-outer{border:0;}
   #adSlider::-moz-range-track{height:3px; border-radius:999px; background:transparent;}
@@ -245,17 +248,22 @@
   }
   @media (max-width:600px){ .ascent-pay-options{grid-template-columns:1fr;} }
 
-  .ascent-features{list-style:none; margin-top:20px; max-width:64ch;}
+  .ascent-features-inner{margin-top:8px;}
+  .ascent-features-label{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); font-weight:600; margin-bottom:18px;
+  }
+  .ascent-features{list-style:none; max-width:64ch; margin:0 auto;}
   .ascent-features li{
     position:relative; padding-left:22px; margin-bottom:12px;
-    color:var(--muted); font-size:14px; line-height:1.6;
+    color:var(--ivory); font-size:14px; line-height:1.6;
   }
   .ascent-features li::before{
     content:''; position:absolute; left:0; top:8px; width:6px; height:6px;
     border-radius:50%; background:var(--accent-gradient);
   }
   .ascent-cta-row{
-    display:flex; align-items:center; gap:16px; margin-top:44px; flex-wrap:wrap;
+    display:flex; align-items:center; justify-content:center; gap:16px; margin-top:44px; flex-wrap:wrap;
   }
   .ascent-cta-row span{color:var(--muted); font-size:14px;}
 
@@ -374,11 +382,11 @@
   <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
 </div>
 
-<header class="page-header">
+<header class="page-header" style="text-align:center;">
   <div class="wrap">
     <div class="eyebrow">Pricing &middot; Marketing</div>
-    <h1>Our fee scales down as your ad spend scales up.</h1>
-    <p>No flat retainer. Drag the slider to see your number, updated live.</p>
+    <h1 style="margin-left:auto; margin-right:auto;">Our fee scales down as your ad spend scales up.</h1>
+    <p style="margin-left:auto; margin-right:auto;">No flat retainer. Drag the slider to see your number, updated live.</p>
   </div>
 </header>
 
@@ -422,20 +430,24 @@
         </div>
         <div class="ascent-checkout-error" id="checkoutError"></div>
       </div>
+
+      <div class="ascent-divider"></div>
+
+      <div class="ascent-features-inner">
+        <div class="ascent-features-label">What You Get</div>
+        <ul class="ascent-features">
+          <li>Campaign setup and management across Google and Meta Ads</li>
+          <li>Ongoing optimization based on real performance data, not guesswork</li>
+          <li>Audience targeting and retargeting built around your actual business</li>
+          <li>Creative and copy variations tested to find what actually converts</li>
+          <li>Clear monthly performance reporting, no vague dashboards</li>
+          <li>Direct access to the person running your campaigns, no account managers or hand-offs</li>
+          <li>Ad spend goes straight to Google/Meta, our fee is separate and transparent</li>
+        </ul>
+      </div>
     </div>
 
-    <p style="color:var(--muted); font-size:13px; margin-top:20px; max-width:60ch;">Ad spend goes directly to Google or Meta. Our fee covers campaign setup, management, and ongoing optimization, separate from what you spend on the platforms themselves. "Get Started" books a call to confirm details before anything is charged, nothing here is an automatic checkout.</p>
-
-    <div class="section-label" style="margin-top:60px;">What You Get</div>
-    <ul class="ascent-features">
-      <li>Campaign setup and management across Google and Meta Ads</li>
-      <li>Ongoing optimization based on real performance data, not guesswork</li>
-      <li>Audience targeting and retargeting built around your actual business</li>
-      <li>Creative and copy variations tested to find what actually converts</li>
-      <li>Clear monthly performance reporting, no vague dashboards</li>
-      <li>Direct access to the person running your campaigns, no account managers or hand-offs</li>
-      <li>Ad spend goes straight to Google/Meta, our fee is separate and transparent</li>
-    </ul>
+    <p style="color:var(--muted); font-size:13px; margin-top:20px; max-width:60ch; margin-left:auto; margin-right:auto; text-align:center;">Ad spend goes directly to Google or Meta. Our fee covers campaign setup, management, and ongoing optimization, separate from what you spend on the platforms themselves. "Get Started" books a call to confirm details before anything is charged, nothing here is an automatic checkout.</p>
 
     <div class="ascent-cta-row">
       <span>Prefer to talk first?</span>
@@ -515,7 +527,7 @@
     // Fee percentage decreases linearly from 50% at $1K to 15% at $100K
     const progress = (spend - MIN_SPEND) / (MAX_SPEND - MIN_SPEND);
     const feePct = MIN_FEE_PCT + progress * (MAX_FEE_PCT - MIN_FEE_PCT);
-    const feeDollars = Math.round(spend * feePct);
+    const feeDollars = Math.ceil((spend * feePct) / 5) * 5;
 
     spendDisplay.innerHTML = '$' + spend.toLocaleString() + '<span>/mo</span>';
     spendDisplay.classList.remove('pulsing');

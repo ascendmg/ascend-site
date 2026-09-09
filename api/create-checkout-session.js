@@ -35,7 +35,7 @@ function calculateFee(spend) {
   const clamped = Math.min(Math.max(spend, MIN_SPEND), MAX_SPEND);
   const progress = (clamped - MIN_SPEND) / (MAX_SPEND - MIN_SPEND);
   const feePct = MIN_FEE_PCT + progress * (MAX_FEE_PCT - MIN_FEE_PCT);
-  return Math.round(clamped * feePct);
+  return Math.ceil((clamped * feePct) / 5) * 5;
 }
 
 export default async function handler(req, res) {
