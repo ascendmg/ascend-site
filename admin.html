@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Ascend Platform</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --black:#0f0e0c; --ivory:#f4ede2; --muted:#948d7d; --line:#3a352c;
+    --platinum:#c9cdd3; --accent-1:#6366f1; --accent-2:#a855f7;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--black); color:var(--ivory); font-family:'Inter',system-ui,sans-serif; padding:40px 24px;}
+  .wrap{max-width:700px; margin:0 auto;}
+  h1{font-size:22px; font-weight:600; margin-bottom:20px;}
+  .status-card{border:1px solid var(--line); border-radius:12px; padding:24px; margin-bottom:16px; background:rgba(255,255,255,.02);}
+  .status-card .label{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
+  .status-card .value{font-size:15px;}
+  .ok{color:#7dd3a8;}
+  .bad{color:#e07856;}
+  button{margin-top:20px; padding:10px 20px; background:none; border:1px solid var(--line); color:var(--ivory); border-radius:8px; cursor:pointer;}
+  #loading{color:var(--muted);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Admin Dashboard</h1>
+  <div id="loading">Checking access...</div>
+  <div id="content" style="display:none;"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  const SUPABASE_URL = 'https://nchcgzijogttbvmjizmk.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_8zu3WfaXZLOAh3utVGQloQ_HkjaPVD9';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  async function checkAccess() {
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    // This query only succeeds/returns rows because of the RLS policy
+    // "Users see their own membership" — not because the client is
+    // trusted. If RLS were misconfigured, this would either return
+    // nothing or error, not silently show someone else's data.
+    const { data: memberships, error } = await supabase
+      .from('memberships')
+      .select('role, client_id')
+      .eq('user_id', session.user.id);
+
+    const loading = document.getElementById('loading');
+    const content = document.getElementById('content');
+    loading.style.display = 'none';
+    content.style.display = 'block';
+
+    const isAdmin = memberships?.some(m => m.role === 'admin');
+
+    content.innerHTML = `
+      <div class="status-card">
+        <div class="label">Logged in as</div>
+        <div class="value">${session.user.email}</div>
+      </div>
+      <div class="status-card">
+        <div class="label">Role</div>
+        <div class="value ${isAdmin ? 'ok' : 'bad'}">${isAdmin ? 'Admin — full access' : 'No admin membership found'}</div>
+      </div>
+      <div class="status-card">
+        <div class="label">RLS Proof</div>
+        <div class="value">This page only shows your own membership row(s), fetched directly from the browser with the public key. Row-level security, not application code, is what's actually protecting this data.</div>
+      </div>
+      <button id="logoutBtn">Log Out</button>
+    `;
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = 'login.html';
+    });
+  }
+
+  checkAccess();
+</script>
+
+</body>
+</html>
