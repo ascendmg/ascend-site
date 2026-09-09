@@ -779,11 +779,11 @@
   .proof-band{
     border:1px solid var(--line);
     border-radius:16px;
-    padding:32px 36px;
+    padding:40px 36px 34px;
   }
   .proof-label{
     font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--muted); font-weight:600; margin-bottom:22px;
+    color:var(--muted); font-weight:600; margin-bottom:26px;
   }
   .proof-row{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .proof-item{
