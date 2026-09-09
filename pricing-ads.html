@@ -191,6 +191,7 @@
     -webkit-appearance:none; -moz-appearance:none; appearance:none;
     width:100%; height:3px;
     border-radius:999px;
+    border:none !important;
     outline:none !important;
     box-shadow:none !important;
     background:transparent;
@@ -204,7 +205,10 @@
     cursor:pointer; border:none; box-shadow:none; outline:none;
   }
   #adSlider::-moz-focus-outer{border:0;}
-  #adSlider::-moz-range-track{height:3px; border-radius:999px; background:transparent;}
+  #adSlider::-webkit-slider-runnable-track{
+    background:transparent; border:none; box-shadow:none; outline:none;
+  }
+  #adSlider::-moz-range-track{height:3px; border-radius:999px; background:transparent; border:none; box-shadow:none;}
   .slider-range-labels{display:flex; justify-content:space-between; margin-top:8px; font-size:11.5px; color:var(--muted);}
 
   .ascent-divider{
