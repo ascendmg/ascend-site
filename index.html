@@ -135,11 +135,6 @@
       <button class="chip" type="button" data-goto="convert">A better website</button>
       <button class="chip" type="button" data-goto="grow">Someone to handle it all</button>
     </div>
-    <div class="hero-trust">
-      <span>Free consultation</span>
-      <span>No contracts on ads</span>
-      <span>You work directly with the person doing the work</span>
-    </div>
   </div>
 </header>
 
@@ -171,14 +166,13 @@
             <a class="ex-link" href="seo">See how SEO works &rarr;</a>
           </div>
           <div class="viz" aria-label="Illustration of a business climbing Google results">
-            <span class="viz-tag">Illustration</span>
             <div class="serp-q">best your service near me</div>
             <ol class="serp-list" id="serpList">
               <li data-k="c1"><span class="pos">1</span>Competitor One</li>
               <li data-k="c2"><span class="pos">2</span>Competitor Two</li>
               <li data-k="c3"><span class="pos">3</span>Competitor Three</li>
               <li data-k="c4"><span class="pos">4</span>Competitor Four</li>
-              <li data-k="me" class="mine"><span class="pos">5</span>Your business</li>
+              <li data-k="me" class="mine"><span class="pos">5</span>Your business<span class="jump" id="serpJump" aria-live="polite"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>4 spots</b></span></li>
             </ol>
             <button class="viz-replay" type="button" id="serpReplay">Replay</button>
           </div>
@@ -216,7 +210,6 @@
             <a class="ex-link" href="web-design">See how we build sites &rarr;</a>
           </div>
           <div class="viz" aria-label="Before and after website illustration">
-            <span class="viz-tag">Illustration</span>
             <div class="switch" role="group" aria-label="Before or after">
               <button type="button" class="on" data-state="before">Before</button>
               <button type="button" data-state="after">After</button>
@@ -252,7 +245,6 @@
             <a class="ex-link" href="marketing">See our marketing services &rarr;</a>
           </div>
           <div class="viz" aria-label="Monthly checklist illustration">
-            <span class="viz-tag">Every month</span>
             <ul class="tick-list" id="tickList">
               <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rankings checked and tracked</li>
               <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ad campaigns tuned</li>
@@ -321,7 +313,7 @@
   <div class="wrap reveal">
     <div class="proof-band">
       <div class="proof-label">Real work, live on the web</div>
-      <div class="proof-row">
+      <div class="proof-row two">
         <a class="proof-item" href="case-study-abogadaus">
           <img class="proof-thumb" src="assets/portfolio-abogadaus.jpg" alt="AbogadaUS.com homepage">
           <div class="proof-name">AbogadaUS</div>
@@ -333,12 +325,6 @@
           <div class="proof-name">CiudadanoReady</div>
           <div class="proof-detail">Course platform &middot; live, subscription-based</div>
           <span class="proof-go">Read the case study &rarr;</span>
-        </a>
-        <a class="proof-item" href="portfolio">
-          <img class="proof-thumb" src="assets/ascendflorida-desktop-mockup.jpg" alt="AscendFlorida.com desktop mockup">
-          <div class="proof-name">AscendFlorida</div>
-          <div class="proof-detail">E-commerce build &middot; Shopify</div>
-          <span class="proof-go">See all case studies &rarr;</span>
         </a>
       </div>
     </div>

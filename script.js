@@ -46,6 +46,11 @@
   // Contact form submission
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    try {
+      const pre = new URLSearchParams(window.location.search).get('msg');
+      const ta = contactForm.querySelector('textarea[name="message"]');
+      if (pre && ta && !ta.value) ta.value = pre.slice(0, 1200);
+    } catch (e) {}
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const statusEl = document.getElementById('formStatus');
@@ -171,11 +176,13 @@
       if (!serpList) return;
       clearTimeout(serpTimer);
       let order = ['c1', 'c2', 'c3', 'c4', 'me'];
+      const jump = document.getElementById('serpJump');
+      if (jump) jump.classList.remove('show');
       layoutSerp(order);
-      if (reduce) { layoutSerp(['me', 'c1', 'c2', 'c3', 'c4']); return; }
+      if (reduce) { layoutSerp(['me', 'c1', 'c2', 'c3', 'c4']); if (jump) jump.classList.add('show'); return; }
       let idx = 4;
       const step = () => {
-        if (idx === 0) return;
+        if (idx === 0) { if (jump) jump.classList.add('show'); return; }
         const t = order[idx - 1]; order[idx - 1] = order[idx]; order[idx] = t; idx--;
         layoutSerp(order);
         serpTimer = setTimeout(step, 520);
@@ -194,7 +201,7 @@
       const dollars = Math.ceil((spend * pct) / 5) * 5;
       document.getElementById('adsVal').innerHTML = fmtMoney(spend) + '<small>/mo ad budget</small>';
       document.getElementById('adsFee').innerHTML = (pct * 100).toFixed(1) + '% &middot; ' + fmtMoney(dollars) + '/mo';
-      adsRange.style.setProperty('--p', (progress * 100) + '%');
+      adsRange.style.setProperty('--pr', progress);
     }
     if (adsRange) { adsRange.addEventListener('input', updateAds); updateAds(); }
 
@@ -237,7 +244,7 @@
       }
       function setFill(r) {
         const min = parseFloat(r.min), max = parseFloat(r.max), v = parseFloat(r.value);
-        r.style.setProperty('--p', ((v - min) / (max - min) * 100) + '%');
+        r.style.setProperty('--pr', (v - min) / (max - min));
       }
       function calc() {
         [cV, cC, cVal, cT, cL].forEach(setFill);
