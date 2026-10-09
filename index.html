@@ -7,7 +7,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/brand/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="description" content="Website design and marketing for businesses that want to grow. Custom sites, SEO, and paid ads under one roof.">
+<meta name="description" content="Ascend helps businesses get found on Google, bring in customers with ads, and convert them with a website built to sell. Marketing and web design in Kissimmee, FL.">
 <link rel="canonical" href="https://www.hqascend.com/">
 <meta property="og:title" content="Ascend, Website Design & Marketing">
 <meta property="og:description" content="Website design and marketing for businesses that want to grow. Custom sites, SEO, and paid ads under one roof.">
@@ -44,7 +44,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=3">
+<link rel="stylesheet" href="shared.css?v=4">
 </head>
 <body>
 
@@ -121,185 +121,258 @@
     <div class="sheen"></div>
   </div>
   <div class="wrap">
-    <div class="eyebrow">Website Design &amp; Marketing</div>
+    <div class="eyebrow">Marketing &amp; Website Design</div>
     <h1 class="headline">Built for <span class="type-target" id="typeTarget">your business</span><span class="type-cursor">|</span></h1>
-    <p class="hero-sub">A full-service marketing partner for businesses that want to keep growing, ads, SEO, and branding, backed by websites built to convert everyone that marketing brings in.</p>
+    <p class="hero-sub">Hi, we're Ascend. We help businesses get found on Google, bring in customers with ads, and turn visitors into calls and sales with a website built to convert. Marketing first, design to back it up.</p>
     <div class="hero-ctas">
       <a href="https://calendly.com/michael-hqascend/free-consultation" class="btn-primary" target="_blank" rel="noopener">Book a Call</a>
       <a href="portfolio" class="btn-ghost">See Our Work</a>
     </div>
+    <div class="hero-chips" role="group" aria-label="Pick what you want most">
+      <span class="chips-label">What do you want most?</span>
+      <button class="chip" type="button" data-goto="leads">More customers</button>
+      <button class="chip" type="button" data-goto="found">Show up on Google</button>
+      <button class="chip" type="button" data-goto="convert">A better website</button>
+      <button class="chip" type="button" data-goto="grow">Someone to handle it all</button>
+    </div>
+    <div class="hero-trust">
+      <span>Free consultation</span>
+      <span>No contracts on ads</span>
+      <span>You work directly with the person doing the work</span>
+    </div>
   </div>
 </header>
 
-<section id="statement">
-  <div class="wrap reveal statement-wrap">
-    <h2 class="statement-text">Most agencies hand you a website and disappear. <span class="statement-accent">We stick around and keep it working.</span></h2>
-    <div class="statement-row">
-      <div class="stat"><div class="stat-num" data-count-to="7">0</div><div class="stat-label">Steps in every project, start to launch</div></div>
-      <div class="stat"><div class="stat-num" data-count-to="1">0</div><div class="stat-label">Person you actually work with, no account managers</div></div>
-      <div class="stat"><div class="stat-num" data-count-to="100" data-suffix="%">0%</div><div class="stat-label">Custom builds, never a recycled template</div></div>
+<section id="what" style="padding-top:36px;">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">What we do</div>
+      <h2 class="section-title wide">We get you found, get you leads, and turn them into customers.</h2>
+      <p class="section-lead">Four jobs, one partner. Tap each one to see how it works.</p>
+    </div>
+    <div class="explorer" id="explorer">
+      <div class="ex-tabs" role="tablist" aria-label="What Ascend does">
+        <button class="ex-tab active" role="tab" aria-selected="true" data-tab="found"><span class="ex-num">01</span><span><b>Get found</b><small>SEO and Google</small></span></button>
+        <button class="ex-tab" role="tab" aria-selected="false" data-tab="leads"><span class="ex-num">02</span><span><b>Get leads</b><small>Google and Meta ads</small></span></button>
+        <button class="ex-tab" role="tab" aria-selected="false" data-tab="convert"><span class="ex-num">03</span><span><b>Get customers</b><small>Websites that convert</small></span></button>
+        <button class="ex-tab" role="tab" aria-selected="false" data-tab="grow"><span class="ex-num">04</span><span><b>Keep growing</b><small>Care and reporting</small></span></button>
+      </div>
+      <div class="ex-panels">
+
+        <div class="ex-panel active" id="panel-found" role="tabpanel">
+          <div>
+            <h3>People are already searching for you.</h3>
+            <p class="ex-lead">When someone searches for what you sell, we make sure it's your name they see first. That means a faster site, better pages, and a clear plan for climbing the results.</p>
+            <ul class="ex-bullets">
+              <li>Fix what's holding your site back on Google</li>
+              <li>Write pages around what customers really search</li>
+              <li>Track your rankings and show you the progress</li>
+            </ul>
+            <a class="ex-link" href="seo">See how SEO works &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Illustration of a business climbing Google results">
+            <span class="viz-tag">Illustration</span>
+            <div class="serp-q">best your service near me</div>
+            <ol class="serp-list" id="serpList">
+              <li data-k="c1"><span class="pos">1</span>Competitor One</li>
+              <li data-k="c2"><span class="pos">2</span>Competitor Two</li>
+              <li data-k="c3"><span class="pos">3</span>Competitor Three</li>
+              <li data-k="c4"><span class="pos">4</span>Competitor Four</li>
+              <li data-k="me" class="mine"><span class="pos">5</span>Your business</li>
+            </ol>
+            <button class="viz-replay" type="button" id="serpReplay">Replay</button>
+          </div>
+        </div>
+
+        <div class="ex-panel" id="panel-leads" role="tabpanel">
+          <div>
+            <h3>Turn ad spend into real inquiries.</h3>
+            <p class="ex-lead">We run Google and Meta ads that target people ready to buy, then keep adjusting them so your budget works harder every month. Our fee gets smaller as your budget grows.</p>
+            <ul class="ex-bullets">
+              <li>Starts at a $1,000 monthly ad budget</li>
+              <li>No contracts, cancel anytime</li>
+              <li>Drag the slider to see our fee at your budget</li>
+            </ul>
+            <a class="ex-link" href="pricing-ads">See the full Marketing pricing &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Ad budget fee estimator">
+            <span class="viz-tag">Live pricing</span>
+            <div class="ads-val" id="adsVal">$5,000<small>/mo ad budget</small></div>
+            <input class="range" type="range" id="adsRange" min="1000" max="100000" step="500" value="5000" aria-label="Monthly ad budget">
+            <div class="range-ends"><span>$1,000</span><span>$100,000</span></div>
+            <div class="fee-row"><span>Our fee at this budget</span><strong id="adsFee">48.6% &middot; $2,430/mo</strong></div>
+          </div>
+        </div>
+
+        <div class="ex-panel" id="panel-convert" role="tabpanel">
+          <div>
+            <h3>A website that does the selling.</h3>
+            <p class="ex-lead">Traffic only matters if visitors act. We build fast, clear, custom sites with one obvious next step, so the people marketing brings in actually call, book, or buy.</p>
+            <ul class="ex-bullets">
+              <li>Custom design, never a recycled template</li>
+              <li>Clear message and a button people can't miss</li>
+              <li>Built to load fast and work on every phone</li>
+            </ul>
+            <a class="ex-link" href="web-design">See how we build sites &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Before and after website illustration">
+            <span class="viz-tag">Illustration</span>
+            <div class="switch" role="group" aria-label="Before or after">
+              <button type="button" class="on" data-state="before">Before</button>
+              <button type="button" data-state="after">After</button>
+            </div>
+            <div class="mock" id="mock">
+              <div class="mock-bar"><i></i><i></i><i></i></div>
+              <div class="mock-body">
+                <div class="mock-before">
+                  <div class="ln" style="width:70%"></div><div class="ln" style="width:92%"></div><div class="ln" style="width:55%"></div><div class="ln" style="width:84%"></div><div class="ln" style="width:40%"></div>
+                  <span class="tiny-btn">submit</span>
+                  <div class="mock-note">Unclear message, tiny button, visitors leave.</div>
+                </div>
+                <div class="mock-after">
+                  <h4>Clear promise.<br>One obvious next step.</h4>
+                  <p>Short, simple copy that tells people why to choose you.</p>
+                  <span class="big-btn">Book a free call</span>
+                  <div class="trust"><span>Fast</span><span>Mobile ready</span><span>Easy to trust</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-panel" id="panel-grow" role="tabpanel">
+          <div>
+            <h3>We don't disappear after launch.</h3>
+            <p class="ex-lead">Marketing is a monthly habit, not a one-time project. We keep your site healthy, your campaigns tuned, and send you a plain-English report so you always know where you stand.</p>
+            <ul class="ex-bullets">
+              <li>Site updates, backups, and fixes</li>
+              <li>Ongoing SEO, ads, social, and branding</li>
+              <li>One person who knows your business</li>
+            </ul>
+            <a class="ex-link" href="marketing">See our marketing services &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Monthly checklist illustration">
+            <span class="viz-tag">Every month</span>
+            <ul class="tick-list" id="tickList">
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rankings checked and tracked</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ad campaigns tuned</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Site updated and backed up</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>New content published</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Plain-English report sent to you</li>
+            </ul>
+            <button class="viz-replay" type="button" id="tickReplay">Replay</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
 
-<section id="proof" class="section-alt" style="padding-top:0;">
+<section id="calc" class="section-alt">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Try it</div>
+      <h2 class="section-title wide">What could more customers be worth to you?</h2>
+      <p class="section-lead">Plug in your own numbers and see a what-if estimate. You set the assumptions, so move the sliders to match your business.</p>
+    </div>
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label for="cVisitors">Website visitors a month <output id="oVisitors"></output></label>
+          <input class="range" type="range" id="cVisitors" min="100" max="20000" step="100" value="1500">
+        </div>
+        <div class="calc-field">
+          <label for="cConv">Visitors who become customers <output id="oConv"></output></label>
+          <input class="range" type="range" id="cConv" min="0.5" max="10" step="0.5" value="1.5">
+        </div>
+        <div class="calc-field">
+          <label for="cValue">Value of a new customer <output id="oValue"></output></label>
+          <input class="range" type="range" id="cValue" min="50" max="10000" step="50" value="600">
+        </div>
+        <div class="calc-field">
+          <label for="cTraffic">More visitors from SEO and ads <output id="oTraffic"></output></label>
+          <input class="range" type="range" id="cTraffic" min="0" max="150" step="5" value="40">
+          <small>Your estimate of the extra traffic marketing brings</small>
+        </div>
+        <div class="calc-field" style="grid-column:1/-1;">
+          <label for="cLift">Better conversion from a stronger site <output id="oLift"></output></label>
+          <input class="range" type="range" id="cLift" min="0" max="100" step="5" value="20">
+          <small>Your estimate of how many more visitors a clearer site turns into customers</small>
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="co-label">Possible extra revenue</div>
+        <div class="co-big" id="coExtra">$0</div>
+        <div class="co-sub" id="coYear">per month</div>
+        <div class="bars">
+          <div class="bar-row"><span>Today</span><div class="bar-track"><div class="bar-fill now" id="barNow"></div></div><b id="nNow">0</b></div>
+          <div class="bar-row"><span>With Ascend</span><div class="bar-track"><div class="bar-fill with" id="barWith"></div></div><b id="nWith">0</b></div>
+        </div>
+        <div class="co-sub">New customers per month</div>
+        <p class="calc-note">A what-if tool using the numbers you enter, not a promise of results. Real results depend on your market and budget.</p>
+        <a class="calc-cta" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Let's find your real numbers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
   <div class="wrap reveal">
     <div class="proof-band">
-      <div class="proof-label">Real work, not mockups</div>
+      <div class="proof-label">Real work, live on the web</div>
       <div class="proof-row">
-        <div class="proof-item">
+        <a class="proof-item" href="case-study-abogadaus">
           <img class="proof-thumb" src="assets/portfolio-abogadaus.jpg" alt="AbogadaUS.com homepage">
           <div class="proof-name">AbogadaUS</div>
           <div class="proof-detail">Law firm site &middot; live, bilingual, audited 88/100</div>
-        </div>
-        <div class="proof-item">
+          <span class="proof-go">Read the case study &rarr;</span>
+        </a>
+        <a class="proof-item" href="case-study-ciudadanoready">
           <img class="proof-thumb" src="assets/portfolio-ciudadanoready.jpg" alt="CiudadanoReady.com homepage">
           <div class="proof-name">CiudadanoReady</div>
           <div class="proof-detail">Course platform &middot; live, subscription-based</div>
-        </div>
-        <div class="proof-item">
+          <span class="proof-go">Read the case study &rarr;</span>
+        </a>
+        <a class="proof-item" href="portfolio">
           <img class="proof-thumb" src="assets/ascendflorida-desktop-mockup.jpg" alt="AscendFlorida.com desktop mockup">
           <div class="proof-name">AscendFlorida</div>
           <div class="proof-detail">E-commerce build &middot; Shopify</div>
-        </div>
+          <span class="proof-go">See all case studies &rarr;</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="what">
+<section id="why" class="section-alt">
   <div class="wrap reveal">
-    <div class="kicker">What We Do</div>
-    <h2 class="section-title">A full-stack design & marketing partner.</h2>
-    <p class="section-lead">Design, development, SEO, and paid ads working together, not handed off between separate vendors.</p>
-    <div class="whatwedo-grid">
-      <div class="wwd-item">
-        <div class="num">01</div>
-        <h3>Design & Build</h3>
-        <p>Custom, modern websites built to convert visitors into customers, not just look good.</p>
-      </div>
-      <div class="wwd-item">
-        <div class="num">02</div>
-        <h3>Grow Your Reach</h3>
-        <p>SEO and paid ads (Google & Meta) that put your site in front of the right people.</p>
-      </div>
-      <div class="wwd-item">
-        <div class="num">03</div>
-        <h3>Stay Supported</h3>
-        <p>Ongoing maintenance and updates, so your site never becomes an afterthought.</p>
+    <div class="section-head">
+      <div class="kicker">Why Ascend</div>
+      <h2 class="section-title wide">Most agencies hand you a website and disappear. We stick around and keep it working.</h2>
+    </div>
+    <div class="why-strip">
+      <div><h3>One partner, not five</h3><p>Design, development, and marketing under one roof, with no handoffs.</p></div>
+      <div><h3>Built to convert</h3><p>Every page is designed around getting visitors to take action.</p></div>
+      <div><h3>Direct access</h3><p>You talk to the person doing the work, never an account manager.</p></div>
+      <div><h3>Support after launch</h3><p>Ongoing care and marketing keep your site working long after it goes live.</p></div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat"><div class="stat-num" data-count-to="7">0</div><div class="stat-label">Steps in every project, start to launch</div></div>
+      <div class="stat"><div class="stat-num" data-count-to="1">0</div><div class="stat-label">Person you actually work with</div></div>
+      <div class="stat"><div class="stat-num" data-count-to="100" data-suffix="%">0%</div><div class="stat-label">Custom builds, never a recycled template</div></div>
+    </div>
+    <div class="founder-compact">
+      <div class="founder-avatar"><img src="assets/brand/ascend-icon-white.png" alt=""></div>
+      <div>
+        <h3>Hi, I'm Michael.</h3>
+        <p class="founder-text">I started Ascend because I was tired of seeing small businesses get a generic template and a vague marketing retainer, then left to guess whether any of it worked. Every site, strategy, and campaign here, I build myself. When you call, you're talking to the person doing the work.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="work" class="section-alt">
-  <div class="wrap reveal">
-    <div class="kicker">Portfolio</div>
-    <h2 class="section-title">Recent work.</h2>
-    <p class="section-lead">Early-stage, but every project gets the same full-service treatment.</p>
-    <div class="portfolio-grid">
-
-      <div class="p-card">
-        <div class="status live">Live</div>
-        <div class="thumb">CiudadanoReady</div>
-        <div class="type-tag">Online Course · Test Prep</div>
-        <h3>CiudadanoReady.com</h3>
-        <p>A bilingual (EN/ES) naturalization test-prep course built with an immigration attorney's office. Structured as a 7-stage path from eligibility to the oath ceremony, with built-in practice questions and tiered monthly/2-year pricing.</p>
-        <div class="p-tags">
-          <span>Nationwide</span>
-          <span>Bilingual</span>
-          <span>Course Platform</span>
-        </div>
-        <div style="margin-top:16px;"><a class="visit" href="https://ciudadanoready.com" target="_blank" rel="noopener">Visit site ↗</a></div>
-      </div>
-
-      <div class="p-card">
-        <div class="status live">Live</div>
-        <div class="thumb">AbogadaUS</div>
-        <div class="type-tag">Law Firm · Immigration</div>
-        <h3>AbogadaUS.com</h3>
-        <p>Website built and organized for the Law Offices of Ingrid Morfa, covering immigration, family, criminal, and disability practice areas in both English and Spanish.</p>
-        <div class="p-tags">
-          <span>Legal Services</span>
-          <span>Bilingual</span>
-          <span>Local Business</span>
-        </div>
-        <div style="margin-top:16px;"><a class="visit" href="https://abogadaus.com" target="_blank" rel="noopener">Visit site ↗</a></div>
-      </div>
-
-      <div class="p-card">
-        <div class="status inactive">Inactive · Rebuilding</div>
-        <div class="thumb"><img src="assets/ascendflorida-desktop-mockup.jpg" alt="AscendFlorida.com desktop mockup"></div>
-        <div class="type-tag">E-Commerce · Sneakers</div>
-        <h3>AscendFlorida.com</h3>
-        <p>A Shopify sneaker resale store under the Ascend name, before the brand became a design and marketing agency. Organized by brand, category, and size, with new drops added regularly.</p>
-        <div class="p-tags">
-          <span>Shopify</span>
-          <span>E-Commerce</span>
-          <span>Own Business</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="services">
-  <div class="wrap reveal">
-    <div class="kicker">Services</div>
-    <h2 class="section-title">Everything your brand needs to grow online.</h2>
-    <div class="services-grid">
-      <div class="s-card"><div class="dot"></div><h3>Website Design & Development</h3><p>Custom-built sites designed around your business, not a template.</p></div>
-      <div class="s-card"><div class="dot"></div><h3>Website Maintenance</h3><p>Updates, backups, and fixes so your site stays fast and secure.</p></div>
-      <div class="s-card"><div class="dot"></div><h3>SEO</h3><p>Get found on Google by the people already searching for you.</p></div>
-      <div class="s-card"><div class="dot"></div><h3>Google Ads</h3><p>Paid search campaigns built to bring in qualified leads, not just clicks.</p></div>
-      <div class="s-card"><div class="dot"></div><h3>Meta Ads</h3><p>Facebook & Instagram campaigns that turn scrollers into customers.</p></div>
-      <div class="s-card"><div class="dot"></div><h3>Social Media Marketing</h3><p>Content and posting that builds an audience, not just a feed.</p></div>
-      <div class="s-card"><div class="dot"></div><h3>Branding</h3><p>Logo, color, voice, a brand identity that looks as good as your website.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="why" class="section-alt section-glow">
-  <div class="wrap reveal">
-    <div class="kicker">Why Choose Ascend</div>
-    <h2 class="section-title">Built for businesses that want to grow, not just launch.</h2>
-    <div class="why-grid">
-      <div class="why-item">
-        <div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><h3>One partner, not five vendors</h3><p>Design, development, and marketing under one roof, no handoffs between agencies.</p></div>
-      </div>
-      <div class="why-item">
-        <div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><h3>Built to convert</h3><p>Every site is designed around getting visitors to take action, not just look nice.</p></div>
-      </div>
-      <div class="why-item">
-        <div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><h3>Direct access to who builds it</h3><p>You work directly with the person building your site, no account managers in between.</p></div>
-      </div>
-      <div class="why-item">
-        <div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><h3>Support that doesn't end at launch</h3><p>Ongoing maintenance and marketing keep your site working long after it goes live.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="founder">
-  <div class="wrap reveal founder-grid">
-    <div class="founder-photo-slot">
-      <div class="founder-photo-placeholder">Photo coming soon</div>
-    </div>
-    <div>
-      <div class="kicker">Who's Behind This</div>
-      <h2 class="section-title">Not an agency of account managers. Just me.</h2>
-      <p class="founder-text">I'm Michael, I started Ascend because I was tired of seeing small businesses get handed a generic template and a vague marketing retainer, then left to figure out if any of it actually worked. Every site on this page, every strategy, every campaign, I build it myself. When you call, you're talking to the person who's actually doing the work, not someone relaying your request to a team you'll never meet.</p>
-      <div class="founder-sign">&mdash; Michael, Founder</div>
-    </div>
-  </div>
-</section>
-
-<section id="testimonials" class="section-alt">
+<section id="testimonials">
   <div class="wrap reveal">
     <div class="kicker">Testimonials</div>
     <h2 class="section-title">What clients are saying.</h2>
@@ -318,18 +391,11 @@
   </div>
 </section>
 
-<section id="mid-cta" style="padding:50px 0;">
-  <div class="wrap reveal" style="text-align:center;">
-    <p style="font-size:16px; color:var(--ivory); margin-bottom:18px;">Ready to see what this looks like for your business?</p>
-    <a href="https://calendly.com/michael-hqascend/free-consultation" class="btn-primary" target="_blank" rel="noopener">Book a Call</a>
-  </div>
-</section>
-
-<section id="contact">
+<section id="contact" class="section-alt">
   <div class="wrap reveal">
     <div class="kicker">Contact</div>
-    <h2 class="section-title">Let's build something that ascends.</h2>
-    <p class="section-lead">Tell us about your business and we'll follow up to schedule your free consultation.</p>
+    <h2 class="section-title wide">Let's build something that ascends.</h2>
+    <p class="section-lead">Tell us about your business and we'll follow up to schedule your free consultation. Or <a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener" style="text-decoration:underline;">book a call right now</a>.</p>
     <div class="contact-grid">
       <div class="contact-info">
         <a href="mailto:michael@hqascend.com"><span class="ci-label">Email</span>michael@hqascend.com</a>
@@ -350,7 +416,7 @@
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <div class="logo icon-only"><img src="/assets/brand/ascend-icon-white.png" alt="Ascend"></div>
+      <div class="logo icon-only"><img src="/assets/brand/ascend-icon-black.png" alt="Ascend"></div>
       <p>Website design &amp; marketing for businesses that want to grow.</p>
     </div>
     <div class="footer-links">
@@ -378,7 +444,7 @@
   <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
 </footer>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 <script>
   (function() {
     const words = ['your business', 'your enterprise', 'your startup'];

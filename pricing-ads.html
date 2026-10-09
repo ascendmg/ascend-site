@@ -36,7 +36,7 @@
     transition:border-color .25s ease, transform .25s ease;
   }
   .price-card:hover{border-color:var(--green-dim); transform:translateY(-3px);}
-  .price-card.featured{border-color:var(--green); background:rgba(214,208,194,.05);}
+  .price-card.featured{border-color:var(--accent-dim); background:rgba(99,102,241,.05);}
   .price-card .tag{
     font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--green); font-weight:600; margin-bottom:14px;
@@ -66,7 +66,7 @@
     border:1px solid var(--line); font-size:13px; font-weight:600;
     transition:border-color .2s ease, background .2s ease;
   }
-  .price-card.featured .cta{background:var(--green); color:var(--black); border-color:var(--green);}
+  .price-card.featured .cta{background:var(--green); color:var(--on-accent); border-color:var(--green);}
   .price-card .cta:hover{border-color:var(--green);}
   @media (max-width:980px){ .pricing-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:600px){ .pricing-grid{grid-template-columns:1fr;} }
@@ -104,7 +104,7 @@
   .slider-card{
     border:1px solid transparent;
     background:
-      linear-gradient(var(--black), var(--black)) padding-box,
+      linear-gradient(var(--forest-2), var(--forest-2)) padding-box,
       var(--accent-gradient) border-box;
     border-radius:24px;
     padding:44px;
@@ -112,7 +112,7 @@
     max-width:640px;
     position:relative;
     overflow:hidden;
-    box-shadow:0 20px 60px -20px rgba(99,102,241,.25);
+    box-shadow:0 20px 60px -20px rgba(99,102,241,.3);
   }
   .slider-card::before{
     content:'';
@@ -171,7 +171,7 @@
     height:7px;
     transform:translateY(-50%);
     border-radius:999px;
-    background:rgba(255,255,255,.04);
+    background:rgba(99,102,241,.14);
     z-index:-1;
   }
   .slider-thumb-visual{
@@ -180,7 +180,7 @@
     width:18px; height:18px;
     border-radius:50%;
     background:#ffffff;
-    box-shadow:0 0 14px 2px rgba(168,85,247,.55), 0 1px 3px rgba(0,0,0,.4);
+    box-shadow:0 0 0 1px rgba(22,20,42,.08), 0 3px 12px 2px rgba(168,85,247,.5);
     transform:translate(-50%, -50%);
     pointer-events:none;
     left:0%;
@@ -222,7 +222,7 @@
   .ascent-pay-card{
     display:block; width:100%; border:1px solid var(--line); border-radius:14px; padding:22px;
     transition:border-color .2s ease;
-    background:rgba(255,255,255,.015); text-align:left; cursor:pointer;
+    background:#fff; text-align:left; cursor:pointer;
     font-family:'Inter',sans-serif;
     position:relative;
   }
@@ -231,13 +231,13 @@
   .ascent-pay-card.featured{
     border:1px solid transparent;
     background:
-      linear-gradient(rgba(255,255,255,.02), rgba(255,255,255,.02)) padding-box,
+      linear-gradient(#fff, #fff) padding-box,
       var(--accent-gradient) border-box;
   }
   .ascent-best-badge{
     position:absolute; top:-11px; right:16px;
     background:var(--accent-gradient);
-    color:var(--black);
+    color:#fff;
     font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
     padding:4px 10px; border-radius:999px;
   }
@@ -275,7 +275,7 @@
   .slider-card{
     transition:border-color .3s ease, box-shadow .3s ease;
   }
-  .slider-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.25);}
+  .slider-card:hover{box-shadow:0 18px 50px -16px rgba(99,102,241,.4);}
 
   #adSlider:active ~ .slider-thumb-visual{transform:translate(-50%, -50%) scale(1.15);}
   .slider-thumb-visual{transition:transform .15s ease;}
@@ -289,7 +289,7 @@
   .slider-fee strong.pulsing{animation:valuePulse .35s ease;}
 
   .ascent-pay-card{transition:border-color .2s ease, transform .2s ease, background .2s ease;}
-  .ascent-pay-card:hover{transform:translateY(-3px); background:rgba(255,255,255,.02);}
+  .ascent-pay-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px -14px rgba(99,102,241,.4);}
   .ascent-pay-amount{transition:color .2s ease;}
 
   .ascent-features li{
@@ -316,7 +316,7 @@
   }
 
   .btn-primary{transition:transform .2s ease, box-shadow .2s ease;}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 6px 20px rgba(214,208,194,.15);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(99,102,241,.3);}
 </style>
 </head>
 <body>
@@ -474,7 +474,7 @@
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <div class="logo icon-only"><img src="/assets/brand/ascend-icon-white.png" alt="Ascend"></div>
+      <div class="logo icon-only"><img src="/assets/brand/ascend-icon-black.png" alt="Ascend"></div>
       <p>Website design &amp; marketing for businesses that want to grow.</p>
     </div>
     <div class="footer-links">
@@ -557,7 +557,7 @@
     updateSlider();
   }
 
-  // Real checkout — calls the server, which recalculates the fee itself
+  // Real checkout, calls the server, which recalculates the fee itself
   // rather than trusting whatever the client sends, then redirects to
   // Stripe's actual hosted checkout page.
   const checkoutError = document.getElementById('checkoutError');
