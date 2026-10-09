@@ -1145,14 +1145,15 @@
   /* Projection calculator v2 */
   .calc-inputs{grid-template-columns:1fr; gap:14px; align-content:start;}
   .calc-field label{font-size:13px;}
-  .num-box{display:flex; align-items:center; gap:4px; background:var(--forest); border:1px solid var(--line); border-radius:10px; padding:2px 12px; margin:6px 0 2px; width:100%; max-width:240px;}
-  .num-box:focus-within{border-color:var(--accent-dim);}
-  .num-box span{color:var(--muted); font-weight:600;}
-  .num-box input{border:none; background:transparent; padding:9px 0; font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; width:100%; color:var(--ivory); -moz-appearance:textfield;}
+  .num-box{display:inline-flex; align-items:baseline; gap:2px; background:none; border:none; border-bottom:2px solid transparent; border-radius:0; padding:0; margin:4px 0 6px; transition:border-color .2s ease;}
+  .num-box:hover{border-bottom-color:var(--line);}
+  .num-box:focus-within{border-bottom-color:var(--accent-2);}
+  .num-box span{font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--muted);}
+  .num-box input{border:none; border-radius:0; background:transparent; padding:0; font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:700; letter-spacing:-.02em; width:5.5ch; color:var(--ivory); -moz-appearance:textfield; field-sizing:content; min-width:2ch;}
   .num-box input:focus{outline:none; border:none;}
   .num-box input::-webkit-outer-spin-button, .num-box input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
-  .calc-plan{font-size:12.5px; color:var(--muted); line-height:1.55; padding:10px 12px; border-radius:10px; background:linear-gradient(160deg,#f7f6ff,#fdf6fa); border:1px solid var(--line);}
   .co-range{font-size:12.5px; color:rgba(255,255,255,.8); margin-top:6px;}
   .co-tabs{margin:14px 0 2px;}
   .co-tabs button{background:rgba(255,255,255,.1); color:#fff; border-color:rgba(255,255,255,.2); padding:6px 12px; font-size:12px;}
   .co-tabs button[aria-selected="true"]{background:#fff; color:#17153a; border-color:#fff;}
+  #nConv{width:3.4ch;}

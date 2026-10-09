@@ -253,14 +253,14 @@
       }
       function trafficUplift(v) {
         const x = Math.log(Math.max(v, 200) / 200) / Math.log(100);
-        return Math.max(0.15, 0.65 - 0.45 * Math.min(x, 1.2));
+        return Math.max(0.35, 1.1 - 0.65 * Math.min(x, 1.2));
       }
       function convUplift(c) {
-        return Math.min(0.30, Math.max(0.05, 0.3 * (3.5 / Math.max(c, 0.1) - 1)));
+        return Math.min(0.50, Math.max(0.10, 0.45 * (5 / Math.max(c, 0.1) - 1)));
       }
       function clampNum(v, lo, hi, d) { v = parseFloat(v); return isNaN(v) ? d : Math.min(hi, Math.max(lo, v)); }
       function calc() {
-        const visitors = clampNum(nV.value, 100, 50000, 3000), conv = clampNum(nC.value, 0.1, 20, 2) / 100, value = clampNum(nVal.value, 1, 100000, 600);
+        const visitors = clampNum(nV.value, 100, 50000, 3000), conv = clampNum(nC.value, 1, 100, 2) / 100, value = clampNum(nVal.value, 1, 100000, 600);
         [rV, rC, rVal].forEach(setFill);
         const u = trafficUplift(visitors), c = convUplift(conv * 100), r = RAMP[months];
         const now = visitors * conv;
@@ -269,13 +269,12 @@
         tween($('coExtra'), extra, fmtMoney);
         $('coYear').textContent = 'per month at month ' + months + ', about ' + fmtMoney(extra * 12) + ' a year at that pace';
         $('coRange').textContent = 'Likely range: ' + fmtMoney(extra * 0.6) + ' to ' + fmtMoney(extra) + ' a month';
-        $('calcPlan').textContent = 'For a business like yours we plan for about +' + Math.round(u * 100) + '% more visitors and +' + Math.round(c * 100) + '% better conversion once the work has had time to build.';
         $('nNow').textContent = now.toFixed(1);
         $('nWith').textContent = wth.toFixed(1);
         const max = Math.max(wth, now, 0.001);
         $('barNow').style.width = (now / max * 100) + '%';
         $('barWith').style.width = (wth / max * 100) + '%';
-        const msg = "Hi, I'd like to talk about growing my business. My numbers: about " + Math.round(visitors).toLocaleString('en-US') + " website visitors a month, " + (conv * 100).toFixed(1) + "% become customers, each customer is worth about " + fmtMoney(value) + ". About my business: ";
+        const msg = "Hi, I'd like to talk about growing my business. My numbers: about " + Math.round(visitors).toLocaleString('en-US') + " website visitors a month, " + Math.round(conv * 100) + "% become customers, each customer is worth about " + fmtMoney(value) + ". About my business: ";
         $('calcGo').setAttribute('href', 'contact?msg=' + encodeURIComponent(msg));
         $('calcGo').removeAttribute('target');
       }
