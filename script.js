@@ -283,6 +283,7 @@
         box.addEventListener('input', () => { range.value = box.value; calc(); });
       }
       link(rV, nV); link(rC, nC); link(rVal, nVal);
+      [nV, nC, nVal].forEach(i => { const fit = () => { i.style.width = (Math.max(1, String(i.value).length) + 0.3) + 'ch'; }; i.addEventListener('input', fit); fit(); });
       const ct = $('coTabs');
       ct.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
         months = parseInt(b.dataset.m, 10);
