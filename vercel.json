@@ -46,5 +46,22 @@
       "source": "/api/generate-report",
       "destination": "/api/seo?fn=report"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/pricing-ads",
+      "destination": "/pricing?tab=marketing",
+      "permanent": true
+    },
+    {
+      "source": "/pricing-seo",
+      "destination": "/pricing?tab=seo",
+      "permanent": true
+    },
+    {
+      "source": "/pricing-web-design",
+      "destination": "/pricing?tab=web",
+      "permanent": true
+    }
   ]
 }

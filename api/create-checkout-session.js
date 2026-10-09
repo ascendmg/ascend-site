@@ -84,8 +84,8 @@ export default async function handler(req, res) {
           },
           quantity: 1,
         }],
-        success_url: `${siteUrl}/pricing-ads?checkout=success`,
-        cancel_url: `${siteUrl}/pricing-ads?checkout=canceled`,
+        success_url: `${siteUrl}/pricing?tab=marketing&checkout=success`,
+        cancel_url: `${siteUrl}/pricing?tab=marketing&checkout=canceled`,
         metadata: { ad_spend: spendNum, billing_type: 'monthly' },
       });
     } else {
@@ -104,8 +104,8 @@ export default async function handler(req, res) {
           },
           quantity: 1,
         }],
-        success_url: `${siteUrl}/pricing-ads?checkout=success`,
-        cancel_url: `${siteUrl}/pricing-ads?checkout=canceled`,
+        success_url: `${siteUrl}/pricing?tab=marketing&checkout=success`,
+        cancel_url: `${siteUrl}/pricing?tab=marketing&checkout=canceled`,
         metadata: { ad_spend: spendNum, billing_type: '90day' },
       });
     }

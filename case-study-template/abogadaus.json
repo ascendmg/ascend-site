@@ -1,0 +1,199 @@
+{
+ "slug": "case-study-abogadaus",
+ "name": "AbogadaUS",
+ "title": "AbogadaUS Case Study | Ascend",
+ "metaDescription": "How Ascend approached AbogadaUS, the bilingual website for the Law Offices of Ingrid Morfa, with click-to-call contact and a full SEO audit.",
+ "url": "https://www.abogadaus.com",
+ "host": "abogadaus.com",
+ "category": "Law Firm Website",
+ "industry": "Legal Services",
+ "eyebrow": "Case Study · Law Firm",
+ "tagline": "A Trustworthy Front Door for a Local Practice.",
+ "description": "A bilingual website for the Law Offices of Ingrid Morfa that helps prospective clients understand the practice and reach the office quickly.",
+ "capabilities": [
+  "Bilingual navigation",
+  "Click-to-call contact",
+  "SEO audit"
+ ],
+ "accent": "#2a8fc4",
+ "hero": {
+  "desktop": {
+   "img": "assets/cases/abogadaus-home.jpg",
+   "alt": "AbogadaUS.com homepage"
+  },
+  "mobile": {
+   "brand": "Law Offices of ",
+   "brandAccent": "Ingrid Morfa",
+   "serif": false,
+   "accent": "#2a8fc4",
+   "toggle": false,
+   "eyebrow": "We are here to help",
+   "headline": "Law Offices of Ingrid Morfa, P.A.",
+   "logo": "assets/cases/abogadaus-logo.jpg",
+   "path": 0,
+   "cta": "Call 407-201-6960",
+   "cta2": "Immigration · Disability"
+  }
+ },
+ "showcase": {
+  "headline": "Explore What We Built.",
+  "tabs": [
+   {
+    "id": "site",
+    "label": "Website Experience",
+    "type": "screenshot",
+    "img": "assets/cases/abogadaus-home.jpg",
+    "alt": "AbogadaUS homepage",
+    "path": "/",
+    "blurb": "The live homepage: the firm, the address, and a call button above the fold.",
+    "tag": "Real screenshot"
+   },
+   {
+    "id": "pairs",
+    "label": "Bilingual Navigation",
+    "type": "pairs",
+    "path": "/",
+    "blurb": "Menu labels in English and Spanish so clients feel at home right away. Hover a pair.",
+    "tag": "Interactive demo · real menu labels",
+    "pairs": [
+     {
+      "en": "About Us",
+      "es": "Sobre Nosotros"
+     },
+     {
+      "en": "Interviews",
+      "es": "Entrevistas"
+     },
+     {
+      "en": "Disability",
+      "es": "Incapacidad"
+     },
+     {
+      "en": "Contact Us",
+      "es": "Contáctanos"
+     },
+     {
+      "en": "Offices",
+      "es": "Oficinas"
+     },
+     {
+      "en": "News",
+      "es": "Noticias"
+     },
+     {
+      "en": "Education",
+      "es": "Educación"
+     }
+    ]
+   },
+   {
+    "id": "contact",
+    "label": "Contact Experience",
+    "type": "contact",
+    "path": "/contact",
+    "blurb": "Call, or send a message. Try the demo form.",
+    "tag": "Interactive demo · nothing is sent",
+    "phone": "407-201-6960",
+    "address": "722 Patrick Street, Suite 106, Kissimmee, FL 34741",
+    "hours": "9:00 am to 5:00 pm",
+    "fields": [
+     "Name",
+     "Email",
+     "Phone"
+    ]
+   },
+   {
+    "id": "audit",
+    "label": "SEO Audit",
+    "type": "audit",
+    "path": "/seo-audit",
+    "blurb": "The first site fully audited by Ascend's own SEO system. Real findings, not a demo.",
+    "tag": "Ascend SEO audit",
+    "score": 88,
+    "outOf": 100,
+    "findings": [
+     "Missing meta descriptions on some pages",
+     "A couple of thin pages to expand",
+     "Concrete fixes identified, not guesses"
+    ]
+   }
+  ]
+ },
+ "challenge": {
+  "headline": "Trust First. Then the Call.",
+  "challengeTitle": "The Challenge",
+  "challenge": "Give a local law practice a credible online presence that helps a stranger trust the firm and reach the office, in English and Spanish.",
+  "pains": [
+   "Serious legal questions",
+   "Bilingual clients",
+   "Need to reach the office fast"
+  ],
+  "solutionTitle": "Our Solution",
+  "solution": "A clear, bilingual site with the phone number and address front and center, a simple contact form, and an SEO audit to guide ongoing improvements.",
+  "wins": [
+   "Bilingual menu",
+   "Call in one tap",
+   "Audit-led improvements"
+  ],
+  "highlights": [
+   {
+    "icon": "lang",
+    "t": "Bilingual Navigation"
+   },
+   {
+    "icon": "call",
+    "t": "Click-to-Call Contact"
+   },
+   {
+    "icon": "audit",
+    "t": "Audit-Led SEO"
+   }
+  ]
+ },
+ "features": {
+  "headline": "What Makes It Work.",
+  "items": [
+   {
+    "type": "pairs",
+    "t": "Bilingual Navigation",
+    "d": "English and Spanish menu labels.",
+    "more": "Labels like Sobre Nosotros and Incapacidad help Spanish-speaking clients find their way.",
+    "pairs": [
+     {
+      "en": "About Us",
+      "es": "Sobre Nosotros"
+     },
+     {
+      "en": "Disability",
+      "es": "Incapacidad"
+     }
+    ]
+   },
+   {
+    "type": "call",
+    "t": "Click-to-Call",
+    "d": "The office is one tap away.",
+    "more": "The phone number is linked to call directly, with a consultation button on the homepage.",
+    "phone": "407-201-6960"
+   },
+   {
+    "type": "audit",
+    "t": "SEO Audit",
+    "d": "Scored 88/100 with clear fixes.",
+    "more": "Real findings from Ascend's SEO system, like missing meta descriptions and a few thin pages.",
+    "score": 88
+   }
+  ]
+ },
+ "results": {
+  "headline": "Built to Be Easy to Trust and Easy to Reach.",
+  "items": [
+   "Live bilingual website",
+   "Click-to-call contact",
+   "Contact form",
+   "Audited with Ascend's SEO system"
+  ],
+  "note": "Audit score: 88/100, with specific fixes identified.",
+  "disclaimer": "The Law Offices of Ingrid Morfa, P.A. is an independent law practice. This case study describes website work only."
+ }
+}

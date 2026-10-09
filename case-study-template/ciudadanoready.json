@@ -1,0 +1,271 @@
+{
+ "slug": "case-study-ciudadanoready",
+ "name": "CiudadanoReady",
+ "title": "CiudadanoReady Case Study | Ascend",
+ "metaDescription": "How Ascend designed and built CiudadanoReady, a bilingual U.S. naturalization test-prep platform with a seven-stage course, practice tools, and one-time online enrollment.",
+ "url": "https://ciudadanoready.com",
+ "host": "ciudadanoready.com",
+ "category": "Online Course Platform",
+ "industry": "Education",
+ "eyebrow": "Case Study · Online Course",
+ "tagline": "Making Citizenship Preparation Simpler.",
+ "description": "A bilingual citizenship preparation platform designed to make learning more accessible, organized, and engaging.",
+ "capabilities": [
+  "Web design & build",
+  "Bilingual experience",
+  "Course structure",
+  "Online enrollment"
+ ],
+ "accent": "#2f6a9a",
+ "hero": {
+  "desktop": {
+   "img": "assets/cases/ciudadanoready-home.jpg",
+   "alt": "CiudadanoReady.com homepage"
+  },
+  "mobile": {
+   "brand": "Ciudadano",
+   "brandAccent": "Ready",
+   "serif": true,
+   "accent": "#2f6a9a",
+   "toggle": true,
+   "eyebrow": "U.S. Naturalization Test Prep",
+   "headline": "Walk into your citizenship interview ready.",
+   "path": 7,
+   "cta": "Start the Course",
+   "cta2": "See Pricing"
+  }
+ },
+ "showcase": {
+  "headline": "Explore What We Built.",
+  "tabs": [
+   {
+    "id": "site",
+    "label": "Website Experience",
+    "type": "screenshot",
+    "img": "assets/cases/ciudadanoready-home.jpg",
+    "alt": "CiudadanoReady homepage",
+    "path": "/",
+    "blurb": "The live homepage: a clear promise, the full seven-stage path, and one obvious next step.",
+    "tag": "Real screenshot"
+   },
+   {
+    "id": "dash",
+    "label": "Course Dashboard",
+    "type": "dashboard",
+    "path": "/dashboard",
+    "blurb": "Progress, study streaks and badges keep learners oriented. Tap a lesson to preview it.",
+    "tag": "Interactive demo · sample content",
+    "progress": 68,
+    "streak": 12,
+    "badges": 7,
+    "current": 5,
+    "stages": [
+     "Welcome",
+     "Eligibility",
+     "N-400",
+     "Biometrics",
+     "Interview & Exam Prep",
+     "The Interview",
+     "Oath Ceremony"
+    ],
+    "lessons": [
+     {
+      "t": "Reading & Writing",
+      "p": "Read this sentence aloud, then write it."
+     },
+     {
+      "t": "Know Your Country",
+      "p": "Why does the flag have 13 stripes?"
+     }
+    ]
+   },
+   {
+    "id": "lang",
+    "label": "Bilingual Experience",
+    "type": "bilingual",
+    "path": "/",
+    "blurb": "Switch between English and Spanish with one tap.",
+    "tag": "Interactive demo · sample copy",
+    "brand": "Ciudadano",
+    "brandAccent": "Ready",
+    "serif": true,
+    "accent": "#2f6a9a",
+    "auto": true,
+    "nav": [
+     {
+      "en": "Course",
+      "es": "Curso"
+     },
+     {
+      "en": "FAQ",
+      "es": "Preguntas"
+     },
+     {
+      "en": "Contact",
+      "es": "Contacto"
+     }
+    ],
+    "headline": {
+     "en": "Walk into your citizenship interview ready.",
+     "es": "Llega a tu entrevista de ciudadanía preparado."
+    },
+    "text": {
+     "en": "A step-by-step course covering eligibility, test preparation, the interview and the oath ceremony.",
+     "es": "Un curso paso a paso que cubre la elegibilidad, la preparación del examen, la entrevista y la ceremonia de juramento."
+    },
+    "button": {
+     "en": "Start the Course",
+     "es": "Comenzar el curso"
+    }
+   },
+   {
+    "id": "practice",
+    "label": "Practice & Learning",
+    "type": "quiz",
+    "path": "/practice",
+    "blurb": "Civics-style practice with instant feedback. Try it.",
+    "tag": "Interactive demo · sample question",
+    "accent": "#2f6a9a",
+    "question": {
+     "en": "What is the supreme law of the land?",
+     "es": "¿Cuál es la ley suprema del país?"
+    },
+    "options": [
+     {
+      "en": "The Constitution",
+      "es": "La Constitución",
+      "correct": true
+     },
+     {
+      "en": "The Declaration of Independence",
+      "es": "La Declaración de Independencia"
+     },
+     {
+      "en": "The Bill of Rights",
+      "es": "La Declaración de Derechos"
+     },
+     {
+      "en": "The Articles of Confederation",
+      "es": "Los Artículos de la Confederación"
+     }
+    ],
+    "also": [
+     "Reading & writing practice",
+     "Mock interview practice",
+     "Progress tracking"
+    ]
+   },
+   {
+    "id": "enroll",
+    "label": "Enrollment Experience",
+    "type": "steps",
+    "path": "/pricing",
+    "blurb": "From first visit to course access, in a few clear steps.",
+    "tag": "Interactive demo · simplified flow",
+    "price": "$199.99",
+    "priceNote": "one-time payment · 24 months of access · no automatic renewal",
+    "steps": [
+     {
+      "t": "Discover",
+      "d": "Land on the homepage and see the full path."
+     },
+     {
+      "t": "See pricing",
+      "d": "One clear price. No monthly payments."
+     },
+     {
+      "t": "Start the course",
+      "d": "Create your account."
+     },
+     {
+      "t": "Secure payment",
+      "d": "Checkout through Stripe."
+     },
+     {
+      "t": "Begin Stage 1",
+      "d": "Log in and start learning."
+     }
+    ]
+   }
+  ]
+ },
+ "challenge": {
+  "headline": "Complex Process. Simple Experience.",
+  "challengeTitle": "The Challenge",
+  "challenge": "Create an approachable, bilingual learning platform for people preparing for U.S. citizenship, including users who may not be comfortable with technology.",
+  "pains": [
+   "Unfamiliar forms and steps",
+   "English-only study material",
+   "Confusing checkout"
+  ],
+  "solutionTitle": "Our Solution",
+  "solution": "Build a guided, mobile-friendly learning experience with clear navigation, organized lessons, interactive practice tools, and a streamlined enrollment flow.",
+  "wins": [
+   "Seven clear stages",
+   "English & Spanish",
+   "One simple purchase"
+  ],
+  "highlights": [
+   {
+    "icon": "path",
+    "t": "Guided Learning Experience"
+   },
+   {
+    "icon": "lang",
+    "t": "English & Spanish Support"
+   },
+   {
+    "icon": "cart",
+    "t": "Streamlined Enrollment"
+   }
+  ]
+ },
+ "features": {
+  "headline": "Built Around the Learner.",
+  "items": [
+   {
+    "type": "stages",
+    "t": "Guided Course Structure",
+    "d": "Seven stages, from Welcome to the Oath Ceremony.",
+    "more": "Each stage covers one part of the process so learners always know what comes next.",
+    "stages": [
+     "Welcome",
+     "Eligibility",
+     "N-400",
+     "Biometrics",
+     "Interview & Exam Prep",
+     "The Interview",
+     "Oath Ceremony"
+    ]
+   },
+   {
+    "type": "lang",
+    "t": "Bilingual Interface",
+    "d": "English and Spanish, one tap apart.",
+    "more": "A language switch sits in the header, so learners can move between English and Spanish support.",
+    "en": "Start the Course",
+    "es": "Comenzar el curso"
+   },
+   {
+    "type": "quiz",
+    "t": "Interactive Practice",
+    "d": "Civics practice, reading & writing, mock interview prep.",
+    "more": "Practice with instant feedback, plus progress tracking to show what needs more study.",
+    "q": "What is the supreme law of the land?",
+    "a": "The Constitution",
+    "wrong": "The Bill of Rights"
+   }
+  ]
+ },
+ "results": {
+  "headline": "Built to Make Learning More Accessible.",
+  "items": [
+   "Live learning platform",
+   "Bilingual experience",
+   "Guided course structure",
+   "Online enrollment"
+  ],
+  "note": "One-time $199.99 payment for 24 months of access, processed securely through Stripe.",
+  "disclaimer": "CiudadanoReady is an independent test-prep resource and is not a law firm. Nothing here is legal advice, and no outcome is guaranteed."
+ }
+}
