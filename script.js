@@ -189,8 +189,6 @@
       };
       serpTimer = setTimeout(step, 700);
     }
-    const serpReplay = document.getElementById('serpReplay');
-    if (serpReplay) serpReplay.addEventListener('click', playSerp);
 
     // --- Ad budget fee (same formula as the pricing page) ---
     const adsRange = document.getElementById('adsRange');
@@ -223,8 +221,14 @@
         tickTimers.push(setTimeout(() => li.classList.add('done'), 350 + i * 450));
       });
     }
-    const tickReplay = document.getElementById('tickReplay');
-    if (tickReplay) tickReplay.addEventListener('click', playTicks);
+    // Loop both animations every 7 seconds while their panel is on screen
+    function onScreen(el) { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; }
+    if (!reduce) setInterval(() => {
+      if (document.hidden) return;
+      if (serpList && serpList.closest('.ex-panel.active') && onScreen(serpList)) playSerp();
+      const tl = document.getElementById('tickList');
+      if (tl && tl.closest('.ex-panel.active') && onScreen(tl)) playTicks();
+    }, 7000);
 
     // --- Projection calculator ---
     // Inputs: visitors, conversion rate, customer value. The uplift is estimated from
@@ -283,7 +287,20 @@
         box.addEventListener('input', () => { range.value = box.value; calc(); });
       }
       link(rV, nV); link(rC, nC); link(rVal, nVal);
-      [nV, nC, nVal].forEach(i => { const fit = () => { i.style.width = (Math.max(1, String(i.value).length) + 0.3) + 'ch'; }; i.addEventListener('input', fit); fit(); });
+      const mirror = document.createElement('span');
+      mirror.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px;top:0;';
+      document.body.appendChild(mirror);
+      const fits = [];
+      [[nV, rV], [nC, rC], [nVal, rVal]].forEach(([i, r]) => {
+        const fit = () => {
+          const cs = getComputedStyle(i);
+          mirror.style.font = cs.font; mirror.style.letterSpacing = cs.letterSpacing;
+          mirror.textContent = String(i.value || '0');
+          i.style.width = Math.ceil(mirror.getBoundingClientRect().width) + 6 + 'px';
+        };
+        i.addEventListener('input', fit); r.addEventListener('input', fit); fits.push(fit); fit();
+      });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => fits.forEach(f => f()));
       const ct = $('coTabs');
       ct.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
         months = parseInt(b.dataset.m, 10);

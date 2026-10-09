@@ -41,13 +41,26 @@
       });
       range.value = Math.round(t * 100); A.setFill(range);
       snapBtns.forEach(b => b.classList.toggle('on', (t >= 0.5) === (b.dataset.snap === '1')));
-      optBtn.textContent = t >= 0.99 ? 'Replay' : 'Optimize My SEO';
+      optBtn.textContent = 'Optimize My SEO';
     }
     function go(to, ms) { if (cancel) cancel(); cancel = A.animate(t, to, ms, render); }
     range.addEventListener('input', () => { if (cancel) cancel(); render(range.value / 100); });
     optBtn.addEventListener('click', () => { if (t >= 0.99) { render(0); } go(1, 3600); });
     snapBtns.forEach(b => b.addEventListener('click', () => go(b.dataset.snap === '1' ? 1 : 0, 900)));
     render(0);
+    // Auto-loop: once the optimized state has been showing for 7s, reset and run again (while on screen, no manual scrubbing)
+    if (!A.reduce) {
+      let onScr = false, hold = null, idle = Date.now();
+      new IntersectionObserver(es => { onScr = es[0].isIntersecting; }, { threshold: 0.3 }).observe(range);
+      const touch = () => { idle = Date.now(); };
+      ['input', 'click', 'pointerdown'].forEach(ev => { range.addEventListener(ev, touch); optBtn.addEventListener(ev, touch); snapBtns.forEach(b => b.addEventListener(ev, touch)); });
+      setInterval(() => {
+        if (!onScr || document.hidden) return;
+        if (Date.now() - idle < 7000) return;
+        if (t >= 0.99) { if (!hold) hold = Date.now(); if (Date.now() - hold >= 7000) { hold = null; render(0); go(1, 3600); } }
+        else if (t <= 0.01) { hold = null; go(1, 3600); } else hold = null;
+      }, 1000);
+    }
   }
 
   /* ---------- 2. Growth chart ---------- */

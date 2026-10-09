@@ -103,7 +103,7 @@
     }
     function drawSteps(stage) {
       $('chSteps').innerHTML = STEPS[kind].map((s, i) => '<button type="button" data-i="' + i + '" class="' + (i === stage ? 'on' : (i < stage ? 'done' : '')) + '">' + (i + 1) + '. ' + s + '</button>').join('');
-      $('chSteps').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { clear(); stageTo(parseInt(b.dataset.i, 10), true); }));
+      $('chSteps').querySelectorAll('button').forEach(b => b.addEventListener('click', () => { clear(); stageTo(parseInt(b.dataset.i, 10), true); queueLoop(7000); }));
     }
     function stageTo(i, manual) {
       const el = jn[kind]; el.dataset.stage = i; drawSteps(i);
@@ -136,7 +136,12 @@
     }
     tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => select(b.dataset.p)));
     A.tabKeys(tabs);
-    $('chReplay').addEventListener('click', play);
+    // Auto-loop: replay 7s after each run finishes, only while on screen
+    let onScr = false, loopT = null;
+    const queueLoop = (ms) => { clearTimeout(loopT); if (!A.reduce) loopT = setTimeout(() => { if (onScr && !document.hidden) play(); else queueLoop(1000); }, ms); };
+    new IntersectionObserver(es => { onScr = es[0].isIntersecting; }, { threshold: 0.2 }).observe(jn.google);
+    const _play = play;
+    play = function () { _play(); queueLoop(7000 + 6800); };
     $('chIntro').textContent = INTRO.google; drawSteps(0); jn.google.dataset.stage = 0; jn.meta.dataset.stage = 0;
     A.onView(jn.google, () => { if (!seen) { seen = true; play(); } }, 0.4);
   }

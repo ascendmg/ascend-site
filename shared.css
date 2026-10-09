@@ -1157,3 +1157,14 @@
   .co-tabs button{background:rgba(255,255,255,.1); color:#fff; border-color:rgba(255,255,255,.2); padding:6px 12px; font-size:12px;}
   .co-tabs button[aria-selected="true"]{background:#fff; color:#17153a; border-color:#fff;}
   #nConv{width:3ch;}
+
+/* Before-state website mock (deliberately cluttered) */
+.old-nav{display:flex; justify-content:space-between; gap:8px; align-items:center; font-size:8px; color:#6b6a74; border-bottom:1px solid #d8d6de; padding-bottom:5px; font-family:Georgia,'Times New Roman',serif;}
+.old-nav b{font-size:10px; color:#3b3a44; white-space:nowrap;}
+.old-nav span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-decoration:underline; color:#5560a8;}
+.old-banner{margin:8px 0; background:#cfd3e6; color:#4a4f7a; text-align:center; font:700 11px Georgia,serif; padding:7px 4px; letter-spacing:.04em;}
+.old-cols{display:grid; grid-template-columns:1fr 64px; gap:10px;}
+.old-text i{display:block; height:4px; background:#d8d6de; border-radius:2px; margin-bottom:5px;}
+.old-side span{display:block; font-size:8px; text-align:center; padding:4px 2px; margin-bottom:4px; background:#e4e2ea; color:#8a8996; border:1px solid #d0cedb;}
+.old-foot{display:flex; align-items:center; gap:8px; margin-top:6px;}
+.old-foot small{font-size:8px; color:#9a99a6;}

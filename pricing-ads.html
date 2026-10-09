@@ -153,8 +153,10 @@
     height:18px;
     display:flex;
     align-items:center;
+    isolation:isolate;
   }
   .slider-fill{
+    z-index:1;
     position:absolute;
     left:0; top:50%;
     height:7px;
@@ -171,8 +173,8 @@
     height:7px;
     transform:translateY(-50%);
     border-radius:999px;
-    background:rgba(99,102,241,.14);
-    z-index:-1;
+    background:#e1deea;
+    z-index:0;
   }
   .slider-thumb-visual{
     position:absolute;
