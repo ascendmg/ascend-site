@@ -31,7 +31,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=3">
+<link rel="stylesheet" href="shared.css?v=6">
 <style>
   .article-body{max-width:70ch; margin:0 auto;}
   .article-body h2{font-size:24px; font-weight:600; margin:40px 0 14px;}
@@ -51,39 +51,21 @@
   <a href="/" class="logo">A<span>scend</span></a>
   <div class="nav-links">
     <div class="nav-item">
-      <button class="nav-trigger" type="button">Products
-        <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
-      <div class="mega-panel">
-        <a href="web-design">Web Design<span>Custom sites built to convert</span></a>
-        <a href="marketing">Marketing<span>Google & Meta Ads</span></a>
-        <a href="seo">SEO<span>Get found in search</span></a>
+      <button class="nav-trigger" type="button" aria-haspopup="true">Services <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="mega-panel mg-wide">
+        <div class="mg-list"><a class="mg-link" href="marketing"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="mg-txt"><b>Marketing</b><span>Google &amp; Meta ads that bring in leads</span></span></a><a class="mg-link" href="seo"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="mg-txt"><b>SEO</b><span>Show up when customers search</span></span></a><a class="mg-link" href="web-design"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></span><span class="mg-txt"><b>Web Design</b><span>Sites that turn visitors into customers</span></span></a></div>
+        <div class="mg-foot"><a href="pricing">See pricing &rarr;</a><a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Free consultation &rarr;</a></div>
       </div>
     </div>
     <div class="nav-item">
-      <button class="nav-trigger" type="button">Solutions
-        <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
-      <div class="mega-panel">
-        <a href="law-firms">Law Firms<span>Sites built for client trust</span></a>
-        <a href="course-education">Course & Education<span>Sell and deliver learning online</span></a>
-        <a href="ecommerce-solutions">E-Commerce<span>Stores built to sell</span></a>
-        <a href="local-service">Local Service Businesses<span>Get found, get booked</span></a>
+      <button class="nav-trigger" type="button" aria-haspopup="true">Who we help <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="mega-panel mg-wide mg-two">
+        <div class="mg-list"><a class="mg-link" href="law-firms"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-2 6a3 3 0 006 0L7 7M19 7l-2 6a3 3 0 006 0l-2-6"/></svg></span><span class="mg-txt"><b>Law Firms</b><span>Build trust, win clients</span></span></a><a class="mg-link" href="course-education"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><span class="mg-txt"><b>Courses &amp; Education</b><span>Sell and deliver learning</span></span></a><a class="mg-link" href="ecommerce-solutions"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.5 11h-11z"/><path d="M9 7a3 3 0 016 0"/></svg></span><span class="mg-txt"><b>E-Commerce</b><span>Stores built to sell</span></span></a><a class="mg-link" href="local-service"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="mg-txt"><b>Local Services</b><span>Get found, get booked</span></span></a></div>
       </div>
     </div>
     <a href="portfolio">Case Studies</a>
-    <div class="nav-item">
-      <button class="nav-trigger" type="button">Pricing
-        <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
-      <div class="mega-panel">
-        <a href="pricing-web-design">Web Design<span>Custom quote, scoped to you</span></a>
-        <a href="pricing-seo">SEO<span>Local, Growth, and Scale plans</span></a>
-        <a href="pricing-ads">Marketing<span>Scales with your ad spend</span></a>
-      </div>
-    </div>
+    <a href="pricing">Pricing</a>
     <a href="learn">Learn</a>
-    <a href="location">Location</a>
   </div>
   <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
   <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
@@ -92,22 +74,19 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <div class="mega-mobile-label">Products</div>
-  <a href="web-design">Web Design</a>
+  <div class="mega-mobile-label">Services</div>
   <a href="marketing">Marketing</a>
   <a href="seo">SEO</a>
-  <div class="mega-mobile-label">Solutions</div>
+  <a href="web-design">Web Design</a>
+  <div class="mega-mobile-label">Who we help</div>
   <a href="law-firms">Law Firms</a>
-  <a href="course-education">Course & Education</a>
+  <a href="course-education">Courses &amp; Education</a>
   <a href="ecommerce-solutions">E-Commerce</a>
-  <a href="local-service">Local Service Businesses</a>
+  <a href="local-service">Local Services</a>
+  <div class="mega-mobile-label">Explore</div>
   <a href="portfolio">Case Studies</a>
-  <div class="mega-mobile-label">Pricing</div>
-  <a href="pricing-web-design">Web Design</a>
-  <a href="pricing-seo">SEO</a>
-  <a href="pricing-ads">Marketing</a>
+  <a href="pricing">Pricing</a>
   <a href="learn">Learn</a>
-  <a href="location">Location</a>
   <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
 </div>
 
