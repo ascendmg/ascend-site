@@ -26,7 +26,7 @@
 .lh-link{display:block; color:inherit; height:100%;}
 .lh-img{aspect-ratio:1200/630; background:#f3f1f8; overflow:hidden;}
 .lh-img img{display:block; width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-.lh-post:hover .lh-img img{transform:scale(1.04);}
+.lh-post:hover .lh-img img{transform:none;}
 .lh-body{padding:18px 20px 20px; display:flex; flex-direction:column; gap:8px;}
 .lh-body h2{font-size:19px; line-height:1.25; letter-spacing:-.01em; margin:2px 0 0;}
 .lh-body p{color:var(--muted); font-size:14px; line-height:1.55;}
