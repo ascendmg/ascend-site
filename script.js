@@ -226,47 +226,70 @@
     const tickReplay = document.getElementById('tickReplay');
     if (tickReplay) tickReplay.addEventListener('click', playTicks);
 
-    // --- Calculator ---
+    // --- Projection calculator ---
+    // Inputs: visitors, conversion rate, customer value. The uplift is estimated from
+    // where the business is today (smaller sites have more room to grow traffic; lower
+    // converting sites have more room to improve), then ramped over time.
     const $ = (id) => document.getElementById(id);
-    const cV = $('cVisitors'), cC = $('cConv'), cVal = $('cValue'), cT = $('cTraffic'), cL = $('cLift');
-    if (cV) {
-      const shown = { extra: 0, now: 0, wth: 0 };
-      function tween(key, el, to, fmt) {
-        const from = shown[key]; const t0 = performance.now(); const dur = reduce ? 0 : 450;
+    const rV = $('cVisitors'), rC = $('cConv'), rVal = $('cValue');
+    const nV = $('nVisitors'), nC = $('nConv'), nVal = $('nValue');
+    if (rV) {
+      const RAMP = { 3: 0.25, 6: 0.6, 12: 1 };
+      let months = 12;
+      const shown = { extra: 0 };
+      function tween(el, to, fmt) {
+        const from = shown.extra; const t0 = performance.now(); const dur = reduce ? 0 : 450;
         function f(now) {
-          const p = dur ? Math.min((now - t0) / dur, 1) : 1;
-          const e = 1 - Math.pow(1 - p, 3);
-          shown[key] = from + (to - from) * e;
-          el.textContent = fmt(shown[key]);
+          const p = dur ? Math.max(0, Math.min((now - t0) / dur, 1)) : 1;
+          shown.extra = from + (to - from) * (1 - Math.pow(1 - p, 3));
+          el.textContent = fmt(shown.extra);
           if (p < 1) requestAnimationFrame(f);
         }
         requestAnimationFrame(f);
       }
       function setFill(r) {
-        const min = parseFloat(r.min), max = parseFloat(r.max), v = parseFloat(r.value);
+        const min = parseFloat(r.min), max = parseFloat(r.max), v = Math.min(max, Math.max(min, parseFloat(r.value)));
         r.style.setProperty('--pr', (v - min) / (max - min));
       }
+      function trafficUplift(v) {
+        const x = Math.log(Math.max(v, 200) / 200) / Math.log(100);
+        return Math.max(0.15, 0.65 - 0.45 * Math.min(x, 1.2));
+      }
+      function convUplift(c) {
+        return Math.min(0.30, Math.max(0.05, 0.3 * (3.5 / Math.max(c, 0.1) - 1)));
+      }
+      function clampNum(v, lo, hi, d) { v = parseFloat(v); return isNaN(v) ? d : Math.min(hi, Math.max(lo, v)); }
       function calc() {
-        [cV, cC, cVal, cT, cL].forEach(setFill);
-        const visitors = parseFloat(cV.value), conv = parseFloat(cC.value) / 100, value = parseFloat(cVal.value);
-        const traffic = parseFloat(cT.value) / 100, lift = parseFloat(cL.value) / 100;
-        $('oVisitors').textContent = visitors.toLocaleString('en-US');
-        $('oConv').textContent = parseFloat(cC.value).toFixed(1) + '%';
-        $('oValue').textContent = fmtMoney(value);
-        $('oTraffic').textContent = '+' + Math.round(traffic * 100) + '%';
-        $('oLift').textContent = '+' + Math.round(lift * 100) + '%';
+        const visitors = clampNum(nV.value, 100, 50000, 3000), conv = clampNum(nC.value, 0.1, 20, 2) / 100, value = clampNum(nVal.value, 1, 100000, 600);
+        [rV, rC, rVal].forEach(setFill);
+        const u = trafficUplift(visitors), c = convUplift(conv * 100), r = RAMP[months];
         const now = visitors * conv;
-        const wth = visitors * (1 + traffic) * conv * (1 + lift);
+        const wth = visitors * (1 + u * r) * conv * (1 + c * r);
         const extra = (wth - now) * value;
-        tween('extra', $('coExtra'), extra, fmtMoney);
-        $('coYear').textContent = 'per month, about ' + fmtMoney(extra * 12) + ' a year';
+        tween($('coExtra'), extra, fmtMoney);
+        $('coYear').textContent = 'per month at month ' + months + ', about ' + fmtMoney(extra * 12) + ' a year at that pace';
+        $('coRange').textContent = 'Likely range: ' + fmtMoney(extra * 0.6) + ' to ' + fmtMoney(extra) + ' a month';
+        $('calcPlan').textContent = 'For a business like yours we plan for about +' + Math.round(u * 100) + '% more visitors and +' + Math.round(c * 100) + '% better conversion once the work has had time to build.';
         $('nNow').textContent = now.toFixed(1);
         $('nWith').textContent = wth.toFixed(1);
         const max = Math.max(wth, now, 0.001);
         $('barNow').style.width = (now / max * 100) + '%';
         $('barWith').style.width = (wth / max * 100) + '%';
+        const msg = "Hi, I'd like to talk about growing my business. My numbers: about " + Math.round(visitors).toLocaleString('en-US') + " website visitors a month, " + (conv * 100).toFixed(1) + "% become customers, each customer is worth about " + fmtMoney(value) + ". About my business: ";
+        $('calcGo').setAttribute('href', 'contact?msg=' + encodeURIComponent(msg));
+        $('calcGo').removeAttribute('target');
       }
-      [cV, cC, cVal, cT, cL].forEach(r => r.addEventListener('input', calc));
+      function link(range, box) {
+        range.addEventListener('input', () => { box.value = range.value; calc(); });
+        box.addEventListener('input', () => { range.value = box.value; calc(); });
+      }
+      link(rV, nV); link(rC, nC); link(rVal, nVal);
+      const ct = $('coTabs');
+      ct.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+        months = parseInt(b.dataset.m, 10);
+        ct.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
+        calc();
+      }));
       calc();
     }
 

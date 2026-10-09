@@ -266,44 +266,44 @@
     <div class="section-head">
       <div class="kicker">Try it</div>
       <h2 class="section-title wide">What could more customers be worth to you?</h2>
-      <p class="section-lead">Plug in your own numbers and see a what-if estimate. You set the assumptions, so move the sliders to match your business.</p>
+      <p class="section-lead">Enter three numbers about your business. We project what a stronger site and smarter marketing could add, based on where you are today.</p>
     </div>
     <div class="calc">
       <div class="calc-inputs">
         <div class="calc-field">
-          <label for="cVisitors">Website visitors a month <output id="oVisitors"></output></label>
-          <input class="range" type="range" id="cVisitors" min="100" max="20000" step="100" value="1500">
+          <label for="nVisitors">Website visitors a month</label>
+          <div class="num-box"><input type="number" id="nVisitors" min="100" max="50000" step="100" value="3000" inputmode="numeric"></div>
+          <input class="range" type="range" id="cVisitors" min="100" max="20000" step="100" value="3000" aria-label="Website visitors a month slider">
         </div>
         <div class="calc-field">
-          <label for="cConv">Visitors who become customers <output id="oConv"></output></label>
-          <input class="range" type="range" id="cConv" min="0.5" max="10" step="0.5" value="1.5">
+          <label for="nConv">Visitors who become customers</label>
+          <div class="num-box"><input type="number" id="nConv" min="0.1" max="20" step="0.1" value="2" inputmode="decimal"><span>%</span></div>
+          <input class="range" type="range" id="cConv" min="0.5" max="10" step="0.5" value="2" aria-label="Conversion rate slider">
         </div>
         <div class="calc-field">
-          <label for="cValue">Value of a new customer <output id="oValue"></output></label>
-          <input class="range" type="range" id="cValue" min="50" max="10000" step="50" value="600">
+          <label for="nValue">Value of a new customer</label>
+          <div class="num-box"><span>$</span><input type="number" id="nValue" min="1" max="100000" step="50" value="600" inputmode="numeric"></div>
+          <input class="range" type="range" id="cValue" min="50" max="10000" step="50" value="600" aria-label="Customer value slider">
         </div>
-        <div class="calc-field">
-          <label for="cTraffic">More visitors from SEO and ads <output id="oTraffic"></output></label>
-          <input class="range" type="range" id="cTraffic" min="0" max="150" step="5" value="40">
-          <small>Your estimate of the extra traffic marketing brings</small>
-        </div>
-        <div class="calc-field" style="grid-column:1/-1;">
-          <label for="cLift">Better conversion from a stronger site <output id="oLift"></output></label>
-          <input class="range" type="range" id="cLift" min="0" max="100" step="5" value="20">
-          <small>Your estimate of how many more visitors a clearer site turns into customers</small>
-        </div>
+        <p class="calc-plan" id="calcPlan"></p>
       </div>
       <div class="calc-out">
         <div class="co-label">Possible extra revenue</div>
         <div class="co-big" id="coExtra">$0</div>
         <div class="co-sub" id="coYear">per month</div>
+        <div class="co-range" id="coRange"></div>
+        <div class="tabs co-tabs" id="coTabs" role="tablist" aria-label="Time frame">
+          <button type="button" role="tab" aria-selected="false" data-m="3">Month 3</button>
+          <button type="button" role="tab" aria-selected="false" data-m="6">Month 6</button>
+          <button type="button" role="tab" aria-selected="true" data-m="12">Month 12</button>
+        </div>
         <div class="bars">
           <div class="bar-row"><span>Today</span><div class="bar-track"><div class="bar-fill now" id="barNow"></div></div><b id="nNow">0</b></div>
           <div class="bar-row"><span>With Ascend</span><div class="bar-track"><div class="bar-fill with" id="barWith"></div></div><b id="nWith">0</b></div>
         </div>
         <div class="co-sub">New customers per month</div>
-        <p class="calc-note">A what-if tool using the numbers you enter, not a promise of results. Real results depend on your market and budget.</p>
-        <a class="calc-cta" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Let's find your real numbers</a>
+        <p class="calc-note">A planning estimate based on the numbers you enter and typical room for improvement at your size. Results build over months and are not guaranteed. They depend on your market, offer, and budget.</p>
+        <a class="calc-cta" id="calcGo" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Let's find your real numbers</a>
       </div>
     </div>
   </div>
