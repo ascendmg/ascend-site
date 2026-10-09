@@ -10,10 +10,41 @@
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "header", "key": "accept", "value": "(.*text/html.*)" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*text/html.*)"
+        }
+      ],
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/manage-client",
+      "destination": "/api/manage?fn=client"
+    },
+    {
+      "source": "/api/manage-task",
+      "destination": "/api/manage?fn=task"
+    },
+    {
+      "source": "/api/approve-recommendation",
+      "destination": "/api/seo?fn=approve"
+    },
+    {
+      "source": "/api/generate-recommendations",
+      "destination": "/api/seo?fn=recommendations"
+    },
+    {
+      "source": "/api/generate-report",
+      "destination": "/api/seo?fn=report"
     }
   ]
 }
