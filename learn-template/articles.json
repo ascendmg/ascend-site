@@ -1,0 +1,165 @@
+{
+ "site": {
+  "name": "Ascend",
+  "base": "https://www.hqascend.com",
+  "logo": "https://www.hqascend.com/assets/brand/ascend-icon-black.png",
+  "publisher": "Ascend Website Design & Marketing"
+ },
+ "author": {
+  "name": "Michael",
+  "title": "Founder, Ascend",
+  "url": "https://www.hqascend.com/about"
+ },
+ "categories": [
+  {
+   "slug": "web-design",
+   "name": "Web Design",
+   "blurb": "Websites that earn trust and bring in customers."
+  },
+  {
+   "slug": "seo",
+   "name": "SEO",
+   "blurb": "Get found by people already searching for you."
+  },
+  {
+   "slug": "marketing",
+   "name": "Marketing",
+   "blurb": "Attract the right customers without wasting budget."
+  }
+ ],
+ "hub": {
+  "title": "Learn How to Grow Your Business Online",
+  "seoTitle": "Learn: Website, SEO & Marketing Guides | Ascend",
+  "description": "Practical guides on websites, SEO, and digital marketing for small businesses. Clear explanations and useful strategies, with no unnecessary jargon.",
+  "lead": "Practical guides on websites, SEO, and digital marketing. Clear explanations, useful strategies, and no unnecessary jargon.",
+  "updated": "2026-10-09"
+ },
+ "articles": [
+  {
+   "slug": "why-marketing-matters",
+   "category": "marketing",
+   "title": "Why Marketing Matters for Small Businesses",
+   "seoTitle": "Why Marketing Matters for Small Businesses | Ascend",
+   "description": "Why marketing matters for small businesses: how customers find you, organic vs. paid, common mistakes, setting a budget, and where to start.",
+   "dek": "Being great at what you do isn't enough if nobody knows you exist. Here's how marketing works, and where to start.",
+   "cardDescription": "How customers find you, organic vs. paid, setting a budget, and where to start.",
+   "updated": "2026-10-09",
+   "published": null,
+   "image": "assets/learn/why-marketing-matters.png",
+   "imageAlt": "Customer journey from discovery to website visit to inquiry to customer, illustrating why marketing matters for small businesses",
+   "related": [
+    "what-is-seo",
+    "why-you-need-a-website"
+   ],
+   "service": {
+    "name": "Marketing",
+    "url": "/marketing",
+    "title": "Want a second set of eyes on your marketing?",
+    "text": "We'll look at where your customers are, what you're doing now, and what's worth testing first. No pressure, just a straight answer.",
+    "label": "See our marketing service"
+   },
+   "faq": [
+    {
+     "q": "How much should a small business spend on marketing?",
+     "a": "There's no single right number. It depends on your industry, margins, competition and growth goals. A practical way to decide is to estimate what a new customer is worth to you, how many inquiries turn into customers, and what you can afford to pay for each inquiry, then set a budget you can sustain long enough to learn from."
+    },
+    {
+     "q": "Is organic marketing or paid advertising better for a small business?",
+     "a": "Neither is better in every case. Paid ads can bring inquiries quickly and give you control over budget and audience, while organic marketing such as SEO builds visibility that lasts but usually takes longer. Many small businesses use both."
+    },
+    {
+     "q": "How long does it take for marketing to work?",
+     "a": "It depends on the channel. Paid ads can start sending visitors within days, though it often takes weeks to learn what works. Organic channels such as SEO are usually measured in months. Results vary by market and by how well your website converts visitors."
+    },
+    {
+     "q": "Does my small business need social media?",
+     "a": "Not necessarily. It's useful when your customers browse and discover businesses there, but it's not required for every business. Focus on the channels where your customers actually look for what you offer, and do a small number of them well."
+    }
+   ]
+  },
+  {
+   "slug": "why-you-need-a-website",
+   "category": "web-design",
+   "title": "Why Your Business Needs a Professional Website",
+   "seoTitle": "Why Your Business Needs a Professional Website | Ascend",
+   "description": "Why website quality builds trust, what makes a site effective, DIY builders vs. professional design, common mistakes, and a practical checklist.",
+   "dek": "It's often the first real impression someone gets of your business, and the deciding factor in whether they reach out.",
+   "cardDescription": "What builds trust, what makes a site effective, DIY vs. professional, and a checklist.",
+   "updated": "2026-10-09",
+   "published": null,
+   "image": "assets/learn/why-you-need-a-website.png",
+   "imageAlt": "Before and after comparison of a cluttered business website and a clear website with one obvious next step",
+   "related": [
+    "why-marketing-matters",
+    "what-is-seo"
+   ],
+   "service": {
+    "name": "Web Design",
+    "url": "/web-design",
+    "title": "Not sure how your website measures up?",
+    "text": "We'll walk through your site with you, point out what's helping and what's costing you inquiries, and tell you honestly whether it needs fixes or a rebuild.",
+    "label": "See our web design service"
+   },
+   "faq": [
+    {
+     "q": "Does my small business really need a website?",
+     "a": "In most cases, yes. Even if customers find you through referrals, many will look you up before they call, and a clear website helps them trust you and understand how to get in touch. Social profiles alone usually don't provide the same control or credibility."
+    },
+    {
+     "q": "Is a DIY website builder good enough?",
+     "a": "It can be, especially for a simple site or an early-stage business. A template works well when the message is clear, the photos are real, the site is checked on mobile and there's an obvious next step. A custom build is more worthwhile when the website is a main source of customers, when trust is critical, or when you need custom features."
+    },
+    {
+     "q": "How do I know if my website is hurting my business?",
+     "a": "Common signs are slow loading, difficulty using it on a phone, visitors who don't take any action, outdated information, and being reluctant to send people to it. The checklist in this guide helps you evaluate it step by step."
+    },
+    {
+     "q": "What should a small business website include?",
+     "a": "At minimum: a clear statement of what you do and who it's for, your services, proof such as reviews or examples of your work, easy-to-find contact details, and one obvious next step like calling or booking."
+    }
+   ]
+  },
+  {
+   "slug": "what-is-seo",
+   "category": "seo",
+   "title": "What Is SEO and Why It Actually Matters",
+   "seoTitle": "What Is SEO? A Plain-English Guide | Ascend",
+   "description": "A plain-English guide to SEO: how search works, the four types of SEO, SEO vs. paid ads, realistic timelines, common mistakes, and a checklist.",
+   "dek": "A plain-English explanation of what SEO is, how it works, and what realistic results look like.",
+   "cardDescription": "How search visibility works, the four types of SEO, SEO vs. ads, and a checklist.",
+   "updated": "2026-10-09",
+   "published": null,
+   "image": "assets/learn/what-is-seo.png",
+   "imageAlt": "Illustration of a search results page showing sponsored ads, local map results and organic results",
+   "related": [
+    "why-you-need-a-website",
+    "why-marketing-matters"
+   ],
+   "service": {
+    "name": "SEO",
+    "url": "/seo",
+    "title": "Curious where your site stands in search?",
+    "text": "We'll review your site's technical health, content and local presence, and explain what's worth fixing first. No promises about rankings, just an honest picture.",
+    "label": "See our SEO service"
+   },
+   "faq": [
+    {
+     "q": "What does SEO stand for?",
+     "a": "SEO stands for search engine optimization. It's the practice of improving a website so search engines can understand it and show it to people searching for what the business offers."
+    },
+    {
+     "q": "How long does SEO take to work?",
+     "a": "It varies. Timelines depend on competition, your site's current condition and how consistently the work is done. SEO is generally measured in months rather than days, and no one can honestly guarantee a specific ranking or timeline."
+    },
+    {
+     "q": "Is SEO better than paid ads?",
+     "a": "They do different jobs. Paid ads can bring visitors quickly but stop when spending stops. SEO usually takes longer to build but can provide steady visibility without paying for each click. Many businesses use both."
+    },
+    {
+     "q": "Can I do SEO myself?",
+     "a": "You can handle the basics yourself, such as completing your Google Business Profile, writing clear pages for each service and asking for reviews. Technical issues, competitive markets and ongoing content often benefit from specialist help."
+    }
+   ]
+  }
+ ]
+}
