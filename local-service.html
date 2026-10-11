@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=7">
-<link rel="stylesheet" href="industry.css?v=1">
+<link rel="stylesheet" href="industry.css?v=2">
 </head>
 <body>
 <div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
@@ -79,21 +79,35 @@
   </div>
 </header>
 <section class="ind-demo-sec" id="demo"><div class="wrap">
-  <div class="ind-label"><b>Demonstration</b><span>Pick a service and location. Sample business, nothing is sent.</span></div>
-  <div class="ind-frame" role="group" aria-label="Interactive demonstration">
-  <div class="ind-bar" aria-hidden="true"><i></i><i></i><i></i><span class="ind-url">sample-home-services.com</span></div>
-  <div class="ind-body" id="localDemo" ><div class="ind-top"><div class="ind-brand">Sample Home Services<b>.</b></div><span class="ind-note">Sample business</span></div>
-<div class="ind-pickers"><label class="ind-field">What do you need?<select id="svcSel"><option value='0'>Repair</option><option value='1'>Installation</option><option value='2'>Seasonal check-up</option></select></label>
-<label class="ind-field">Where are you?<select id="locSel"><option value='kissimmee'>Kissimmee</option><option value='stcloud'>St. Cloud</option><option value='orlando'>Orlando</option><option value='other'>Somewhere else</option></select></label></div>
-<div class="ind-split">
-  <div class="ind-box" aria-live="polite"><span class="ind-mode" id="outMode">Quote request</span><h3 id="outTitle">Request a quote in Kissimmee</h3>
-    <p id="outText" style="font-size:14px;color:#364055;line-height:1.55">Send a few details and a photo. The business replies with an estimate before anything is scheduled.</p>
-    <div class="ind-actions"><button type="button" class="ind-btn" id="outPrimary" data-demo-msg>Request a quote</button><button type="button" class="ind-btn alt" data-demo-msg>Call now</button></div></div>
-  <div class="ind-box"><h4>Always visible on a phone</h4><ul><li>Services and service area</li><li>One-tap call button</li><li>Hours and how to reach you</li></ul>
-    <div class="ind-trust" aria-label="Trust signals"><span>Real reviews</span><span>Photos of real work</span><span>Verified credentials</span></div></div>
+  <div class="ind-label"><b>Illustrative example</b><span>Select a step to see the data, what we’d investigate, and how we could help.</span></div>
+  <div class="ind-frame" role="group" aria-label="Illustrative example: Example Home Services">
+  <div class="ind-bar" aria-hidden="true"><i></i><i></i><i></i><span class="ind-url">example-home-services.com · requests</span></div>
+  <div class="ind-body" id="lcDemo">
+    <div class="ix-top"><div class="ind-brand">Example Home Services<b>.</b><span class="ix-period">Example month · 30 days</span></div><span class="ix-badge">Illustrative data—not client results</span></div>
+    <div class="ix-view" id="lcv0" >
+<div class="ix-kpis n3"><div class="ix-kpi"><b>4%</b><span>Inquiry rate<br>(100 inquiries ÷ 2,500 sessions)</span></div><div class="ix-kpi"><b>42%</b><span>Quoted or booked<br>(42 ÷ 100 inquiries)</span></div><div class="ix-kpi"><b>21%</b><span>Completed jobs<br>(21 ÷ 100 inquiries)</span></div></div>
+<div class="ix-main"><div><p class="ix-hint">Select a step to explore it.</p><div class="ix-flow"><div class="ix-bar"><div class="row"><span>Inquiries (calls, texts, forms)</span><span><b>100</b></span></div><div class="ix-track" aria-hidden="true"><i style="width:100.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="true" aria-controls="lcv0d0"><span>Inquiries to qualified<small>Inquiries → qualified requests</small></span><span class="v">70%</span></button><div class="ix-bar"><div class="row"><span>Qualified requests</span><span><b>70</b><em>70% of inquiries (calls, texts, forms)</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:70.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="lcv0d1"><span>Qualified to quote or visit<small>Qualified requests → quotes or appointments</small></span><span class="v">60%</span></button><div class="ix-bar"><div class="row"><span>Quotes sent or appointments booked</span><span><b>42</b><em>42% of inquiries (calls, texts, forms)</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:42.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="lcv0d2"><span>Quote to completed job<small>Quotes or appointments → completed jobs</small></span><span class="v">50%</span></button><div class="ix-bar"><div class="row"><span>Completed jobs</span><span><b>21</b><em>21% of inquiries (calls, texts, forms)</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:21.0%"></i></div></div></div></div><div><div class="ix-detail" id="lcv0d0" >
+<h3>Inquiries to qualified</h3><div class="step">Inquiries → qualified requests</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>70 of 100 inquiries (70%) were in the service area and for a service the business offers. The other 30 were outside one or both.<br><code>70 ÷ 100 = 70% qualified</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Which areas and services the unqualified requests mention</li><li>Whether the service list and coverage area are easy to find</li><li>Whether the call button is visible on a phone</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>A clear services list and service-area page</li><li>Mobile contact options: tap to call, tap to text, short request form</li><li>Inquiry tracking by source and page</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Qualified rate</span><span>Inquiries by source</span><span>Mobile vs. desktop inquiries</span></div></div>
+</div><div class="ix-detail" id="lcv0d1" hidden>
+<h3>Qualified to quote or visit</h3><div class="step">Qualified requests → quotes or appointments</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>42 of 70 qualified requests (60%) received a quote or booked an appointment. Some businesses book directly; others quote first.<br><code>42 ÷ 70 = 60%</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>How quickly requests get a first reply</li><li>Whether missed calls and form requests are followed up</li><li>Whether the request form collects what is needed, such as address or a photo</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>A quote request or booking option that suits how the business works</li><li>Confirmation messages and follow-up templates</li><li>Tracking that shows which requests are still waiting for a reply</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Time to first response</span><span>Quote or booking rate</span></div></div>
+</div><div class="ix-detail" id="lcv0d2" hidden>
+<h3>Quote to completed job</h3><div class="step">Quotes or appointments → completed jobs</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>21 of 42 quotes or appointments (50%) turned into completed jobs.<br><code>21 ÷ 42 = 50% completed</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether pricing, timing and availability matched what customers expected</li><li>How quickly quotes are delivered</li><li>Which sources lead to completed jobs, not just inquiries</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Clear information about services, process and timing before the quote</li><li>Reporting from source to completed job, using the business’s own records</li><li>Reviews and photos of real work, when they are authentic and approved</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Completed jobs by source</span><span>Quote-to-job rate</span></div></div><div class="ix-caution">Completed jobs depend on price, schedule, crew availability and quality of work. A website supports finding, trusting and contacting the business.</div>
+</div></div></div>
 </div>
-<script type="application/json" id="localData">{"services": [{"mode": "quote", "title": "Request a quote in {loc}", "text": "Send a few details and a photo. The business replies with an estimate before anything is scheduled.", "cta": "Request a quote"}, {"mode": "quote", "title": "Get an installation quote in {loc}", "text": "Describe the job and timeline so the business can scope it and follow up.", "cta": "Request a quote"}, {"mode": "book", "title": "Book a visit in {loc}", "text": "For routine, standard-scope visits, choose a day and time that works.", "cta": "Choose a time"}]}</script>
-<p class="ind-toast" role="status" aria-live="polite"></p></div>
+    <div class="ix-foot"><p><b>How to read this:</b> all figures describe an invented example service business for one example month. They are not results HQAscend achieved for any client.</p><p><b>Definitions:</b> an inquiry is a call, text or form request. Qualified means inside the service area and for a service the business offers. Percent of inquiries = count ÷ 100. Completed jobs depend on price, availability, scheduling and the work itself, not on the website alone.</p></div>
+  </div>
 </div>
 </div></section>
 <section class="ind-benefits"><div class="wrap reveal"><h2>Made for people searching nearby</h2><div class="why-grid" style="margin-top:22px"><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Clear services and coverage</h3><p>Explain what you do and where you work.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Easy calls and quote requests</h3><p>Give visitors a simple way to get in touch.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Useful trust signals</h3><p>Highlight authentic reviews, real work, and verified credentials.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Designed for mobile visitors</h3><p>Make essential information and contact actions easy to use on a phone.</p></div></div></div></div></section>
@@ -131,7 +145,7 @@
   <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
 </footer>
 <script src="script.js?v=3"></script>
-<script src="industry.js?v=1" defer></script>
+<script src="industry.js?v=2" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

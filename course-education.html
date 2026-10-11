@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=7">
-<link rel="stylesheet" href="industry.css?v=1">
+<link rel="stylesheet" href="industry.css?v=2">
 </head>
 <body>
 <div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
@@ -79,24 +79,50 @@
   </div>
 </header>
 <section class="ind-demo-sec" id="demo"><div class="wrap">
-  <div class="ind-label"><b>Demonstration</b><span>Overview, enroll, learn. Sample content, no payment.</span></div>
-  <div class="ind-frame" role="group" aria-label="Interactive demonstration">
-  <div class="ind-bar" aria-hidden="true"><i></i><i></i><i></i><span class="ind-url">sample-course.com</span></div>
-  <div class="ind-body" id="courseDemo" ><div class="ind-top"><div class="ind-brand">Sample Course<b>.</b></div><span class="ind-note">Sample content</span></div>
-<div class="ind-journey ind-tabs" role="tablist" aria-label="Student journey"><button type="button" role="tab" id="cjov" aria-controls="cpov" aria-selected="true" tabindex="0"><span class="n">1</span>Overview</button><button type="button" role="tab" id="cjen" aria-controls="cpen" aria-selected="false" tabindex="-1"><span class="n">2</span>Enroll</button><button type="button" role="tab" id="cjln" aria-controls="cpln" aria-selected="false" tabindex="-1"><span class="n">3</span>Learn</button></div>
-<div class="ind-pane" role="tabpanel" id="cpov" aria-labelledby="cjov">
-  <div class="ind-split"><div class="ind-box"><h3>What you will learn</h3><ul><li><strong>Welcome.</strong> A short introduction to the course, what you will build, and how to use the lessons.</li><li><strong>Core skills.</strong> The key ideas, taught one step at a time with a clear example.</li><li><strong>Practice.</strong> A short exercise so students apply what they just learned.</li><li><strong>Next steps.</strong> A recap and what to do after finishing the course.</li></ul></div>
-  <div class="ind-box"><h4>Clear price, clear access</h4><p style="font-size:14px;color:#364055;line-height:1.5;margin-bottom:14px">Show what is included and how long access lasts before anyone reaches checkout.</p><button type="button" class="ind-btn" data-go="en">Enroll in this course</button></div></div>
+  <div class="ind-label"><b>Illustrative example</b><span>Two views: enrollment, and what students do after they enroll.</span></div>
+  <div class="ind-frame" role="group" aria-label="Illustrative example: Example Course">
+  <div class="ind-bar" aria-hidden="true"><i></i><i></i><i></i><span class="ind-url">example-course.com · performance</span></div>
+  <div class="ind-body" id="crDemo">
+    <div class="ix-top"><div class="ind-brand">Example Course<b>.</b><span class="ix-period">Example month · 30 days</span></div><span class="ix-badge">Illustrative data—not client results</span></div>
+    <div class="ix-views ind-tabs" role="tablist" aria-label="Choose a view"><button type="button" role="tab" id="crt0" aria-controls="crv0" aria-selected="true" tabindex="0">Enrollment</button><button type="button" role="tab" id="crt1" aria-controls="crv1" aria-selected="false" tabindex="-1">Student activation</button></div><div class="ix-view" id="crv0" >
+<div class="ix-kpis n2"><div class="ix-kpi"><b>3%</b><span>Visit-to-enrollment rate<br>(120 ÷ 4,000 visits)</span></div><div class="ix-kpi"><b>60%</b><span>Checkout completion<br>(120 ÷ 200 checkout starts)</span></div></div>
+<div class="ix-main"><div><p class="ix-hint">Select a step to explore it.</p><div class="ix-flow"><div class="ix-bar"><div class="row"><span>Sales-page visits</span><span><b>4,000</b></span></div><div class="ix-track" aria-hidden="true"><i style="width:100.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="true" aria-controls="crv0d0"><span>Sales page<small>Visits → checkout starts</small></span><span class="v">5%</span></button><div class="ix-bar"><div class="row"><span>Checkout starts</span><span><b>200</b><em>5% of sales-page visits</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:5.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="crv0d1"><span>Checkout to enrollment<small>Checkout starts → enrollments</small></span><span class="v">60%</span></button><div class="ix-bar"><div class="row"><span>Enrollments</span><span><b>120</b><em>3% of sales-page visits</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:3.0%"></i></div></div></div></div><div><div class="ix-detail" id="crv0d0" >
+<h3>Sales page</h3><div class="step">Visits → checkout starts</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>200 of 4,000 sales-page visits (5%) started checkout.<br><code>200 ÷ 4,000 = 5% checkout start rate</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether the page shows what students learn, who it is for, the price and how long access lasts</li><li>Whether the lesson preview is used</li><li>How the page reads on a phone</li><li>Which traffic sources send visitors who start checkout</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>A clear curriculum and a useful lesson preview</li><li>Straightforward pricing and access information</li><li>Answers to common questions near the buy button</li><li>Source tracking</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Checkout start rate</span><span>Preview views</span><span>Visits by source</span></div></div>
+</div><div class="ix-detail" id="crv0d1" hidden>
+<h3>Checkout to enrollment</h3><div class="step">Checkout starts → enrollments</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>120 of 200 checkout starts (60%) became enrollments. The data shows where people stopped, not why.<br><code>120 ÷ 200 = 60% completed</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether the total price or any fee is a surprise</li><li>Whether creating an account adds friction</li><li>Payment errors, especially on mobile</li><li>Whether the confirmation and first-login path are clear</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Clearer pricing and access details before payment</li><li>Checkout set up within the platform’s capabilities</li><li>A confirmation email and a simple path to the first lesson</li><li>Tracking of each checkout step</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Checkout completion rate</span><span>Payment errors</span><span>Time from payment to first login</span></div></div>
+</div></div></div>
+</div><div class="ix-view" id="crv1" hidden>
+<p class="ix-cohort">Cohort: the 120 students who enrolled in the example month, followed for their first 14 days. All percentages compare with those 120 students.</p><div class="ix-kpis n3"><div class="ix-kpi"><b>80%</b><span>Started lesson 1<br>(96 ÷ 120 enrolled)</span></div><div class="ix-kpi"><b>60%</b><span>Finished module 1<br>(72 ÷ 120 enrolled)</span></div><div class="ix-kpi"><b>30%</b><span>Active on days 8–14<br>(36 ÷ 120 enrolled)</span></div></div>
+<div class="ix-main"><div><p class="ix-hint">Select a step to explore it.</p><div class="ix-flow"><div class="ix-bar"><div class="row"><span>Students enrolled</span><span><b>120</b></span></div><div class="ix-track" aria-hidden="true"><i style="width:100.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="true" aria-controls="crv1d0"><span>First lesson<small>Enrolled → started lesson 1</small></span><span class="v">80%</span></button><div class="ix-bar"><div class="row"><span>Started first lesson</span><span><b>96</b><em>80% of students enrolled</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:80.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="crv1d1"><span>First module<small>Started → finished module 1</small></span><span class="v">75%</span></button><div class="ix-bar"><div class="row"><span>Finished module 1</span><span><b>72</b><em>60% of students enrolled</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:60.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="crv1d2"><span>Ongoing progress<small>Finished module 1 → active on days 8–14</small></span><span class="v">50%</span></button><div class="ix-bar"><div class="row"><span>Active on days 8–14</span><span><b>36</b><em>30% of students enrolled</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:30.0%"></i></div></div></div></div><div><div class="ix-detail" id="crv1d0" >
+<h3>First lesson</h3><div class="step">Enrolled → started lesson 1</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>96 of 120 enrolled students (80%) opened their first lesson within 14 days. 24 never began.<br><code>96 ÷ 120 = 80%</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether students receive a clear welcome and login instructions</li><li>How easy it is to find the first lesson on a phone</li><li>Whether the dashboard shows a clear next step</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>A welcome email with a direct link</li><li>A clear dashboard with “start here” and “next lesson” buttons</li><li>Accessible navigation and mobile layouts</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>First-lesson start rate</span><span>Days from enrollment to first lesson</span></div></div>
+</div><div class="ix-detail" id="crv1d1" hidden>
+<h3>First module</h3><div class="step">Started → finished module 1</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>72 of the 96 students who started (75%) finished module 1. That is 60% of everyone enrolled.<br><code>72 ÷ 96 = 75% of starters · 72 ÷ 120 = 60% of enrolled</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Where in module 1 students stop</li><li>Whether lessons are the right length</li><li>Whether progress is visible</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Visible progress and lesson order</li><li>Short, clearly labeled lessons</li><li>Tracking at lesson level, within the platform’s capabilities</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Module completion rate</span><span>Lesson drop-off point</span></div></div>
+</div><div class="ix-detail" id="crv1d2" hidden>
+<h3>Ongoing progress</h3><div class="step">Finished module 1 → active on days 8–14</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>36 of the 72 students who finished module 1 (50%) completed a lesson on days 8–14. That is 30% of everyone enrolled.<br><code>36 ÷ 72 = 50% of module-1 finishers · 36 ÷ 120 = 30% of enrolled</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether students get a reminder or a reason to return</li><li>Whether the next module is easy to find</li><li>Whether the course content and pacing suit the audience</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Progress reminder emails</li><li>A “continue where you left off” button</li><li>Reporting on active students each week</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Weekly active students</span><span>Lessons completed per student</span></div></div><div class="ix-caution">Whether students keep learning depends on the course itself and on their circumstances. The platform can make the next step clear and measurable.</div>
+</div></div></div>
 </div>
-<div class="ind-pane" role="tabpanel" id="cpen" aria-labelledby="cjen" hidden>
-  <div class="ind-split"><div class="ind-box"><h3>Enroll</h3><ul><li>Create your account</li><li>Review what is included</li><li>Pay securely, then start right away</li></ul></div>
-  <div class="ind-box"><h4>Demonstration</h4><p style="font-size:14px;color:#364055;line-height:1.5;margin-bottom:14px">In a real build, a secure checkout opens here. This demo takes no payment.</p><button type="button" class="ind-btn" data-go="ln">Continue to the course</button></div></div>
-</div>
-<div class="ind-pane" role="tabpanel" id="cpln" aria-labelledby="cjln" hidden>
-  <div class="ind-split"><div class="ind-box"><h4>Your lessons</h4><div class="ind-lessons" role="tablist" aria-label="Lessons"><button type="button" role="tab" aria-selected="true" aria-controls="lesson0"><span class="ck" aria-hidden="true"></span>1. Welcome</button><button type="button" role="tab" aria-selected="false" aria-controls="lesson1"><span class="ck" aria-hidden="true"></span>2. Core skills</button><button type="button" role="tab" aria-selected="false" aria-controls="lesson2"><span class="ck" aria-hidden="true"></span>3. Practice</button><button type="button" role="tab" aria-selected="false" aria-controls="lesson3"><span class="ck" aria-hidden="true"></span>4. Next steps</button></div>
-    <div class="ind-prog" aria-hidden="true"><i></i></div><div class="ind-progtxt" role="status" aria-live="polite">0 of 4 lessons complete</div></div>
-  <div class="ind-box"><div id="lesson0"  role="tabpanel"><h3>Welcome</h3><p style="font-size:14px;color:#364055;line-height:1.55;margin-bottom:14px">A short introduction to the course, what you will build, and how to use the lessons.</p><button type="button" class="ind-btn" data-complete="0">Mark complete</button></div><div id="lesson1" hidden role="tabpanel"><h3>Core skills</h3><p style="font-size:14px;color:#364055;line-height:1.55;margin-bottom:14px">The key ideas, taught one step at a time with a clear example.</p><button type="button" class="ind-btn" data-complete="1">Mark complete</button></div><div id="lesson2" hidden role="tabpanel"><h3>Practice</h3><p style="font-size:14px;color:#364055;line-height:1.55;margin-bottom:14px">A short exercise so students apply what they just learned.</p><button type="button" class="ind-btn" data-complete="2">Mark complete</button></div><div id="lesson3" hidden role="tabpanel"><h3>Next steps</h3><p style="font-size:14px;color:#364055;line-height:1.55;margin-bottom:14px">A recap and what to do after finishing the course.</p><button type="button" class="ind-btn" data-complete="3">Mark complete</button></div></div></div>
-</div></div>
+    <div class="ix-foot"><p><b>How to read this:</b> all figures describe an invented example course. They are not results HQAscend achieved for any client. Student activity depends on the course, the audience and their circumstances.</p><p><b>Definitions:</b> in Enrollment, rates compare with sales-page visits. In Student activation, every percentage compares with the 120 students who enrolled; “active” means completing at least one lesson on days 8–14.</p></div>
+  </div>
 </div>
 </div></section>
 <section class="ind-benefits"><div class="wrap reveal"><h2>Built around the student</h2><div class="why-grid" style="margin-top:22px"><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Show what students will learn</h3><p>Present the curriculum and a useful lesson preview.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Straightforward enrollment</h3><p>Keep pricing, checkout, and account access easy to understand.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Organized learning</h3><p>Give students a clear dashboard with lessons and progress.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Built for your audience</h3><p>Support mobile use, accessible navigation, and bilingual content when needed.</p></div></div></div></div></section>
@@ -136,7 +162,7 @@
   <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
 </footer>
 <script src="script.js?v=3"></script>
-<script src="industry.js?v=1" defer></script>
+<script src="industry.js?v=2" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

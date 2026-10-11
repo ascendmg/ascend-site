@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=7">
-<link rel="stylesheet" href="industry.css?v=1">
+<link rel="stylesheet" href="industry.css?v=2">
 </head>
 <body>
 <div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
@@ -79,38 +79,47 @@
   </div>
 </header>
 <section class="ind-demo-sec" id="demo"><div class="wrap">
-  <div class="ind-label"><b>Demonstration</b><span>Filter, pick options, add to cart. Demonstration only, nothing is purchased.</span></div>
-  <div class="ind-frame" role="group" aria-label="Interactive demonstration">
-  <div class="ind-bar" aria-hidden="true"><i></i><i></i><i></i><span class="ind-url">sample-shop.com</span></div>
-  <div class="ind-body" id="shopDemo" ><div class="ind-top"><div class="ind-brand">Sample Shop<b>.</b></div>
-  <div class="ind-cart" aria-live="polite">Cart <b id="cartN">0</b></div></div>
-<div class="ind-top" style="margin-bottom:0"><div class="ind-tabs ind-filters" role="group" aria-label="Collections">
-  <button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="wear" aria-pressed="false">Wearables</button><button type="button" data-f="home" aria-pressed="false">Home</button></div>
-  <span class="ind-note" id="shopCount">4 products</span></div>
-<div class="ind-prods"><article class="ind-prod" data-c="wear" data-n="Everyday Tee" data-p="28">
-  <div class="ind-art" style="--c:#d9c7a5"><svg viewBox="0 0 64 56" aria-hidden="true"><path fill="currentColor" d="M22 4l10 5 10-5 18 8-6 12-8-3v30H18V21l-8 3L4 12z"/></svg></div>
-  <div class="ind-meta"><h3>Everyday Tee</h3><span>$28</span></div>
-  <fieldset class="ind-sw"><legend>Color</legend><label><input type="radio" name="v0" value="#d9c7a5" data-name="Sand" aria-label="Sand" checked><span style="--sw:#d9c7a5"></span></label><label><input type="radio" name="v0" value="#8fae8b" data-name="Sage" aria-label="Sage" ><span style="--sw:#8fae8b"></span></label><label><input type="radio" name="v0" value="#2b2d42" data-name="Ink" aria-label="Ink" ><span style="--sw:#2b2d42"></span></label></fieldset><label class="ind-field">Size<select aria-label="Size for Everyday Tee"><option>S</option><option>M</option><option>L</option><option>XL</option></select></label>
-  <button type="button" class="ind-btn ind-add">Add to cart</button>
-</article><article class="ind-prod" data-c="home" data-n="Ceramic Mug" data-p="18">
-  <div class="ind-art" style="--c:#efe6d2"><svg viewBox="0 0 64 56" aria-hidden="true"><path fill="currentColor" d="M10 10h34v32a8 8 0 01-8 8H18a8 8 0 01-8-8z"/><path fill="none" stroke="currentColor" stroke-width="6" d="M44 18h4a7 7 0 010 14h-4"/></svg></div>
-  <div class="ind-meta"><h3>Ceramic Mug</h3><span>$18</span></div>
-  <fieldset class="ind-sw"><legend>Color</legend><label><input type="radio" name="v1" value="#efe6d2" data-name="Cream" aria-label="Cream" checked><span style="--sw:#efe6d2"></span></label><label><input type="radio" name="v1" value="#8fb9d6" data-name="Sky" aria-label="Sky" ><span style="--sw:#8fb9d6"></span></label><label><input type="radio" name="v1" value="#c27b5a" data-name="Clay" aria-label="Clay" ><span style="--sw:#c27b5a"></span></label></fieldset>
-  <button type="button" class="ind-btn ind-add">Add to cart</button>
-</article><article class="ind-prod" data-c="wear" data-n="Canvas Cap" data-p="24">
-  <div class="ind-art" style="--c:#2f4a73"><svg viewBox="0 0 64 56" aria-hidden="true"><path fill="currentColor" d="M10 38a22 22 0 0144 0z"/><path fill="currentColor" d="M44 36h18c0 4-6 8-14 8h-8z"/></svg></div>
-  <div class="ind-meta"><h3>Canvas Cap</h3><span>$24</span></div>
-  <fieldset class="ind-sw"><legend>Color</legend><label><input type="radio" name="v2" value="#2f4a73" data-name="Navy" aria-label="Navy" checked><span style="--sw:#2f4a73"></span></label><label><input type="radio" name="v2" value="#b9b3a6" data-name="Stone" aria-label="Stone" ><span style="--sw:#b9b3a6"></span></label><label><input type="radio" name="v2" value="#b5593a" data-name="Rust" aria-label="Rust" ><span style="--sw:#b5593a"></span></label></fieldset>
-  <button type="button" class="ind-btn ind-add">Add to cart</button>
-</article><article class="ind-prod" data-c="home" data-n="Market Tote" data-p="22">
-  <div class="ind-art" style="--c:#e4d9bf"><svg viewBox="0 0 64 56" aria-hidden="true"><path fill="currentColor" d="M12 20h40l3 32H9z"/><path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" d="M22 20v-6a10 10 0 0120 0v6"/></svg></div>
-  <div class="ind-meta"><h3>Market Tote</h3><span>$22</span></div>
-  <fieldset class="ind-sw"><legend>Color</legend><label><input type="radio" name="v3" value="#e4d9bf" data-name="Natural" aria-label="Natural" checked><span style="--sw:#e4d9bf"></span></label><label><input type="radio" name="v3" value="#2f4a73" data-name="Navy" aria-label="Navy" ><span style="--sw:#2f4a73"></span></label><label><input type="radio" name="v3" value="#7b8a4f" data-name="Olive" aria-label="Olive" ><span style="--sw:#7b8a4f"></span></label></fieldset>
-  <button type="button" class="ind-btn ind-add">Add to cart</button>
-</article></div>
-<div class="ind-cartlist" id="cartList" hidden><ul></ul><div class="tot"><span>Subtotal</span><span id="cartTot">$0</span></div>
-  <div class="ind-actions"><button type="button" class="ind-btn" id="cartGo">Checkout</button><button type="button" class="ind-btn alt" id="cartClear">Clear cart</button></div></div>
-<p class="ind-toast" role="status" aria-live="polite"></p></div>
+  <div class="ind-label"><b>Illustrative example</b><span>Select a step to see the data, what we’d investigate, and how we could help.</span></div>
+  <div class="ind-frame" role="group" aria-label="Illustrative example: Example Store">
+  <div class="ind-bar" aria-hidden="true"><i></i><i></i><i></i><span class="ind-url">example-store.com · performance</span></div>
+  <div class="ind-body" id="ecDemo">
+    <div class="ix-top"><div class="ind-brand">Example Store<b>.</b><span class="ix-period">Example month · 30 days</span></div><span class="ix-badge">Illustrative data—not client results</span></div>
+    <div class="ix-view" id="ecv0" >
+<div class="ix-kpis n4"><div class="ix-kpi"><b>1.8%</b><span>Purchase conversion rate<br>(180 ÷ 10,000 sessions)</span></div><div class="ix-kpi"><b>$80</b><span>Average order value<br>($14,400 ÷ 180 orders)</span></div><div class="ix-kpi"><b>$14,400</b><span>Revenue<br>(180 orders × $80)</span></div><div class="ix-kpi"><b>$1.44</b><span>Revenue per session<br>($14,400 ÷ 10,000)</span></div></div>
+<div class="ix-main"><div><p class="ix-hint">Select a step to explore it.</p><div class="ix-flow"><div class="ix-bar"><div class="row"><span>Website sessions</span><span><b>10,000</b></span></div><div class="ix-track" aria-hidden="true"><i style="width:100.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="true" aria-controls="ecv0d0"><span>Product discovery<small>Sessions → add-to-cart</small></span><span class="v">6%</span></button><div class="ix-bar"><div class="row"><span>Sessions with add-to-cart</span><span><b>600</b><em>6% of website sessions</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:6.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="ecv0d1"><span>Cart to checkout<small>Add-to-cart → checkout</small></span><span class="v">50%</span></button><div class="ix-bar"><div class="row"><span>Sessions reaching checkout</span><span><b>300</b><em>3% of website sessions</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:3.0%"></i></div></div><button type="button" class="ix-pick" aria-pressed="false" aria-controls="ecv0d2"><span>Checkout completion<small>Checkout → purchase</small></span><span class="v">60%</span></button><div class="ix-bar"><div class="row"><span>Sessions completing a purchase</span><span><b>180</b><em>1.8% of website sessions</em></span></div><div class="ix-track" aria-hidden="true"><i style="width:3.0%"></i></div></div><div class="ix-beyond">Beyond the funnel</div><button type="button" class="ix-pick beyond" aria-pressed="false" aria-controls="ecv0d3"><span>Order value<small>Revenue per order and per session</small></span><span class="v">$80</span></button><button type="button" class="ix-pick beyond" aria-pressed="false" aria-controls="ecv0d4"><span>Customer retention<small>Repeat purchases from past customers</small></span><span class="v">15%</span></button></div></div><div><div class="ix-detail" id="ecv0d0" >
+<h3>Product discovery</h3><div class="step">Sessions → add-to-cart</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>600 of 10,000 sessions (6%) included an add-to-cart action. This is where browsing turns into buying intent.<br><code>600 ÷ 10,000 = 6% add-to-cart rate</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Which collections and product pages sessions reach, and where they leave</li><li>Whether search and filters return useful results, including searches with no results</li><li>How navigation and product pages work on phones</li><li>Whether sizing, shipping and product details answer common questions</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Collection structure and navigation built around how customers shop</li><li>Better search, filters and mobile navigation, within the platform’s capabilities</li><li>Clearer product information, images and options</li><li>Product-level reporting so these questions can be answered with data</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Product engagement</span><span>Add-to-cart rate</span><span>Searches with no results</span></div></div>
+</div><div class="ix-detail" id="ecv0d1" hidden>
+<h3>Cart to checkout</h3><div class="step">Add-to-cart → checkout</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>300 of the 600 sessions with an add-to-cart action (50%) reached checkout. Some carts are used to save items or compare prices, so a gap here is normal; the question is how large it is for this store.<br><code>300 ÷ 600 = 50% reached checkout</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether delivery costs and times are visible before checkout</li><li>Whether the cart is easy to review and edit on mobile</li><li>Whether the path from cart to checkout is clear</li><li>How this rate differs by device and traffic source</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Show shipping and returns information earlier</li><li>A simpler cart and clearer checkout button</li><li>Event tracking for cart and checkout steps</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Cart-to-checkout rate</span><span>Rate by device</span></div></div>
+</div><div class="ix-detail" id="ecv0d2" hidden>
+<h3>Checkout completion</h3><div class="step">Checkout → purchase</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>180 of the 300 sessions that reached checkout purchased, a 60% completion rate. 120 sessions did not complete. The data shows where sessions stopped, not why they stopped.<br><code>180 ÷ 300 = 60% checkout completion</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Unexpected shipping costs</li><li>Unclear delivery information</li><li>Checkout errors, especially on mobile</li><li>Payment friction, such as missing payment options</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Clearer shipping, delivery and returns information</li><li>Checkout configuration within the platform’s capabilities</li><li>Reliable tracking of each checkout step so errors can be found and measured</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Checkout completion rate</span><span>Payment error rate</span><span>Purchase conversion rate</span></div></div>
+</div><div class="ix-detail" id="ecv0d3" hidden>
+<h3>Order value</h3><div class="step">Revenue per order and per session</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>The 180 orders produced $14,400 in revenue, an average order value of $80 and $1.44 of revenue per session.<br><code>$14,400 ÷ 180 = $80 per order · $14,400 ÷ 10,000 = $1.44 per session</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Which products are often bought together</li><li>Whether product pages suggest relevant add-ons</li><li>Whether bundles or shipping thresholds fit the catalog</li><li>Which products actually earn profit, not just revenue</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Relevant product recommendations</li><li>Bundles</li><li>Clearer merchandising on collection and product pages</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Average order value</span><span>Revenue per session</span><span>Items per order</span></div></div><div class="ix-caution">A higher order value does not automatically mean higher profit. Discounts, shipping, returns and product costs all affect margin. Revenue is not profit.</div>
+</div><div class="ix-detail" id="ecv0d4" hidden>
+<h3>Customer retention</h3><div class="step">Repeat purchases from past customers</div>
+<div class="ix-sec"><h4>What the data shows</h4><p>Separate cohort: 120 customers who made a first purchase in the 90 days before this example month. Of them, 18 placed a second order within 90 days of their first, a 15% repeat purchase rate. These customers are measured over their own 90-day windows, not the month above.<br><code>18 ÷ 120 = 15% repeat purchase rate</code></p></div>
+<div class="ix-sec"><h4>What we would investigate</h4><ul><li>Whether new customers receive useful order, delivery and review emails</li><li>Which first purchases lead to repeat orders</li><li>Whether campaigns match what customers actually bought</li><li>Whether reordering is easy</li></ul></div>
+<div class="ix-sec"><h4>How HQAscend could help</h4><ul><li>Post-purchase email flows such as confirmation, delivery updates and review requests</li><li>Relevant email campaigns based on past purchases</li><li>Reporting that separates new and returning customers</li></ul></div>
+<div class="ix-sec"><h4>Metrics to monitor</h4><div class="ix-chips"><span>Repeat purchase rate</span><span>Revenue from returning customers</span><span>Time between orders</span></div></div>
+</div></div></div>
+</div>
+    <div class="ix-foot"><p><b>How to read this:</b> all figures describe an invented example store for one example month. They are not results HQAscend achieved for any client, and they do not show why customers behave as they do.</p><p><b>Definitions:</b> a session is one visit. Simplified to one order per purchasing session. Purchase conversion rate = purchasing sessions ÷ total sessions. Average order value = revenue ÷ orders. Revenue is not profit.</p></div>
+  </div>
 </div>
 </div></section>
 <section class="ind-benefits"><div class="wrap reveal"><h2>Built around how people shop</h2><div class="why-grid" style="margin-top:22px"><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Easy product discovery</h3><p>Organize collections, search, and filters around how customers shop.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Product pages that answer questions</h3><p>Present useful images, options, sizing, shipping, and other relevant details.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>A smooth purchase path</h3><p>Make selecting products and moving to checkout straightforward.</p></div></div><div class="why-item"><div class="mark"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h3>Practical store management</h3><p>Connect inventory, orders, and the tools the business needs.</p></div></div></div></div></section>
@@ -148,7 +157,7 @@
   <div class="footer-bottom">© 2026 Ascend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
 </footer>
 <script src="script.js?v=3"></script>
-<script src="industry.js?v=1" defer></script>
+<script src="industry.js?v=2" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
