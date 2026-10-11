@@ -42,7 +42,7 @@
     var s = el('div', 'cs-scene'), cur = t.current - 1;
     var stg = t.stages.map(function (n, i) { return '<li><button type="button" data-i="' + i + '" class="' + (i < cur ? 'done ' : '') + (i === cur ? 'cur' : '') + '"><span class="n">' + (i + 1) + '</span>' + esc(n) + '</button></li>'; }).join('');
     var less = t.lessons.map(function (l) { return '<button type="button" aria-expanded="false"><b>' + esc(l.t) + '</b><span>' + esc(l.p) + '</span></button>'; }).join('');
-    s.innerHTML = '<div class="dm"' + accentStyle(t.accent) + '><div class="dm-dash"><div class="dm-box"><h4>Your progress</h4><div class="dm-prog"><i></i></div><div class="dm-pv" style="font-size:12px;color:#667"><b class="pc" style="color:#1b2230;font-size:15px">0%</b> complete</div><div class="dm-stats"><div><b>' + t.streak + '</b>day streak</div><div><b>' + t.badges + '</b>badges</div></div><ul class="dm-stg">' + stg + '</ul><button class="dm-cont" type="button">Continue &rarr; Stage ' + t.current + '</button></div><div class="dm-box"><h4>Sample lessons</h4><div class="dm-less">' + less + '</div></div></div></div>';
+    s.innerHTML = '<div class="dm"' + accentStyle(t.accent) + '><div class="dm-dash"><div class="dm-box"><h4>Your progress</h4><div class="dm-prog"><i></i></div><div class="dm-pv" style="font-size:12px;color:#667"><b class="pc" style="color:#1b2230;font-size:15px">0%</b> complete</div><div class="dm-stats"><div><b>' + t.streak + '</b>day streak</div><div><b>' + t.badges + '</b>badges</div></div><ul class="dm-stg">' + stg + '</ul><button class="dm-cont" type="button">Continue &rarr; Stage ' + t.current + '</button></div><div class="dm-box"><h4>Sample lessons</h4><div class="dm-less">' + less + '</div><p class="dm-hint">Tap a lesson to preview it.</p></div></div></div>';
     var bar = $('.dm-prog i', s), pc = $('.pc', s), shown = false;
     function run() {
       if (shown) return; shown = true; bar.style.width = t.progress + '%';
@@ -136,8 +136,10 @@
   });
   function fit() {
     var sc = scenes[cur]; if (!sc) return; var c = sc.node.firstElementChild; if (!c) return;
-    var h = Math.max(c.offsetHeight, c.scrollHeight);
-    stage.style.height = Math.max(200, Math.min(h, 620)) + 'px';
+    var w = stage.parentNode.clientWidth, mob = frame.classList.contains('mobile');
+    var im = sc.node.classList.contains('shot') && sc.node.querySelector('img');
+    if (mob && im && im.naturalWidth) { stage.style.height = Math.round(w * im.naturalHeight / im.naturalWidth) + 'px'; return; }
+    stage.style.height = (mob ? Math.round(Math.min(640, Math.max(520, w * 1.55))) : Math.round(Math.min(500, Math.max(360, w * 0.52)))) + 'px';
   }
   window.addEventListener('resize', fit);
   $$('.cs-scene img', stage).forEach(function (im) { im.addEventListener('load', fit); });

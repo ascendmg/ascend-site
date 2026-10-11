@@ -62,7 +62,7 @@ def page(d):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=6">
-<link rel="stylesheet" href="case-study.css?v=1">
+<link rel="stylesheet" href="case-study.css?v=3">
 </head>
 <body>
 {nav}
@@ -178,7 +178,7 @@ def page(d):
 
 <script type="application/json" id="csData">{data}</script>
 <script src="script.js?v=3"></script>
-<script src="case-study.js?v=1" defer></script>
+<script src="case-study.js?v=3" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
