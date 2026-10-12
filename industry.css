@@ -104,3 +104,25 @@ html[data-theme="dark"] .ind-label b{background:var(--forest-2);}
 @media (prefers-reduced-motion:reduce){ .ind-pane,.ix-detail{animation:none;} .ix-pick{transition:none;} }
 
 .ix-detail{scroll-margin-top:84px;}
+
+/* v4: short page structure */
+.ind-head{padding-bottom:0;} .ind-head h1{max-width:900px;} .ind-head p{max-width:680px;}
+.ind-ways-sec{padding:44px 0 8px; border-top:none;} .ind-ways-sec .wrap{max-width:1280px;}
+.ind-ways-sec h2{font:700 clamp(24px,3.2vw,32px)/1.15 'Space Grotesk',sans-serif; letter-spacing:-.02em; margin-bottom:6px;}
+.ind-ways-sec .lead{color:var(--muted); max-width:620px; font-size:15.5px; margin-bottom:22px;}
+.ind-ways{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; list-style:none; padding:0; margin:0;}
+.ind-way{border:1px solid var(--line); border-radius:16px; background:var(--forest-2); padding:20px 20px 22px; box-shadow:var(--card-shadow);}
+.ind-way .num{display:grid; place-items:center; width:34px; height:34px; border-radius:10px; background:var(--accent-gradient); color:#fff; font:700 14px 'Space Grotesk',sans-serif; margin-bottom:14px;}
+.ind-way h3{font:700 17.5px/1.25 'Space Grotesk',sans-serif; margin-bottom:8px; letter-spacing:-.01em;}
+.ind-way p{font-size:14.5px; line-height:1.55; color:var(--muted); margin:0;}
+.ind-way .svc{display:block; margin-top:12px; font:600 12.5px 'Inter',sans-serif; color:var(--ivory);}
+.ind-demo-sec{padding:44px 0 8px;} .ind-demo-sec .wrap{max-width:1280px;}
+.ind-demo-sec .sec-h{font:700 clamp(24px,3.2vw,32px)/1.15 'Space Grotesk',sans-serif; letter-spacing:-.02em; margin-bottom:6px;}
+.ind-demo-sec .lead{color:var(--muted); max-width:640px; font-size:15.5px; margin-bottom:20px;}
+.ind-head .wrap{max-width:1280px;}
+.ind-proj-sec .wrap{max-width:1280px;}
+@media (max-width:1000px){ .ind-ways{grid-template-columns:1fr 1fr;} }
+@media (max-width:600px){ .ind-ways{grid-template-columns:1fr;} .ind-way{padding:18px;} }
+
+.ind-demo-sec .wrap,.ind-ways-sec .wrap,.ind-head .wrap,.ind-proj-sec .wrap{max-width:1280px;}
+.ind-demo-sec .sec-h{margin-bottom:16px;}

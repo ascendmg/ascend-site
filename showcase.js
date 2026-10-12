@@ -23,14 +23,13 @@
     function renderHelp() {
       var f = D.feats[featId], order = D.order[viewId];
       var chips = order.map(function (k) { return '<button type="button" data-feat="' + k + '" aria-pressed="' + (k === featId) + '">' + esc(D.feats[k].label) + '</button>'; }).join('');
-      var ben = f.benefits.map(function (b) { return '<li>' + esc(b.t) + (b.see ? '<em>Visible in the example: ' + esc(b.see) + '</em>' : '') + '</li>'; }).join('');
-      var meas = f.measures.map(function (m) { return '<div class="sx-m"><b>' + esc(m.n) + '<span data-ev="' + m.ev.join(',') + '" data-fmt="' + (m.fmt || '') + '"></span></b><p>' + esc(m.t) + '</p></div>'; }).join('');
+      var ben = f.benefits.slice(0, 2).map(function (b) { return '<li>' + esc(b.t) + '</li>'; }).join('');
+      var meas = f.measures.slice(0, 2).map(function (m) { return '<span class="sx-m"><b>' + esc(m.n) + '</b><span data-ev="' + m.ev.join(',') + '" data-fmt="' + (m.fmt || '') + '"></span></span>'; }).join('');
       $('.sx-help-body', help).innerHTML =
-        '<div class="sx-chips" role="group" aria-label="Features in this view">' + chips + '</div>' +
-        '<p class="sx-ftitle">' + esc(f.title) + '</p>' +
-        '<div class="sx-help-grid"><div><h4>Helps your customers</h4><ul class="sx-ben">' + ben + '</ul></div>' +
-        '<div><h4>Supports your business</h4><p class="sx-biz">' + esc(f.biz || '') + '</p></div>' +
-        '<div><h4>What could be measured</h4><div class="sx-meas">' + meas + '</div></div></div>';
+        '<div class="sx-chips" role="group" aria-label="Highlights on this page"><span class="sx-chips-l">Highlights</span>' + chips + '</div>' +
+        '<div class="sx-capgrid"><div><p class="sx-ftitle">' + esc(f.title) + '</p><p class="sx-biz">' + esc(f.biz || '') + '</p></div>' +
+        '<div><h4>For your customers</h4><ul class="sx-ben">' + ben + '</ul></div>' +
+        '<div><h4>Know what works</h4><div class="sx-meas">' + meas + '</div></div></div>';
       refresh();
     }
     function flash(k) {
@@ -51,6 +50,7 @@
         var on = t.dataset.view === v; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
       });
       $$('.sx-view', root).forEach(function (el) { el.hidden = el.dataset.view !== v; });
+      var scr = $('.sx-site', root); if (scr) scr.scrollTop = 0;
       $$('.sxs-links [data-goto]', root).forEach(function (b) { if (b.dataset.goto === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
       featId = D.order[v][0]; renderHelp(); flash('');
       listeners.forEach(function (fn) { fn('view', v); });
@@ -180,7 +180,7 @@
         '<div class="sx-reg cr-modsbox" data-reg="d_modules"><button type="button" class="sx-hot" data-feat="d_modules" aria-label="Explain: module list" aria-pressed="false">i</button><h3 class="cr-h3">Your modules</h3><ul class="cr-mods">' + mods + '</ul></div></div>' +
         '<div class="cr-dside"><div class="sx-reg cr-progbox" data-reg="d_progress"><button type="button" class="sx-hot" data-feat="d_progress" aria-label="Explain: progress" aria-pressed="false">i</button><h3 class="cr-h3">Overall progress</h3><div class="cr-pct">' + pct + '%</div><div class="sxs-prog" aria-hidden="true"><i style="width:' + pct + '%"></i></div><div class="sxs-fine" style="margin-top:6px">' + t + ' of ' + n + ' lessons complete</div></div>' +
         '<div class="sxs-box"><h3 class="cr-h3">Next steps</h3><ul class="cr-steps"><li>' + (finished ? 'Review any lesson from the module list' : 'Finish Module ' + (nx.mod + 1) + ': ' + esc(C.modules[nx.mod].t)) + '</li><li>Download the printable feeding schedule</li><li>Bake your first loaf in Module 4</li></ul></div>' +
-        '<p class="sxs-fine">Progress here is a demo and is not saved.</p></div></div>';
+        '<p class="sxs-fine">Progress resets when you leave this example.</p></div></div>';
     }
     function rerender() { renderLesson(); renderDash(); }
     function open(id) { cur = id; renderLesson(); api.goto('lesson'); api.track('lesson_open'); }
@@ -224,7 +224,8 @@
 
   /* ---------- E-commerce: filters, product, cart ---------- */
   custom.ecom = function (api) {
-    var root = api.root, S = api.data.shop, esc = api.esc, cart = [], cur = S.coffees[0], size = '12', grind = 'Whole bean', placed = false;
+    var root = api.root, S = api.data.shop, esc = api.esc, cart = [{ id: S0(api).coffees[0].id, n: S0(api).coffees[0].n, s: '12', g: 'Whole bean', p: S0(api).coffees[0].p12, q: 1 }, { id: S0(api).coffees[1].id, n: S0(api).coffees[1].n, s: '12', g: 'Whole bean', p: S0(api).coffees[1].p12, q: 1 }], cur = S.coffees[0], size = '12', grind = 'Whole bean', placed = false;
+    function S0(a) { return a.data.shop; }
     var money = function (n) { return '$' + n; };
     var bag = function (c) { return S.bag.split('COLOR_X').join(c).replace(/id="bg[^"]*"/, 'id="bgp"').replace(/url\(#bg[^)]*\)/, 'url(#bgp)').replace('width="100%"', 'width="auto"').replace('stop-color="' + c + '" stop-opacity', 'stop-color="' + c + '" stop-opacity'); };
     var flt = { roast: 'all', brew: 'all' };
@@ -245,7 +246,7 @@
     });
     var price = function () { return size === '12' ? cur.p12 : cur.p2; };
     function renderProduct() {
-      $('#ec-product', root).innerHTML = '<div class="ec-pdp"><div class="ec-pimg">' + cur.img + '<span class="sx-cap">Concept image</span></div><div class="sx-reg" data-reg="p_info" style="padding:2px"><button type="button" class="sx-hot" data-feat="p_info" aria-label="Explain: product details" aria-pressed="false">i</button>' +
+      $('#ec-product', root).innerHTML = '<div class="ec-pdp"><div class="ec-pimg">' + cur.img + '</div><div class="sx-reg" data-reg="p_info" style="padding:2px"><button type="button" class="sx-hot" data-feat="p_info" aria-label="Explain: product details" aria-pressed="false">i</button>' +
         '<span class="ec-origin">' + esc(cur.o) + ' \u00b7 ' + cur.r + ' roast</span><h1 class="ec-h1" style="font-size:clamp(26px,4.4cqi,38px)!important">' + esc(cur.n) + '</h1><p class="ec-lead">Tasting notes: ' + esc(cur.notes) + '.</p><p class="ec-tip"><b>How to brew it.</b> ' + esc(cur.tip) + '</p>' +
         '<div class="ec-price" aria-live="polite">' + money(price()) + '</div>' +
         '<div class="sx-reg" data-reg="p_options" style="padding:2px"><button type="button" class="sx-hot" data-feat="p_options" aria-label="Explain: sizes and options" aria-pressed="false" style="top:-4px">i</button><div class="ec-opts" role="group" aria-label="Size"><button type="button" class="ec-opt" data-size="12" aria-pressed="' + (size === '12') + '">12 oz<small>' + money(cur.p12) + '</small></button><button type="button" class="ec-opt" data-size="2" aria-pressed="' + (size === '2') + '">2 lb<small>' + money(cur.p2) + '</small></button></div>' +
@@ -254,6 +255,7 @@
         '<div class="ec-info2"><div><b>Delivery</b><span>Ships in 1 to 2 business days; delivery in 3 to 5.</span></div><div><b>Free shipping</b><span>On orders over $' + S.threshold + '.</span></div><div><b>Returns</b><span>If something is wrong with your order, tell us within 14 days and we will make it right.</span></div></div></div></div>';
     }
     function cartCount() { var n = cart.reduce(function (a, l) { return a + l.q; }, 0); $$('.ec-cartn', root).forEach(function (el) { el.textContent = n; }); }
+    cartCount();
     function sub() { return cart.reduce(function (a, l) { return a + l.p * l.q; }, 0); }
     function renderCart() {
       var el = $('#ec-cart', root), s = sub();
@@ -263,7 +265,7 @@
         cart.map(function (l, i) { return '<div class="ec-line"><div><b>' + esc(l.n) + '</b><small>' + (l.s === '12' ? '12 oz' : '2 lb') + ' \u00b7 ' + esc(l.g) + ' \u00b7 ' + money(l.p) + ' each</small></div><div class="ec-qty"><button type="button" data-q="' + i + ':-1" aria-label="Decrease quantity">\u2212</button><span>' + l.q + '</span><button type="button" data-q="' + i + ':1" aria-label="Increase quantity">+</button></div></div>'; }).join('') + '</div>' +
         '<div class="sxs-box"><div class="sx-reg ec-ship" data-reg="k_notes" style="padding:2px"><button type="button" class="sx-hot" data-feat="k_notes" aria-label="Explain: free shipping bar" aria-pressed="false" style="top:-6px">i</button><div class="sxs-fine" style="margin-bottom:6px">' + (left ? 'You are ' + money(left) + ' away from free shipping.' : 'Free shipping unlocked.') + '</div><div class="sxs-prog" aria-hidden="true"><i style="width:' + pct + '%"></i></div></div>' +
         '<div class="ec-sub"><span>Subtotal</span><span>' + money(s) + '</span></div><div class="sxs-fine" style="margin-bottom:12px">Estimated delivery: 3 to 5 business days. Tax and shipping are shown before payment.</div>' +
-        '<div data-pane="co:cart"><button type="button" class="sxs-btn" style="width:100%" data-checkout="1">Checkout</button></div><div data-pane="co:done" hidden><p><b>Order placed (simulated).</b> No payment is taken and nothing is sent.</p></div></div></div>';
+        '<div data-pane="co:cart"><button type="button" class="sxs-btn" style="width:100%" data-checkout="1">Checkout</button></div><div data-pane="co:done" hidden><p><b>Example order placed.</b> No payment is taken.</p></div></div></div>';
     }
     function showProduct(i) { cur = S.coffees.filter(function (c) { return c.id === i; })[0]; size = '12'; grind = 'Whole bean'; placed = false; renderProduct(); api.goto('product'); }
     root.addEventListener('click', function (e) {
@@ -285,4 +287,12 @@
 
   function start() { $$('.sx[data-sx]').forEach(init); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+/* Optional real photos: list a file in assets/concepts/manifest.json (slot name -> file name) and it replaces the concept image in that slot. */
+(function () {
+  var slots = document.querySelectorAll('.sx-ph[data-slot]'); if (!slots.length || !window.fetch) return;
+  fetch('assets/concepts/manifest.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (m) {
+    slots.forEach(function (el) { var f = m && m[el.getAttribute('data-slot')]; var img = el.querySelector('.sx-ph-img'); if (f && img) img.style.backgroundImage = 'url(assets/concepts/' + f + ')'; });
+  }).catch(function () {});
 })();
