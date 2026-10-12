@@ -51,6 +51,7 @@
         var on = t.dataset.view === v; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
       });
       $$('.sx-view', root).forEach(function (el) { el.hidden = el.dataset.view !== v; });
+      $$('.sxs-links [data-goto]', root).forEach(function (b) { if (b.dataset.goto === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
       featId = D.order[v][0]; renderHelp(); flash('');
       listeners.forEach(function (fn) { fn('view', v); });
     }
@@ -103,6 +104,11 @@
       }
     });
 
+    var toastT = null;
+    function toast(msg) {
+      var el = $('.sx-toast', root); if (!el) { el = document.createElement('div'); el.className = 'sx-toast'; el.setAttribute('role', 'status'); $('.sx-browser', root).appendChild(el); }
+      el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('on'); }, 2600);
+    }
     /* Declarative interactions via data attributes (delegated) */
     root.addEventListener('click', function (e) {
       var b = e.target.closest('button,[data-switch],[data-acc],[data-goto],[data-feat],[data-track]'); if (b && b.closest('.sx-help') && !b.dataset.feat) return; if (!b || !root.contains(b)) return;
@@ -116,7 +122,9 @@
         b.setAttribute('aria-expanded', !open); if (body) body.hidden = open; if (!open && b.dataset.trackOpen) track(b.dataset.trackOpen);
       }
       if (b.dataset.track) b.dataset.track.split(',').forEach(track);
-      if (b.dataset.goto) gotoView(b.dataset.goto);
+      var PM = { call_click: 'In a live site, this starts a phone call.', text_click: 'In a live site, this opens a text message.' };
+      if (b.dataset.track && PM[b.dataset.track]) toast(PM[b.dataset.track]);
+      if (b.dataset.goto) { gotoView(b.dataset.goto); var br = $('.sx-browser', root); if (isFull) stage.scrollTop = 0; else if (br && br.getBoundingClientRect().top < 0) br.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
       if (b.dataset.feat) selectFeat(b.dataset.feat, !b.closest('.sx-help'));
     });
 
@@ -145,7 +153,7 @@
       $('#cr-lesson', root).innerHTML =
         '<div class="sxs-row2 top cr-lesson-grid"><div class="sx-reg" data-reg="l_player">' +
         '<button type="button" class="sx-hot" data-feat="l_player" aria-label="Explain: lesson content" aria-pressed="false">i</button>' +
-        '<div class="cr-player">' + (l.id === '2.1' ? C.svgDough : C.svgGeneric) + '<div class="cr-cap">Sample lesson content. No video plays in this example.</div></div>' +
+        '<div class="cr-player">' + (l.id === '2.1' ? C.svgDough : C.svgGeneric) + '<div class="cr-cap">Lesson video · playback is not part of this concept</div></div>' +
         '<div class="cr-lbody"><div class="sxs-eyebrow">Module ' + (l.mod + 1) + ' · Lesson ' + l.id + ' · ' + l.min + ' min</div><h2>' + esc(l.t) + '</h2><p>' + esc(l.s) + '</p>' +
         '<h3 class="cr-h3">Try this</h3><ul class="cr-tips">' + l.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
         '<div class="cr-actions sx-reg" data-reg="l_complete" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:relative;padding:4px 0">' +
@@ -164,15 +172,15 @@
         return '<li><button type="button" class="cr-mod' + (s.d === s.n ? ' done' : '') + '" data-lesson="' + first.id + '" data-track="dash_module"><span class="cr-modn">' + (mi + 1) + '</span><span class="cr-modt">' + esc(m.t) + '<small>' + s.d + ' of ' + s.n + ' lessons · ' + state + '</small><span class="sxs-prog" aria-hidden="true"><i style="width:' + Math.round(s.d / s.n * 100) + '%"></i></span></span></button></li>';
       }).join('');
       $('#cr-dash', root).innerHTML =
-        '<div class="cr-dhead"><div><div class="sxs-eyebrow">Sample student</div><h2>Welcome back, Alex</h2></div><button type="button" class="sxs-btn ghost sm" data-reset="1">Reset demo</button></div>' +
+        '<div class="cr-dhead"><div><div class="sxs-eyebrow">Student dashboard</div><h2>Welcome back, Alex</h2></div><button type="button" class="sxs-btn ghost sm" data-reset="1">Reset demo</button></div>' +
         '<div class="cr-dgrid"><div class="cr-dmain">' +
         '<div class="cr-cont sx-reg" data-reg="d_continue"><button type="button" class="sx-hot" data-feat="d_continue" aria-label="Explain: continue learning" aria-pressed="false">i</button>' +
-        (finished ? '<div class="sxs-eyebrow" style="color:#e9d9b8">All lessons complete</div><h3>You finished the example course</h3><p>In a real course, this card could point to the next course or a certificate.</p>' :
+        (finished ? '<div class="sxs-eyebrow" style="color:#e9d9b8">All lessons complete</div><h3>You finished the example course</h3><p>Review any lesson, or pick up where the next course begins.</p>' :
           '<div class="sxs-eyebrow" style="color:#e9d9b8">Continue learning</div><h3>' + nx.id + ' ' + esc(nx.t) + '</h3><p>Module ' + (nx.mod + 1) + ' · ' + esc(C.modules[nx.mod].t) + ' · ' + nx.min + ' min</p><button type="button" class="sxs-btn cr-resume" data-lesson="' + nx.id + '" data-track="resume">Resume lesson →</button>') + '</div>' +
         '<div class="sx-reg cr-modsbox" data-reg="d_modules"><button type="button" class="sx-hot" data-feat="d_modules" aria-label="Explain: module list" aria-pressed="false">i</button><h3 class="cr-h3">Your modules</h3><ul class="cr-mods">' + mods + '</ul></div></div>' +
         '<div class="cr-dside"><div class="sx-reg cr-progbox" data-reg="d_progress"><button type="button" class="sx-hot" data-feat="d_progress" aria-label="Explain: progress" aria-pressed="false">i</button><h3 class="cr-h3">Overall progress</h3><div class="cr-pct">' + pct + '%</div><div class="sxs-prog" aria-hidden="true"><i style="width:' + pct + '%"></i></div><div class="sxs-fine" style="margin-top:6px">' + t + ' of ' + n + ' lessons complete</div></div>' +
         '<div class="sxs-box"><h3 class="cr-h3">Next steps</h3><ul class="cr-steps"><li>' + (finished ? 'Review any lesson from the module list' : 'Finish Module ' + (nx.mod + 1) + ': ' + esc(C.modules[nx.mod].t)) + '</li><li>Download the printable feeding schedule</li><li>Bake your first loaf in Module 4</li></ul></div>' +
-        '<p class="sxs-fine">Sample student and demo progress. Marking lessons complete here is not saved and does not create a student record.</p></div></div>';
+        '<p class="sxs-fine">Progress here is a demo and is not saved.</p></div></div>';
     }
     function rerender() { renderLesson(); renderDash(); }
     function open(id) { cur = id; renderLesson(); api.goto('lesson'); api.track('lesson_open'); }
@@ -237,13 +245,13 @@
     });
     var price = function () { return size === '12' ? cur.p12 : cur.p2; };
     function renderProduct() {
-      $('#ec-product', root).innerHTML = '<div class="ec-pdp"><div class="ec-pimg">' + bag(cur.c) + '</div><div class="sx-reg" data-reg="p_info" style="padding:2px"><button type="button" class="sx-hot" data-feat="p_info" aria-label="Explain: product details" aria-pressed="false">i</button>' +
-        '<span class="ec-origin">' + esc(cur.o) + ' \u00b7 ' + cur.r + ' roast</span><h1 class="ec-h1" style="font-size:clamp(26px,4.4cqi,38px)!important">' + esc(cur.n) + '</h1><p class="ec-lead">Tasting notes: ' + esc(cur.notes) + '.</p>' +
+      $('#ec-product', root).innerHTML = '<div class="ec-pdp"><div class="ec-pimg">' + cur.img + '<span class="sx-cap">Concept image</span></div><div class="sx-reg" data-reg="p_info" style="padding:2px"><button type="button" class="sx-hot" data-feat="p_info" aria-label="Explain: product details" aria-pressed="false">i</button>' +
+        '<span class="ec-origin">' + esc(cur.o) + ' \u00b7 ' + cur.r + ' roast</span><h1 class="ec-h1" style="font-size:clamp(26px,4.4cqi,38px)!important">' + esc(cur.n) + '</h1><p class="ec-lead">Tasting notes: ' + esc(cur.notes) + '.</p><p class="ec-tip"><b>How to brew it.</b> ' + esc(cur.tip) + '</p>' +
         '<div class="ec-price" aria-live="polite">' + money(price()) + '</div>' +
         '<div class="sx-reg" data-reg="p_options" style="padding:2px"><button type="button" class="sx-hot" data-feat="p_options" aria-label="Explain: sizes and options" aria-pressed="false" style="top:-4px">i</button><div class="ec-opts" role="group" aria-label="Size"><button type="button" class="ec-opt" data-size="12" aria-pressed="' + (size === '12') + '">12 oz<small>' + money(cur.p12) + '</small></button><button type="button" class="ec-opt" data-size="2" aria-pressed="' + (size === '2') + '">2 lb<small>' + money(cur.p2) + '</small></button></div>' +
         '<label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px" for="ecGrind">Grind</label><select id="ecGrind" class="ec-sel"><option' + (grind === 'Whole bean' ? ' selected' : '') + '>Whole bean</option><option' + (grind === 'Espresso' ? ' selected' : '') + '>Espresso</option><option' + (grind === 'Filter' ? ' selected' : '') + '>Filter</option></select></div>' +
-        '<div><button type="button" class="sxs-btn" data-add="1">Add to cart</button> <span class="sxs-fine" role="status" aria-live="polite" id="ecAdded">' + (placed ? 'Added (preview).' : '') + '</span></div>' +
-        '<div class="ec-info2"><div><b>Delivery</b><span>Example: ships in 1 to 2 business days; delivery in 3 to 5.</span></div><div><b>Free shipping</b><span>Example: orders over $' + S.threshold + '.</span></div><div><b>Returns</b><span>Example policy text goes here.</span></div></div></div></div>';
+        '<div><button type="button" class="sxs-btn" data-add="1">Add to cart</button> <span class="sxs-fine" role="status" aria-live="polite" id="ecAdded">' + (placed ? 'Added to your cart.' : '') + '</span></div>' +
+        '<div class="ec-info2"><div><b>Delivery</b><span>Ships in 1 to 2 business days; delivery in 3 to 5.</span></div><div><b>Free shipping</b><span>On orders over $' + S.threshold + '.</span></div><div><b>Returns</b><span>If something is wrong with your order, tell us within 14 days and we will make it right.</span></div></div></div></div>';
     }
     function cartCount() { var n = cart.reduce(function (a, l) { return a + l.q; }, 0); $$('.ec-cartn', root).forEach(function (el) { el.textContent = n; }); }
     function sub() { return cart.reduce(function (a, l) { return a + l.p * l.q; }, 0); }
@@ -253,9 +261,9 @@
       var left = Math.max(0, S.threshold - s), pct = Math.min(100, Math.round(s / S.threshold * 100));
       el.innerHTML = '<div class="sxs-row2 top"><div class="sxs-box sx-reg" data-reg="k_path"><button type="button" class="sx-hot" data-feat="k_path" aria-label="Explain: cart" aria-pressed="false">i</button><h2 class="lw-h2" style="font-size:22px!important">Your cart</h2>' +
         cart.map(function (l, i) { return '<div class="ec-line"><div><b>' + esc(l.n) + '</b><small>' + (l.s === '12' ? '12 oz' : '2 lb') + ' \u00b7 ' + esc(l.g) + ' \u00b7 ' + money(l.p) + ' each</small></div><div class="ec-qty"><button type="button" data-q="' + i + ':-1" aria-label="Decrease quantity">\u2212</button><span>' + l.q + '</span><button type="button" data-q="' + i + ':1" aria-label="Increase quantity">+</button></div></div>'; }).join('') + '</div>' +
-        '<div class="sxs-box"><div class="sx-reg ec-ship" data-reg="k_notes" style="padding:2px"><button type="button" class="sx-hot" data-feat="k_notes" aria-label="Explain: free shipping bar" aria-pressed="false" style="top:-6px">i</button><div class="sxs-fine" style="margin-bottom:6px">' + (left ? 'You are ' + money(left) + ' away from free shipping (example threshold).' : 'Free shipping unlocked (example threshold).') + '</div><div class="sxs-prog" aria-hidden="true"><i style="width:' + pct + '%"></i></div></div>' +
-        '<div class="ec-sub"><span>Subtotal</span><span>' + money(s) + '</span></div><div class="sxs-fine" style="margin-bottom:12px">Estimated delivery: 3 to 5 business days (example). Tax and shipping are shown before payment.</div>' +
-        '<div data-pane="co:cart"><button type="button" class="sxs-btn" style="width:100%" data-checkout="1">Checkout (preview)</button></div><div data-pane="co:done" hidden><p><b>Preview only.</b> Payment is not connected. In a real store, secure checkout opens here.</p></div></div></div>';
+        '<div class="sxs-box"><div class="sx-reg ec-ship" data-reg="k_notes" style="padding:2px"><button type="button" class="sx-hot" data-feat="k_notes" aria-label="Explain: free shipping bar" aria-pressed="false" style="top:-6px">i</button><div class="sxs-fine" style="margin-bottom:6px">' + (left ? 'You are ' + money(left) + ' away from free shipping.' : 'Free shipping unlocked.') + '</div><div class="sxs-prog" aria-hidden="true"><i style="width:' + pct + '%"></i></div></div>' +
+        '<div class="ec-sub"><span>Subtotal</span><span>' + money(s) + '</span></div><div class="sxs-fine" style="margin-bottom:12px">Estimated delivery: 3 to 5 business days. Tax and shipping are shown before payment.</div>' +
+        '<div data-pane="co:cart"><button type="button" class="sxs-btn" style="width:100%" data-checkout="1">Checkout</button></div><div data-pane="co:done" hidden><p><b>Order placed (simulated).</b> No payment is taken and nothing is sent.</p></div></div></div>';
     }
     function showProduct(i) { cur = S.coffees.filter(function (c) { return c.id === i; })[0]; size = '12'; grind = 'Whole bean'; placed = false; renderProduct(); api.goto('product'); }
     root.addEventListener('click', function (e) {

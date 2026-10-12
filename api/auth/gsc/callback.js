@@ -6,7 +6,7 @@ import { createClient } from '@supabase/supabase-js';
  * Google redirects here after the client approves access. Exchanges
  * the one-time code for a refresh_token and stores it in gsc_connections.
  *
- * The refresh_token is the sensitive part — it's what lets Ascend pull
+ * The refresh_token is the sensitive part — it's what lets HQAscend pull
  * this client's Search Console data indefinitely without them logging
  * in again. It is written straight to Supabase via the service role
  * key and is never sent back to the browser in this response.

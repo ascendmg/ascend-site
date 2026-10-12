@@ -77,16 +77,19 @@
         const data = await res.json();
 
         if (res.ok) {
-          statusEl.textContent = "Message sent, we'll get back to you soon.";
+          statusEl.textContent = "Thank you. Your message was sent, and we'll reply by email or phone soon.";
           statusEl.className = 'form-status success';
           contactForm.reset();
+          statusEl.focus();
         } else {
           statusEl.textContent = data.error || 'Something went wrong. Please try again.';
           statusEl.className = 'form-status error';
+          statusEl.focus();
         }
       } catch (err) {
-        statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
+        statusEl.textContent = 'Your message could not be sent. Please try again, or email michael@hqascend.com.';
         statusEl.className = 'form-status error';
+        statusEl.focus();
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Message';
@@ -230,16 +233,12 @@
       if (tl && tl.closest('.ex-panel.active') && onScreen(tl)) playTicks();
     }, 7000);
 
-    // --- Projection calculator ---
-    // Inputs: visitors, conversion rate, customer value. The uplift is estimated from
-    // where the business is today (smaller sites have more room to grow traffic; lower
-    // converting sites have more room to improve), then ramped over time.
+    // --- What-if calculator ---
+    // Everything shown comes from the numbers the visitor enters. No hidden improvement assumptions.
     const $ = (id) => document.getElementById(id);
     const rV = $('cVisitors'), rC = $('cConv'), rVal = $('cValue');
-    const nV = $('nVisitors'), nC = $('nConv'), nVal = $('nValue');
+    const nV = $('nVisitors'), nC = $('nConv'), nVal = $('nValue'), aT = $('aTraffic'), aC = $('aConv');
     if (rV) {
-      const RAMP = { 3: 0.25, 6: 0.6, 12: 1 };
-      let months = 12;
       const shown = { extra: 0 };
       function tween(el, to, fmt) {
         const from = shown.extra; const t0 = performance.now(); const dur = reduce ? 0 : 450;
@@ -255,43 +254,38 @@
         const min = parseFloat(r.min), max = parseFloat(r.max), v = Math.min(max, Math.max(min, parseFloat(r.value)));
         r.style.setProperty('--pr', (v - min) / (max - min));
       }
-      function trafficUplift(v) {
-        const x = Math.log(Math.max(v, 200) / 200) / Math.log(100);
-        return Math.max(0.35, 1.1 - 0.65 * Math.min(x, 1.2));
-      }
-      function convUplift(c) {
-        return Math.min(0.50, Math.max(0.10, 0.45 * (5 / Math.max(c, 0.1) - 1)));
-      }
       function clampNum(v, lo, hi, d) { v = parseFloat(v); return isNaN(v) ? d : Math.min(hi, Math.max(lo, v)); }
       function calc() {
-        const visitors = clampNum(nV.value, 100, 50000, 3000), conv = clampNum(nC.value, 1, 100, 2) / 100, value = clampNum(nVal.value, 1, 100000, 600);
+        const visitors = clampNum(nV.value, 100, 50000, 3000), convPct = clampNum(nC.value, 0.1, 100, 2), value = clampNum(nVal.value, 1, 100000, 600);
+        const traffic = clampNum(aT.value, 0, 500, 0) / 100, lift = clampNum(aC.value, 0, 500, 0) / 100;
         [rV, rC, rVal].forEach(setFill);
-        const u = trafficUplift(visitors), c = convUplift(conv * 100), r = RAMP[months];
-        const now = visitors * conv;
-        const wth = visitors * (1 + u * r) * conv * (1 + c * r);
-        const extra = (wth - now) * value;
+        const conv = convPct / 100, newConv = Math.min(1, conv * (1 + lift));
+        const now = visitors * conv, wth = visitors * (1 + traffic) * newConv;
+        const extra = Math.max(0, (wth - now) * value);
         tween($('coExtra'), extra, fmtMoney);
-        $('coYear').textContent = 'per month at month ' + months + ', about ' + fmtMoney(extra * 12) + ' a year at that pace';
-        $('coRange').textContent = 'Likely range: ' + fmtMoney(extra * 0.6) + ' to ' + fmtMoney(extra) + ' a month';
+        $('coYear').textContent = 'per month, about ' + fmtMoney(extra * 12) + ' a year if it held steady';
+        $('aSummary').textContent = 'Visitors: ' + Math.round(visitors).toLocaleString('en-US') + ' to ' + Math.round(visitors * (1 + traffic)).toLocaleString('en-US') + '. Conversion rate: ' + convPct.toFixed(1).replace(/\.0$/, '') + '% to ' + (newConv * 100).toFixed(1).replace(/\.0$/, '') + '%' + (newConv >= 1 ? ' (capped at 100%)' : '') + '.';
         $('nNow').textContent = now.toFixed(1);
         $('nWith').textContent = wth.toFixed(1);
         const max = Math.max(wth, now, 0.001);
         $('barNow').style.width = (now / max * 100) + '%';
         $('barWith').style.width = (wth / max * 100) + '%';
-        const msg = "Hi, I'd like to talk about growing my business. My numbers: about " + Math.round(visitors).toLocaleString('en-US') + " website visitors a month, " + Math.round(conv * 100) + "% become customers, each customer is worth about " + fmtMoney(value) + ". About my business: ";
+        const msg = "Hi, I'd like to talk about growing my business. My numbers: about " + Math.round(visitors).toLocaleString('en-US') + " website visitors a month, " + convPct.toFixed(1).replace(/\.0$/, '') + "% become customers, each customer is worth about " + fmtMoney(value) + ". About my business: ";
         $('calcGo').setAttribute('href', 'contact?msg=' + encodeURIComponent(msg));
         $('calcGo').removeAttribute('target');
       }
       function link(range, box) {
         range.addEventListener('input', () => { box.value = range.value; calc(); });
         box.addEventListener('input', () => { range.value = box.value; calc(); });
+        box.addEventListener('change', () => { const lo = parseFloat(box.min), hi = parseFloat(box.max); let v = parseFloat(box.value); if (isNaN(v)) v = lo; box.value = Math.min(hi, Math.max(lo, v)); range.value = box.value; calc(); });
       }
       link(rV, nV); link(rC, nC); link(rVal, nVal);
+      [aT, aC].forEach(i => { i.addEventListener('input', calc); i.addEventListener('change', () => { let v = parseFloat(i.value); if (isNaN(v)) v = 0; i.value = Math.min(parseFloat(i.max), Math.max(0, v)); calc(); }); });
       const mirror = document.createElement('span');
       mirror.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px;top:0;';
       document.body.appendChild(mirror);
       const fits = [];
-      [[nV, rV], [nC, rC], [nVal, rVal]].forEach(([i, r]) => {
+      [[nV, rV], [nC, rC], [nVal, rVal], [aT, aT], [aC, aC]].forEach(([i, r]) => {
         const fit = () => {
           const cs = getComputedStyle(i);
           mirror.style.font = cs.font; mirror.style.letterSpacing = cs.letterSpacing;
@@ -301,12 +295,6 @@
         i.addEventListener('input', fit); r.addEventListener('input', fit); fits.push(fit); fit();
       });
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => fits.forEach(f => f()));
-      const ct = $('coTabs');
-      ct.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-        months = parseInt(b.dataset.m, 10);
-        ct.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
-        calc();
-      }));
       calc();
     }
 

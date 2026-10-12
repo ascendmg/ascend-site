@@ -25,12 +25,12 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Ascend Website <notifications@hqascend.com>',
+        from: 'HQAscend Website <notifications@hqascend.com>',
         to: ['michael@hqascend.com'],
         reply_to: email,
         subject: `New contact form submission from ${name}`,
         html: `
-          <h2>New message from the Ascend contact form</h2>
+          <h2>New message from the HQAscend contact form</h2>
           <p><strong>Name:</strong> ${escapeHtml(name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Phone:</strong> ${escapeHtml(phone || 'Not provided')}</p>

@@ -2,7 +2,7 @@
  * GET /api/auth/gsc/start?website_id=<uuid>
  *
  * Redirects the client to Google's consent screen so they can grant
- * Ascend read-only access to their Search Console property.
+ * HQAscend read-only access to their Search Console property.
  *
  * Requires these Vercel env vars (none of this runs without them):
  *   GOOGLE_OAUTH_CLIENT_ID
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
     redirect_uri: process.env.GOOGLE_OAUTH_REDIRECT_URI,
     response_type: 'code',
-    // Read-only. Ascend never needs write access to a client's Search Console.
+    // Read-only. HQAscend never needs write access to a client's Search Console.
     scope: 'https://www.googleapis.com/auth/webmasters.readonly',
     access_type: 'offline', // required to get a refresh_token back
     prompt: 'consent',      // forces refresh_token on every connect, not just the first
