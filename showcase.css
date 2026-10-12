@@ -138,3 +138,10 @@ button.sxs-logo{background:none; border:0; padding:0; font:inherit; color:inheri
 .sx-stage.sx-full .sx-site{max-height:none; overflow:visible;}
 .sx-site .sxs-head{position:sticky; top:0; z-index:6;}
 @media (max-width:820px){ .sx-stage:not(.sx-full) .sx-site{max-height:min(78vh,660px);} }
+
+/* v9: slim contextual highlights bar attached to the preview */
+.sx-help{margin-top:-1px; padding:12px 18px 14px; border-radius:0 0 16px 16px; border-top:0; box-shadow:none;}
+.sx-browser{border-bottom-left-radius:0; border-bottom-right-radius:0; box-shadow:none;}
+.sx-stage:not(.sx-full) .sx-help{box-shadow:0 34px 64px -44px rgba(40,30,90,.4);}
+.sx-help .sx-chips{margin:0 0 8px;} .sx-hl{margin:0; font-size:14px; line-height:1.55; color:var(--muted); max-width:90ch;} .sx-hl b{color:var(--ivory); font-weight:600;}
+.sx-capgrid{display:none;}

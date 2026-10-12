@@ -126,3 +126,11 @@ html[data-theme="dark"] .ind-label b{background:var(--forest-2);}
 
 .ind-demo-sec .wrap,.ind-ways-sec .wrap,.ind-head .wrap,.ind-proj-sec .wrap{max-width:1280px;}
 .ind-demo-sec .sec-h{margin-bottom:16px;}
+
+/* v6: optional measurement details after the real project */
+.ind-perf-sec{padding:28px 0 6px;} .ind-perf-sec .wrap{max-width:1280px;} .ind-perf-sec .sx-perf{margin-top:0;}
+.sx-perf-h{font:700 18px 'Space Grotesk',sans-serif; margin:4px 0 14px;} .sx-perf-list{display:grid; grid-template-columns:repeat(2,1fr); gap:10px 28px; list-style:none; padding:0; margin:0 0 12px;}
+.sx-perf-list li{border-left:3px solid #8b5cf6; padding:2px 0 2px 12px; font-size:14px; line-height:1.5;} .sx-perf-list b{display:block; font-weight:600;} .sx-perf-list span{color:var(--muted);}
+.sx-perf-note{font-size:13px; color:var(--muted); margin:0 0 18px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+@media (max-width:700px){ .sx-perf-list{grid-template-columns:1fr;} }
+.ind-close .section-title{max-width:860px!important; font-size:clamp(28px,3.6vw,42px);}

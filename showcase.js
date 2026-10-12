@@ -23,13 +23,9 @@
     function renderHelp() {
       var f = D.feats[featId], order = D.order[viewId];
       var chips = order.map(function (k) { return '<button type="button" data-feat="' + k + '" aria-pressed="' + (k === featId) + '">' + esc(D.feats[k].label) + '</button>'; }).join('');
-      var ben = f.benefits.slice(0, 2).map(function (b) { return '<li>' + esc(b.t) + '</li>'; }).join('');
-      var meas = f.measures.slice(0, 2).map(function (m) { return '<span class="sx-m"><b>' + esc(m.n) + '</b><span data-ev="' + m.ev.join(',') + '" data-fmt="' + (m.fmt || '') + '"></span></span>'; }).join('');
       $('.sx-help-body', help).innerHTML =
         '<div class="sx-chips" role="group" aria-label="Highlights on this page"><span class="sx-chips-l">Highlights</span>' + chips + '</div>' +
-        '<div class="sx-capgrid"><div><p class="sx-ftitle">' + esc(f.title) + '</p><p class="sx-biz">' + esc(f.biz || '') + '</p></div>' +
-        '<div><h4>For your customers</h4><ul class="sx-ben">' + ben + '</ul></div>' +
-        '<div><h4>Know what works</h4><div class="sx-meas">' + meas + '</div></div></div>';
+        '<p class="sx-hl"><b>' + esc(f.title) + '.</b> ' + esc(f.biz || '') + '</p>';
       refresh();
     }
     function flash(k) {
