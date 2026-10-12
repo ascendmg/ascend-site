@@ -91,3 +91,21 @@
 .sxs-stack>div{margin:0;}
 @media (prefers-reduced-motion:reduce){ .sx-view,.sx-reg{animation:none; transition:none;} .sxs-prog i,.sxs-btn,.sxs-acc .pl{transition:none;} .sxs-btn:hover{transform:none;} }
 @media (max-width:820px){ .sx-help{padding:18px 16px;} .sx-help-grid{grid-template-columns:1fr; gap:18px;} .sx-tabs button{flex:1 1 auto; padding:10px 12px; font-size:13px;} .sx-cta{padding:18px;} }
+
+/* Explore example (full-screen view of the same live concept) */
+.sx-explore{margin-left:auto; display:inline-flex; align-items:center; gap:7px; font:600 13px 'Inter',sans-serif; color:var(--ivory); background:#fff; border:1px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer; transition:border-color .18s ease, transform .18s ease;}
+.sx-explore:hover{border-color:var(--accent-dim); transform:translateY(-1px);}
+.sx-explore:focus-visible,.sx-close:focus-visible{outline:2px solid #6366f1; outline-offset:2px;}
+.sx-fullbar{display:none;}
+.sx-stage.sx-full{position:fixed; inset:0; z-index:99999; overflow-y:auto; overscroll-behavior:contain; background:var(--black); padding:0 clamp(12px,3vw,32px) 40px;}
+.sx-stage.sx-full > *{max-width:1240px; margin-left:auto; margin-right:auto;}
+.sx-stage.sx-full .sx-fullbar{display:flex; align-items:center; justify-content:space-between; gap:12px; position:sticky; top:0; z-index:5; padding:12px 0; background:var(--black); font-size:13px; color:var(--muted);}
+.sx-fullbar b{color:var(--ivory);}
+.sx-close{font:600 13px "Inter",sans-serif; background:var(--green); color:var(--black); border:0; border-radius:999px; padding:8px 16px; cursor:pointer;}
+html.sx-lock,html.sx-lock body{overflow:hidden;}
+.sx-ftitle{font:600 15px 'Inter',sans-serif; color:var(--ivory); margin:2px 0 14px;}
+.sx-biz{font-size:14.5px; line-height:1.55;}
+.sx-help-grid{grid-template-columns:1.1fr 1fr 1fr;}
+@media (max-width:1000px){ .sx-help-grid{grid-template-columns:1fr 1fr;} .sx-help-grid > div:last-child{grid-column:1 / -1;} }
+@media (max-width:820px){ .sx-help-grid{grid-template-columns:1fr;} .sx-explore{margin-left:0;} .sx-stage.sx-full{padding:0 10px 32px;} .sx-stage.sx-full .sx-browser{border-radius:12px;} }
+@media (prefers-reduced-motion:reduce){ .sx-explore{transition:none;} }

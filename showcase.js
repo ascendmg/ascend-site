@@ -27,8 +27,10 @@
       var meas = f.measures.map(function (m) { return '<div class="sx-m"><b>' + esc(m.n) + '<span data-ev="' + m.ev.join(',') + '" data-fmt="' + (m.fmt || '') + '"></span></b><p>' + esc(m.t) + '</p></div>'; }).join('');
       $('.sx-help-body', help).innerHTML =
         '<div class="sx-chips" role="group" aria-label="Features in this view">' + chips + '</div>' +
-        '<div class="sx-help-grid"><div><h4>' + esc(f.title) + '</h4><ul class="sx-ben">' + ben + '</ul></div>' +
-        '<div><h4>What we can measure</h4><div class="sx-meas">' + meas + '</div></div></div>';
+        '<p class="sx-ftitle">' + esc(f.title) + '</p>' +
+        '<div class="sx-help-grid"><div><h4>Helps your customers</h4><ul class="sx-ben">' + ben + '</ul></div>' +
+        '<div><h4>Supports your business</h4><p class="sx-biz">' + esc(f.biz || '') + '</p></div>' +
+        '<div><h4>What could be measured</h4><div class="sx-meas">' + meas + '</div></div></div>';
       refresh();
     }
     function flash(k) {
@@ -73,6 +75,32 @@
         else if (e.key === 'Home') n = tabs[0]; else if (e.key === 'End') n = tabs[tabs.length - 1];
         if (n) { e.preventDefault(); n.focus(); gotoView(n.dataset.view); }
       });
+    });
+
+    /* Explore example: the same live DOM is shown full-screen (state is kept), with Esc / Close, focus return and scroll lock */
+    var stage = $('.sx-stage', root), exBtn = $('.sx-explore', root), clBtn = $('.sx-close', root), isFull = false, holder = null;
+    function setFull(on) {
+      isFull = on;
+      /* Re-parent the live node to <body> while open: a transformed ancestor (scroll-reveal) would otherwise trap position:fixed. */
+      if (on) { holder = document.createComment('sx'); root.parentNode.insertBefore(holder, root); document.body.appendChild(root); }
+      else if (holder && holder.parentNode) { holder.parentNode.insertBefore(root, holder); holder.parentNode.removeChild(holder); holder = null; }
+      stage.classList.toggle('sx-full', on); exBtn.setAttribute('aria-expanded', on ? 'true' : 'false');
+      document.documentElement.classList.toggle('sx-lock', on);
+      if (on) { stage.setAttribute('role', 'dialog'); stage.setAttribute('aria-modal', 'true'); stage.setAttribute('aria-label', 'Example website concept'); stage.scrollTop = 0; clBtn.focus(); }
+      else { stage.removeAttribute('role'); stage.removeAttribute('aria-modal'); stage.removeAttribute('aria-label'); exBtn.focus(); }
+    }
+    exBtn.addEventListener('click', function () { setFull(true); });
+    clBtn.addEventListener('click', function () { setFull(false); });
+    document.addEventListener('keydown', function (e) {
+      if (!isFull) return;
+      if (e.key === 'Escape') { e.preventDefault(); setFull(false); return; }
+      if (e.key === 'Tab') {
+        var f = $$('button:not([disabled]),a[href],select,input,[tabindex="0"]', stage).filter(function (n) { return n.offsetParent !== null; });
+        if (!f.length) return; var a = f[0], z = f[f.length - 1];
+        if (!stage.contains(document.activeElement)) { e.preventDefault(); a.focus(); }
+        else if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+        else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+      }
     });
 
     /* Declarative interactions via data attributes (delegated) */

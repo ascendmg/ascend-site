@@ -1187,3 +1187,31 @@
 @media (prefers-reduced-motion:reduce){.mega-panel{animation:none;}}
 
 @media (max-width:1080px){.mobile-menu .nav-cta{display:block;}}
+
+/* Homepage: Why HQAscend (class names avoid the glass-card suffix rule) */
+.wh-grid{margin-top:28px; display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.wh-it{background:var(--forest-2); border:1px solid var(--line); border-radius:14px; padding:20px 18px; box-shadow:var(--card-shadow); transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.wh-it:hover{transform:translateY(-3px); border-color:var(--accent-dim); box-shadow:var(--card-shadow-hover);}
+.wh-ico{display:inline-flex; width:38px; height:38px; border-radius:10px; align-items:center; justify-content:center; background:var(--accent-gradient); color:#fff; margin-bottom:12px;}
+.wh-it h3{font-size:16px; margin-bottom:6px;}
+.wh-it p{font-size:13.5px; color:var(--muted); line-height:1.55;}
+.wh-founder{margin-top:18px; display:flex; align-items:center; gap:16px; padding:14px 18px; border:1px dashed var(--line); border-radius:14px;}
+.wh-av{width:46px; height:46px; border-radius:50%; background:var(--accent-gradient); display:flex; align-items:center; justify-content:center; flex:none;}
+.wh-av img{width:22px; height:auto;}
+.wh-ft{flex:1; min-width:0;}
+.wh-ft h3{font-size:15.5px; margin-bottom:2px;}
+.wh-ft p{font-size:13.5px; color:var(--muted); line-height:1.55; max-width:62ch;}
+.wh-cta{flex:none; white-space:nowrap;}
+@media (max-width:1000px){.wh-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){
+  .wh-grid{grid-template-columns:1fr; gap:10px;}
+  .wh-it{display:grid; grid-template-columns:38px 1fr; column-gap:14px; padding:16px;}
+  .wh-ico{grid-row:1 / span 2; margin:0;}
+  .wh-founder{flex-direction:column; align-items:flex-start; gap:12px;}
+  .wh-cta{width:100%; text-align:center; white-space:normal;}
+}
+@media (prefers-reduced-motion:reduce){.wh-it{transition:none;} .wh-it:hover{transform:none;}}
+
+.ma-top{display:flex; align-items:center; gap:10px; font-size:10.5px; color:var(--muted); padding-bottom:8px; margin-bottom:10px; border-bottom:1px solid var(--line);}
+.ma-top b{color:var(--ivory); font-size:12px; margin-right:auto;} .ma-top em{font-style:normal; font-weight:600; color:var(--accent-2);}
+.ma-tag{display:block; margin-top:10px; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); opacity:.8;}
