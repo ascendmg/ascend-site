@@ -42,7 +42,7 @@
     function flash(k) {
       $$('.sx-reg', root).forEach(function (r) { r.classList.remove('sx-flash'); });
       $$('.sx-hot', root).forEach(function (h) { h.setAttribute('aria-pressed', h.dataset.feat === k ? 'true' : 'false'); });
-      var r = $('.sx-reg[data-reg="' + k + '"]', root);
+      var r = $('.sx-view:not([hidden]) .sx-reg[data-reg="' + k + '"]', root) || $('.sx-reg[data-reg="' + k + '"]', root);
       if (r) { r.classList.add('sx-flash'); clearTimeout(r._t); r._t = setTimeout(function () { r.classList.remove('sx-flash'); }, 2200); }
     }
     function selectFeat(k, doFlash) {
@@ -59,6 +59,7 @@
       $$('.sx-view', root).forEach(function (el) { el.hidden = el.dataset.view !== v; });
       var scr = $('.sx-site', root); if (scr) scr.scrollTop = 0;
       $$('.sxs-links [data-goto]', root).forEach(function (b) { if (b.dataset.goto === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+      var u = $('.sx-url', root); if (u && D.paths && D.paths[v] != null) u.textContent = (D.home || u.textContent) + D.paths[v];
       featId = D.order[v][0]; renderHelp(); flash('');
       listeners.forEach(function (fn) { fn('view', v); });
     }
@@ -295,13 +296,13 @@
   };
 
   function start() { $$('.sx[data-sx]').forEach(init); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  if (document.readyState === 'complete') start(); else document.addEventListener('DOMContentLoaded', start);
 })();
 
 /* Optional real photos: list a file in assets/concepts/manifest.json (slot name -> file name) and it replaces the concept image in that slot. */
 (function () {
   var slots = document.querySelectorAll('.sx-ph[data-slot]'); if (!slots.length || !window.fetch) return;
   fetch('assets/concepts/manifest.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (m) {
-    slots.forEach(function (el) { var f = m && m[el.getAttribute('data-slot')]; var img = el.querySelector('.sx-ph-img'); if (f && img) img.style.backgroundImage = 'url(assets/concepts/' + f + ')'; });
+    slots.forEach(function (el) { var f = m && m[el.getAttribute('data-slot')]; var img = el.querySelector('.sx-ph-img'); if (f && img) { img.style.backgroundImage = 'url(assets/concepts/' + f + ')'; el.classList.add('has'); } });
   }).catch(function () {});
 })();
