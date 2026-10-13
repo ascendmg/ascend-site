@@ -68,7 +68,7 @@
   }
   @media (max-width:480px){
     .ascent-top-row{flex-direction:column;}
-    .slider-fee{text-align:left; margin-top:14px;}
+    .slider-fee{text-align:left; margin-top:14px; white-space:normal;}
   }
   .slider-track-wrap{
     position:relative;
@@ -142,25 +142,6 @@
     height:1px; margin:28px 0; border:none;
     background:linear-gradient(90deg, transparent, var(--line) 15%, var(--line) 85%, transparent);
   }
-  .ascent-start-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
-  .ascent-start-head span:first-child{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; color:var(--ivory);}
-  .ascent-nocontract{font-size:12px; color:var(--muted); display:inline-flex; align-items:center; gap:6px;}
-  .ascent-pay-options{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-  .ascent-pay-card{
-    display:block; width:100%; border:1px solid var(--line); border-radius:14px; padding:22px;
-    transition:border-color .2s ease;
-    background:#fff; text-align:left; cursor:pointer;
-    font-family:'Inter',sans-serif;
-    position:relative;
-  }
-  .ascent-pay-card:hover{border-color:var(--accent-dim);}
-  .ascent-pay-card:disabled{opacity:.6; cursor:wait;}
-  .ascent-pay-card.featured{
-    border:1px solid transparent;
-    background:
-      linear-gradient(#fff, #fff) padding-box,
-      var(--accent-gradient) border-box;
-  }
   .ascent-best-badge{
     position:absolute; top:-11px; right:16px;
     background:var(--accent-gradient);
@@ -168,16 +149,6 @@
     font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
     padding:4px 10px; border-radius:999px;
   }
-  .ascent-checkout-error{color:#e07856; font-size:12.5px; margin-top:12px; min-height:16px;}
-  .ascent-pay-label{font-size:12px; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:.06em;}
-  .ascent-pay-amount{font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:var(--ivory);}
-  .ascent-pay-amount span{font-size:12px; color:var(--muted); font-weight:400;}
-  .ascent-pay-cta{
-    font-size:12.5px; font-weight:600; margin-top:14px;
-    background:var(--accent-gradient);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  @media (max-width:600px){ .ascent-pay-options{grid-template-columns:1fr;} }
 
   .ascent-features-inner{margin-top:8px;}
   .ascent-features-label{
@@ -232,6 +203,16 @@
   .pc-meter i{height:6px; flex:1; border-radius:999px; background:rgba(99,102,241,.14); transition:background .3s ease;}
   .pc-meter i.on{background:var(--accent-gradient);}
   .pc-meter-label{font-size:11.5px; color:var(--muted); display:flex; justify-content:space-between; margin-bottom:22px; position:relative;}
+  .ascent-split{display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:stretch; margin:4px 0 14px;}
+  .ascent-box{border:1px solid var(--line, rgba(255,255,255,.14)); border-radius:14px; padding:16px 18px; display:flex; flex-direction:column; gap:6px;}
+  .ascent-box.fee{border-color:var(--accent-dim); background:rgba(99,102,241,.08);}
+  .ascent-box-k{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .ascent-box b{font-family:'Space Grotesk',sans-serif; font-size:26px; color:var(--ivory); line-height:1.1;}
+  .ascent-box small{font-size:12.5px; color:var(--muted); line-height:1.45;}
+  .ascent-plus{align-self:center; font-size:22px; color:var(--muted);}
+  .ascent-explain{font-size:15px; color:var(--ivory); margin:6px 0 16px; max-width:56ch;}
+  .ascent-cta{display:flex;}
+  @media (max-width:600px){ .ascent-split{grid-template-columns:1fr;} .ascent-plus{display:none;} .ascent-cta .btn-primary{width:100%; justify-content:center; text-align:center;} }
   .pc-cta{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:26px; position:relative;}
   .pc-slide.active .ascent-features li{animation:featureIn .4s ease forwards;}
   .pc-slide .ascent-features li{opacity:0; transform:translateX(-8px);}
@@ -240,10 +221,8 @@
   @keyframes featureIn{to{opacity:1; transform:translateX(0);}}
   @keyframes valuePulse{0%{color:var(--ivory);}40%{color:var(--accent-2); transform:scale(1.03);}100%{color:var(--ivory); transform:scale(1);}}
   .slider-value.pulsing{animation:valuePulse .35s ease;} .slider-fee strong.pulsing{animation:valuePulse .35s ease;}
-  .ascent-pay-card{transition:border-color .2s ease, transform .2s ease;} .ascent-pay-card:hover{transform:translateY(-3px);}
   .ascent-name{margin-bottom:22px;}
   #adSlider:active ~ .slider-thumb-visual{transform:translate(-50%,-50%) scale(1.15);} .slider-thumb-visual{transition:transform .15s ease;}
-  .ascent-pay-card{font:inherit; text-align:left;}
   /* Combine */
   .pc-combo{max-width:760px; margin:56px auto 0; text-align:center;}
   .pc-combo h2{font-size:30px; letter-spacing:-.02em;}
@@ -267,9 +246,7 @@
   @media (prefers-reduced-motion:reduce){ .pc-link.on::after{animation:none;} .pc-slide,.pc-pill{transition:none;} }
   .pc-says{min-height:54px; max-width:56ch; margin:0 auto; font-size:15.5px; color:var(--ivory); line-height:1.55;}
   .pc-says small{display:block; color:var(--muted); font-size:13px; margin-top:6px;}
-  @media (max-width:600px){ .pc-tabs button{padding:10px 12px; font-size:13px;} .pc-shell{padding:26px 20px 28px;} .pc-plan h3{font-size:28px;} .pc-node{width:92px; padding:12px 4px;} .pc-link{width:18px;} .ascent-pay-options{grid-template-columns:1fr;} }
-  .pc-banner{max-width:760px; margin:0 auto 18px; padding:12px 16px; border-radius:12px; font-size:14px; text-align:center; background:#e9f9ef; color:#14532d; border:1px solid #bde8cc;}
-  .pc-banner.no{background:#fff7e6; color:#7a4b00; border-color:#f3d9a0;}
+  @media (max-width:600px){ .pc-tabs button{padding:10px 12px; font-size:13px;} .pc-shell{padding:26px 20px 28px;} .pc-plan h3{font-size:28px;} .pc-node{width:92px; padding:12px 4px;} .pc-link{width:18px;} }
 .fee-note{font-size:12.5px; color:var(--muted); margin:10px 0 0; line-height:1.5;}
 </style>
 </head>
@@ -322,14 +299,13 @@
 <header class="page-header">
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
-    <h1>Pick a Service. See Pricing or Get a Quote.</h1>
-    <p>Marketing management is priced from your ad spend. SEO and web design are quoted around your goals after a free consultation, so you only pay for what you need.</p>
+    <h1>Pick a Service. See Pricing, Then Book a Free Consultation.</h1>
+    <p>Marketing management is priced from your ad budget. SEO and web design are scoped around your goals in a free consultation, so you only pay for what you need.</p>
   </div>
 </header>
 
 <section style="border-top:none; padding-top:8px;">
   <div class="wrap">
-    <div id="pcBanner" class="pc-banner" hidden></div>
     <div class="pc-top reveal">
       <div class="pc-tabs" role="tablist" aria-label="Services">
         <span class="pc-pill" id="pcPill"></span>
@@ -351,38 +327,34 @@
             <div class="ascent-name">Marketing &middot; Ascent</div>
             <div class="ascent-top-row">
               <div>
-                <div class="slider-label">Your Monthly Ad Spend</div>
+                <div class="slider-label">Your Monthly Ad Budget</div>
                 <div class="slider-value" id="spendDisplay">$1,000<span>/mo</span></div>
               </div>
-              <div class="slider-fee">Management fee <strong id="feeDisplay">50.0%</strong> &middot; <span id="feeAmount">$500/mo</span></div>
+              <div class="slider-fee">Estimated management fee <strong id="feeDisplay">50.0%</strong> &middot; <span id="feeAmount">$500/mo</span></div>
             </div>
             <div class="slider-track-wrap">
-              <input type="range" id="adSlider" min="1000" max="100000" step="500" value="1000" aria-label="Monthly ad spend">
+              <input type="range" id="adSlider" min="1000" max="100000" step="500" value="1000" aria-label="Monthly ad budget">
               <div class="slider-fill" id="sliderFill"></div>
               <div class="slider-thumb-visual" id="sliderThumb"></div>
             </div>
             <div class="slider-range-labels"><span>$1K</span><span>$50K</span><span>$100K</span></div>
-            <p class="fee-note">The percentage falls as your ad spend rises, but the dollar fee can still rise. For example, 50% of $1,000 is $500, and 15% of $100,000 is $15,000.</p>
+            <p class="fee-note">The percentage falls as your ad budget rises, but the dollar fee can still rise. For example, 50% of $1,000 is $500, and 15% of $100,000 is $15,000.</p>
             <div class="ascent-divider"></div>
-            <div class="ascent-start">
-              <div class="ascent-start-head">
-                <span>Start today</span>
-                <span class="ascent-nocontract"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="var(--accent-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> No contracts. Cancel anytime.</span>
+            <div class="ascent-split" role="group" aria-label="Ad budget and management fee, shown separately">
+              <div class="ascent-box">
+                <span class="ascent-box-k">Your ad budget</span>
+                <b id="boxSpend">$1,000/mo</b>
+                <small>Paid directly to Google and Meta. This is not part of our fee.</small>
               </div>
-              <div class="ascent-pay-options">
-                <button type="button" class="ascent-pay-card" id="checkoutMonthly">
-                  <div class="ascent-pay-label">Pay Monthly</div>
-                  <div class="ascent-pay-amount" id="payMonthlyAmount">$500 <span>Today</span></div>
-                  <div class="ascent-pay-cta">Get Started &rarr;</div>
-                </button>
-                <button type="button" class="ascent-pay-card featured" id="checkout90Day">
-                                    <div class="ascent-pay-label">90 Days Upfront</div>
-                  <div class="ascent-pay-amount" id="pay90Amount">$1,500 <span>Today</span></div>
-                  <div class="ascent-pay-cta">Get Started &rarr;</div>
-                </button>
+              <div class="ascent-plus" aria-hidden="true">+</div>
+              <div class="ascent-box fee">
+                <span class="ascent-box-k">HQAscend management fee</span>
+                <b id="boxFee">$500/mo</b>
+                <small>Estimated. Paid to HQAscend for setup, management and reporting.</small>
               </div>
-              <div class="ascent-checkout-error" id="checkoutError"></div>
             </div>
+            <p class="ascent-explain">Explore your estimated management fee, then book a free consultation to confirm the right scope for your business.</p>
+            <div class="ascent-cta"><a class="btn-primary" id="discussAds" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss This Plan</a></div>
             <div class="ascent-divider"></div>
             <div class="ascent-features-label">What You Get</div>
             <ul class="ascent-features">
@@ -407,7 +379,7 @@
             <div class="pc-meter-label"><span>One city</span><span>Competitive / multi-market</span></div>
             <div class="pc-price"><b>Custom quote</b><span>after a free consultation</span></div>
             <ul class="ascent-features pc-feat"></ul>
-            <div class="pc-cta"><a class="btn-primary pc-quote" href="contact">Get a Quote</a><a class="btn-ghost" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Book a Call</a></div>
+            <div class="pc-cta"><a class="btn-primary pc-quote" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss Your SEO Plan</a></div>
           </div>
 
           <!-- Web -->
@@ -421,7 +393,7 @@
             <div class="pc-meter-label"><span>Simple</span><span>Bigger scope</span></div>
             <div class="pc-price"><b>Custom quote</b><span>scoped to your project</span></div>
             <ul class="ascent-features pc-feat"></ul>
-            <div class="pc-cta"><a class="btn-primary pc-quote" href="contact">Get a Quote</a><a class="btn-ghost" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Book a Call</a></div>
+            <div class="pc-cta"><a class="btn-primary pc-quote" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss Your Website</a></div>
           </div>
 
         </div>
@@ -445,7 +417,7 @@
         <div class="pc-node on" data-n="ads"><b>Marketing</b><small>Customers starting now</small></div>
       </div>
       <div class="pc-says" id="pcSays" aria-live="polite"></div>
-      <div class="hero-ctas" style="justify-content:center; margin-top:22px;"><a class="btn-primary" id="pcPlan" href="contact">Get a Plan for All Three</a></div>
+      <div class="hero-ctas" style="justify-content:center; margin-top:22px;"><a class="btn-primary" id="pcPlan" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss a Plan for All Three</a></div>
     </div>
   </div>
 </section>
@@ -497,8 +469,8 @@ const adSlider = document.getElementById('adSlider');
   const spendDisplay = document.getElementById('spendDisplay');
   const feeDisplay = document.getElementById('feeDisplay');
   const feeAmount = document.getElementById('feeAmount');
-  const payMonthlyAmount = document.getElementById('payMonthlyAmount');
-  const pay90Amount = document.getElementById('pay90Amount');
+  const boxSpend = document.getElementById('boxSpend');
+  const boxFee = document.getElementById('boxFee');
 
   const MIN_SPEND = 1000, MAX_SPEND = 100000;
   const MIN_FEE_PCT = 0.50, MAX_FEE_PCT = 0.15;
@@ -509,7 +481,7 @@ const adSlider = document.getElementById('adSlider');
     // Fee percentage decreases linearly from 50% at $1K to 15% at $100K
     const progress = (spend - MIN_SPEND) / (MAX_SPEND - MIN_SPEND);
     const feePct = MIN_FEE_PCT + progress * (MAX_FEE_PCT - MIN_FEE_PCT);
-    const feeDollars = Math.ceil((spend * feePct) / 5) * 5;
+    const feeDollars = Math.ceil(Math.round(spend * feePct * 1000) / 1000 / 5) * 5; // rounded first so 15% of $100,000 is exactly $15,000
 
     spendDisplay.innerHTML = '$' + spend.toLocaleString() + '<span>/mo</span>';
     spendDisplay.classList.remove('pulsing');
@@ -520,8 +492,8 @@ const adSlider = document.getElementById('adSlider');
     feeDisplay.classList.add('pulsing');
     feeDisplay.textContent = (feePct * 100).toFixed(1) + '%';
     feeAmount.textContent = '$' + feeDollars.toLocaleString() + '/mo';
-    payMonthlyAmount.innerHTML = '$' + feeDollars.toLocaleString() + ' <span>today</span>';
-    pay90Amount.innerHTML = '$' + (feeDollars * 3).toLocaleString() + ' <span>today</span>';
+    boxSpend.textContent = '$' + spend.toLocaleString() + '/mo';
+    boxFee.textContent = '$' + feeDollars.toLocaleString() + '/mo';
 
     // Fill bar and custom white thumb are positioned from the exact same
     // percentage value, so they can never disagree or show a gap.
@@ -535,43 +507,6 @@ const adSlider = document.getElementById('adSlider');
     window.addEventListener('resize', updateSlider);
     updateSlider();
   }
-
-  // Real checkout, calls the server, which recalculates the fee itself
-  // rather than trusting whatever the client sends, then redirects to
-  // Stripe's actual hosted checkout page.
-  const checkoutError = document.getElementById('checkoutError');
-
-  async function startCheckout(billingType, btn) {
-    checkoutError.textContent = '';
-    const originalHTML = btn.innerHTML;
-    btn.disabled = true;
-    btn.querySelector('.ascent-pay-cta').textContent = 'Loading...';
-
-    try {
-      const res = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ spend: parseInt(adSlider.value, 10), billingType }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.url) {
-        checkoutError.textContent = data.error || 'Checkout is not available yet.';
-        btn.disabled = false;
-        btn.innerHTML = originalHTML;
-        return;
-      }
-      window.location.href = data.url;
-    } catch (err) {
-      checkoutError.textContent = 'Could not reach the server. Please try again.';
-      btn.disabled = false;
-      btn.innerHTML = originalHTML;
-    }
-  }
-
-  const checkoutMonthlyBtn = document.getElementById('checkoutMonthly');
-  const checkout90DayBtn = document.getElementById('checkout90Day');
-  if (checkoutMonthlyBtn) checkoutMonthlyBtn.addEventListener('click', () => startCheckout('monthly', checkoutMonthlyBtn));
-  if (checkout90DayBtn) checkout90DayBtn.addEventListener('click', () => startCheckout('90day', checkout90DayBtn));
 
 </script>
 <script>
@@ -642,7 +577,6 @@ const adSlider = document.getElementById('adSlider');
       title.textContent = p.n; who.textContent = p.who;
       meter.forEach(function (m, j) { m.classList.toggle('on', j < p.lvl); });
       feat.innerHTML = p.f.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
-      q.href = 'contact?msg=' + encodeURIComponent("Hi, I'd like a quote for " + p.n + '.');
     }
     pick(kind === 'seo' ? 1 : 1);
   });
@@ -665,14 +599,11 @@ const adSlider = document.getElementById('adSlider');
     document.querySelector('[data-l="web"]').classList.toggle('on', on.web && on.seo);
     document.querySelector('[data-l="seo"]').classList.toggle('on', on.seo && on.ads);
     var says = document.getElementById('pcSays'), plan = document.getElementById('pcPlan');
-    if (!keys.length) { says.innerHTML = 'Pick at least one to see how it fits.'; plan.textContent = 'Talk it through with us'; plan.href = 'contact'; return; }
+    if (!keys.length) { says.innerHTML = 'Pick at least one to see how it fits.'; plan.textContent = 'Talk it through with us'; return; }
     var s = SAYS[keys.join('+')];
     says.innerHTML = s[0] + '<small>' + s[1] + '</small>';
     var label = keys.length === 3 ? 'all three' : keys.map(function (k) { return NAMES[k]; }).join(' + ');
-    plan.textContent = 'Get a plan for ' + label;
-    var msg = "Hi, I'd like a plan that includes: " + keys.map(function (k) { return NAMES[k]; }).join(', ') + '.';
-    if (on.ads) msg += ' Ad budget I have in mind: ' + document.getElementById('spendDisplay').firstChild.textContent + '/mo.';
-    plan.href = 'contact?msg=' + encodeURIComponent(msg);
+    plan.textContent = 'Discuss a plan for ' + label;
   }
   [].forEach.call(document.querySelectorAll('#pcChips button'), function (b) {
     b.addEventListener('click', function () { on[b.dataset.k] = !on[b.dataset.k]; b.setAttribute('aria-pressed', on[b.dataset.k] ? 'true' : 'false'); renderCombo(); });
@@ -680,13 +611,9 @@ const adSlider = document.getElementById('adSlider');
   document.getElementById('adSlider').addEventListener('input', renderCombo);
   renderCombo();
 
-  // Start tab + checkout banner
+  // Start tab
   var q = new URLSearchParams(location.search), t = q.get('tab'), ix = KEYS.indexOf(t);
   go(ix >= 0 ? ix : 0);
-  var co = q.get('checkout'), bn = document.getElementById('pcBanner');
-  if (co === 'success') { bn.textContent = "Thanks, you're all set. We'll be in touch shortly to get your campaigns started."; bn.hidden = false; }
-  if (co === 'canceled') { bn.textContent = 'Checkout was canceled. No charge was made. You can pick up where you left off below.'; bn.className = 'pc-banner no'; bn.hidden = false; }
-  if (co) go(0);
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
