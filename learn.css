@@ -151,3 +151,6 @@
 .la-cta-link{font-size:14.5px; font-weight:600; color:var(--accent-1); text-decoration:underline; text-underline-offset:3px; align-self:center;}
 .la-body a.la-cta-link{text-decoration:underline;}
 @media (max-width:900px){ .la-feature{border-radius:14px; margin-bottom:22px;} }
+
+/* Launch pass: touch-friendly TOC toggle */
+@media (max-width:900px){ .la-toc summary{padding:14px 0; min-height:44px; box-sizing:border-box;} }

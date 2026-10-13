@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://hqascend.com/assets/brand/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=12">
+<link rel="stylesheet" href="shared.css?v=14">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
 <header class="page-header">
   <div class="wrap">
     <div class="eyebrow">Contact</div>
-    <h1>Let's build something that ascends.</h1>
+    <h1>Let's Build Something That Ascends.</h1>
     <p>Tell us about your business and we'll follow up to schedule your free consultation.</p>
   </div>
 </header>
@@ -84,7 +84,8 @@
         <a href="tel:14077011820"><span class="ci-label">Phone</span>(407) 701-1820</a>
         <a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener"><span class="ci-label">Schedule</span>Book a call via Calendly</a>
       </div>
-      <form id="contactForm">
+      <form id="contactForm" novalidate>
+        <div class="hp-field" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <label class="fld" for="cfName"><span>Name <i aria-hidden="true">*</i></span><input id="cfName" type="text" name="name" autocomplete="name" placeholder="Your name" required></label>
         <label class="fld" for="cfEmail"><span>Email <i aria-hidden="true">*</i></span><input id="cfEmail" type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
         <label class="fld" for="cfPhone"><span>Phone <small>(optional)</small></span><input id="cfPhone" type="tel" name="phone" autocomplete="tel" placeholder="(555) 555-0123"></label>
@@ -126,7 +127,7 @@
   <div class="footer-bottom">© 2026 HQAscend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
 </footer>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

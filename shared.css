@@ -1226,3 +1226,15 @@
 .fld{display:block; margin-bottom:12px;} .fld > span{display:block; font:600 13.5px 'Inter',sans-serif; margin-bottom:5px; color:var(--ivory);} .fld > span i{color:#b4412a; font-style:normal;} .fld small{font-weight:400; color:var(--muted);}
 .fld-note{font-size:12.5px; color:var(--muted); margin:0 0 12px;}
 .form-status{min-height:1.4em; font-weight:600; outline:none;} .form-status.error{color:#b4412a;} .form-status.success{color:#0b7a53;}
+
+/* Launch pass: contain the typing cursor, larger touch targets on phones */
+header.hero{overflow-x:clip;}
+@media (max-width:900px){
+  .footer-links a{display:inline-block; padding:8px 0;}
+  .footer-bottom a{display:inline-block; padding:8px 4px;}
+}
+
+/* Reduced motion: stop looping and decorative animation site-wide */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+}

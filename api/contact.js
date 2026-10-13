@@ -5,7 +5,21 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, message } = req.body;
+    const body = req.body || {};
+    const { name, email, phone, message } = body;
+
+    // Spam protection: hidden honeypot field plus a minimum fill time.
+    // Bots that fill every field or submit instantly get a silent success
+    // so they learn nothing, and no email is sent.
+    const elapsed = Date.now() - Number(body.t || 0);
+    if (body.website || (body.t && elapsed < 2500)) {
+      return res.status(200).json({ success: true });
+    }
+
+    // Length limits (also keeps header values and email size sane)
+    if (String(name).length > 120 || String(email).length > 254 || String(phone || '').length > 40 || String(message).length > 5000) {
+      return res.status(400).json({ error: 'One of your entries is too long. Please shorten it and try again.' });
+    }
 
     // Basic validation
     if (!name || !email || !message) {
@@ -23,12 +37,14 @@ export default async function handler(req, res) {
       headers: {
         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
         'Content-Type': 'application/json',
+        // Same submission id = Resend sends at most one email (duplicate-submit protection)
+        ...(body.sid ? { 'Idempotency-Key': `contact-${String(body.sid).slice(0, 64)}` } : {}),
       },
       body: JSON.stringify({
         from: 'HQAscend Website <notifications@hqascend.com>',
         to: ['michael@hqascend.com'],
-        reply_to: email,
-        subject: `New contact form submission from ${name}`,
+        reply_to: String(email).trim(),
+        subject: `New contact form submission from ${String(name).replace(/[\r\n]+/g, ' ').slice(0, 80)}`,
         html: `
           <h2>New message from the HQAscend contact form</h2>
           <p><strong>Name:</strong> ${escapeHtml(name)}</p>

@@ -51,8 +51,18 @@
       const ta = contactForm.querySelector('textarea[name="message"]');
       if (pre && ta && !ta.value) ta.value = pre.slice(0, 1200);
     } catch (e) {}
+    const formOpened = Date.now();
+    let submissionId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(formOpened) + Math.random().toString(36).slice(2);
+    let sending = false, sent = false;
+    contactForm.addEventListener('input', () => {
+      if (sent) {   // person is writing a new message: allow another send with a fresh id
+        sent = false; submissionId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2);
+        const b = contactForm.querySelector('.form-submit'); b.disabled = false; b.textContent = 'Send Message';
+      }
+    });
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (sending || sent) return;   // block double-clicks and repeat sends
       const statusEl = document.getElementById('formStatus');
       const submitBtn = contactForm.querySelector('.form-submit');
       const formData = new FormData(contactForm);
@@ -61,7 +71,26 @@
         email: formData.get('email'),
         phone: formData.get('phone'),
         message: formData.get('message'),
+        website: formData.get('website'),   // honeypot, must stay empty
+        t: formOpened,
+        sid: submissionId,
       };
+      payload.name = String(payload.name || '').trim();
+      payload.email = String(payload.email || '').trim();
+      payload.message = String(payload.message || '').trim();
+      // Friendly, announced validation (status region is aria-live)
+      const bad = !payload.name ? ['cfName', 'Please enter your name.'] :
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email) ? ['cfEmail', 'Please enter a valid email address.'] :
+        !payload.message ? ['cfMsg', 'Please tell us a little about your project.'] : null;
+      contactForm.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+      if (bad) {
+        const el = document.getElementById(bad[0]);
+        el.setAttribute('aria-invalid', 'true');
+        statusEl.textContent = bad[1]; statusEl.className = 'form-status error';
+        el.focus();
+        return;
+      }
+      sending = true;
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
@@ -80,6 +109,7 @@
           statusEl.textContent = "Thank you. Your message was sent, and we'll reply by email or phone soon.";
           statusEl.className = 'form-status success';
           contactForm.reset();
+          sent = true; submitBtn.disabled = true; submitBtn.textContent = 'Message Sent';
           statusEl.focus();
         } else {
           statusEl.textContent = data.error || 'Something went wrong. Please try again.';
@@ -91,8 +121,8 @@
         statusEl.className = 'form-status error';
         statusEl.focus();
       } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
+        sending = false;
+        if (!sent) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
       }
     });
   }
