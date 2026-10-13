@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HQAscend, Website Design &amp; Marketing</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/brand/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="HQAscend helps businesses get found on Google, bring in customers with ads, and convert them with a website built to sell. Marketing and web design in Kissimmee, FL.">
+<link rel="canonical" href="https://www.hqascend.com/">
+<meta property="og:title" content="HQAscend, Website Design &amp; Marketing">
+<meta property="og:description" content="Website design and marketing for businesses that want to grow. Custom sites, SEO, and paid ads under one roof.">
+<meta property="og:image" content="https://hqascend.com/assets/brand/og-image.jpg">
+<meta property="og:url" content="https://hqascend.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HQAscend, Website Design &amp; Marketing">
+<meta name="twitter:description" content="Website design and marketing for businesses that want to grow. Custom sites, SEO, and paid ads under one roof.">
+<meta name="twitter:image" content="https://hqascend.com/assets/brand/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "HQAscend",
+  "url": "https://www.hqascend.com",
+  "image": "https://www.hqascend.com/assets/brand/og-image.jpg",
+  "logo": "https://www.hqascend.com/assets/brand/favicon-192.png",
+  "description": "Website design and marketing agency offering website design & development, website maintenance, SEO, Google Ads, Meta Ads, social media marketing, branding, and photography/videography.",
+  "email": "michael@hqascend.com",
+  "telephone": "+14077011820",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "722 Patrick Street, Suite 107",
+    "addressLocality": "Kissimmee",
+    "addressRegion": "FL",
+    "postalCode": "34741",
+    "addressCountry": "US"
+  },
+  "areaServed": ["Kissimmee, FL", "Orlando, FL", "Central Florida"],
+  "priceRange": "$$",
+  "sameAs": []
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=14">
+</head>
+<body>
+
+<div class="ascend-line"><div class="ascend-fill" id="ascendFill"></div></div>
+
+<nav id="nav">
+  <a href="/" class="logo">HQ<span>Ascend</span></a>
+  <div class="nav-links">
+    <div class="nav-item">
+      <button class="nav-trigger" type="button" aria-haspopup="true">Services <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="mega-panel mg-wide">
+        <div class="mg-list"><a class="mg-link" href="marketing"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span><span class="mg-txt"><b>Marketing</b><span>Google &amp; Meta Ads That Bring in Leads</span></span></a><a class="mg-link" href="seo"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="mg-txt"><b>SEO</b><span>Show Up When Customers Search</span></span></a><a class="mg-link" href="web-design"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></span><span class="mg-txt"><b>Web Design</b><span>Sites That Turn Visitors Into Customers</span></span></a></div>
+        <div class="mg-foot"><a href="pricing">See Pricing →</a><a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Free Consultation →</a></div>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-trigger" type="button" aria-haspopup="true">Who We Help <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <div class="mega-panel mg-wide mg-two">
+        <div class="mg-list"><a class="mg-link" href="law-firms"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-2 6a3 3 0 006 0L7 7M19 7l-2 6a3 3 0 006 0l-2-6"/></svg></span><span class="mg-txt"><b>Law Firms</b><span>Build Credibility, Simplify Consultations</span></span></a><a class="mg-link" href="course-education"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><span class="mg-txt"><b>Courses &amp; Education</b><span>Connect Enrollment and Learning</span></span></a><a class="mg-link" href="ecommerce-solutions"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.5 11h-11z"/><path d="M9 7a3 3 0 016 0"/></svg></span><span class="mg-txt"><b>E-Commerce</b><span>Simplify Shopping and Checkout</span></span></a><a class="mg-link" href="local-service"><span class="mg-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="mg-txt"><b>Local Businesses</b><span>Turn Local Interest Into Inquiries</span></span></a></div>
+      </div>
+    </div>
+    <a href="portfolio">Case Studies</a>
+    <a href="pricing">Pricing</a>
+    <a href="learn">Learn</a>
+  </div><a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mega-mobile-label">Services</div>
+  <a href="marketing">Marketing</a>
+  <a href="seo">SEO</a>
+  <a href="web-design">Web Design</a>
+  <div class="mega-mobile-label">Who We Help</div>
+  <a href="law-firms">Law Firms</a>
+  <a href="course-education">Courses &amp; Education</a>
+  <a href="ecommerce-solutions">E-Commerce</a>
+  <a href="local-service">Local Businesses</a>
+  <div class="mega-mobile-label">Explore</div>
+  <a href="portfolio">Case Studies</a>
+  <a href="pricing">Pricing</a>
+  <a href="learn">Learn</a>
+  <a href="https://calendly.com/michael-hqascend/free-consultation" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+</div>
+
+<header class="hero">
+  <div class="hero-bg">
+    <div class="panel p1"></div>
+    <div class="panel p2"></div>
+    <div class="panel p3"></div>
+    <div class="sheen"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Marketing &amp; Website Design</div>
+    <h1 class="headline">Built for <span class="type-target" id="typeTarget">Your Business</span><span class="type-cursor">|</span></h1>
+    <p class="hero-sub">Hi, we're HQAscend. We help businesses get found on Google, bring in customers with ads, and turn visitors into calls and sales with a website built to convert. Marketing first, design to back it up.</p>
+    <div class="hero-ctas">
+      <a href="https://calendly.com/michael-hqascend/free-consultation" class="btn-primary" target="_blank" rel="noopener">Book a Call</a>
+      <a href="portfolio" class="btn-ghost">See Our Work</a>
+    </div>
+    <div class="hero-chips" role="group" aria-label="Pick what you want most">
+      <span class="chips-label">What Do You Want Most?</span>
+      <button class="chip" type="button" data-goto="leads">More Customers</button>
+      <button class="chip" type="button" data-goto="found">Show Up on Google</button>
+      <button class="chip" type="button" data-goto="convert">A Better Website</button>
+      <button class="chip" type="button" data-goto="grow">Someone to Handle It All</button>
+    </div>
+  </div>
+</header>
+
+<section id="what" style="padding-top:36px;">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">What We Do</div>
+      <h2 class="section-title wide">We Get You Found, Get You Leads, and Turn Them Into Customers.</h2>
+      <p class="section-lead">Four jobs, one partner. Tap each one to see how it works.</p>
+    </div>
+    <div class="explorer" id="explorer">
+      <div class="ex-tabs" role="tablist" aria-label="What HQAscend does">
+        <button class="ex-tab active" role="tab" aria-selected="true" data-tab="found"><span class="ex-num">01</span><span><b>Get Found</b><small>SEO and Google</small></span></button>
+        <button class="ex-tab" role="tab" aria-selected="false" data-tab="leads"><span class="ex-num">02</span><span><b>Get Leads</b><small>Google and Meta Ads</small></span></button>
+        <button class="ex-tab" role="tab" aria-selected="false" data-tab="convert"><span class="ex-num">03</span><span><b>Get Customers</b><small>Websites That Convert</small></span></button>
+        <button class="ex-tab" role="tab" aria-selected="false" data-tab="grow"><span class="ex-num">04</span><span><b>Keep Growing</b><small>Care and Reporting</small></span></button>
+      </div>
+      <div class="ex-panels">
+
+        <div class="ex-panel active" id="panel-found" role="tabpanel">
+          <div>
+            <h3>People Are Already Searching for You.</h3>
+            <p class="ex-lead">When someone searches for what you sell, we work to help your business show up where they're looking. That means a faster site, better pages, and a clear plan for improving the results.</p>
+            <ul class="ex-bullets">
+              <li>Fix what's holding your site back on Google</li>
+              <li>Write pages around what customers really search</li>
+              <li>Track your rankings and show you the progress</li>
+            </ul>
+            <a class="ex-link" href="seo">See how SEO works &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Illustration of a business climbing Google results">
+            <div class="serp-q">best your service near me</div>
+            <ol class="serp-list" id="serpList">
+              <li data-k="c1"><span class="pos">1</span>Competitor One</li>
+              <li data-k="c2"><span class="pos">2</span>Competitor Two</li>
+              <li data-k="c3"><span class="pos">3</span>Competitor Three</li>
+              <li data-k="c4"><span class="pos">4</span>Competitor Four</li>
+              <li data-k="me" class="mine"><span class="pos">5</span>Your business<span class="jump" id="serpJump" aria-live="polite"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>4 spots</b></span></li>
+            </ol>
+            <p class="ma-tag" style="text-transform:none; letter-spacing:0; font-size:11.5px;">Illustration only. Search results vary, and rankings are never guaranteed.</p>
+          </div>
+        </div>
+
+        <div class="ex-panel" id="panel-leads" role="tabpanel">
+          <div>
+            <h3>Turn Ad Spend Into Real Inquiries.</h3>
+            <p class="ex-lead">We run Google and Meta ads that target people ready to buy, then keep adjusting them so your budget works harder every month. The fee percentage gets smaller as your budget grows.</p>
+            <ul class="ex-bullets">
+              <li>Starts at a $1,000 monthly ad budget</li>
+              <li>Scope and terms confirmed in a free consultation</li>
+              <li>Drag the slider to see the fee at your budget</li>
+            </ul>
+            <a class="ex-link" href="pricing?tab=marketing">See the full Marketing pricing &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Ad budget fee estimator">
+            <span class="viz-tag">Live Pricing</span>
+            <div class="ads-val" id="adsVal">$5,000<small>/mo ad budget</small></div>
+            <input class="range" type="range" id="adsRange" min="1000" max="100000" step="500" value="5000" aria-label="Monthly ad budget">
+            <div class="range-ends"><span>$1,000</span><span>$100,000</span></div>
+            <div class="fee-row"><span>Our fee at this budget</span><strong id="adsFee">48.6% &middot; $2,430/mo</strong></div>
+          </div>
+        </div>
+
+        <div class="ex-panel" id="panel-convert" role="tabpanel">
+          <div>
+            <h3>A Website That Does the Selling.</h3>
+            <p class="ex-lead">Traffic only matters if visitors act. We build fast, clear, custom sites with one obvious next step, so the people marketing brings in actually call, book, or buy.</p>
+            <ul class="ex-bullets">
+              <li>Custom design, never a recycled template</li>
+              <li>Clear message and a button people can't miss</li>
+              <li>Built to load fast and work on every phone</li>
+            </ul>
+            <a class="ex-link" href="web-design">See how we build sites &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Before and after website illustration">
+            <div class="switch" role="group" aria-label="Before or after">
+              <button type="button" class="on" data-state="before">Before</button>
+              <button type="button" data-state="after">After</button>
+            </div>
+            <div class="mock" id="mock">
+              <div class="mock-bar"><i></i><i></i><i></i></div>
+              <div class="mock-body">
+                <div class="mock-before">
+                  <div class="old-nav"><b>Smith &amp; Sons</b><span>Home | About | Services | Gallery | Links | FAQ | Contact | Blog | Staff</span></div>
+                  <div class="old-banner">WELCOME TO OUR WEBSITE!!!</div>
+                  <div class="old-cols">
+                    <div class="old-text"><i style="width:96%"></i><i style="width:88%"></i><i style="width:93%"></i><i style="width:70%"></i><i style="width:90%"></i><i style="width:60%"></i></div>
+                    <div class="old-side"><span>Click here</span><span>Read more</span><span>Sign up</span></div>
+                  </div>
+                  <div class="old-foot"><span class="tiny-btn">submit</span><small>Phone number is in the footer, somewhere.</small></div>
+                  <div class="mock-note">Cluttered, no clear next step, visitors leave.</div>
+                </div>
+                <div class="mock-after">
+                  <div class="ma-top"><b>Smith &amp; Sons Home Repair</b><span>Services</span><span>Reviews</span><em>Book a call</em></div>
+                  <div class="ma-grid"><div class="ma-copy"><h4>Repairs done right.<br>One obvious next step.</h4><p>Tell us what needs fixing and we will reply within one business day.</p><span class="big-btn">Book a free call</span><div class="trust"><span>Fast replies</span><span>Mobile ready</span><span>Clear pricing</span></div></div><div class="ma-img"><svg viewBox="0 0 640 420" role="img" aria-label="Concept image of a well-kept front yard" class="sx-img" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="hsmsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9d3ea"/><stop offset="1" stop-color="#f4efd9"/></lineargradient><linearGradient id="hsmlawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6dae5a"/><stop offset="1" stop-color="#3f8a3f"/></lineargradient><linearGradient id="hsmwall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eadfc8"/><stop offset="1" stop-color="#d5c6a4"/></lineargradient><radialGradient id="hsmsun" cx=".8" cy=".12" r=".7"><stop offset="0" stop-color="#fff6c8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></radialgradient><filter id="hsmgr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.16"/></fecomponenttransfer></filter><clipPath id="hsmcl"><rect width="640" height="420" rx="18"/></clippath><filter id="hsmbl"><feGaussianBlur stdDeviation="6"/></filter><filter id="hsmbl2"><feGaussianBlur stdDeviation="2.2"/></filter></defs><g clip-path="url(#hsmcl)"><rect width="640" height="420" fill="url(#hsmsky)"/><rect width="640" height="420" fill="url(#hsmsun)"/><g fill="#3b7a45" opacity=".8"><circle cx="40" cy="190" r="70"/><circle cx="110" cy="170" r="60"/><circle cx="600" cy="180" r="76"/></g><g fill="#2b5e37"><rect x="42" y="190" width="12" height="90"/><rect x="596" y="190" width="12" height="90"/></g><rect x="170" y="130" width="300" height="130" fill="url(#hsmwall)"/><polygon points="150,134 320,60 490,134" fill="#5a4636"/><polygon points="150,134 320,60 490,134 490,142 150,142" fill="#4a3a2d"/><rect x="206" y="160" width="54" height="64" fill="#8fb6cf"/><rect x="380" y="160" width="54" height="64" fill="#8fb6cf"/><path d="M233 160v64M206 192h54M407 160v64M380 192h54" stroke="#f5efe0" stroke-width="4"/><rect x="296" y="170" width="48" height="90" rx="3" fill="#2f5d62"/><circle cx="334" cy="218" r="3" fill="#d6b97b"/><rect y="258" width="640" height="162" fill="url(#hsmlawn)"/><path d="M-40 420l50 -150h60l10 150z" fill="#fff" opacity=".07"/><path d="M70 420l55 -150h60l2 150z" fill="#fff" opacity=".07"/><path d="M180 420l60 -150h60l-6 150z" fill="#fff" opacity=".07"/><path d="M290 420l65 -150h60l-14 150z" fill="#fff" opacity=".07"/><path d="M400 420l70 -150h60l-22 150z" fill="#fff" opacity=".07"/><path d="M510 420l75 -150h60l-30 150z" fill="#fff" opacity=".07"/><path d="M620 420l80 -150h60l-38 150z" fill="#fff" opacity=".07"/><path d="M730 420l85 -150h60l-46 150z" fill="#fff" opacity=".07"/><path d="M840 420l90 -150h60l-54 150z" fill="#fff" opacity=".07"/><path d="M290 262h60l60 158H230z" fill="#d8ccb2"/><path d="M300 262h40l40 158h-120z" fill="#e6dcc4"/><circle cx="150" cy="262" r="15" fill="#2f6b3e"/><circle cx="196" cy="262" r="18" fill="#357a45"/><circle cx="242" cy="262" r="21" fill="#2a6038"/><circle cx="288" cy="262" r="15" fill="#3a8049"/><circle cx="334" cy="262" r="18" fill="#2f6b3e"/><circle cx="380" cy="262" r="21" fill="#357a45"/><circle cx="426" cy="262" r="15" fill="#2a6038"/><circle cx="472" cy="262" r="18" fill="#3a8049"/><circle cx="518" cy="262" r="21" fill="#2f6b3e"/><circle cx="170" cy="282" r="4" fill="#e8b64c"/><circle cx="208" cy="289" r="4" fill="#e07a5f"/><circle cx="246" cy="286" r="4" fill="#f4eee0"/><circle cx="284" cy="283" r="4" fill="#e8b64c"/><circle cx="322" cy="290" r="4" fill="#e07a5f"/><circle cx="360" cy="287" r="4" fill="#f4eee0"/><circle cx="398" cy="284" r="4" fill="#e8b64c"/><circle cx="436" cy="291" r="4" fill="#e07a5f"/><path d="M0 330c120-12 180 10 230 30l-30 60H0z" fill="#2f7a3a" opacity=".5"/><g transform="translate(520 300)"><rect x="-4" y="-40" width="8" height="64" fill="#5a4636"/><circle cx="0" cy="-60" r="40" fill="#2f6b3e"/><circle cx="-24" cy="-44" r="26" fill="#3a8049"/><circle cx="22" cy="-48" r="28" fill="#357a45"/></g><ellipse cx="520" cy="326" rx="70" ry="10" fill="#1d4a2a" opacity=".35"/><rect width="640" height="420" filter="url(#hsmgr)"/></g></svg></div></div>
+                </div>
+              </div>
+            </div>
+            <p class="ma-tag">Example website concept for a fictional business.</p>
+          </div>
+        </div>
+
+        <div class="ex-panel" id="panel-grow" role="tabpanel">
+          <div>
+            <h3>We Don't Disappear After Launch.</h3>
+            <p class="ex-lead">Marketing is a monthly habit, not a one-time project. We keep your site healthy, your campaigns tuned, and send you a plain-English report so you always know where you stand.</p>
+            <ul class="ex-bullets">
+              <li>Site updates, backups, and fixes</li>
+              <li>Ongoing SEO, ads, social, and branding</li>
+              <li>One person who knows your business</li>
+            </ul>
+            <a class="ex-link" href="marketing">See our marketing services &rarr;</a>
+          </div>
+          <div class="viz" aria-label="Monthly checklist illustration">
+            <ul class="tick-list" id="tickList">
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rankings checked and tracked</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ad campaigns tuned</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Site updated and backed up</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>New content published</li>
+              <li><span class="box"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 11.5L13 4.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Plain-English report sent to you</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calc" class="section-alt">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Try It</div>
+      <h2 class="section-title wide">What Could More Customers Be Worth to You?</h2>
+      <p class="section-lead">Enter three numbers about your business, then set your own what-if assumptions. This shows what a change could be worth under those assumptions. It is not a forecast.</p>
+    </div>
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label for="nVisitors">Website visitors a month</label>
+          <div class="num-box"><input type="number" id="nVisitors" min="100" max="50000" step="100" value="3000" inputmode="numeric"></div>
+          <input class="range" type="range" id="cVisitors" min="100" max="20000" step="100" value="3000" aria-label="Website visitors a month slider">
+        </div>
+        <div class="calc-field">
+          <label for="nConv">Visitors who become customers</label>
+          <div class="num-box"><input type="number" id="nConv" min="1" max="100" step="1" value="2" inputmode="numeric"><span>%</span></div>
+          <input class="range" type="range" id="cConv" min="1" max="100" step="1" value="2" aria-label="Conversion rate slider">
+        </div>
+        <div class="calc-field">
+          <label for="nValue">Value of a new customer</label>
+          <div class="num-box"><span>$</span><input type="number" id="nValue" min="1" max="100000" step="50" value="600" inputmode="numeric"></div>
+          <input class="range" type="range" id="cValue" min="50" max="10000" step="50" value="600" aria-label="Customer value slider">
+        </div>
+        <fieldset class="calc-assume">
+          <legend>What-If Assumptions <span>(Edit These)</span></legend>
+          <div class="calc-field">
+            <label for="aTraffic">More visitors</label>
+            <div class="num-box"><input type="number" id="aTraffic" min="0" max="500" step="5" value="20" inputmode="numeric"><span>%</span></div>
+          </div>
+          <div class="calc-field">
+            <label for="aConv">Higher conversion rate (relative)</label>
+            <div class="num-box"><input type="number" id="aConv" min="0" max="500" step="5" value="10" inputmode="numeric"><span>%</span></div>
+          </div>
+          <p class="calc-hint" id="aSummary"></p>
+        </fieldset>
+      </div>
+      <div class="calc-out">
+        <div class="co-label">Extra Revenue Under Your Assumptions</div>
+        <div class="co-big" id="coExtra">$0</div>
+        <div class="co-sub" id="coYear">per month</div>
+                        <div class="bars">
+          <div class="bar-row"><span>Today</span><div class="bar-track"><div class="bar-fill now" id="barNow"></div></div><b id="nNow">0</b></div>
+          <div class="bar-row"><span>With your assumptions</span><div class="bar-track"><div class="bar-fill with" id="barWith"></div></div><b id="nWith">0</b></div>
+        </div>
+        <div class="co-sub">New customers per month</div>
+        <p class="calc-note">A hypothetical illustration using only the numbers and assumptions above. It is not a forecast, and results are not guaranteed. Real outcomes depend on your market, offer, and budget.</p>
+        <a class="calc-cta" id="calcGo" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Let's Look at Your Real Numbers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap reveal">
+    <div class="proof-band">
+      <div class="proof-label">Real Work, Live on the Web</div>
+      <div class="proof-row two">
+        <a class="proof-item" href="case-study-abogadaus">
+          <picture><source type="image/webp" srcset="assets/portfolio-abogadaus-640.webp 640w, assets/portfolio-abogadaus-1000.webp 1000w" sizes="(max-width:700px) 90vw, 470px"><img class="proof-thumb" src="assets/portfolio-abogadaus.jpg" alt="AbogadaUS.com homepage" width="1200" height="614" loading="lazy" decoding="async"></picture>
+          <div class="proof-name">AbogadaUS</div>
+          <div class="proof-detail">Law firm site &middot; live, bilingual, audited 88/100</div>
+          <span class="proof-go">Read the case study &rarr;</span>
+        </a>
+        <a class="proof-item" href="case-study-ciudadanoready">
+          <picture><source type="image/webp" srcset="assets/portfolio-ciudadanoready-640.webp 640w, assets/portfolio-ciudadanoready-1000.webp 1000w" sizes="(max-width:700px) 90vw, 470px"><img class="proof-thumb" src="assets/portfolio-ciudadanoready.jpg" alt="CiudadanoReady.com homepage" width="1200" height="547" loading="lazy" decoding="async"></picture>
+          <div class="proof-name">CiudadanoReady</div>
+          <div class="proof-detail">Course platform &middot; live, bilingual, online enrollment</div>
+          <span class="proof-go">Read the case study &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="section-alt">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Why HQAscend</div>
+      <h2 class="section-title wide">Your Website and Marketing, Working Toward the Same Goal.</h2>
+      <p class="section-lead">We bring design, development, and marketing together to help people find your business, understand what you offer, and take the next step.</p>
+    </div>
+    <div class="wh-grid">
+      <div class="wh-it"><span class="wh-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg></span><h3>One Connected Plan</h3><p>Your website and marketing work together, with a clear purpose behind each.</p></div>
+      <div class="wh-it"><span class="wh-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3.2 3.2 0 010 5.6M18 14.3c2 .7 3.5 2.7 3.5 5.7"/></svg></span><h3>Built Around Your Customers</h3><p>Make it easy for visitors to find answers, build confidence, and inquire, book, or buy.</p></div>
+      <div class="wh-it"><span class="wh-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8.5 9h7M8.5 13h4"/><path d="m9 17 2 1.8 4-4"/></svg></span><h3>Clear Work. Clear Updates.</h3><p>Know what's included, what's being done, and which results we're tracking.</p></div>
+      <div class="wh-it"><span class="wh-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 005 5l-8.8 8.8a2.1 2.1 0 01-3-3L16.5 8.5"/><path d="m14.5 6.5 3-3 3 3"/></svg></span><h3>Support Beyond Launch</h3><p>Keep your website maintained and continue improving through ongoing support and marketing services.</p></div>
+    </div>
+    <div class="wh-founder">
+      <div class="wh-av"><img src="assets/brand/ascend-icon-white.png" alt="" width="26" height="26" loading="lazy"></div>
+      <div class="wh-ft">
+        <h3>Hi, I'm Michael.</h3>
+        <p>I'm the founder of HQAscend and your main point of contact. I work with you to understand your business, turn your goals into a practical plan, and keep the process clear from the first conversation onward.</p>
+      </div>
+      <a class="btn-primary wh-cta" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Let's Talk About Your Business</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section-alt">
+  <div class="wrap reveal">
+    <div class="kicker">Contact</div>
+    <h2 class="section-title wide">Let's Build Something That Ascends.</h2>
+    <p class="section-lead">Tell us about your business and we'll follow up to schedule your free consultation. Or <a href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener" style="text-decoration:underline;">book a call right now</a>.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <a href="mailto:michael@hqascend.com"><span class="ci-label">Email</span>michael@hqascend.com</a>
+        <a href="tel:14077011820"><span class="ci-label">Phone</span>(407) 701-1820</a>
+      </div>
+      <form id="contactForm">
+        <label class="fld" for="cfName"><span>Name <i aria-hidden="true">*</i></span><input id="cfName" type="text" name="name" autocomplete="name" placeholder="Your name" required></label>
+        <label class="fld" for="cfEmail"><span>Email <i aria-hidden="true">*</i></span><input id="cfEmail" type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label class="fld" for="cfPhone"><span>Phone <small>(optional)</small></span><input id="cfPhone" type="tel" name="phone" autocomplete="tel" placeholder="(555) 555-0123"></label>
+        <label class="fld" for="cfMsg"><span>Tell us about your project <i aria-hidden="true">*</i></span><textarea id="cfMsg" name="message" placeholder="What are you hoping to achieve?" required></textarea></label>
+        <p class="fld-note">Fields marked * are required. We use your details only to reply to you.</p>
+        <button class="form-submit" type="submit">Send Message</button>
+        <p id="formStatus" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="logo icon-only"><img src="/assets/brand/ascend-icon-black.png" alt="HQAscend"></div>
+      <p>Website design &amp; marketing for businesses that want to grow.</p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Site</span>
+      <a href="web-design">Web Design</a>
+      <a href="marketing">Marketing</a>
+      <a href="seo">SEO</a>
+      <a href="law-firms">Law Firms</a>
+      <a href="course-education">Course & Education</a>
+      <a href="ecommerce-solutions">E-Commerce</a>
+      <a href="local-service">Local Businesses</a>
+      <a href="portfolio">Case Studies</a>
+      <a href="pricing">Pricing</a>
+      <a href="learn">Learn</a>
+      <a href="location">Location</a>
+    </div>
+    <div class="footer-links">
+      <span class="footer-heading">Contact</span>
+      <a href="mailto:michael@hqascend.com">michael@hqascend.com</a>
+      <a href="tel:14077011820">(407) 701-1820</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 HQAscend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
+</footer>
+
+<script src="script.js?v=6"></script>
+<script>
+  (function() {
+    const words = ['your business', 'your enterprise', 'your startup'];
+    const el = document.getElementById('typeTarget');
+    if (!el) return;
+    let wordIndex = 0, charIndex = 0, deleting = false;
+
+    function tick() {
+      const current = words[wordIndex];
+      if (!deleting) {
+        charIndex++;
+        el.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(tick, 1800);
+          return;
+        }
+        setTimeout(tick, 55);
+      } else {
+        charIndex--;
+        el.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+        setTimeout(tick, 30);
+      }
+    }
+    setTimeout(tick, 900);
+  })();
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>

@@ -24,20 +24,17 @@
     const G = { leads: { mult: 1.0, rl: 'Leads', cl: 'Cost per lead' }, traffic: { mult: 0.82, rl: 'Site visits', cl: 'Cost per visit' }, sales: { mult: 1.12, rl: 'Purchases', cl: 'Cost per purchase' } };
     let plat = 'google', goal = 'leads';
     const W = [0.20, 0.25, 0.27, 0.28];
-    const cur = { imp: 0, clk: 0, res: 0, cpc: 0, cpr: 0, wk: [0, 0, 0, 0], ad: 0, fee: 0 };
+    const cur = { imp: 0, clk: 0, res: 0, cpc: 0, cpr: 0, wk: [0, 0, 0, 0], ad: 0 };
     let cancel = null;
 
     function model() {
       const budget = parseInt(range.value, 10), m = M[plat], g = G[goal];
-      const progress = (budget - 1000) / (25000 - 1000);
+      const progress = (budget - 2000) / (25000 - 2000);
       const cpc = m.cpc * g.mult * (1 + 0.12 * progress);
       const clicks = budget / cpc, imp = clicks / m.ctr;
       const rate = goal === 'leads' ? m.lead : goal === 'sales' ? m.sale : 0.85;
       const res = clicks * rate;
-      const feeProg = (budget - 1000) / (100000 - 1000);
-      const feePct = 0.50 + feeProg * (0.15 - 0.50);
-      const fee = Math.ceil((budget * feePct) / 5) * 5;
-      return { budget, cpc, clicks, imp, res, cpr: budget / res, wk: W.map(w => clicks * w), fee, m, g };
+      return { budget, cpc, clicks, imp, res, cpr: budget / res, wk: W.map(w => clicks * w), m, g };
     }
     function chart(wk) {
       const X0 = 36, X1 = 400, Y0 = 138, Y1 = 14, max = Math.max(...wk, 1) * 1.15;
@@ -55,26 +52,22 @@
       $('sRes').textContent = A.num(c.res); $('sCpc').textContent = '$' + c.cpc.toFixed(2);
       $('sCpr').textContent = A.money(c.cpr);
       chart(c.wk);
-      const total = c.ad + c.fee || 1;
-      $('spAd').style.width = (c.ad / total * 100) + '%'; $('spFee').style.width = (c.fee / total * 100) + '%';
-      $('spAdAmt').textContent = A.money(c.ad); $('spFeeAmt').textContent = A.money(c.fee);
+      $('spAdAmt').textContent = A.money(c.ad);
     }
     function update() {
       const m = model();
       $('simBudget').textContent = A.money(m.budget); A.setFill(range);
       $('sResL').textContent = m.g.rl; $('sCprL').textContent = m.g.cl; $('spPlat').textContent = m.m.name;
-      const from = { imp: cur.imp, clk: cur.clk, res: cur.res, cpc: cur.cpc, cpr: cur.cpr, wk: cur.wk.slice(), ad: cur.ad, fee: cur.fee };
+      const from = { imp: cur.imp, clk: cur.clk, res: cur.res, cpc: cur.cpc, cpr: cur.cpr, wk: cur.wk.slice(), ad: cur.ad };
       if (cancel) cancel();
       cancel = A.animate(0, 1, 450, (p) => {
         cur.imp = A.lerp(from.imp, m.imp, p); cur.clk = A.lerp(from.clk, m.clicks, p); cur.res = A.lerp(from.res, m.res, p);
-        cur.cpc = A.lerp(from.cpc, m.cpc, p); cur.cpr = A.lerp(from.cpr, m.cpr, p); cur.ad = A.lerp(from.ad, m.budget, p); cur.fee = A.lerp(from.fee, m.fee, p);
+        cur.cpc = A.lerp(from.cpc, m.cpc, p); cur.cpr = A.lerp(from.cpr, m.cpr, p); cur.ad = A.lerp(from.ad, m.budget, p);
         cur.wk = from.wk.map((v, i) => A.lerp(v, m.wk[i], p));
         paint(cur, m);
       });
       const rateTxt = goal === 'leads' ? Math.round(m.m.lead * 1000) / 10 + '% of clicks become leads' : goal === 'sales' ? Math.round(m.m.sale * 1000) / 10 + '% of clicks become purchases' : '85% of clicks become site visits';
       $('simAssume').textContent = 'Hypothetical scenario, not a forecast or guarantee. Assumptions: ' + m.m.label + ' average cost per click about $' + m.m.cpc.toFixed(2) + ', click-through rate ' + (m.m.ctr * 100).toFixed(1) + '%, ' + rateTxt + '. Real results depend on your market, offer, website, and creative.';
-      const msg = "Hi, I'd like to put my ad budget to work. From the simulator: Platform " + m.m.label + ", monthly ad budget " + A.money(m.budget) + ", goal " + m.g.rl + ". About my business: ";
-      $('simGo').setAttribute('href', 'contact?msg=' + encodeURIComponent(msg));
     }
     function seg(id, set) {
       const g = $(id); g.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { g.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); set(b.dataset.v); update(); }));

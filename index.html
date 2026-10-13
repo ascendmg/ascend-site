@@ -45,6 +45,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=14">
+<style>
+.mk-flow{list-style:none; margin:14px 0 0; padding:0; display:grid; gap:0; counter-reset:mk;}
+.mk-flow li{position:relative; padding:0 0 18px 44px; counter-increment:mk;}
+.mk-flow li:last-child{padding-bottom:0;}
+.mk-flow li::before{content:counter(mk); position:absolute; left:0; top:0; width:28px; height:28px; border-radius:50%; background:var(--accent-gradient); color:#fff; font:700 13px 'Space Grotesk',sans-serif; display:grid; place-items:center;}
+.mk-flow li::after{content:''; position:absolute; left:13px; top:30px; bottom:2px; width:2px; background:rgba(99,102,241,.2);}
+.mk-flow li:last-child::after{display:none;}
+.mk-flow b{display:block; font-family:'Space Grotesk',sans-serif; font-size:16px; color:var(--ivory);}
+.mk-flow span{display:block; font-size:13px; color:var(--muted); line-height:1.5; margin-top:2px;}
+</style>
 </head>
 <body>
 
@@ -159,21 +169,23 @@
 
         <div class="ex-panel" id="panel-leads" role="tabpanel">
           <div>
-            <h3>Turn Ad Spend Into Real Inquiries.</h3>
-            <p class="ex-lead">We run Google and Meta ads that target people ready to buy, then keep adjusting them so your budget works harder every month. The fee percentage gets smaller as your budget grows.</p>
+            <h3>Ads That Are Planned, Tracked, and Reported.</h3>
+            <p class="ex-lead">We run Google and Meta ads aimed at people ready to buy. Strategy, campaigns, tracking, and reporting work as one system, so you can see what your ad spend is doing and what to change next.</p>
             <ul class="ex-bullets">
-              <li>Starts at a $1,000 monthly ad budget</li>
-              <li>Scope and terms confirmed in a free consultation</li>
-              <li>Drag the slider to see the fee at your budget</li>
+              <li>Strategy first: goals, audience, and the right channel</li>
+              <li>Tracking on calls, forms, and sales</li>
+              <li>Plain-language reports every month</li>
             </ul>
-            <a class="ex-link" href="pricing?tab=marketing">See the full Marketing pricing &rarr;</a>
+            <a class="ex-link" href="marketing">Explore Marketing &rarr;</a>
           </div>
-          <div class="viz" aria-label="Ad budget fee estimator">
-            <span class="viz-tag">Live Pricing</span>
-            <div class="ads-val" id="adsVal">$5,000<small>/mo ad budget</small></div>
-            <input class="range" type="range" id="adsRange" min="1000" max="100000" step="500" value="5000" aria-label="Monthly ad budget">
-            <div class="range-ends"><span>$1,000</span><span>$100,000</span></div>
-            <div class="fee-row"><span>Our fee at this budget</span><strong id="adsFee">48.6% &middot; $2,430/mo</strong></div>
+          <div class="viz" aria-label="How strategy, campaigns, tracking, and reporting work together">
+            <span class="viz-tag">How It Works Together</span>
+            <ol class="mk-flow">
+              <li><b>Strategy</b><span>Goals, audience, and the channel we agree to run.</span></li>
+              <li><b>Campaigns</b><span>Ads built and managed around that plan.</span></li>
+              <li><b>Tracking</b><span>Every call, form, and sale tied back to its source.</span></li>
+              <li><b>Reporting</b><span>A monthly report that shows what to adjust next.</span></li>
+            </ol>
           </div>
         </div>
 
@@ -394,7 +406,7 @@
   <div class="footer-bottom">© 2026 HQAscend. Website Design &amp; Marketing. · <a href="privacy" style="color:var(--muted);">Privacy Policy</a> · <a href="terms" style="color:var(--muted);">Terms of Service</a></div>
 </footer>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 <script>
   (function() {
     const words = ['your business', 'your enterprise', 'your startup'];

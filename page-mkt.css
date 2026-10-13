@@ -65,3 +65,10 @@
 @media (max-width:900px){ .mk-hero-grid{grid-template-columns:1fr;} .sim-controls{grid-template-columns:1fr; gap:14px;} .kpis.five{grid-template-columns:repeat(2,1fr);} .sim-grid, .duo{grid-template-columns:1fr;} .steps3{grid-template-columns:1fr;} .site-body, .prod{grid-template-columns:1fr; gap:12px; padding:16px;} .prod-img{display:none;} .jny{height:380px;} }
 @media (max-width:520px){ .opt-row{grid-template-columns:100px 1fr 46px;} .rep-kpis{grid-template-columns:repeat(2,1fr);} .toast{right:10px; left:10px;} }
 @media (prefers-reduced-motion:reduce){ .hd-line{stroke-dashoffset:0; animation:none;} .hd-area{opacity:1; animation:none;} .feed{transition:none;} }
+
+.mm-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:14px; margin-top:18px; align-items:start;} .mm-price{margin-top:0;}
+.mm-from{font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4vw,38px); font-weight:700; letter-spacing:-.02em; line-height:1.1;}
+.mm-copy{margin-top:12px; font-size:15px; line-height:1.6;} .mm-note{margin-top:10px; font-size:13.5px; line-height:1.55; color:var(--muted);} .mm-price .btn-primary{margin-top:18px;}
+.mm-list{display:grid; gap:10px;} .mm-item{border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:var(--forest-2);}
+.mm-item b{display:block; font-family:'Space Grotesk',sans-serif; font-size:16px;} .mm-item p{font-size:13.5px; color:var(--muted); line-height:1.5; margin-top:3px;}
+@media (max-width:760px){ .mm-grid{grid-template-columns:1fr;} .mm-price .btn-primary{width:100%; justify-content:center; text-align:center;} }

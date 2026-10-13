@@ -25,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=14">
 <link rel="stylesheet" href="pages.css?v=1">
-<link rel="stylesheet" href="page-mkt.css?v=1">
+<link rel="stylesheet" href="page-mkt.css?v=2">
 </head>
 <body>
 
@@ -126,8 +126,8 @@
         </div>
         <div class="sim-budget">
           <div class="ctl-label">Monthly Ad Budget <b id="simBudget">$5,000</b></div>
-          <input class="range" type="range" id="simRange" min="1000" max="25000" step="500" value="5000" aria-label="Monthly ad budget">
-          <div class="range-ends"><span>$1,000</span><span>$25,000</span></div>
+          <input class="range" type="range" id="simRange" min="2000" max="25000" step="500" value="5000" aria-label="Monthly ad budget">
+          <div class="range-ends"><span>$2,000</span><span>$25,000</span></div>
         </div>
       </div>
 
@@ -149,17 +149,16 @@
             </svg>
           </div>
           <div class="sim-split">
-            <div class="ctl-label">Where the Money Goes</div>
-            <div class="split-bar" aria-hidden="true"><i id="spAd"></i><i id="spFee"></i></div>
+            <div class="ctl-label">Budget and Management Are Separate</div>
             <ul class="split-list">
-              <li><span class="sw s1"></span><span>Paid to <b id="spPlat">Google</b> for ads</span><b id="spAdAmt">$5,000</b></li>
-              <li><span class="sw s2"></span><span>HQAscend management fee</span><b id="spFeeAmt">$0</b></li>
+              <li><span class="sw s1"></span><span>Your ad budget, paid to <b id="spPlat">Google</b></span><b id="spAdAmt">$5,000</b></li>
+              <li><span class="sw s2"></span><span>HQAscend management, paid separately</span><b>Starts at $2,000/mo</b></li>
             </ul>
-            <p class="split-note">Ad spend goes straight to the platform. Our fee is separate, and its percentage shrinks as your budget grows. <a href="pricing?tab=marketing">See pricing</a>.</p>
+            <p class="split-note">Your ad budget goes straight to the advertising platform. Management is a separate monthly fee, and $2,000 is the minimum. <a href="pricing?tab=marketing">See pricing</a>.</p>
           </div>
         </div>
         <div class="sim-cta">
-          <a class="btn-primary btn-grad" id="simGo" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss Your Ad Budget</a>
+          <a class="btn-primary btn-grad" id="simGo" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss Your Marketing Plan</a>
           <p class="disclaimer" id="simAssume" style="margin:0;"></p>
         </div>
       </div>
@@ -262,6 +261,30 @@
   </div>
 </section>
 
+<section class="pg-sec" id="management">
+  <div class="wrap">
+    <div class="kicker">Marketing Management</div>
+    <h2 class="pg-title">What We Manage.</h2>
+    <div class="mm-grid">
+      <div class="stage mm-price">
+        <div class="mm-from">Starting at $2,000/Month</div>
+        <p class="mm-copy">Campaign strategy, paid advertising management, conversion tracking, ongoing optimization, and monthly reporting. We agree on the channels, deliverables, and scope after understanding your business.</p>
+        <p class="mm-note">Advertising spend is separate and paid directly by you to the advertising platform.</p>
+        <p class="mm-note">$2,000 is the minimum agency management fee. It is not your total marketing budget, and it is not a fixed price for every engagement.</p>
+        <a class="btn-primary btn-grad" id="mmGo" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Discuss Your Marketing Plan</a>
+      </div>
+      <div class="mm-list">
+        <div class="mm-item"><b>Campaign Strategy</b><p>Goals, audience, offer, and the advertising channel we agree to run.</p></div>
+        <div class="mm-item"><b>Paid Advertising Management</b><p>Building, launching, and managing your campaigns.</p></div>
+        <div class="mm-item"><b>Conversion Tracking</b><p>Calls, forms, and sales tracked, so results connect back to your ads.</p></div>
+        <div class="mm-item"><b>Ongoing Optimization</b><p>Regular adjustments to targeting, ads, and budget based on performance data.</p></div>
+        <div class="mm-item"><b>Monthly Reporting</b><p>A plain-language report on spend, results, and next steps.</p></div>
+      </div>
+    </div>
+    <p class="disclaimer" style="margin-top:14px;">The starting scope focuses on one agreed advertising channel. Additional channels, substantial creative production, landing-page builds, SEO, and other services are quoted separately.</p>
+  </div>
+</section>
+
 <section class="pg-sec" id="cta">
   <div class="wrap">
     <div class="cta-band">
@@ -272,7 +295,7 @@
         <a class="btn-ghost" href="https://calendly.com/michael-hqascend/free-consultation" target="_blank" rel="noopener">Talk About Ads</a>
       </div>
     </div>
-    <p class="disclaimer" style="margin-top:14px;">Ad spend is paid to Google or Meta. HQAscend's management fee is separate. <a href="pricing?tab=marketing" style="text-decoration:underline;">See marketing pricing</a>. Not sure where to start? Read our <a href="why-marketing-matters" style="text-decoration:underline;">guide for small businesses</a>.</p>
+    <p class="disclaimer" style="margin-top:14px;">Ad spend is paid directly to Google or Meta. HQAscend's management fee is separate and starts at $2,000/month. <a href="pricing?tab=marketing" style="text-decoration:underline;">See marketing pricing</a>. Not sure where to start? Read our <a href="why-marketing-matters" style="text-decoration:underline;">guide for small businesses</a>.</p>
   </div>
 </section>
 
@@ -308,7 +331,7 @@
 
 <script src="script.js?v=6"></script>
 <script src="pages-common.js?v=1"></script>
-<script src="page-mkt.js?v=1" defer></script>
+<script src="page-mkt.js?v=2" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

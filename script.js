@@ -223,19 +223,6 @@
       serpTimer = setTimeout(step, 700);
     }
 
-    // --- Ad budget fee (same formula as the pricing page) ---
-    const adsRange = document.getElementById('adsRange');
-    function updateAds() {
-      const spend = parseInt(adsRange.value, 10);
-      const progress = (spend - 1000) / (100000 - 1000);
-      const pct = 0.50 + progress * (0.15 - 0.50);
-      const dollars = Math.ceil((spend * pct) / 5) * 5;
-      document.getElementById('adsVal').innerHTML = fmtMoney(spend) + '<small>/mo ad budget</small>';
-      document.getElementById('adsFee').innerHTML = (pct * 100).toFixed(1) + '% &middot; ' + fmtMoney(dollars) + '/mo';
-      adsRange.style.setProperty('--pr', progress);
-    }
-    if (adsRange) { adsRange.addEventListener('input', updateAds); updateAds(); }
-
     // --- Before / after ---
     const mock = document.getElementById('mock');
     document.querySelectorAll('.switch button').forEach(b => b.addEventListener('click', () => {
