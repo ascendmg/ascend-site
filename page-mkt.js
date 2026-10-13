@@ -91,7 +91,7 @@
       google: 'Search intent: people on Google are already looking for what you offer, so a sponsored result puts you in front of them right when they are ready to act.',
       meta: 'Audience discovery: people scrolling Facebook and Instagram are not searching yet, so strong creative and targeting introduce your business, and retargeting brings visitors back.'
     };
-    const STEPS = { google: ['Search', 'Ad click', 'Website', 'Lead'], meta: ['Scroll', 'Ad tap', 'Product page', 'Purchase'] };
+    const STEPS = { google: ['Search', 'Ad Click', 'Website', 'Lead'], meta: ['Scroll', 'Ad Tap', 'Product Page', 'Purchase'] };
     const jn = { google: $('jnyGoogle'), meta: $('jnyMeta') };
     let kind = 'google', timers = [], seen = false;
     const clear = () => { timers.forEach(clearTimeout); timers = []; };

@@ -10,7 +10,7 @@
   function init(root) {
     var D = JSON.parse($('.sx-data', root).textContent), id = D.id;
     var counts = {}, viewId = D.views[0].id, featId = null, listeners = [];
-    var help = $('.sx-help', root);
+    var help = $('.sx-info', root);
 
     function metricText(el) {
       var ev = el.dataset.ev.split(','), fmt = el.dataset.fmt; if (!ev[0]) return 'Set up on a real site';
@@ -20,12 +20,23 @@
     function refresh() { $$('[data-ev]', root).forEach(function (el) { el.textContent = metricText(el); }); }
     function track(ev) { counts[ev] = (counts[ev] || 0) + 1; refresh(); }
 
+    var secOpen = { build: true, helps: false, track: false };
     function renderHelp() {
       var f = D.feats[featId], order = D.order[viewId];
       var chips = order.map(function (k) { return '<button type="button" data-feat="' + k + '" aria-pressed="' + (k === featId) + '">' + esc(D.feats[k].label) + '</button>'; }).join('');
-      $('.sx-help-body', help).innerHTML =
-        '<div class="sx-chips" role="group" aria-label="Highlights on this page"><span class="sx-chips-l">Highlights</span>' + chips + '</div>' +
-        '<p class="sx-hl"><b>' + esc(f.title) + '.</b> ' + esc(f.biz || '') + '</p>';
+      var li = function (xs) { return xs.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); };
+      var helps = [f.biz, f.benefits && f.benefits[0] && f.benefits[0].t].filter(Boolean);
+      var track = (f.measures || []).slice(0, 3).map(function (m) { return '<li><b>' + esc(m.n) + '</b><span>' + esc(String(m.t).split('. ')[0].replace(/\.$/, '')) + '.</span></li>'; }).join('');
+      function sec(key, title, body) {
+        var o = secOpen[key], bid = 'sx-isb-' + id + '-' + key;
+        return '<div class="sx-isec" data-sec="' + key + '"><h4><button type="button" class="sx-ish" aria-expanded="' + o + '" aria-controls="' + bid + '">' + title + '<i aria-hidden="true"></i></button></h4><div class="sx-isb" id="' + bid + '"' + (o ? '' : ' hidden') + '>' + body + '</div></div>';
+      }
+      $('.sx-info-body', help).innerHTML =
+        '<div class="sx-chips" role="group" aria-label="Features on this page"><span class="sx-chips-l">On This Page</span>' + chips + '</div>' +
+        '<h3 class="sx-ititle">' + esc(f.title) + '</h3>' +
+        sec('build', 'What We Can Build', '<ul class="sx-ilist">' + li(f.build || []) + '</ul>') +
+        sec('helps', 'How It Helps', '<ul class="sx-ilist">' + li(helps) + '</ul>') +
+        sec('track', 'What We Can Track', '<ul class="sx-itrack">' + track + '</ul>');
       refresh();
     }
     function flash(k) {
@@ -38,7 +49,7 @@
       if (!D.feats[k]) return;
       var f = D.feats[k]; if (f.view !== viewId && !f.shared) return;
       featId = k; renderHelp(); if (doFlash) flash(k); else flash('');
-      if (doFlash && window.matchMedia('(max-width:820px)').matches) { var hb = $('.sx-help', root); if (hb) hb.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+      if (doFlash && window.matchMedia('(max-width:820px)').matches) { var hb = $('.sx-info', root); if (hb) hb.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
     }
     function gotoView(v, quiet) {
       viewId = v;
@@ -107,7 +118,9 @@
     }
     /* Declarative interactions via data attributes (delegated) */
     root.addEventListener('click', function (e) {
-      var b = e.target.closest('button,[data-switch],[data-acc],[data-goto],[data-feat],[data-track]'); if (b && b.closest('.sx-help') && !b.dataset.feat) return; if (!b || !root.contains(b)) return;
+      var sh = e.target.closest('.sx-ish');
+      if (sh) { var key = sh.closest('.sx-isec').dataset.sec; secOpen[key] = !secOpen[key]; sh.setAttribute('aria-expanded', secOpen[key]); var bd = document.getElementById(sh.getAttribute('aria-controls')); if (bd) bd.hidden = !secOpen[key]; return; }
+      var b = e.target.closest('button,[data-switch],[data-acc],[data-goto],[data-feat],[data-track]'); if (b && b.closest('.sx-info') && !b.dataset.feat) return; if (!b || !root.contains(b)) return;
       if (b.dataset.switch) {
         sw(b.dataset.switch);
         var g = b.dataset.switch.split(':')[0], lab = b.dataset.label;
@@ -121,7 +134,7 @@
       var PM = { call_click: 'In a live site, this starts a phone call.', text_click: 'In a live site, this opens a text message.' };
       if (b.dataset.track && PM[b.dataset.track]) toast(PM[b.dataset.track]);
       if (b.dataset.goto) { gotoView(b.dataset.goto); var br = $('.sx-browser', root); if (isFull) stage.scrollTop = 0; else if (br && br.getBoundingClientRect().top < 0) br.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
-      if (b.dataset.feat) selectFeat(b.dataset.feat, !b.closest('.sx-help'));
+      if (b.dataset.feat) selectFeat(b.dataset.feat, !b.closest('.sx-info'));
     });
 
     gotoView(viewId);

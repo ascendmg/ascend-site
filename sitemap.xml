@@ -82,22 +82,22 @@
   </url>
   <url>
     <loc>https://www.hqascend.com/learn</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.hqascend.com/why-marketing-matters</loc>
-    <lastmod>2026-10-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.hqascend.com/why-you-need-a-website</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.hqascend.com/what-is-seo</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.hqascend.com/why-marketing-matters</loc>
+    <lastmod>2026-10-12</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>
